@@ -1,6 +1,9 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Controls a label to display the current state of a <see cref="MatchTimer"/>.
+/// </summary>
 public partial class MatchTimerText : Label
 {
     [Export] public MatchTimer Timer { get; set; }

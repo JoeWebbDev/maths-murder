@@ -1,6 +1,9 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Test scene for <see cref="MatchTimer"/> and <see cref="MatchTimerText"/>.
+/// </summary>
 public partial class MatchTimerTest : CanvasLayer
 {
     [Export] public Button StartTimerButton { get; set; }
