@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwrt3mai5fuk7"]
+
+[ext_resource type="Script" path="res://Src/MatchTimer/MatchTimer.cs" id="1_wy342"]
+
+[node name="MatchTimer" type="Node"]
+script = ExtResource("1_wy342")
