@@ -9,30 +9,26 @@ using System.Threading.Tasks;
 /// <b>Possible improvements:</b> should we be decoupling the timer from the UI text, or is this OK?
 /// Is there a better way to update the text (currently polling every frame in <see cref="_Process"/>)?
 /// </summary>
-public partial class MatchTimer : Label
+public partial class MatchTimer : Node
 {
+	[Signal] public delegate void MatchTimerStartedEventHandler();
 	[Signal] public delegate void MatchTimerEndedEventHandler();
-	[Export] public int MatchTime { get; set; }
-	[Export] public bool StartOnReady { get; set; }
+	[Export] public int TotalMatchTime { get; set; }
+	public double? TimeLeft => _timer?.TimeLeft;
 	private SceneTreeTimer _timer;
-	private bool _isActive;
-	public override void _Ready()
-	{
-		if (StartOnReady) Start();
-	}
+	private SignalAwaiter _ongoingTask;
 
 	public async Task Start()
 	{
-		_timer = GetTree().CreateTimer(MatchTime);
-		_isActive = true;
-		await ToSignal(_timer, SceneTreeTimer.SignalName.Timeout);
-		Text = "0";
+		if (_ongoingTask is { IsCompleted: false })
+		{
+			GD.PushWarning($"Attempting to start a {nameof(MatchTimer)} while one is ongoing is not allowed!");
+			return;
+		}
+		EmitSignal(SignalName.MatchTimerStarted);
+		_timer = GetTree().CreateTimer(TotalMatchTime);
+		_ongoingTask = ToSignal(_timer, SceneTreeTimer.SignalName.Timeout);
+		await _ongoingTask;
 		EmitSignal(SignalName.MatchTimerEnded);
-		_isActive = false;
-	}
-
-	public override void _Process(double delta)
-	{
-		if (_isActive) Text = (Mathf.CeilToInt(_timer.TimeLeft)).ToString();
 	}
 }
