@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://b1kuwshx14qj0"]
+
+[ext_resource type="Texture2D" uid="uid://c0fsaxb8fxeum" path="res://Assets/street-fighter-sprite-sheet-png.png" id="1_syg6t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jtdr"]
+atlas = ExtResource("1_syg6t")
+region = Rect2(0, 15, 53, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmj5n"]
+atlas = ExtResource("1_syg6t")
+region = Rect2(53, 15, 53, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmmo3"]
+atlas = ExtResource("1_syg6t")
+region = Rect2(106, 15, 53, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_844da"]
+atlas = ExtResource("1_syg6t")
+region = Rect2(159, 15, 53, 100)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jtdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmj5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmmo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_844da")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
