@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c81ncca7c2hd5"]
+
+[ext_resource type="PackedScene" uid="uid://b7fntc4eg5fi" path="res://Src/Fighters/FighterOne/fighter_one.tscn" id="1_mt5a2"]
+[ext_resource type="Script" path="res://Src/ExampleController/ExampleController.cs" id="1_on5m0"]
+
+[node name="Node" type="Node" node_paths=PackedStringArray("FighterBeingControlled")]
+script = ExtResource("1_on5m0")
+FighterBeingControlled = NodePath("Fighter")
+
+[node name="Fighter" parent="." instance=ExtResource("1_mt5a2")]
