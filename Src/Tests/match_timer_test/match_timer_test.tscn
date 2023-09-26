@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://5q6pu5p8pbws"]
 
-[ext_resource type="PackedScene" uid="uid://dael03tjnwng8" path="res://Src/MatchTimerText/MatchTimerText.tscn" id="1_he2rd"]
-[ext_resource type="Script" path="res://Src/Tests/MatchTimerTest/MatchTimerTest.cs" id="1_m7g0h"]
-[ext_resource type="PackedScene" uid="uid://cwrt3mai5fuk7" path="res://Src/MatchTimer/MatchTimer.tscn" id="2_opwiy"]
+[ext_resource type="PackedScene" uid="uid://dael03tjnwng8" path="res://src/match_timer_text/match_timer_text.tscn" id="1_he2rd"]
+[ext_resource type="Script" path="res://src/tests/match_timer_test/MatchTimerTest.cs" id="1_m7g0h"]
+[ext_resource type="PackedScene" uid="uid://cwrt3mai5fuk7" path="res://src/match_timer/match_timer.tscn" id="2_opwiy"]
 
 [node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("StartTimerButton", "Timer")]
 script = ExtResource("1_m7g0h")
