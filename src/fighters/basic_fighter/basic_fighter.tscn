@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6c4xa03gwcab"]
 
-[ext_resource type="Script" path="res://Src/Fighters/BasicFighter/BasicFighter.cs" id="1_3m6me"]
+[ext_resource type="Script" path="res://src/fighters/basic_fighter/BasicFighter.cs" id="1_3m6me"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w5gpp"]
 radius = 11.0

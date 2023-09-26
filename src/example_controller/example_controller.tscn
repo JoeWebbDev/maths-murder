@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1pfgtq0tohov"]
 
-[ext_resource type="Script" path="res://Src/ExampleController/ExampleController.cs" id="1_on5m0"]
-[ext_resource type="PackedScene" uid="uid://c6c4xa03gwcab" path="res://Src/Fighters/BasicFighter/basic_fighter.tscn" id="2_reas1"]
-[ext_resource type="Resource" uid="uid://dw2nak83orosd" path="res://Src/Fighters/Resources/fighter_one_resource.tres" id="2_uedki"]
+[ext_resource type="Script" path="res://src/example_controller/ExampleController.cs" id="1_on5m0"]
+[ext_resource type="PackedScene" uid="uid://c6c4xa03gwcab" path="res://src/fighters/basic_fighter/basic_fighter.tscn" id="2_reas1"]
+[ext_resource type="Resource" uid="uid://dw2nak83orosd" path="res://src/fighters/resources/fighter_one_resource.tres" id="2_uedki"]
 
 [node name="example_controller" type="Node" node_paths=PackedStringArray("FighterBeingControlled", "LoadButton")]
 script = ExtResource("1_on5m0")
