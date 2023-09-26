@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://xy4kxgxscvui"]
+
+[ext_resource type="PackedScene" uid="uid://dael03tjnwng8" path="res://src/match_timer_text/match_timer_text.tscn" id="1_04lvl"]
+[ext_resource type="Script" path="res://src/fight_ui/FightUI.cs" id="1_ryufm"]
+[ext_resource type="PackedScene" uid="uid://cwrt3mai5fuk7" path="res://src/match_timer/match_timer.tscn" id="2_p0qpe"]
+
+[node name="FightUI" type="CanvasLayer" node_paths=PackedStringArray("_matchTimer", "_retryButton", "_quitToMenuButton")]
+script = ExtResource("1_ryufm")
+_matchTimer = NodePath("MatchTimerText/MatchTimer")
+_retryButton = NodePath("RetryButton")
+_quitToMenuButton = NodePath("QuitButton")
+
+[node name="RetryButton" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -85.0
+offset_right = -20.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+action_mode = 0
+text = "Retry"
+
+[node name="QuitButton" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -85.0
+offset_right = 130.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+action_mode = 0
+text = "Quit"
+
+[node name="MatchTimerText" parent="." node_paths=PackedStringArray("Timer") instance=ExtResource("1_04lvl")]
+Timer = NodePath("MatchTimer")
+
+[node name="MatchTimer" parent="MatchTimerText" instance=ExtResource("2_p0qpe")]
+TotalMatchTime = 10

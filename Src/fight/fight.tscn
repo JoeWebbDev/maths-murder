@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuvve83igm5fe"]
+
+[ext_resource type="Script" path="res://src/fight/Fight.cs" id="1_byaux"]
+[ext_resource type="PackedScene" uid="uid://xy4kxgxscvui" path="res://src/fight_ui/fight_ui.tscn" id="2_ecqmq"]
+
+[node name="Fight" type="Node" node_paths=PackedStringArray("UI")]
+script = ExtResource("1_byaux")
+UI = NodePath("FightUI")
+
+[node name="FightUI" parent="." instance=ExtResource("2_ecqmq")]
