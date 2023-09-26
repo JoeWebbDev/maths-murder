@@ -6,9 +6,11 @@ using System;
 /// </summary>
 public partial class BasicFighter : Fighter
 {
+    
     public override void Move(Vector2 location)
     {
         GD.Print($"Moving to: {location}. This is where I play my own special animation, and do my own special thing when I move.");
+        Position = location;
     }
 
     public override void PrimaryAttack()

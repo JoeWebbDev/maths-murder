@@ -1,5 +1,6 @@
 ﻿using Godot;
 using System;
+using MathsMurderSpike.Core.FighterStates;
 
 /// <summary>
 /// Base class for all fighters in the game. Provides a way for controlling nodes (e.g. <see cref="ExampleController"/>) to access signals, properties and methods
@@ -23,6 +24,9 @@ public partial class Fighter : Area2D
     [Signal] public delegate void HitRegisteredEventHandler();
     public int Health { get; set; }
     [Export] public AnimatedSprite2D AnimatedSprite { get; set; }
+    
+    public FighterState MovementState { get; private set; }
+    public FighterState CombatState { get; private set; }
 
     public virtual void Move(Vector2 location) { }
 
@@ -33,6 +37,7 @@ public partial class Fighter : Area2D
         GD.Print($"Loading fighter from resource: {resource.ResourcePath}");
         Health = resource.Health;
         AnimatedSprite.SpriteFrames = resource.SpriteFrames;
+        AnimatedSprite.Play("idle");
         GD.Print($"Fighter loaded! Health: {Health}");
     }
 }
