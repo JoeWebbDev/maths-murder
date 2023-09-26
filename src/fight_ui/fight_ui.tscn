@@ -46,4 +46,4 @@ text = "Quit"
 Timer = NodePath("MatchTimer")
 
 [node name="MatchTimer" parent="MatchTimerText" instance=ExtResource("2_p0qpe")]
-TotalMatchTime = 10
+TotalMatchTime = 3
