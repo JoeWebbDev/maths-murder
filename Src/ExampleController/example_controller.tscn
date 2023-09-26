@@ -1,10 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://c81ncca7c2hd5"]
+[gd_scene load_steps=4 format=3 uid="uid://c1pfgtq0tohov"]
 
-[ext_resource type="PackedScene" uid="uid://b7fntc4eg5fi" path="res://Src/Fighters/FighterOne/fighter_one.tscn" id="1_mt5a2"]
 [ext_resource type="Script" path="res://Src/ExampleController/ExampleController.cs" id="1_on5m0"]
+[ext_resource type="PackedScene" uid="uid://c6c4xa03gwcab" path="res://Src/Fighters/BasicFighter/basic_fighter.tscn" id="2_reas1"]
+[ext_resource type="Resource" uid="uid://dw2nak83orosd" path="res://Src/Fighters/Resources/fighter_one_resource.tres" id="2_uedki"]
 
-[node name="Node" type="Node" node_paths=PackedStringArray("FighterBeingControlled")]
+[node name="example_controller" type="Node" node_paths=PackedStringArray("FighterBeingControlled", "LoadButton")]
 script = ExtResource("1_on5m0")
-FighterBeingControlled = NodePath("Fighter")
+FighterBeingControlled = NodePath("Area2D")
+FighterToLoad = ExtResource("2_uedki")
+LoadButton = NodePath("CanvasLayer/Button")
 
-[node name="Fighter" parent="." instance=ExtResource("1_mt5a2")]
+[node name="Area2D" parent="." instance=ExtResource("2_reas1")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+text = "Load Fighter"

@@ -5,15 +5,18 @@ using System.Linq;
 /// <summary>
 /// An example of how the rest of the game will interact with <see cref="Fighter"/>. This represents either player input, or AI.
 /// Fighter doesn't care what is controlling it, and ExampleController doesn't care how Fighter is executing it's methods.
-/// <seealso cref="FighterOne"/>
+/// <seealso cref="BasicFighter"/>
 /// </summary>
 public partial class ExampleController : Node
 {
     [Export] public Fighter FighterBeingControlled { get; set; }
+    [Export] public FighterResource FighterToLoad { get; set; }
+    [Export] public Button LoadButton { get; set; }
 
     public override void _Ready()
     {
         FighterBeingControlled.HitRegistered += OnHitRegistered;
+        LoadButton.Pressed += () => { FighterBeingControlled.LoadFighter(FighterToLoad); };
     }
 
     private void OnHitRegistered()

@@ -16,14 +16,23 @@ using System;
 /// </list>
 /// <para></para>
 /// The main drawback is we will have to create new scenes for each fighter.
-/// <seealso cref="FighterOne"/>
+/// <seealso cref="BasicFighter"/>
 /// </summary>
 public partial class Fighter : Area2D
 {
     [Signal] public delegate void HitRegisteredEventHandler();
-    [Export] public int Health { get; set; }
+    public int Health { get; set; }
+    [Export] public AnimatedSprite2D AnimatedSprite { get; set; }
 
     public virtual void Move(Vector2 location) { }
 
     public virtual void PrimaryAttack() { }
+
+    public void LoadFighter(FighterResource resource)
+    {
+        GD.Print($"Loading fighter from resource: {resource.ResourcePath}");
+        Health = resource.Health;
+        AnimatedSprite.SpriteFrames = resource.SpriteFrames;
+        GD.Print($"Fighter loaded! Health: {Health}");
+    }
 }
