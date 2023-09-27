@@ -1,12 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6c4xa03gwcab"]
+[gd_scene load_steps=4 format=3 uid="uid://c6c4xa03gwcab"]
 
 [ext_resource type="Script" path="res://src/fighters/basic_fighter/BasicFighter.cs" id="1_3m6me"]
+[ext_resource type="SpriteFrames" uid="uid://b1kuwshx14qj0" path="res://src/fighters/resources/fighter_one_sprite_frames.tres" id="2_me2ph"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w5gpp"]
 radius = 11.0
 height = 75.29
 
-[node name="Area2D" type="Area2D" node_paths=PackedStringArray("AnimatedSprite")]
+[node name="Fighter" type="Area2D" node_paths=PackedStringArray("AnimatedSprite")]
 position = Vector2(95, 204)
 scale = Vector2(2, 2)
 script = ExtResource("1_3m6me")
@@ -14,7 +15,8 @@ AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-animation = &"idle"
+sprite_frames = ExtResource("2_me2ph")
+animation = &"punch"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7.655)

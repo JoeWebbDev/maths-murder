@@ -103,7 +103,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dy74n")
 }],
-"loop": true,
+"loop": false,
 "name": &"punch",
 "speed": 5.0
 }, {
