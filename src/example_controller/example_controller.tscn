@@ -6,11 +6,11 @@
 
 [node name="example_controller" type="Node" node_paths=PackedStringArray("FighterBeingControlled", "LoadButton")]
 script = ExtResource("1_on5m0")
-FighterBeingControlled = NodePath("Area2D")
+FighterBeingControlled = NodePath("Fighter")
 FighterToLoad = ExtResource("2_uedki")
 LoadButton = NodePath("CanvasLayer/Button")
 
-[node name="Area2D" parent="." instance=ExtResource("2_reas1")]
+[node name="Fighter" parent="." instance=ExtResource("2_reas1")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
