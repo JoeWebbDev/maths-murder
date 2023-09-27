@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 /// Base resource for all fighter info. The equivalent of a scriptable object. We can store any info about a fighter (sprites, health, etc),

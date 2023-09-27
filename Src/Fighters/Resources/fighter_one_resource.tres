@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dw2nak83orosd"]
-
-[ext_resource type="Script" path="res://Src/Fighters/Resources/FighterResource.cs" id="1_6jihf"]
-[ext_resource type="SpriteFrames" uid="uid://b1kuwshx14qj0" path="res://Src/Fighters/Resources/fighter_one_sprite_frames.tres" id="1_lh1l1"]
-
-[resource]
-script = ExtResource("1_6jihf")
-SpriteFrames = ExtResource("1_lh1l1")
-Health = 10
