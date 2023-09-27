@@ -1,4 +1,4 @@
-﻿using MathsMurderSpike.Core.enums;
+﻿using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
@@ -13,11 +13,11 @@ public class IdleState : FighterState
     {
         switch (cmd)
         {
-            case FighterCommand.WalkLeft:
-            case FighterCommand.WalkRight:
+            case WalkCommand walkCommand:
+                if (walkCommand.Completed) break;
                 fighter.SwitchMovementState(new WalkingState(cmd));
                 break;
-            case FighterCommand.Punch:
+            case PunchCommand:
                 fighter.SwitchCombatState(new PunchState());
                 break;
         }

@@ -1,15 +1,23 @@
 ﻿using Godot;
-using MathsMurderSpike.Core.enums;
+using MathsMurderSpike.core.Commands;
+using MathsMurderSpike.Core.Input;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
 public class WalkingState : FighterState
 {
-    private bool _walkingRight;
+    private Vector2 _direction;
 
     public WalkingState(FighterCommand cmd)
     {
-        _walkingRight = cmd == FighterCommand.WalkRight;
+        var walkCommand = cmd as WalkCommand;
+        if (walkCommand == null)
+        {
+            GD.PushError("Walking state being initialised with non-walk command. Something is wrong");
+            return;
+        }
+
+        _direction = walkCommand.Direction;
     }
     public override void Enter(Fighter fighter)
     {
@@ -20,16 +28,24 @@ public class WalkingState : FighterState
     {
         switch (cmd)
         {
-            case FighterCommand.StopWalk:
-                fighter.SwitchMovementState(new IdleState());
+            case WalkCommand walkCommand:
+                if (walkCommand.Completed)
+                {
+                    // we NEED to not access input here to get this to work for AI also. but removing this means you stop walking as soon as you
+                    // release a walk key (which sends a command.Completed command.) help! :(
+                    var existingWalkCommand = FighterInputActions.TryGetWalkCommand();
+                    if (existingWalkCommand == null)
+                    {
+                        fighter.SwitchMovementState(new IdleState());
+                        break;
+                    }
+
+                    _direction = existingWalkCommand.Direction;
+                    break;
+                };
+                _direction = walkCommand.Direction;
                 break;
-            case FighterCommand.WalkLeft:
-                _walkingRight = false;
-                break;
-            case FighterCommand.WalkRight:
-                _walkingRight = true;
-                break;
-            case FighterCommand.Punch:
+            case PunchCommand:
                 fighter.SwitchCombatState(new PunchState());
                 break;
         }
@@ -38,9 +54,11 @@ public class WalkingState : FighterState
     public override void Process(Fighter fighter, double delta)
     {
         if (fighter.CombatState != null) return;
-        
-        fighter.AnimatedSprite.FlipH = !_walkingRight;
-        var direction = new Vector2(_walkingRight ? 1 : -1, 0);
-        fighter.Position += direction * 100 * (float)delta;
+
+        if (fighter.AnimatedSprite.Animation != "walk")
+        {
+            fighter.AnimatedSprite.Play("walk");
+        }
+        fighter.Position += _direction * 100 * (float)delta;
     }
 }

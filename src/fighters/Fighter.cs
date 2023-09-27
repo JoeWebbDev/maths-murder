@@ -1,6 +1,6 @@
 ﻿using Godot;
 using System;
-using MathsMurderSpike.Core.enums;
+using MathsMurderSpike.core.Commands;
 using MathsMurderSpike.Core.FighterStates;
 
 public partial class Fighter : Area2D
@@ -11,6 +11,12 @@ public partial class Fighter : Area2D
 
     public FighterState MovementState { get; private set; }
     public FighterState CombatState { get; private set; }
+    
+    public override void _Ready()
+    {
+        MovementState = new IdleState();
+        MovementState.Enter(this);
+    }
 
     public override void _Process(double delta)
     {
@@ -20,6 +26,7 @@ public partial class Fighter : Area2D
 
     public void Execute(FighterCommand cmd)
     {
+        GD.Print($"Command received: {cmd.GetType()}");
         CombatState?.HandleCommand(this, cmd);
         MovementState?.HandleCommand(this, cmd);
     }

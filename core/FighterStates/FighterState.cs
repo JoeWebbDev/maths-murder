@@ -1,4 +1,4 @@
-﻿using MathsMurderSpike.Core.enums;
+﻿using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 

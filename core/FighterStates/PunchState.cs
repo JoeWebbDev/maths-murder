@@ -1,5 +1,5 @@
 ﻿using Godot;
-using MathsMurderSpike.Core.enums;
+using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
@@ -16,11 +16,6 @@ public class PunchState : FighterState
         }
 
         fighter.AnimatedSprite.AnimationFinished += OnAnimatedSpriteOnAnimationFinished;
-    }
-
-    public override void Exit(Fighter fighter)
-    {
-        fighter.SwitchMovementState(new IdleState());
     }
 
     public override void HandleCommand(Fighter fighter, FighterCommand cmd)
