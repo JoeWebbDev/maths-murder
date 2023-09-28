@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcjmm8ie4dimk"]
+
+[ext_resource type="Script" path="res://src/tests/ai_fighter_test/AIController.cs" id="1_bnbw7"]
+[ext_resource type="Resource" uid="uid://dw2nak83orosd" path="res://src/fighters/resources/fighter_one_resource.tres" id="2_exi5x"]
+[ext_resource type="PackedScene" uid="uid://c6c4xa03gwcab" path="res://src/fighters/basic_fighter/basic_fighter.tscn" id="3_l1lau"]
+
+[node name="ai_fighter_test" type="Node" node_paths=PackedStringArray("FighterBeingControlled", "LoadButton")]
+script = ExtResource("1_bnbw7")
+FighterBeingControlled = NodePath("Fighter")
+FighterToLoad = ExtResource("2_exi5x")
+LoadButton = NodePath("CanvasLayer/Button")
+
+[node name="Fighter" parent="." instance=ExtResource("3_l1lau")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+text = "Load Fighter"
