@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://xy4kxgxscvui"]
+[gd_scene load_steps=3 format=3 uid="uid://xy4kxgxscvui"]
 
-[ext_resource type="PackedScene" uid="uid://dael03tjnwng8" path="res://src/match_timer_text/match_timer_text.tscn" id="1_04lvl"]
 [ext_resource type="Script" path="res://src/fight_ui/FightUI.cs" id="1_ryufm"]
-[ext_resource type="PackedScene" uid="uid://cwrt3mai5fuk7" path="res://src/match_timer/match_timer.tscn" id="2_p0qpe"]
+[ext_resource type="PackedScene" uid="uid://cut455t7ht2as" path="res://src/health_bar/health_bar.tscn" id="2_1m7ro"]
 
-[node name="FightUI" type="CanvasLayer" node_paths=PackedStringArray("_matchTimer", "_retryButton", "_quitToMenuButton")]
+[node name="FightUI" type="CanvasLayer" node_paths=PackedStringArray("_playerHealthBar", "_enemyHealthBar", "_matchTimerLabel", "_countdownLabel", "_retryButton", "_quitToMenuButton")]
 script = ExtResource("1_ryufm")
-_matchTimer = NodePath("MatchTimerText/MatchTimer")
+_playerHealthBar = NodePath("PlayerHealthBar")
+_enemyHealthBar = NodePath("EnemyHealthBar")
+_matchTimerLabel = NodePath("MatchTimerLabel")
+_countdownLabel = NodePath("CountdownLabel")
 _retryButton = NodePath("RetryButton")
 _quitToMenuButton = NodePath("QuitButton")
 
 [node name="RetryButton" type="Button" parent="."]
+process_mode = 3
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -27,6 +30,7 @@ action_mode = 0
 text = "Retry"
 
 [node name="QuitButton" type="Button" parent="."]
+process_mode = 3
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -42,8 +46,50 @@ grow_vertical = 0
 action_mode = 0
 text = "Quit"
 
-[node name="MatchTimerText" parent="." node_paths=PackedStringArray("Timer") instance=ExtResource("1_04lvl")]
-Timer = NodePath("MatchTimer")
+[node name="CountdownLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="MatchTimer" parent="MatchTimerText" instance=ExtResource("2_p0qpe")]
-TotalMatchTime = 3
+[node name="MatchTimerLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerHealthBar" parent="." node_paths=PackedStringArray("Ui") instance=ExtResource("2_1m7ro")]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 100.0
+offset_top = 5.0
+offset_right = 300.0
+offset_bottom = 32.0
+grow_horizontal = 1
+Ui = NodePath("..")
+
+[node name="EnemyHealthBar" parent="." node_paths=PackedStringArray("Ui") instance=ExtResource("2_1m7ro")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 5.0
+offset_right = -100.0
+offset_bottom = 32.0
+grow_horizontal = 0
+Ui = NodePath("..")

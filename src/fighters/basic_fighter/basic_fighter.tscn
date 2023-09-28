@@ -64,8 +64,9 @@ AnimationPlayer = NodePath("AnimationPlayer")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_mode = 3
 sprite_frames = ExtResource("2_me2ph")
-animation = &"punch"
+animation = &"idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite2D")

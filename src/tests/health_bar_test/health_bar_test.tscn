@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://llajitjgr3g"]
+
+[ext_resource type="PackedScene" uid="uid://cut455t7ht2as" path="res://src/health_bar/health_bar.tscn" id="1_cc4oh"]
+[ext_resource type="Script" path="res://src/tests/health_bar_test/HealthBarTest.cs" id="1_t2ej8"]
+[ext_resource type="PackedScene" uid="uid://c6c4xa03gwcab" path="res://src/fighters/basic_fighter/basic_fighter.tscn" id="2_k3cbl"]
+
+[node name="HealthBarTest" type="Node" node_paths=PackedStringArray("_playerDamageButton", "_player", "_enemyDamageButton", "_enemy")]
+script = ExtResource("1_t2ej8")
+_playerDamageButton = NodePath("CanvasLayer/PlayerDamageButton")
+_player = NodePath("Fighter")
+_enemyDamageButton = NodePath("CanvasLayer/EnemyDamageButton")
+_enemy = NodePath("Fighter2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" parent="CanvasLayer" node_paths=PackedStringArray("Fighter") instance=ExtResource("1_cc4oh")]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 100.0
+offset_right = 300.0
+grow_horizontal = 1
+value = 47.0
+Fighter = NodePath("../../Fighter")
+
+[node name="HealthBar2" parent="CanvasLayer" node_paths=PackedStringArray("Fighter") instance=ExtResource("1_cc4oh")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_right = -99.9999
+grow_horizontal = 0
+Fighter = NodePath("../../Fighter2")
+
+[node name="PlayerDamageButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 125.0
+grow_vertical = 0
+text = "Damage Player"
+
+[node name="EnemyDamageButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Damage Enemy"
+
+[node name="Fighter" parent="." instance=ExtResource("2_k3cbl")]
+MaxHealth = 100
+
+[node name="Fighter2" parent="." instance=ExtResource("2_k3cbl")]
+position = Vector2(533, 204)
+FlipH = true
+MaxHealth = 100
