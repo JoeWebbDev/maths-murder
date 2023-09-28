@@ -1,5 +1,5 @@
 using Godot;
-using MathsMurderSpike.Core.enums;
+using MathsMurderSpike.core.Commands;
 
 public partial class AIController : Node
 {
@@ -39,7 +39,7 @@ public partial class AIController : Node
         if (_timer >= 2)
         {
             GD.Print("Executing punch.");
-            FighterBeingControlled.Execute(FighterCommand.Punch);
+            FighterBeingControlled.Execute(new PunchCommand());
             _timer = 0;
         }
     }

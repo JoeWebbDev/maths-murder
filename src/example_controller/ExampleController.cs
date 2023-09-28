@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
-using MathsMurderSpike.Core.enums;
+using MathsMurderSpike.core.Commands;
 
 /// <summary>
 /// An example of how the rest of the game will interact with <see cref="Fighter"/>. This represents either player input, or AI.
@@ -10,38 +10,38 @@ using MathsMurderSpike.Core.enums;
 /// </summary>
 public partial class ExampleController : Node
 {
-    [Export] public Fighter FighterBeingControlled { get; set; }
-    [Export] public FighterResource FighterToLoad { get; set; }
-    [Export] public Button LoadButton { get; set; }
-
-    public override void _Ready()
-    {
-        FighterBeingControlled.HitRegistered += OnHitRegistered;
-        LoadButton.Pressed += () => { FighterBeingControlled.LoadFighter(FighterToLoad); };
-    }
-
-    private void OnHitRegistered()
-    {
-        GD.Print($"{FighterBeingControlled.Name} has taken a hit!");
-        GD.Print($"Current health: {FighterBeingControlled.Health}");
-        FighterBeingControlled.Health -= 10;
-        GD.Print($"Health after hit: {FighterBeingControlled.Health}");
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        if (@event is not InputEventKey eventKey) return;
-        
-        GD.Print($"Firing an input event: {eventKey.Keycode}, {eventKey.Pressed}");
-
-        if (!eventKey.Pressed && eventKey.Keycode is Key.A or Key.D)
-        {
-            FighterBeingControlled.Execute(FighterCommand.StopWalk);
-            return;
-        }
-        
-        if (eventKey.Keycode == Key.A) FighterBeingControlled.Execute(FighterCommand.WalkLeft);
-        if (eventKey.Keycode == Key.D) FighterBeingControlled.Execute(FighterCommand.WalkRight);
-        if (eventKey.Keycode == Key.F && !eventKey.Echo && eventKey.Pressed) FighterBeingControlled.Execute(FighterCommand.Punch);
-    }
+    // [Export] public Fighter FighterBeingControlled { get; set; }
+    // [Export] public FighterResource FighterToLoad { get; set; }
+    // [Export] public Button LoadButton { get; set; }
+    //
+    // public override void _Ready()
+    // {
+    //     FighterBeingControlled.HitRegistered += OnHitRegistered;
+    //     LoadButton.Pressed += () => { FighterBeingControlled.LoadFighter(FighterToLoad); };
+    // }
+    //
+    // private void OnHitRegistered()
+    // {
+    //     GD.Print($"{FighterBeingControlled.Name} has taken a hit!");
+    //     GD.Print($"Current health: {FighterBeingControlled.Health}");
+    //     FighterBeingControlled.Health -= 10;
+    //     GD.Print($"Health after hit: {FighterBeingControlled.Health}");
+    // }
+    //
+    // public override void _Input(InputEvent @event)
+    // {
+    //     if (@event is not InputEventKey eventKey) return;
+    //     
+    //     GD.Print($"Firing an input event: {eventKey.Keycode}, {eventKey.Pressed}");
+    //
+    //     if (!eventKey.Pressed && eventKey.Keycode is Key.A or Key.D)
+    //     {
+    //         FighterBeingControlled.Execute(FighterCommand.StopWalk);
+    //         return;
+    //     }
+    //     
+    //     if (eventKey.Keycode == Key.A) FighterBeingControlled.Execute(FighterCommand.WalkLeft);
+    //     if (eventKey.Keycode == Key.D) FighterBeingControlled.Execute(FighterCommand.WalkRight);
+    //     if (eventKey.Keycode == Key.F && !eventKey.Echo && eventKey.Pressed) FighterBeingControlled.Execute(FighterCommand.Punch);
+    // }
 }

@@ -1,46 +1,61 @@
 ﻿using Godot;
-using MathsMurderSpike.Core.enums;
+using MathsMurderSpike.core.Commands;
+using MathsMurderSpike.Core.Input;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
 public class WalkingState : FighterState
 {
-    private bool _walkingRight;
+    private Vector2 _direction;
 
     public WalkingState(FighterCommand cmd)
     {
-        _walkingRight = cmd == FighterCommand.WalkRight;
+        if (cmd is not WalkCommand walkCommand)
+        {
+            GD.PushError("Walking state being initialised with non-walk command. Something is wrong");
+            return;
+        }
+
+        _direction = walkCommand.Direction;
     }
     public override void Enter(Fighter fighter)
     {
         fighter.AnimatedSprite.Play("walk");
     }
 
-    public override void HandleCommand(Fighter fighter, FighterCommand cmd)
+    public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
     {
         switch (cmd)
         {
-            case FighterCommand.StopWalk:
-                fighter.SwitchMovementState(new IdleState());
+            case WalkCommand walkCommand:
+                if (walkCommand.Completed)
+                {
+                    fighter.SwitchMovementState(new IdleState());
+                    break;
+                };
+                _direction = walkCommand.Direction;
                 break;
-            case FighterCommand.WalkLeft:
-                _walkingRight = false;
-                break;
-            case FighterCommand.WalkRight:
-                _walkingRight = true;
-                break;
-            case FighterCommand.Punch:
+            case PunchCommand:
                 fighter.SwitchCombatState(new PunchState());
                 break;
+            case BlockCommand blockCommand:
+                if (blockCommand.Completed) break;
+                // Block should be in the CombatFSM, since we want to lock most movement when blocking, and we can never block and execute other combat moves simultaneously
+                fighter.SwitchCombatState(new BlockState());
+                break;
         }
+
+        return false;
     }
 
     public override void Process(Fighter fighter, double delta)
     {
         if (fighter.CombatState != null) return;
-        
-        fighter.AnimatedSprite.FlipH = !_walkingRight;
-        var direction = new Vector2(_walkingRight ? 1 : -1, 0);
-        fighter.Position += direction * 100 * (float)delta;
+
+        if (fighter.AnimatedSprite.Animation != "walk")
+        {
+            fighter.AnimatedSprite.Play("walk");
+        }
+        fighter.Position += _direction * 100 * (float)delta;
     }
 }
