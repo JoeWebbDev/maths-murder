@@ -39,6 +39,14 @@ public partial class InputController : Node
             rightKeyPressed = true;
         }
         
+        // Similarly to movement below, we have to treat block differently. Without this, if you try to block while punching, the command will be missed :/
+        // Is there a better way?
+        if (Input.IsActionPressed("block"))
+        {
+            CurrentFighter.Execute(new BlockCommand());
+        }
+
+        // We have to treat movement differently, as it is not one-shot. We care about getting consistent updates
         // Have split out this if statement for readability
         if (direction != Vector2.Zero)
         {

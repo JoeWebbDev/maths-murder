@@ -11,14 +11,22 @@ public class BlockState : FighterState
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
     {
-        if (cmd is not BlockCommand blockCommand) return false;
-        
-        // What do we switch to here? Walking or idling? we need a way to keep track of previous states (you mentioned this before but idk how!)
-        if (blockCommand.Completed)
+        if (cmd is BlockCommand { Completed: true })
         {
-            // fighter.SwitchMovementState();
+            fighter.SwitchCombatState(null);
+            return false;
         }
 
-        return false;
+        if (cmd is PunchCommand)
+        {
+            fighter.SwitchCombatState(new PunchState());
+            
+            // We are consuming the input so should not pass anything to the Movement FSM.
+            return true;
+        }
+        
+        // Currently not interested in any other commands, as holding block should prevent players from moving.
+        // So default return is true
+        return true;
     }
 }
