@@ -23,6 +23,17 @@ public partial class InputController : Node
         {
             CurrentFighter.Execute(fighterCmd);
         }
+    }
+
+    public override void _Process(double delta)
+    {
+        
+        // Similarly to movement below, we have to treat block differently. Without this, if you try to block while punching, the command will be missed :/
+        // Is there a better way?
+        if (Input.IsActionPressed("block"))
+        {
+            CurrentFighter.Execute(new BlockCommand());
+        }
         
         var direction = Vector2.Zero;
         var leftKeyPressed = false;
@@ -37,13 +48,6 @@ public partial class InputController : Node
         {
             direction += Vector2.Right;
             rightKeyPressed = true;
-        }
-        
-        // Similarly to movement below, we have to treat block differently. Without this, if you try to block while punching, the command will be missed :/
-        // Is there a better way?
-        if (Input.IsActionPressed("block"))
-        {
-            CurrentFighter.Execute(new BlockCommand());
         }
 
         // We have to treat movement differently, as it is not one-shot. We care about getting consistent updates
