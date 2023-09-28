@@ -31,16 +31,7 @@ public class WalkingState : FighterState
             case WalkCommand walkCommand:
                 if (walkCommand.Completed)
                 {
-                    // we NEED to not access input here to get this to work for AI also. but removing this means you stop walking as soon as you
-                    // release a walk key (which sends a command.Completed command.) help! :(
-                    var existingWalkCommand = FighterInputActions.TryGetWalkCommand();
-                    if (existingWalkCommand == null)
-                    {
-                        fighter.SwitchMovementState(new IdleState());
-                        break;
-                    }
-
-                    _direction = existingWalkCommand.Direction;
+                    fighter.SwitchMovementState(new IdleState());
                     break;
                 };
                 _direction = walkCommand.Direction;

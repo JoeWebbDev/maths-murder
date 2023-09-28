@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using MathsMurderSpike.core.Commands;
 using MathsMurderSpike.Core.Input;
 
 public partial class InputController : Node
@@ -21,6 +22,42 @@ public partial class InputController : Node
         if (fighterCmd != null)
         {
             CurrentFighter.Execute(fighterCmd);
+        }
+        
+        var direction = Vector2.Zero;
+        var leftKeyPressed = false;
+        var rightKeyPressed = false;
+        if (Input.IsActionPressed("move_left"))
+        {
+            direction += Vector2.Left;
+            leftKeyPressed = true;
+        }
+
+        if (Input.IsActionPressed("move_right"))
+        {
+            direction += Vector2.Right;
+            rightKeyPressed = true;
+        }
+        
+        // Have split out this if statement for readability
+        if (direction != Vector2.Zero)
+        {
+            // We have movement, so dispatch command
+            CurrentFighter.Execute(new WalkCommand(direction));
+        }
+        else if (leftKeyPressed && rightKeyPressed)
+        {
+            // We don't have movement because both keys are held, so we should dispatch a "Completed" WalkCommand.
+            CurrentFighter.Execute(new WalkCommand(direction, true));
+        }
+        else if (Input.IsActionJustReleased("move_left") || Input.IsActionJustReleased("move_right"))
+        {
+            // We don't have movement because we just released one of the movement keys. So we should dispatch a "Completed" WalkCommand.
+            CurrentFighter.Execute(new WalkCommand(direction, true));
+        }
+        else
+        {
+            // None of the above means we were never walking, and so there's no need to dispatch a WalkCommand or a "Completed" WalkCommand.
         }
     }
 }

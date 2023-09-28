@@ -21,9 +21,4 @@ public class FighterInputAction
         if (@event.IsActionPressed(_actionName)) return _onPressCmd;
         return @event.IsActionReleased(_actionName) ? _onReleaseCmd : null;
     }
-
-    public FighterCommand GetCommandDirectFromInput()
-    {
-        return Godot.Input.IsActionPressed(_actionName) ? _onPressCmd : null;
-    }
 }
