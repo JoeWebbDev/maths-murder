@@ -43,7 +43,7 @@ public partial class Fighter : Area2D
 
     public void Execute(FighterCommand cmd)
     {
-        GD.Print($"Command received: {cmd.GetType()}");
+        // GD.Print($"Command received: {cmd.GetType()}");
         // I found that I was writing lots of "if (doing some combat) then do nothing" in the movement states.
         // This provides a way for the CombatState machine to consume commands, so that they never reach
         // the MovementState FSM (which should largely be locked when mid-combat anyway).
