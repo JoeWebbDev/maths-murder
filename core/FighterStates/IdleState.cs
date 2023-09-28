@@ -6,13 +6,13 @@ public class IdleState : FighterState
 {
     public override void Enter(Fighter fighter)
     {
-        if (fighter.CombatState == null) fighter.AnimatedSprite.Play("idle");
+        if (fighter.CombatState == null) fighter.AnimationPlayer.Play("fighter_anim_lib/idle");
         fighter.CombatStateChanged += OnCombatStateChanged;
     }
 
     private void OnCombatStateChanged(Fighter fighter)
     {
-        if (fighter.CombatState == null) fighter.AnimatedSprite.Play("idle");
+        if (fighter.CombatState == null) fighter.AnimationPlayer.Play("fighter_anim_lib/idle");
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)

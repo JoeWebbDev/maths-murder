@@ -6,6 +6,7 @@ public partial class AIController : Node
     [Export] public Fighter FighterBeingControlled { get; set; }
     [Export] public FighterResource FighterToLoad { get; set; }
     [Export] public Button LoadButton { get; set; }
+    [Export] public bool FlipH { get; set; }
 
     private double _timer;
     private bool _initialized;
@@ -17,6 +18,7 @@ public partial class AIController : Node
         {
             LoadButton.Disabled = true;
             FighterBeingControlled.LoadFighter(FighterToLoad);
+            
             _initialized = true;
             GD.Print("AI fighter initialized");
         };

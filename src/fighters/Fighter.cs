@@ -3,11 +3,12 @@ using System;
 using MathsMurderSpike.core.Commands;
 using MathsMurderSpike.Core.FighterStates;
 
-public partial class Fighter : Area2D
+public partial class Fighter : CharacterBody2D
 {
     [Signal] public delegate void HitRegisteredEventHandler();
     public int Health { get; set; }
     [Export] public AnimatedSprite2D AnimatedSprite { get; set; }
+    [Export] public AnimationPlayer AnimationPlayer { get; set; }
     [Export] public bool FlipH { get; set; }
     public FighterState MovementState { get; private set; }
     public FighterState CombatState { get; private set; }
@@ -16,7 +17,8 @@ public partial class Fighter : Area2D
     
     public override void _Ready()
     {
-        AnimatedSprite.FlipH = FlipH;
+        if (FlipH)
+            Scale = new Vector2(-Scale.X, Scale.Y);
         MovementState = new IdleState();
         MovementState.Enter(this);
     }

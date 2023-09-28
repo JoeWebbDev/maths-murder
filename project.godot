@@ -24,6 +24,10 @@ window/size/viewport_height=360
 
 project/assembly_name="Maths Murder Spike"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
+
 [input]
 
 move_left={
