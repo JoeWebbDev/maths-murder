@@ -33,7 +33,6 @@ public partial class FightUI : CanvasLayer
 	{
 		_isTimerActive = false;
 		_matchTimerLabel.Text = "0";
-		ShowResultScreen();
 	}
 
 	private void OnMatchTimerStart()
@@ -56,10 +55,12 @@ public partial class FightUI : CanvasLayer
 		EmitSignal(SignalName.FightCountdownComplete);
 	}
 
-	private void ShowResultScreen()
+	public void ShowResultScreen(bool playerWon)
 	{
 		_retryButton.Visible = true;
 		_quitToMenuButton.Visible = true;
+		_countdownLabel.Text = playerWon ? "Player won! =)" : "Enemy won =(";
+		_countdownLabel.Show();
 	}
 
 	public override void _Process(double delta)
