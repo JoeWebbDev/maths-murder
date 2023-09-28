@@ -24,6 +24,11 @@ public class BlockState : FighterState
             // We are consuming the input so should not pass anything to the Movement FSM.
             return true;
         }
+
+        if (cmd is WalkCommand { Completed: true })
+        {
+            fighter.SwitchMovementState(new IdleState());
+        }
         
         // Currently not interested in any other commands, as holding block should prevent players from moving.
         // So default return is true
