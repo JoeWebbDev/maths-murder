@@ -4,8 +4,14 @@ using System;
 public partial class HealthBar : TextureProgressBar
 {
     [Export] public Fighter Fighter { get; set; }
+    [Export] public FightUI Ui { get; private set; }
 
     public override void _Ready()
+    {
+        Ui.Ready += OnUiReady;
+    }
+
+    private void OnUiReady()
     {
         Fighter.HealthChanged += OnHealthChange;
         MaxValue = Fighter.MaxHealth;
