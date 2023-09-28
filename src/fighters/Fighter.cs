@@ -5,17 +5,31 @@ using MathsMurderSpike.Core.FighterStates;
 
 public partial class Fighter : Area2D
 {
+    private int _health;
     [Signal] public delegate void HitRegisteredEventHandler();
-    public int Health { get; set; }
-    [Export] public AnimatedSprite2D AnimatedSprite { get; set; }
-    [Export] public bool FlipH { get; set; }
-    public FighterState MovementState { get; private set; }
-    public FighterState CombatState { get; private set; }
+    [Signal] public delegate void HealthChangedEventHandler(int from, int to);
     [Signal] public delegate void MovementStateChangedEventHandler(Fighter fighter);
     [Signal] public delegate void CombatStateChangedEventHandler(Fighter fighter);
+    [Export] public AnimatedSprite2D AnimatedSprite { get; set; }
+    [Export] public bool FlipH { get; set; }
+    [Export] public int MaxHealth { get; private set; }
+
+    public int Health
+    {
+        get => _health;
+        set
+        {
+            var previousHealth = _health;
+            _health = value;
+            EmitSignal(SignalName.HealthChanged, previousHealth, _health);
+        }
+    }
+    public FighterState MovementState { get; private set; }
+    public FighterState CombatState { get; private set; }
     
     public override void _Ready()
     {
+        Health = MaxHealth;
         AnimatedSprite.FlipH = FlipH;
         MovementState = new IdleState();
         MovementState.Enter(this);
@@ -40,6 +54,7 @@ public partial class Fighter : Area2D
     public void LoadFighter(FighterResource resource)
     {
         GD.Print($"Loading fighter from resource: {resource.ResourcePath}");
+        MaxHealth = resource.Health;
         Health = resource.Health;
         AnimatedSprite.SpriteFrames = resource.SpriteFrames;
         MovementState = new IdleState();

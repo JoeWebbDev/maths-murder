@@ -36,8 +36,8 @@ public partial class Main : Node
 		var fightScene = _fightScene.Instantiate<Fight>();
 		_currentScene?.QueueFree();
 		_currentScene = fightScene;
-		fightScene.UI.QuitToMenu += LoadStartMenuScene;
-		fightScene.UI.Retry += LoadFightScene;
+		fightScene.QuitRequested += LoadStartMenuScene;
+		fightScene.FightRetryRequested += LoadFightScene;
 		AddChild(fightScene);
 	}
 
