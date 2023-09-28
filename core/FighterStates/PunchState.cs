@@ -12,14 +12,16 @@ public class PunchState : FighterState
         void OnAnimatedSpriteOnAnimationFinished()
         {
             GD.Print("Animation finished");
+            fighter.AnimatedSprite.AnimationFinished -= OnAnimatedSpriteOnAnimationFinished;
             fighter.SwitchCombatState(null);
         }
 
         fighter.AnimatedSprite.AnimationFinished += OnAnimatedSpriteOnAnimationFinished;
     }
 
-    public override void HandleCommand(Fighter fighter, FighterCommand cmd)
+    public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
     {
-        
+        if (cmd is WalkCommand { Completed: true }) fighter.SwitchMovementState(new IdleState());
+        return true;
     }
 }

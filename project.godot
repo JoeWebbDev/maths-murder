@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Maths Murder Spike"
-run/main_scene="res://src/example_controller/example_controller.tscn"
+run/main_scene="res://src/tests/input_controller_test/input_controller_test.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

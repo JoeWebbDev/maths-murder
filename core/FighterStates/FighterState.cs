@@ -6,7 +6,7 @@ namespace MathsMurderSpike.Core.FighterStates;
 public abstract class FighterState
 {
     public abstract void Enter(Fighter fighter);
-    public abstract void HandleCommand(Fighter fighter, FighterCommand cmd);
+    public abstract bool HandleCommand(Fighter fighter, FighterCommand cmd);
 
     public virtual void Process(Fighter fighter, double delta) { }
 

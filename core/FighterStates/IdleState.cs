@@ -6,10 +6,16 @@ public class IdleState : FighterState
 {
     public override void Enter(Fighter fighter)
     {
-        fighter.AnimatedSprite.Play("idle");
+        if (fighter.CombatState == null) fighter.AnimatedSprite.Play("idle");
+        fighter.CombatStateChanged += OnCombatStateChanged;
     }
 
-    public override void HandleCommand(Fighter fighter, FighterCommand cmd)
+    private void OnCombatStateChanged(Fighter fighter)
+    {
+        if (fighter.CombatState == null) fighter.AnimatedSprite.Play("idle");
+    }
+
+    public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
     {
         switch (cmd)
         {
@@ -21,5 +27,12 @@ public class IdleState : FighterState
                 fighter.SwitchCombatState(new PunchState());
                 break;
         }
+
+        return false;
+    }
+
+    public override void Exit(Fighter fighter)
+    {
+        fighter.CombatStateChanged -= OnCombatStateChanged;
     }
 }

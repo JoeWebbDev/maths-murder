@@ -10,8 +10,7 @@ public class WalkingState : FighterState
 
     public WalkingState(FighterCommand cmd)
     {
-        var walkCommand = cmd as WalkCommand;
-        if (walkCommand == null)
+        if (cmd is not WalkCommand walkCommand)
         {
             GD.PushError("Walking state being initialised with non-walk command. Something is wrong");
             return;
@@ -24,7 +23,7 @@ public class WalkingState : FighterState
         fighter.AnimatedSprite.Play("walk");
     }
 
-    public override void HandleCommand(Fighter fighter, FighterCommand cmd)
+    public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
     {
         switch (cmd)
         {
@@ -40,6 +39,8 @@ public class WalkingState : FighterState
                 fighter.SwitchCombatState(new PunchState());
                 break;
         }
+
+        return false;
     }
 
     public override void Process(Fighter fighter, double delta)

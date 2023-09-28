@@ -9,14 +9,16 @@ public class BlockState : FighterState
         fighter.AnimatedSprite.Play("block");
     }
 
-    public override void HandleCommand(Fighter fighter, FighterCommand cmd)
+    public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
     {
-        if (cmd is not BlockCommand blockCommand) return;
+        if (cmd is not BlockCommand blockCommand) return false;
         
         // What do we switch to here? Walking or idling? we need a way to keep track of previous states (you mentioned this before but idk how!)
         if (blockCommand.Completed)
         {
             // fighter.SwitchMovementState();
         }
+
+        return false;
     }
 }
