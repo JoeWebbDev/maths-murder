@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://birsko7lrvqcd"]
+
+[ext_resource type="Script" path="res://src/tests/ai_fighter_test/AIController.cs" id="1_5qoms"]
+[ext_resource type="PackedScene" uid="uid://d01pqnhhmpnrl" path="res://src/input_controller/input_controller.tscn" id="2_3c7cf"]
+[ext_resource type="PackedScene" uid="uid://c6c4xa03gwcab" path="res://src/fighters/basic_fighter/basic_fighter.tscn" id="3_ubm6r"]
+[ext_resource type="Resource" uid="uid://dw2nak83orosd" path="res://src/fighters/resources/fighter_one_resource.tres" id="4_che3g"]
+
+[node name="PlayerVsAi" type="Node"]
+
+[node name="InputController" parent="." node_paths=PackedStringArray("CurrentFighter") instance=ExtResource("2_3c7cf")]
+CurrentFighter = NodePath("../PlayerFighter")
+
+[node name="PlayerFighter" parent="." instance=ExtResource("3_ubm6r")]
+
+[node name="AIFighter" parent="." instance=ExtResource("3_ubm6r")]
+position = Vector2(537, 203)
+rotation = -6.28319
+FlipH = true
+
+[node name="AIController" type="Node" parent="." node_paths=PackedStringArray("FighterBeingControlled", "LoadButton")]
+script = ExtResource("1_5qoms")
+FighterBeingControlled = NodePath("../AIFighter")
+FighterToLoad = ExtResource("4_che3g")
+LoadButton = NodePath("../CanvasLayer/Button")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -66.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Load AI"

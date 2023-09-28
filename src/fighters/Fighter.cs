@@ -8,6 +8,7 @@ public partial class Fighter : Area2D
     [Signal] public delegate void HitRegisteredEventHandler();
     public int Health { get; set; }
     [Export] public AnimatedSprite2D AnimatedSprite { get; set; }
+    [Export] public bool FlipH { get; set; }
     public FighterState MovementState { get; private set; }
     public FighterState CombatState { get; private set; }
     [Signal] public delegate void MovementStateChangedEventHandler(Fighter fighter);
@@ -15,6 +16,7 @@ public partial class Fighter : Area2D
     
     public override void _Ready()
     {
+        AnimatedSprite.FlipH = FlipH;
         MovementState = new IdleState();
         MovementState.Enter(this);
     }
