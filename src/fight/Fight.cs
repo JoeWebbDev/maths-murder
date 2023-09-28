@@ -35,7 +35,7 @@ public partial class Fight : Node
 
 	private void CheckDeath(int from, int to)
 	{
-		if (to == 0) EndFight();
+		if (to <= 0) EndFight();
 	}
 
 	private void StartFight()
