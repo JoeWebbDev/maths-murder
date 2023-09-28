@@ -3,6 +3,8 @@ using Godot;
 
 public partial class Fight : Node
 {
+	[Signal] public delegate void FightRetryRequestedEventHandler();
+	[Signal] public delegate void QuitRequestedEventHandler();
 	[Export] public FightUI UI;
 	[Export] public Fighter Player { get; set; }
 	[Export] public Fighter Enemy { get; set; }
@@ -15,6 +17,7 @@ public partial class Fight : Node
 		UI.StartCountdown(_fightCountdownDuration);
 		UI.FightCountdownComplete += StartFight;
 		UI.Retry += OnRetry;
+		UI.QuitToMenu += OnQuitToMenu;
 		Player.HealthChanged += CheckDeath;
 		Enemy.HealthChanged += CheckDeath;
 		Timer.MatchTimerEnded += EndFight;
@@ -22,7 +25,12 @@ public partial class Fight : Node
 
 	private void OnRetry()
 	{
-		UI.StartCountdown(_fightCountdownDuration);
+		EmitSignal(SignalName.FightRetryRequested);
+	}
+
+	private void OnQuitToMenu()
+	{
+		EmitSignal(SignalName.QuitRequested);
 	}
 
 	private void CheckDeath(int from, int to)

@@ -18,6 +18,7 @@ color = Color(0.988235, 0.341176, 0.411765, 1)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="StartButton" type="Button" parent="CanvasLayer"]
+process_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -32,6 +33,7 @@ grow_vertical = 0
 text = "Start"
 
 [node name="QuitButton" type="Button" parent="CanvasLayer"]
+process_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

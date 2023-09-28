@@ -22,7 +22,10 @@ public partial class FightUI : CanvasLayer
 	{
 		_playerHealthBar.Fighter = _player;
 		_enemyHealthBar.Fighter = _enemy;
-		_retryButton.Pressed += () => EmitSignal(SignalName.Retry);
+		_retryButton.Pressed += () =>
+		{
+			EmitSignal(SignalName.Retry);
+		};
 		_quitToMenuButton.Pressed += () => EmitSignal(SignalName.QuitToMenu);
 
 		_matchTimer.MatchTimerStarted += OnMatchTimerStart;

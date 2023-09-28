@@ -12,7 +12,7 @@ UI = NodePath("FightUI")
 Player = NodePath("Player")
 Enemy = NodePath("Enemy")
 Timer = NodePath("MatchTimer")
-_fightCountdownDuration = 3
+_fightCountdownDuration = 1
 
 [node name="FightUI" parent="." node_paths=PackedStringArray("_player", "_enemy", "_matchTimer") instance=ExtResource("2_ecqmq")]
 _player = NodePath("../Player")
@@ -20,7 +20,7 @@ _enemy = NodePath("../Enemy")
 _matchTimer = NodePath("../MatchTimer")
 
 [node name="MatchTimer" parent="." instance=ExtResource("3_gb5ic")]
-TotalMatchTime = 10
+TotalMatchTime = 1
 
 [node name="Player" parent="." instance=ExtResource("4_p0f3h")]
 
