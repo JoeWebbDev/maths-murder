@@ -6,7 +6,8 @@ public class BlockState : FighterState
 {
     public override void Enter(Fighter fighter)
     {
-        fighter.AnimatedSprite.Play("block");
+        // fighter.AnimatedSprite.Play("block");
+        fighter.AnimationPlayer.Play("fighter_anim_lib/block");
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)

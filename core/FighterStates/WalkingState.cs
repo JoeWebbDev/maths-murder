@@ -20,7 +20,7 @@ public class WalkingState : FighterState
     }
     public override void Enter(Fighter fighter)
     {
-        fighter.AnimatedSprite.Play("walk");
+        fighter.AnimationPlayer.Play("fighter_anim_lib/walk");
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
@@ -52,10 +52,11 @@ public class WalkingState : FighterState
     {
         if (fighter.CombatState != null) return;
 
-        if (fighter.AnimatedSprite.Animation != "walk")
+        if (fighter.AnimationPlayer.CurrentAnimation != "fighter_anim_lib/walk")
         {
-            fighter.AnimatedSprite.Play("walk");
+            fighter.AnimationPlayer.Play("fighter_anim_lib/walk");
         }
-        fighter.Position += _direction * 100 * (float)delta;
+        var vec = Vector2.One * _direction * 100 * (float)delta;
+        fighter.MoveAndCollide(vec);
     }
 }

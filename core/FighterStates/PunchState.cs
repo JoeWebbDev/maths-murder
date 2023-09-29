@@ -7,16 +7,16 @@ public class PunchState : FighterState
 {
     public override void Enter(Fighter fighter)
     {
-        fighter.AnimatedSprite.Play("punch");
-
-        void OnAnimatedSpriteOnAnimationFinished()
+        fighter.AnimationPlayer.Play("fighter_anim_lib/punch");
+        
+        void OnAnimationPlayerOnAnimationFinished(StringName name)
         {
             GD.Print("Animation finished");
-            fighter.AnimatedSprite.AnimationFinished -= OnAnimatedSpriteOnAnimationFinished;
+            fighter.AnimationPlayer.AnimationFinished -= OnAnimationPlayerOnAnimationFinished;
             fighter.SwitchCombatState(null);
         }
 
-        fighter.AnimatedSprite.AnimationFinished += OnAnimatedSpriteOnAnimationFinished;
+        fighter.AnimationPlayer.AnimationFinished += OnAnimationPlayerOnAnimationFinished;
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
