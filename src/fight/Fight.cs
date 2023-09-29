@@ -5,7 +5,7 @@ public partial class Fight : Node
 {
 	[Signal] public delegate void FightRetryRequestedEventHandler();
 	[Signal] public delegate void QuitRequestedEventHandler();
-	[Export] public FightUI UI;
+	[Export] public FightUI Ui;
 	[Export] public Fighter Player { get; set; }
 	[Export] public Fighter Enemy { get; set; }
 	[Export] public MatchTimer Timer { get; private set; }
@@ -13,11 +13,13 @@ public partial class Fight : Node
 
 	public override void _Ready()
 	{
+		if (Player.PlayerNumber == Enemy.PlayerNumber)
+			GD.PrintErr("Players must have different player numbers.");
 		GetTree().Paused = true;
-		UI.StartCountdown(_fightCountdownDuration);
-		UI.FightCountdownComplete += StartFight;
-		UI.Retry += OnRetry;
-		UI.QuitToMenu += OnQuitToMenu;
+		Ui.StartCountdown(_fightCountdownDuration);
+		Ui.FightCountdownComplete += StartFight;
+		Ui.Retry += OnRetry;
+		Ui.QuitToMenu += OnQuitToMenu;
 		Player.HealthChanged += CheckDeath;
 		Enemy.HealthChanged += CheckDeath;
 		Timer.MatchTimerEnded += EndFight;
@@ -48,6 +50,6 @@ public partial class Fight : Node
 	{
 		GetTree().Paused = true;
 		var playerWon = Player.Health > Enemy.Health;
-		UI.ShowResultScreen(playerWon);
+		Ui.ShowResultScreen(playerWon);
 	}
 }

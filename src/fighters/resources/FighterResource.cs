@@ -7,5 +7,6 @@ using Godot;
 public partial class FighterResource : Resource
 {
     [Export] public SpriteFrames SpriteFrames { get; set; }
+    [Export] public AnimationLibrary AnimationLibrary { get; set; }
     [Export] public int Health { get; set; }
 }

@@ -3,7 +3,7 @@ using System;
 using MathsMurderSpike.core.Commands;
 using MathsMurderSpike.Core.FighterStates;
 
-public partial class Fighter : Area2D
+public partial class Fighter : CharacterBody2D
 {
     private int _health;
     [Signal] public delegate void HitRegisteredEventHandler();
@@ -11,8 +11,14 @@ public partial class Fighter : Area2D
     [Signal] public delegate void MovementStateChangedEventHandler(Fighter fighter);
     [Signal] public delegate void CombatStateChangedEventHandler(Fighter fighter);
     [Export] public AnimatedSprite2D AnimatedSprite { get; set; }
+    [Export] public AnimationPlayer AnimationPlayer { get; set; }
+    [Export] public Area2D PunchColliderObject { get; set; }
     [Export] public bool FlipH { get; set; }
     [Export] public int MaxHealth { get; private set; }
+    [Export] public int HitDamage { get; private set; }
+    [Export] public int PlayerNumber { get; private set; }
+    
+    private bool _canDealDamage = true;
 
     public int Health
     {
@@ -29,10 +35,23 @@ public partial class Fighter : Area2D
     
     public override void _Ready()
     {
+        if (FlipH)
+            Scale = new Vector2(-Scale.X, Scale.Y);
         Health = MaxHealth;
-        AnimatedSprite.FlipH = FlipH;
+        PunchColliderObject.BodyEntered += OnHit;
         MovementState = new IdleState();
         MovementState.Enter(this);
+        // if player 1, mask set to only hit player 2, else if player 2, mask set to hit player 1
+        var enemyMask = (uint)(PlayerNumber == 1 ? 2 : 1);
+        PunchColliderObject.CollisionMask = enemyMask;
+        CollisionMask = enemyMask;
+        AnimationPlayer.AnimationFinished += OnAnimFinished;
+    }
+
+    private void OnAnimFinished(StringName animName)
+    {
+        if (animName == "fighter_anim_lib/punch")
+            _canDealDamage = true;
     }
 
     public override void _Process(double delta)
@@ -64,7 +83,7 @@ public partial class Fighter : Area2D
 
     public void SwitchMovementState(FighterState to)
     {
-        GD.Print($"Switching movement state from: {MovementState?.GetType()} to {to?.GetType()}");
+        // GD.Print($"Switching movement state from: {MovementState?.GetType()} to {to?.GetType()}");
         MovementState?.Exit(this);
         MovementState = to;
         to?.Enter(this);
@@ -73,10 +92,29 @@ public partial class Fighter : Area2D
 
     public void SwitchCombatState(FighterState to)
     {
-        GD.Print($"Switching combat state from: {CombatState?.GetType()} to {to?.GetType()}");
+        // GD.Print($"Switching combat state from: {CombatState?.GetType()} to {to?.GetType()}");
         CombatState?.Exit(this);
         CombatState = to;
         to?.Enter(this);
         EmitSignal(SignalName.CombatStateChanged, this);
+    }
+
+    private void OnHit(Node2D body)
+    {
+        if (!_canDealDamage)
+            return;
+        
+        GD.Print($"Hit for {HitDamage}");
+        if (body is Fighter enemy)
+        {
+            enemy.TakeDamage(HitDamage);
+            _canDealDamage = false;
+        }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        GD.Print($"Taking {damage} damage");
+        Health -= damage;
     }
 }
