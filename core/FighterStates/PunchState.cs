@@ -5,6 +5,7 @@ namespace MathsMurderSpike.Core.FighterStates;
 
 public class PunchState : FighterState
 {
+    private bool _canDealDamage = true;
     public override void Enter(Fighter fighter)
     {
         fighter.AnimationPlayer.Play("fighter_anim_lib/punch");
@@ -23,5 +24,14 @@ public class PunchState : FighterState
     {
         if (cmd is WalkCommand { Completed: true }) fighter.SwitchMovementState(new IdleState());
         return true;
+    }
+
+    public override void OnHit(Fighter fighter, Fighter target)
+    {
+        if (!_canDealDamage) return;
+        
+        GD.Print($"Hit for {fighter.HitDamage}");
+        target.TakeDamage(fighter.HitDamage);
+        _canDealDamage = false;
     }
 }

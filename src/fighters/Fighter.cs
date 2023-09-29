@@ -98,23 +98,32 @@ public partial class Fighter : CharacterBody2D
         to?.Enter(this);
         EmitSignal(SignalName.CombatStateChanged, this);
     }
-
-    private void OnHit(Node2D body)
+    
+    // We're doing a crude check here to see if we're in a block state, and if not, take damage & enter RecoverState.
+    // Ideally, this is deferred to the state machine too; but that seems like over-engineering given that only the
+    // BlockState will have any impact on what happens when damage is received
+    public void TakeDamage(int damage)
     {
-        if (!_canDealDamage)
-            return;
-        
-        GD.Print($"Hit for {HitDamage}");
-        if (body is Fighter enemy)
+        if (CombatState is BlockState blockState)
         {
-            enemy.TakeDamage(HitDamage);
-            _canDealDamage = false;
+            // Chip damage etc
+            return;
         }
-    }
-
-    private void TakeDamage(int damage)
-    {
         GD.Print($"Taking {damage} damage");
         Health -= damage;
+        SwitchCombatState(new RecoverState());
+    }
+    
+    // Moving functionality down to individual states - will come in handy in the future when we want
+    // different combat states to have more granular control, i.e. deal differing amounts of damage
+    // Also, should leave it to the fighter receiving the hit to determine what happens (see above).
+    // This will make it cleaner to implement chip damage etc that might be reliant on the stats of the Fighter
+    // being hit
+    private void OnHit(Node2D body)
+    {
+        if (body is not Fighter enemy) return;
+        
+        // Don't need to pass to movement FSM as movement shouldn't be dealing damage
+        CombatState?.OnHit(this, enemy);
     }
 }

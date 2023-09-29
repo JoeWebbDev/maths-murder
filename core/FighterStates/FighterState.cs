@@ -9,6 +9,7 @@ public abstract class FighterState
     public abstract bool HandleCommand(Fighter fighter, FighterCommand cmd);
 
     public virtual void Process(Fighter fighter, double delta) { }
+    public virtual void OnHit(Fighter fighter, Fighter target) { }
 
     public virtual void Exit(Fighter fighter) { }
 }
