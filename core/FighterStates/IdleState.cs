@@ -31,6 +31,9 @@ public class IdleState : FighterState
                 // Block should be in the CombatFSM, since we want to lock most movement when blocking, and we can never block and execute other combat moves simultaneously
                 fighter.SwitchCombatState(new BlockState());
                 break;
+            case DashCommand dashCommand:
+                fighter.SwitchMovementState(new DashState(dashCommand));
+                break;
         }
 
         return false;

@@ -6,9 +6,31 @@ using MathsMurderSpike.Core.Input;
 public partial class InputController : Node
 {
     [Export] public Fighter CurrentFighter { get; set; }
+    
+    private bool _dashLeftWindowOpen;
+    private bool _dashRightWindowOpen;
+    private float _dashWindowTimer;
 
     public override void _Input(InputEvent @event)
     {
+        // Before handling any other inputs, lets see if we can dash
+        if (_dashWindowTimer > CurrentFighter.DashDetectPeriod)
+        {
+            _dashLeftWindowOpen = false;
+            _dashRightWindowOpen = false;
+        }
+        GD.Print($"{_dashWindowTimer}");
+        if (@event.IsActionPressed("move_left") && _dashLeftWindowOpen)
+        {
+            CurrentFighter.Execute(new DashCommand(Vector2.Left));
+            _dashLeftWindowOpen = false;
+        }
+        if (@event.IsActionPressed("move_right") && _dashRightWindowOpen)
+        {
+            CurrentFighter.Execute(new DashCommand(Vector2.Right));
+            _dashRightWindowOpen = false;
+        }
+        
         // We exit early from any input that isn't a predefined action (see: InputMap on godot docs)
         if (!@event.IsActionType()) return;
         
@@ -21,12 +43,16 @@ public partial class InputController : Node
         var fighterCmd = FighterInputActions.TryGetCommand(@event);
         if (fighterCmd != null)
         {
+            // We've pressed other buttons, so we can no longer dash.
+            _dashLeftWindowOpen = false;
+            _dashRightWindowOpen = false;
             CurrentFighter.Execute(fighterCmd);
         }
     }
 
     public override void _Process(double delta)
     {
+        if (_dashLeftWindowOpen || _dashRightWindowOpen) _dashWindowTimer += (float)delta;
         
         // Similarly to movement below, we have to treat block differently. Without this, if you try to block while punching, the command will be missed :/
         // Is there a better way?
@@ -62,10 +88,17 @@ public partial class InputController : Node
             // We don't have movement because both keys are held, so we should dispatch a "Completed" WalkCommand.
             CurrentFighter.Execute(new WalkCommand(direction, true));
         }
-        else if (Input.IsActionJustReleased("move_left") || Input.IsActionJustReleased("move_right"))
+        else if (Input.IsActionJustReleased("move_left"))
         {
-            // We don't have movement because we just released one of the movement keys. So we should dispatch a "Completed" WalkCommand.
             CurrentFighter.Execute(new WalkCommand(direction, true));
+            _dashLeftWindowOpen = true;
+            _dashWindowTimer = 0f;
+        }
+        else if (Input.IsActionJustReleased("move_right"))
+        {
+            CurrentFighter.Execute(new WalkCommand(direction, true));
+            _dashRightWindowOpen = true;
+            _dashWindowTimer = 0f;
         }
         else
         {

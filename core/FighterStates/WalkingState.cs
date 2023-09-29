@@ -56,7 +56,7 @@ public class WalkingState : FighterState
         {
             fighter.AnimationPlayer.Play("fighter_anim_lib/walk");
         }
-        var vec = Vector2.One * _direction * 100 * (float)delta;
+        var vec = _direction * fighter.WalkingSpeed * (float)delta;
         fighter.MoveAndCollide(vec);
     }
 }

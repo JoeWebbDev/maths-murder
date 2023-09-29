@@ -16,6 +16,11 @@ public partial class Fighter : CharacterBody2D
     [Export] public bool FlipH { get; set; }
     [Export] public int MaxHealth { get; private set; }
     [Export] public int HitDamage { get; private set; }
+    [Export] public int WalkingSpeed { get; private set; } = 100;
+    [Export] public int DashMultiplier { get; private set; } = 3;
+    
+    // The period of time to detect dashes from repeated key presses
+    [Export] public float DashDetectPeriod { get; private set; } = 0.3f;
     [Export] public int PlayerNumber { get; private set; }
     
     private bool _canDealDamage = true;
