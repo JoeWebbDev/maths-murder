@@ -62,7 +62,7 @@ public partial class Fighter : CharacterBody2D
 
     public void Execute(FighterCommand cmd)
     {
-        // GD.Print($"Command received: {cmd.GetType()}");
+        GodotLogger.LogDebug($"Command received: {cmd.GetType()}");
         // I found that I was writing lots of "if (doing some combat) then do nothing" in the movement states.
         // This provides a way for the CombatState machine to consume commands, so that they never reach
         // the MovementState FSM (which should largely be locked when mid-combat anyway).
@@ -72,18 +72,18 @@ public partial class Fighter : CharacterBody2D
 
     public void LoadFighter(FighterResource resource)
     {
-        GD.Print($"Loading fighter from resource: {resource.ResourcePath}");
+        GodotLogger.LogDebug($"Loading fighter from resource: {resource.ResourcePath}");
         MaxHealth = resource.Health;
         Health = resource.Health;
         AnimatedSprite.SpriteFrames = resource.SpriteFrames;
         MovementState = new IdleState();
         MovementState.Enter(this);
-        GD.Print($"Fighter loaded! Health: {Health}");
+        GodotLogger.LogDebug($"Fighter loaded! Health: {Health}");
     }
 
     public void SwitchMovementState(FighterState to)
     {
-        // GD.Print($"Switching movement state from: {MovementState?.GetType()} to {to?.GetType()}");
+        GodotLogger.LogDebug($"Switching movement state from: {MovementState?.GetType()} to {to?.GetType()}");
         MovementState?.Exit(this);
         MovementState = to;
         to?.Enter(this);
@@ -92,7 +92,7 @@ public partial class Fighter : CharacterBody2D
 
     public void SwitchCombatState(FighterState to)
     {
-        // GD.Print($"Switching combat state from: {CombatState?.GetType()} to {to?.GetType()}");
+        GodotLogger.LogDebug($"Switching combat state from: {CombatState?.GetType()} to {to?.GetType()}");
         CombatState?.Exit(this);
         CombatState = to;
         to?.Enter(this);
@@ -104,9 +104,12 @@ public partial class Fighter : CharacterBody2D
         if (!_canDealDamage)
             return;
         
-        GD.Print($"Hit for {HitDamage}");
+        GodotLogger.LogDebug($"Hit for {HitDamage}");
         if (body is Fighter enemy)
         {
+            if (enemy.CombatState is BlockState)
+                return;
+            
             enemy.TakeDamage(HitDamage);
             _canDealDamage = false;
         }
@@ -114,7 +117,7 @@ public partial class Fighter : CharacterBody2D
 
     private void TakeDamage(int damage)
     {
-        GD.Print($"Taking {damage} damage");
+        GodotLogger.LogDebug($"Taking {damage} damage");
         Health -= damage;
     }
 }

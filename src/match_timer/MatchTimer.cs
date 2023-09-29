@@ -19,7 +19,7 @@ public partial class MatchTimer : Node
 	{
 		if (_ongoingTask is { IsCompleted: false })
 		{
-			GD.PushWarning($"Attempting to start a {nameof(MatchTimer)} while one is ongoing is not allowed!");
+			GodotLogger.LogWarning($"Attempting to start a {nameof(MatchTimer)} while one is ongoing is not allowed!");
 			return;
 		}
 		EmitSignal(SignalName.MatchTimerStarted);
