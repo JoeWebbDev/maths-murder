@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuvve83igm5fe"]
+[gd_scene load_steps=10 format=3 uid="uid://cuvve83igm5fe"]
 
 [ext_resource type="Script" path="res://src/fight/Fight.cs" id="1_byaux"]
 [ext_resource type="PackedScene" uid="uid://xy4kxgxscvui" path="res://src/fight_ui/fight_ui.tscn" id="2_ecqmq"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://jmbjatkvyuwa" path="res://assets/fight_background.png" id="6_7fccv"]
 [ext_resource type="PackedScene" uid="uid://dmq57kpgult53" path="res://src/ai_controller/ai_controller.tscn" id="6_q1701"]
 [ext_resource type="Script" path="res://src/fight/FightCameraController.cs" id="7_vgb3u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vkdp"]
+size = Vector2(20, 368)
 
 [node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "Player", "Enemy", "Timer")]
 script = ExtResource("1_byaux")
@@ -54,3 +57,14 @@ _player = NodePath("../Player")
 _enemy = NodePath("../Enemy")
 _boundaryFeather = 150.0
 _lerpSpeed = 4.0
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-200, 174)
+shape = SubResource("RectangleShape2D_6vkdp")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(800, 174)
+shape = SubResource("RectangleShape2D_6vkdp")
