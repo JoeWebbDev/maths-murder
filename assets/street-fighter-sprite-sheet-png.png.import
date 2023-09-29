@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0fsaxb8fxeum"
-path="res://.godot/imported/street-fighter-sprite-sheet-png.png-b7b5ad23f5c1e2da636180a983f12e25.ctex"
+path="res://.godot/imported/street-fighter-sprite-sheet-png.png-8a82346568acbd320999fb8f37b37d3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/street-fighter-sprite-sheet-png.png"
-dest_files=["res://.godot/imported/street-fighter-sprite-sheet-png.png-b7b5ad23f5c1e2da636180a983f12e25.ctex"]
+source_file="res://assets/street-fighter-sprite-sheet-png.png"
+dest_files=["res://.godot/imported/street-fighter-sprite-sheet-png.png-8a82346568acbd320999fb8f37b37d3e.ctex"]
 
 [params]
 
