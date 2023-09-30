@@ -6,6 +6,7 @@ using MathsMurderSpike.Core.Input;
 public partial class FightInputController : Node
 {
     [Export] public Fighter CurrentFighter { get; set; }
+    [Signal] public delegate void PauseRequestedEventHandler();
     
     private bool _dashLeftWindowOpen;
     private bool _dashRightWindowOpen;
@@ -13,7 +14,15 @@ public partial class FightInputController : Node
 
     public override void _Input(InputEvent @event)
     {
-        // Before handling any other inputs, lets see if we can dash
+        GodotLogger.LogDebug($"Received input: {@event.AsText()}");
+        
+        // UI & non-fighter related actions
+        if (@event.IsActionPressed("ui_cancel"))
+        {
+            EmitSignal(SignalName.PauseRequested);
+        }
+
+        // Before handling any other fighter inputs, lets see if we can dash
         if (_dashWindowTimer > CurrentFighter.DashDetectPeriod)
         {
             _dashLeftWindowOpen = false;
@@ -30,13 +39,6 @@ public partial class FightInputController : Node
             CurrentFighter.Execute(new DashCommand(Vector2.Right));
             _dashRightWindowOpen = false;
         }
-        
-        // We exit early from any input that isn't a predefined action (see: InputMap on godot docs)
-        if (!@event.IsActionType()) return;
-        
-        GodotLogger.LogDebug($"Received actionable input: {@event.AsText()}");
-        
-        // UI & non-fighter related actions get handled here
 
         if (CurrentFighter == null) return;
         

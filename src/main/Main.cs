@@ -13,36 +13,6 @@ public partial class Main : Node
 	public override void _Ready()
 	{
 		LoadStartMenuScene();
-		_globalInputController.OpenPauseMenuRequested += OnOpenPauseMenuRequested;
-	}
-
-	private void OnOpenPauseMenuRequested()
-	{
-		if (_pauseMenu != null)
-		{
-			Resume();
-			return;
-		}
-		if (_currentScene is not StartMenu) Pause();
-	}
-
-	private void Pause()
-	{
-		GetTree().Paused = true;
-		
-		// We create a new pause menu each time here. Probs better to have it live on main
-		// and just show?
-		_pauseMenu = _pauseMenuScene.Instantiate<PauseMenu>();
-		_pauseMenu.ResumeButtonPressed += Resume;
-		_pauseMenu.QuitToMenuButtonPressed += LoadStartMenuScene;
-		AddChild(_pauseMenu);
-	}
-
-	private void Resume()
-	{
-		GetTree().Paused = false;
-		_pauseMenu.QueueFree();
-		_pauseMenu = null;
 	}
 
 	private void NewGame()
