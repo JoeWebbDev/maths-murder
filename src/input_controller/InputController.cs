@@ -61,6 +61,15 @@ public partial class InputController : Node
             CurrentFighter.Execute(new BlockCommand());
         }
         
+        // Similarly to block AND movement, we want constant feedback on ducking - so if you were to hold the duck key down while punching etc, you would resume
+        // ducking. Like Joe has mentioned before, this is wasteful as we're sending 2 block/duck commands on initial key press.
+        // Starting to think there's a better way here!
+
+        if (Input.IsActionPressed("duck"))
+        {
+            CurrentFighter.Execute(new DuckCommand());
+        }
+        
         var direction = Vector2.Zero;
         var leftKeyPressed = false;
         var rightKeyPressed = false;

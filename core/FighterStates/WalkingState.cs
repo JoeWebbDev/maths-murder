@@ -44,6 +44,10 @@ public class WalkingState : FighterState
                 // Block should be in the CombatFSM, since we want to lock most movement when blocking, and we can never block and execute other combat moves simultaneously
                 fighter.SwitchCombatState(new BlockState());
                 break;
+            case DuckCommand duckCommand:
+                if (duckCommand.Completed) break;
+                fighter.SwitchMovementState(new DuckState());
+                break;
         }
 
         return false;

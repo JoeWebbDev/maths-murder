@@ -14,5 +14,8 @@ public abstract class FighterState
     public virtual void Process(Fighter fighter, double delta) { }
     public virtual void OnHit(Fighter fighter, Fighter target) { }
 
-    public virtual void Exit(Fighter fighter) { }
+    public virtual void Exit(Fighter fighter)
+    {
+        GodotLogger.LogInfo($"Fighter {fighter.PlayerNumber} exiting {GetType().Name}");
+    }
 }
