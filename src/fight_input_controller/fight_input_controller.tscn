@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2ctuwd5ypoun"]
+
+[ext_resource type="Script" path="res://src/fight_input_controller/FightInputController.cs" id="1_7irdp"]
+
+[node name="InputController" type="Node"]
+script = ExtResource("1_7irdp")

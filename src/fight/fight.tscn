@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://xy4kxgxscvui" path="res://src/fight_ui/fight_ui.tscn" id="2_ecqmq"]
 [ext_resource type="PackedScene" uid="uid://cwrt3mai5fuk7" path="res://src/match_timer/match_timer.tscn" id="3_gb5ic"]
 [ext_resource type="PackedScene" uid="uid://c6c4xa03gwcab" path="res://src/fighters/basic_fighter/basic_fighter.tscn" id="4_p0f3h"]
-[ext_resource type="PackedScene" uid="uid://d01pqnhhmpnrl" path="res://src/input_controller/input_controller.tscn" id="5_ysayd"]
+[ext_resource type="PackedScene" uid="uid://2ctuwd5ypoun" path="res://src/fight_input_controller/fight_input_controller.tscn" id="6_5fy5m"]
 [ext_resource type="Texture2D" uid="uid://jmbjatkvyuwa" path="res://assets/fight_background.png" id="6_7fccv"]
 [ext_resource type="PackedScene" uid="uid://dmq57kpgult53" path="res://src/ai_controller/ai_controller.tscn" id="6_q1701"]
 [ext_resource type="Script" path="res://src/fight/FightCameraController.cs" id="7_vgb3u"]
@@ -45,7 +45,7 @@ MaxHealth = 10
 HitDamage = 1
 PlayerNumber = 2
 
-[node name="InputController" parent="." node_paths=PackedStringArray("CurrentFighter") instance=ExtResource("5_ysayd")]
+[node name="InputController" parent="." node_paths=PackedStringArray("CurrentFighter") instance=ExtResource("6_5fy5m")]
 CurrentFighter = NodePath("../Player")
 
 [node name="AI Controller" parent="." node_paths=PackedStringArray("Fighter") instance=ExtResource("6_q1701")]

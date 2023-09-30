@@ -3,7 +3,7 @@ using System;
 using MathsMurderSpike.core.Commands;
 using MathsMurderSpike.Core.Input;
 
-public partial class InputController : Node
+public partial class FightInputController : Node
 {
     [Export] public Fighter CurrentFighter { get; set; }
     
