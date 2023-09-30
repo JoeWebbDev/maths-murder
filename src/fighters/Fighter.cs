@@ -1,5 +1,4 @@
 ﻿using Godot;
-using System;
 using MathsMurderSpike.core.Commands;
 using MathsMurderSpike.Core.FighterStates;
 
@@ -23,12 +22,10 @@ public partial class Fighter : CharacterBody2D
     [Export] public float DashDetectPeriod { get; private set; } = 0.3f;
     [Export] public int PlayerNumber { get; private set; }
     
-    private bool _canDealDamage = true;
-
     public int Health
     {
         get => _health;
-        set
+        private set
         {
             var previousHealth = _health;
             _health = value;
@@ -55,13 +52,6 @@ public partial class Fighter : CharacterBody2D
         var enemyMask = (uint)(PlayerNumber == 1 ? 2 : 1);
         PunchColliderObject.CollisionMask = enemyMask;
         CollisionMask = enemyMask;
-        AnimationPlayer.AnimationFinished += OnAnimFinished;
-    }
-
-    private void OnAnimFinished(StringName animName)
-    {
-        if (animName == "fighter_anim_lib/punch")
-            _canDealDamage = true;
     }
 
     public override void _Process(double delta)
@@ -131,7 +121,8 @@ public partial class Fighter : CharacterBody2D
     // being hit
     private void OnHit(Node2D body)
     {
-        if (body is not Fighter enemy) return;
+        if (body is not Fighter enemy) 
+            return;
         
         // Don't need to pass to movement FSM as movement shouldn't be dealing damage
         CombatState?.OnHit(this, enemy);
