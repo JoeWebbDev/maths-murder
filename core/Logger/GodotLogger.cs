@@ -12,25 +12,25 @@ public partial class GodotLogger : Node
 
 	public static void LogDebug(string message)
 	{
-		if (_loggingLevel >= LoggingLevel.Debug)
+		if (_loggingLevel <= LoggingLevel.Debug)
 			LogMessage(message, LoggingLevel.Debug);
 	}
 
 	public static void LogInfo(string message)
 	{
-		if (_loggingLevel >= LoggingLevel.Info)
+		if (_loggingLevel <= LoggingLevel.Info)
 			LogMessage(message, LoggingLevel.Info);
 	}
 
 	public static void LogWarning(string message)
 	{
-		if (_loggingLevel >= LoggingLevel.Warning)
+		if (_loggingLevel <= LoggingLevel.Warning)
 			LogMessage(message, LoggingLevel.Warning);
 	}
 
 	public static void LogError(string message)
 	{
-		if (_loggingLevel >= LoggingLevel.Error)
+		if (_loggingLevel <= LoggingLevel.Error)
 			LogMessage(message, LoggingLevel.Error);
 	}
 
