@@ -33,6 +33,11 @@ public partial class Fighter : CharacterBody2D
             var previousHealth = _health;
             _health = value;
             EmitSignal(SignalName.HealthChanged, previousHealth, _health);
+            if (_health <= 0)
+            {
+                // Should emit another signal here & maybe take the CheckDeath code out of Fight.cs?
+                SwitchCombatState(new DeathState());
+            }
         }
     }
     public FighterState MovementState { get; private set; }
@@ -116,7 +121,7 @@ public partial class Fighter : CharacterBody2D
         }
         GodotLogger.LogDebug($"Taking {damage} damage");
         Health -= damage;
-        SwitchCombatState(new RecoverState());
+        if (Health > 0) SwitchCombatState(new RecoverState());
     }
     
     // Moving functionality down to individual states - will come in handy in the future when we want

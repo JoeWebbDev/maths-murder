@@ -27,11 +27,13 @@ public partial class Fight : Node
 
 	private void OnRetry()
 	{
+		Engine.TimeScale = 1f;
 		EmitSignal(SignalName.FightRetryRequested);
 	}
 
 	private void OnQuitToMenu()
 	{
+		Engine.TimeScale = 1f;
 		EmitSignal(SignalName.QuitRequested);
 	}
 
@@ -48,7 +50,9 @@ public partial class Fight : Node
 
 	private void EndFight()
 	{
-		GetTree().Paused = true;
+		// We can use this as an alternative to GetTree().Paused for bullet time
+		Engine.TimeScale = 0.2f;
+		// GetTree().Paused = true;
 		var playerWon = Player.Health > Enemy.Health;
 		Ui.ShowResultScreen(playerWon);
 	}
