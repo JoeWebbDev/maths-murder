@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://bflo0k1k6urxb"]
+
+[ext_resource type="Script" path="res://src/pause_menu/PauseMenu.cs" id="1_2eerj"]
+[ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/maths_murder_button/maths_murder_button.tscn" id="1_x4mfi"]
+
+[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("_resumeButton", "_settingsButton", "_quitToMenuButton")]
+process_mode = 3
+script = ExtResource("1_2eerj")
+_resumeButton = NodePath("ResumeButton")
+_settingsButton = NodePath("SettingsButton")
+_quitToMenuButton = NodePath("QuitToMenuButton")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -70.0
+offset_right = 28.5
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Paused"
+
+[node name="ResumeButton" parent="." instance=ExtResource("1_x4mfi")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -15.5
+offset_right = 31.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resume"
+
+[node name="SettingsButton" parent="." instance=ExtResource("1_x4mfi")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = 34.5
+offset_right = 35.0
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+
+[node name="QuitToMenuButton" parent="." instance=ExtResource("1_x4mfi")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.5
+offset_top = 84.5
+offset_right = 56.5
+offset_bottom = 115.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit To Menu
+"
