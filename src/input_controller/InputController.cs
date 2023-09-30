@@ -19,7 +19,7 @@ public partial class InputController : Node
             _dashLeftWindowOpen = false;
             _dashRightWindowOpen = false;
         }
-        GD.Print($"{_dashWindowTimer}");
+        GodotLogger.LogDebug($"{_dashWindowTimer}");
         if (@event.IsActionPressed("move_left") && _dashLeftWindowOpen)
         {
             CurrentFighter.Execute(new DashCommand(Vector2.Left));

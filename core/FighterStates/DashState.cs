@@ -19,6 +19,8 @@ public class DashState : FighterState
     }
     public override void Enter(Fighter fighter)
     {
+        base.Enter(fighter);
+        
         // using punch as a placeholder animation
         fighter.AnimationPlayer.Play("fighter_anim_lib/punch");
         

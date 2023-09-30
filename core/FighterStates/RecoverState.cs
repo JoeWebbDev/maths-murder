@@ -7,6 +7,7 @@ public class RecoverState : FighterState
 {
     public override void Enter(Fighter fighter)
     {
+        base.Enter(fighter);
         void OnAnimationFinish(StringName animName)
         {
             fighter.AnimationPlayer.AnimationFinished -= OnAnimationFinish;

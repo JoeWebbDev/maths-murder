@@ -8,11 +8,12 @@ public class PunchState : FighterState
     private bool _canDealDamage = true;
     public override void Enter(Fighter fighter)
     {
+        base.Enter(fighter);
         fighter.AnimationPlayer.Play("fighter_anim_lib/punch");
         
         void OnAnimationPlayerOnAnimationFinished(StringName name)
         {
-            GD.Print("Animation finished");
+            GodotLogger.LogDebug("Animation finished");
             fighter.AnimationPlayer.AnimationFinished -= OnAnimationPlayerOnAnimationFinished;
             fighter.SwitchCombatState(null);
         }
@@ -30,7 +31,7 @@ public class PunchState : FighterState
     {
         if (!_canDealDamage) return;
         
-        GD.Print($"Hit for {fighter.HitDamage}");
+        GodotLogger.LogDebug($"Hit for {fighter.HitDamage}");
         target.TakeDamage(fighter.HitDamage);
         _canDealDamage = false;
     }

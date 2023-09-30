@@ -6,6 +6,7 @@ public class IdleState : FighterState
 {
     public override void Enter(Fighter fighter)
     {
+        base.Enter(fighter);
         if (fighter.CombatState == null) fighter.AnimationPlayer.Play("fighter_anim_lib/idle");
         fighter.CombatStateChanged += OnCombatStateChanged;
     }

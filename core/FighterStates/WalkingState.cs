@@ -20,6 +20,7 @@ public class WalkingState : FighterState
     }
     public override void Enter(Fighter fighter)
     {
+        base.Enter(fighter);
         fighter.AnimationPlayer.Play("fighter_anim_lib/walk");
     }
 

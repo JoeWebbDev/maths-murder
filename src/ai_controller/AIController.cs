@@ -11,7 +11,7 @@ public partial class AIController : Node
 	public override void _Ready()
 	{
 		_initialized = true;
-		GD.Print("AI fighter initialized");
+		GodotLogger.LogDebug("AI fighter initialized");
 	}
 
 	public override void _Process(double delta)
@@ -22,7 +22,7 @@ public partial class AIController : Node
 		_timer += delta;
 		if (_timer >= 2)
 		{
-			GD.Print("Executing punch.");
+			GodotLogger.LogDebug("Executing punch.");
 			Fighter.Execute(new PunchCommand());
 			_timer = 0;
 		}
