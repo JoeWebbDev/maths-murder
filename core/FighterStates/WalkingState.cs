@@ -12,7 +12,7 @@ public class WalkingState : FighterState
     {
         if (cmd is not WalkCommand walkCommand)
         {
-            GD.PushError("Walking state being initialised with non-walk command. Something is wrong");
+            GodotLogger.LogError("Walking state being initialised with non-walk command. Something is wrong");
             return;
         }
 
