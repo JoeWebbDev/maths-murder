@@ -5,10 +5,7 @@ public partial class Main : Node
 {
 	[Export] private PackedScene _startMenuScene;
 	[Export] private PackedScene _fightScene;
-	[Export] private PackedScene _pauseMenuScene;
-	[Export] private GlobalInputController _globalInputController;
 	private Node _currentScene;
-	private PauseMenu _pauseMenu;
 	
 	public override void _Ready()
 	{
