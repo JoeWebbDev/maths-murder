@@ -20,6 +20,7 @@ public class WalkingState : FighterState
     }
     public override void Enter(Fighter fighter)
     {
+        base.Enter(fighter);
         fighter.AnimationPlayer.Play("fighter_anim_lib/walk");
     }
 
@@ -43,6 +44,10 @@ public class WalkingState : FighterState
                 // Block should be in the CombatFSM, since we want to lock most movement when blocking, and we can never block and execute other combat moves simultaneously
                 fighter.SwitchCombatState(new BlockState());
                 break;
+            case DuckCommand duckCommand:
+                if (duckCommand.Completed) break;
+                fighter.SwitchMovementState(new DuckState());
+                break;
         }
 
         return false;
@@ -56,7 +61,7 @@ public class WalkingState : FighterState
         {
             fighter.AnimationPlayer.Play("fighter_anim_lib/walk");
         }
-        var vec = Vector2.One * _direction * 100 * (float)delta;
+        var vec = _direction * fighter.WalkingSpeed * (float)delta;
         fighter.MoveAndCollide(vec);
     }
 }

@@ -22,17 +22,17 @@ public partial class ExampleController : Node
     //
     // private void OnHitRegistered()
     // {
-    //     GD.Print($"{FighterBeingControlled.Name} has taken a hit!");
-    //     GD.Print($"Current health: {FighterBeingControlled.Health}");
+    //     GodotLogger.LogDebug($"{FighterBeingControlled.Name} has taken a hit!");
+    //     GodotLogger.LogDebug($"Current health: {FighterBeingControlled.Health}");
     //     FighterBeingControlled.Health -= 10;
-    //     GD.Print($"Health after hit: {FighterBeingControlled.Health}");
+    //     GodotLogger.LogDebug($"Health after hit: {FighterBeingControlled.Health}");
     // }
     //
     // public override void _Input(InputEvent @event)
     // {
     //     if (@event is not InputEventKey eventKey) return;
     //     
-    //     GD.Print($"Firing an input event: {eventKey.Keycode}, {eventKey.Pressed}");
+    //     GodotLogger.LogDebug($"Firing an input event: {eventKey.Keycode}, {eventKey.Pressed}");
     //
     //     if (!eventKey.Pressed && eventKey.Keycode is Key.A or Key.D)
     //     {

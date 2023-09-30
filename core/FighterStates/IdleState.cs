@@ -6,6 +6,7 @@ public class IdleState : FighterState
 {
     public override void Enter(Fighter fighter)
     {
+        base.Enter(fighter);
         if (fighter.CombatState == null) fighter.AnimationPlayer.Play("fighter_anim_lib/idle");
         fighter.CombatStateChanged += OnCombatStateChanged;
     }
@@ -30,6 +31,14 @@ public class IdleState : FighterState
                 if (blockCommand.Completed) break;
                 // Block should be in the CombatFSM, since we want to lock most movement when blocking, and we can never block and execute other combat moves simultaneously
                 fighter.SwitchCombatState(new BlockState());
+                break;
+            case DuckCommand duckCommand:
+                if (duckCommand.Completed) break;
+                // Duck should be in the movement FSM, since we can still punch etc simultaneously while ducking.
+                fighter.SwitchMovementState(new DuckState());
+                break;
+            case DashCommand dashCommand:
+                fighter.SwitchMovementState(new DashState(dashCommand));
                 break;
         }
 
