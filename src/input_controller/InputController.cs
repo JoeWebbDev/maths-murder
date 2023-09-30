@@ -12,7 +12,7 @@ public partial class InputController : Node
         // We exit early from any input that isn't a predefined action (see: InputMap on godot docs)
         if (!@event.IsActionType()) return;
         
-        // GD.Print($"Received actionable input: {@event.AsText()}");
+        GodotLogger.LogDebug($"Received actionable input: {@event.AsText()}");
         
         // UI & non-fighter related actions get handled here
 

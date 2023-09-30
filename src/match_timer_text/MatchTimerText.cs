@@ -13,7 +13,7 @@ public partial class MatchTimerText : Label
     {
         if (Timer == null)
         {
-            GD.PushWarning($"{nameof(MatchTimerText)} expects a {nameof(MatchTimer)}, but none was found.");
+            GodotLogger.LogWarning($"{nameof(MatchTimerText)} expects a {nameof(MatchTimer)}, but none was found.");
             return;
         }
 

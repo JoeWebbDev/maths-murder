@@ -14,7 +14,7 @@ public partial class Fight : Node
 	public override void _Ready()
 	{
 		if (Player.PlayerNumber == Enemy.PlayerNumber)
-			GD.PrintErr("Players must have different player numbers.");
+			GodotLogger.LogError("Players must have different player numbers.");
 		GetTree().Paused = true;
 		Ui.StartCountdown(_fightCountdownDuration);
 		Ui.FightCountdownComplete += StartFight;
