@@ -8,6 +8,12 @@ public partial class MathsMurderButton : Button
 
     public override void _Ready()
     {
-        
+        MouseEntered += () => { ChangeCursor(_hoverCursor); };
+        MouseExited += () => { ChangeCursor(_defaultCursor); };
+    }
+
+    private void ChangeCursor(Texture2D cursor)
+    {
+        Input.SetCustomMouseCursor(cursor);
     }
 }
