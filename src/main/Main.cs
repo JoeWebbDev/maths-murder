@@ -11,24 +11,29 @@ public partial class Main : Node
 	
 	public override void _Ready()
 	{
-		LoadStartMenuScene();
+		InstantiateStartMenuScene();
 	}
 
 	private async void NewGame()
 	{
+		await LoadAndStartFightScene();
+	}
+
+	private async Task LoadAndStartFightScene()
+	{
 		await _screenFader.FadeOutAsync();
-		var fightScene = LoadFightScene();
+		var fightScene = InstantiateFightScene();
 		await _screenFader.FadeInAsync();
 		GodotLogger.LogDebug("Starting fight");
 		fightScene.Start();
 	}
-	
+
 	private void QuitGame()
 	{
 		GetTree().Root.PropagateNotification((int)NotificationWMCloseRequest);
 	}
 
-	private void LoadStartMenuScene()
+	private void InstantiateStartMenuScene()
 	{
 		var startMenuScene = _startMenuScene.Instantiate<StartMenu>();
 		_currentScene?.QueueFree();
@@ -37,14 +42,14 @@ public partial class Main : Node
 		startMenuScene.QuitGame += QuitGame;
 		AddChild(startMenuScene);
 	}
-	private Fight LoadFightScene()
+	private Fight InstantiateFightScene()
 	{
 		GodotLogger.LogDebug("Loading Fight Scene");
 		var fightScene = _fightScene.Instantiate<Fight>();
 		_currentScene?.QueueFree();
 		_currentScene = fightScene;
-		fightScene.QuitRequested += LoadStartMenuScene;
-		fightScene.FightRetryRequested += () => LoadFightScene();
+		fightScene.QuitRequested += InstantiateStartMenuScene;
+		fightScene.FightRetryRequested += async () => { await LoadAndStartFightScene(); };
 		AddChild(fightScene);
 		return fightScene;
 	}

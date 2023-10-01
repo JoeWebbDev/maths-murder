@@ -7,7 +7,7 @@ public partial class ScreenFader : Node
 
 	public override void _Ready()
 	{
-		ProcessMode = Node.ProcessModeEnum.Always;
+		ProcessMode = ProcessModeEnum.Always;
 	}
 
 	public async Task FadeInAsync(double delayBeforeFade = 0.0d, float fadeTime = 0.5f)
