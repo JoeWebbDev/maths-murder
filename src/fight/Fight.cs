@@ -6,9 +6,11 @@ public partial class Fight : Node
 	[Signal] public delegate void FightRetryRequestedEventHandler();
 	[Signal] public delegate void QuitRequestedEventHandler();
 	[Export] public FightUI Ui;
+	[Export] public FightInputController InputController { get; private set; }
 	[Export] public Fighter Player { get; set; }
 	[Export] public Fighter Enemy { get; set; }
 	[Export] public MatchTimer Timer { get; private set; }
+	[Export] private PauseMenu _pauseMenu;
 	[Export] private int _fightCountdownDuration;
 
 	public override void _Ready()
@@ -21,7 +23,23 @@ public partial class Fight : Node
 		Player.HealthChanged += CheckDeath;
 		Enemy.HealthChanged += CheckDeath;
 		Timer.MatchTimerEnded += EndFight;
+		InputController.PauseRequested += Pause;
+		_pauseMenu.ResumeButtonPressed += Resume;
+		_pauseMenu.QuitToMenuButtonPressed += OnQuitToMenu;
+		_pauseMenu.Hide();
 	}
+	private void Pause()
+	{
+		GetTree().Paused = true;
+		_pauseMenu.Show();
+	}
+
+	private void Resume()
+	{
+		GetTree().Paused = false;
+		_pauseMenu.Hide();
+	}
+
 
 	public async void Start()
 	{
