@@ -18,8 +18,6 @@ public partial class Fight : Node
 		if (Player.PlayerNumber == Enemy.PlayerNumber)
 			GodotLogger.LogError("Players must have different player numbers.");
 		GetTree().Paused = true;
-		Ui.StartCountdown(_fightCountdownDuration);
-		Ui.FightCountdownComplete += StartFight;
 		Ui.Retry += OnRetry;
 		Ui.QuitToMenu += OnQuitToMenu;
 		Player.HealthChanged += CheckDeath;
@@ -43,6 +41,13 @@ public partial class Fight : Node
 	}
 
 
+	public async void Start()
+	{
+		await Ui.StartCountdown(_fightCountdownDuration);
+		GetTree().Paused = false;
+		Timer.Start();
+	}
+
 	private void OnRetry()
 	{
 		Engine.TimeScale = 1f;
@@ -58,12 +63,6 @@ public partial class Fight : Node
 	private void CheckDeath(int from, int to)
 	{
 		if (to <= 0) EndFight();
-	}
-
-	private void StartFight()
-	{
-		GetTree().Paused = false;
-		Timer.Start();
 	}
 
 	private void EndFight()

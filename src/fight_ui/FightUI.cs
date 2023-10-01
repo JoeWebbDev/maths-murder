@@ -14,7 +14,6 @@ public partial class FightUI : CanvasLayer
 	[Export] private Button _quitToMenuButton;
 	[Signal] public delegate void QuitToMenuEventHandler();
 	[Signal] public delegate void RetryEventHandler();
-	[Signal] public delegate void FightCountdownCompleteEventHandler();
 
 	private bool _isTimerActive;
 	
@@ -54,8 +53,6 @@ public partial class FightUI : CanvasLayer
 		_countdownLabel.Text = "Fight!";
 		await Task.Delay(1000);
 		_countdownLabel.Hide();
-
-		EmitSignal(SignalName.FightCountdownComplete);
 	}
 
 	public void ShowResultScreen(bool playerWon)

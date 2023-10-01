@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://phsf1wh4uysm"]
+
+[ext_resource type="Script" path="res://src/tests/screen_fader_test/ScreenFaderTest.cs" id="1_5j75b"]
+[ext_resource type="PackedScene" uid="uid://c2nci3gapsobm" path="res://src/screen_fader/screen_fader.tscn" id="1_m51ve"]
+
+[node name="ScreenFaderTest" type="Node" node_paths=PackedStringArray("_fadeInButton", "_fadeOutButton", "_fader")]
+script = ExtResource("1_5j75b")
+_fadeInButton = NodePath("CanvasLayer/FadeInButton")
+_fadeOutButton = NodePath("CanvasLayer/FadeOutButton")
+_fader = NodePath("ScreenFader")
+
+[node name="ScreenFader" parent="." instance=ExtResource("1_m51ve")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="FadeInButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 65.0
+grow_vertical = 0
+text = "Fade In"
+
+[node name="FadeOutButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Fade Out"

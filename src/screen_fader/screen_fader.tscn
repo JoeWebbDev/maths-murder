@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2nci3gapsobm"]
+
+[ext_resource type="Script" path="res://src/screen_fader/ScreenFader.cs" id="1_ixxdi"]
+
+[node name="ScreenFader" type="CanvasLayer" node_paths=PackedStringArray("_colorRect")]
+process_mode = 3
+layer = 2
+script = ExtResource("1_ixxdi")
+_colorRect = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
