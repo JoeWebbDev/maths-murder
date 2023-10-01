@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxynmlovonl6s"]
+[gd_scene load_steps=3 format=3 uid="uid://dxynmlovonl6s"]
 
 [ext_resource type="Script" path="res://src/start_menu/StartMenu.cs" id="1_ka7b5"]
+[ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/maths_murder_button/maths_murder_button.tscn" id="2_8mrqp"]
 
 [node name="StartMenu" type="Node" node_paths=PackedStringArray("_startButton", "_quitButton")]
 script = ExtResource("1_ka7b5")
@@ -17,8 +18,7 @@ color = Color(0.988235, 0.341176, 0.411765, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="StartButton" type="Button" parent="CanvasLayer"]
-process_mode = 3
+[node name="StartButton" parent="CanvasLayer" instance=ExtResource("2_8mrqp")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -32,8 +32,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Start"
 
-[node name="QuitButton" type="Button" parent="CanvasLayer"]
-process_mode = 3
+[node name="QuitButton" parent="CanvasLayer" instance=ExtResource("2_8mrqp")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
