@@ -21,8 +21,8 @@ InputController = NodePath("InputController")
 Player = NodePath("Player")
 Enemy = NodePath("Enemy")
 Timer = NodePath("MatchTimer")
-_fightCountdownDuration = 3
 _pauseMenu = NodePath("PauseMenu")
+_fightCountdownDuration = 3
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(339, 51)

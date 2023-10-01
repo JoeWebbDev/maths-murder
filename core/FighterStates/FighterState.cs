@@ -7,7 +7,7 @@ public abstract class FighterState
 {
     public virtual void Enter(Fighter fighter)
     {
-        GodotLogger.LogInfo($"Fighter {fighter.PlayerNumber} entering {GetType().Name}");
+        GodotLogger.LogDebug($"Fighter {fighter.PlayerNumber} entering {GetType().Name}");
     }
     public abstract bool HandleCommand(Fighter fighter, FighterCommand cmd);
 
@@ -16,6 +16,6 @@ public abstract class FighterState
 
     public virtual void Exit(Fighter fighter)
     {
-        GodotLogger.LogInfo($"Fighter {fighter.PlayerNumber} exiting {GetType().Name}");
+        GodotLogger.LogDebug($"Fighter {fighter.PlayerNumber} exiting {GetType().Name}");
     }
 }

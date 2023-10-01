@@ -16,16 +16,23 @@ public partial class Main : Node
 
 	private async void NewGame()
 	{
-		await LoadAndStartFightScene();
+		await LoadFightScene();
 	}
 
-	private async Task LoadAndStartFightScene()
+	private async Task LoadFightScene()
 	{
 		await _screenFader.FadeOutAsync();
 		var fightScene = InstantiateFightScene();
 		await _screenFader.FadeInAsync();
 		GodotLogger.LogDebug("Starting fight");
 		fightScene.Start();
+	}
+
+	private async Task LoadStartMenuScene()
+	{
+		await _screenFader.FadeOutAsync();
+		InstantiateStartMenuScene();
+		await _screenFader.FadeInAsync();
 	}
 
 	private void QuitGame()
@@ -48,8 +55,8 @@ public partial class Main : Node
 		var fightScene = _fightScene.Instantiate<Fight>();
 		_currentScene?.QueueFree();
 		_currentScene = fightScene;
-		fightScene.QuitRequested += InstantiateStartMenuScene;
-		fightScene.FightRetryRequested += async () => { await LoadAndStartFightScene(); };
+		fightScene.QuitRequested += async () => { await LoadStartMenuScene(); };
+		fightScene.FightRetryRequested += async () => { await LoadFightScene(); };
 		AddChild(fightScene);
 		return fightScene;
 	}
