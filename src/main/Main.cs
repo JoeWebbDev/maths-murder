@@ -1,10 +1,12 @@
 using System.Threading;
+using System.Threading.Tasks;
 using Godot;
 
 public partial class Main : Node
 {
 	[Export] private PackedScene _startMenuScene;
 	[Export] private PackedScene _fightScene;
+	[Export] private ScreenFader _screenFader;
 	private Node _currentScene;
 	
 	public override void _Ready()
@@ -12,9 +14,13 @@ public partial class Main : Node
 		LoadStartMenuScene();
 	}
 
-	private void NewGame()
+	private async void NewGame()
 	{
-		LoadFightScene();
+		await _screenFader.FadeOutAsync();
+		var fightScene = LoadFightScene();
+		await _screenFader.FadeInAsync();
+		GodotLogger.LogDebug("Starting fight");
+		fightScene.Start();
 	}
 	
 	private void QuitGame()
@@ -27,18 +33,20 @@ public partial class Main : Node
 		var startMenuScene = _startMenuScene.Instantiate<StartMenu>();
 		_currentScene?.QueueFree();
 		_currentScene = startMenuScene;
-		AddChild(startMenuScene);
 		startMenuScene.StartGame += NewGame;
 		startMenuScene.QuitGame += QuitGame;
+		AddChild(startMenuScene);
 	}
-	private void LoadFightScene()
+	private Fight LoadFightScene()
 	{
+		GodotLogger.LogDebug("Loading Fight Scene");
 		var fightScene = _fightScene.Instantiate<Fight>();
 		_currentScene?.QueueFree();
 		_currentScene = fightScene;
 		fightScene.QuitRequested += LoadStartMenuScene;
-		fightScene.FightRetryRequested += LoadFightScene;
+		fightScene.FightRetryRequested += () => LoadFightScene();
 		AddChild(fightScene);
+		return fightScene;
 	}
 
 	public override void _Notification(int what)

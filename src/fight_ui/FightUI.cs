@@ -55,7 +55,7 @@ public partial class FightUI : CanvasLayer
 		await Task.Delay(1000);
 		_countdownLabel.Hide();
 
-		EmitSignal(SignalName.FightCountdownComplete);
+		// EmitSignal(SignalName.FightCountdownComplete);
 	}
 
 	public void ShowResultScreen(bool playerWon)

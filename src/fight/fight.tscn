@@ -13,12 +13,13 @@
 size = Vector2(20, 368)
 
 [node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "Player", "Enemy", "Timer")]
+process_mode = 1
 script = ExtResource("1_byaux")
 Ui = NodePath("FightUI")
 Player = NodePath("Player")
 Enemy = NodePath("Enemy")
 Timer = NodePath("MatchTimer")
-_fightCountdownDuration = 1
+_fightCountdownDuration = 3
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(339, 51)
