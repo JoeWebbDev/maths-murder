@@ -9,7 +9,7 @@ public class PunchState : FighterState
     public override void Enter(Fighter fighter)
     {
         base.Enter(fighter);
-        fighter.AnimationPlayer.Play("fighter_anim_lib/punch");
+        fighter.AnimationPlayer.Play("punch");
         
         void OnAnimationPlayerOnAnimationFinished(StringName name)
         {

@@ -70,3 +70,7 @@ duck={
 
 2d_physics/layer_1="player1"
 2d_physics/layer_2="player2"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

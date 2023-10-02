@@ -1,4 +1,5 @@
-﻿using MathsMurderSpike.core.Commands;
+﻿using System.Threading.Tasks;
+using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
@@ -7,13 +8,13 @@ public class IdleState : FighterState
     public override void Enter(Fighter fighter)
     {
         base.Enter(fighter);
-        if (fighter.CombatState == null) fighter.AnimationPlayer.Play("fighter_anim_lib/idle");
+        if (fighter.CombatState == null) fighter.AnimationPlayer.Play("idle");
         fighter.CombatStateChanged += OnCombatStateChanged;
     }
 
     private void OnCombatStateChanged(Fighter fighter)
     {
-        if (fighter.CombatState == null) fighter.AnimationPlayer.Play("fighter_anim_lib/idle");
+        if (fighter.CombatState == null) fighter.AnimationPlayer.Play("idle");
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
@@ -45,7 +46,7 @@ public class IdleState : FighterState
         return false;
     }
 
-    public override void Exit(Fighter fighter)
+    public override async Task Exit(Fighter fighter)
     {
         fighter.CombatStateChanged -= OnCombatStateChanged;
     }

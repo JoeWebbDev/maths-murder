@@ -8,7 +8,7 @@ public class DeathState : FighterState
     {
         base.Enter(fighter);
         // Play death animation etc etc. borrowing punch for now
-        fighter.AnimationPlayer.Play("fighter_anim_lib/punch");
+        fighter.AnimationPlayer.Play("punch");
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)

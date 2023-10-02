@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/fight/Fight.cs" id="1_byaux"]
 [ext_resource type="PackedScene" uid="uid://xy4kxgxscvui" path="res://src/fight_ui/fight_ui.tscn" id="2_ecqmq"]
 [ext_resource type="PackedScene" uid="uid://cwrt3mai5fuk7" path="res://src/match_timer/match_timer.tscn" id="3_gb5ic"]
-[ext_resource type="PackedScene" uid="uid://c6c4xa03gwcab" path="res://src/fighters/basic_fighter/basic_fighter.tscn" id="4_p0f3h"]
+[ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="5_deabo"]
 [ext_resource type="PackedScene" uid="uid://2ctuwd5ypoun" path="res://src/fight_input_controller/fight_input_controller.tscn" id="6_5fy5m"]
 [ext_resource type="Texture2D" uid="uid://jmbjatkvyuwa" path="res://assets/fight_background.png" id="6_7fccv"]
 [ext_resource type="PackedScene" uid="uid://dmq57kpgult53" path="res://src/ai_controller/ai_controller.tscn" id="6_q1701"]
@@ -36,17 +36,13 @@ _matchTimer = NodePath("../MatchTimer")
 [node name="MatchTimer" parent="." instance=ExtResource("3_gb5ic")]
 TotalMatchTime = 30
 
-[node name="Player" parent="." instance=ExtResource("4_p0f3h")]
-MaxHealth = 10
-HitDamage = 1
+[node name="Player" parent="." instance=ExtResource("5_deabo")]
 PlayerNumber = 1
 
-[node name="Enemy" parent="." instance=ExtResource("4_p0f3h")]
+[node name="Enemy" parent="." instance=ExtResource("5_deabo")]
 position = Vector2(532, 204)
 collision_layer = 2
 FlipH = true
-MaxHealth = 10
-HitDamage = 1
 PlayerNumber = 2
 
 [node name="InputController" parent="." node_paths=PackedStringArray("CurrentFighter") instance=ExtResource("6_5fy5m")]
