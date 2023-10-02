@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2f3cn4tlq5tv"]
+[gd_scene load_steps=16 format=3 uid="uid://d2f3cn4tlq5tv"]
 
 [ext_resource type="Script" path="res://src/fighters/basic_fighter/BasicFighter.cs" id="1_u25jf"]
 [ext_resource type="Texture2D" uid="uid://bmvsvme6j6ksy" path="res://assets/back_leg.png" id="3_ssagm"]
@@ -238,12 +238,66 @@ tracks/4/keys = {
 "values": [Vector2(21, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_qmu6q"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackLeg:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackArm:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FrontArm:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FrontLeg:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 6]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7lipj"]
 _data = {
 "RESET": SubResource("Animation_h7s07"),
 "block": SubResource("Animation_y0ciw"),
 "idle": SubResource("Animation_e48w8"),
-"punch": SubResource("Animation_ighpu")
+"punch": SubResource("Animation_ighpu"),
+"walk": SubResource("Animation_qmu6q")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w5gpp"]
@@ -266,12 +320,12 @@ HitDamage = 1
 [node name="BackLeg" type="Sprite2D" parent="."]
 texture = ExtResource("3_ssagm")
 offset = Vector2(20, -1.5)
-hframes = 4
+hframes = 7
 
 [node name="BackArm" type="Sprite2D" parent="."]
 texture = ExtResource("4_h07d5")
 offset = Vector2(21, 0)
-hframes = 4
+hframes = 7
 
 [node name="NumberRef" type="Sprite2D" parent="."]
 texture = ExtResource("5_yx8ju")
@@ -279,12 +333,12 @@ texture = ExtResource("5_yx8ju")
 [node name="FrontArm" type="Sprite2D" parent="."]
 texture = ExtResource("6_vir52")
 offset = Vector2(21, -1.5)
-hframes = 4
+hframes = 7
 
 [node name="FrontLeg" type="Sprite2D" parent="."]
 texture = ExtResource("7_87ncy")
 offset = Vector2(20, -1.5)
-hframes = 4
+hframes = 7
 region_rect = Rect2(0.986954, 1.10532, 206.29, 62.6053)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
