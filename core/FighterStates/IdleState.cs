@@ -1,4 +1,5 @@
-﻿using MathsMurderSpike.core.Commands;
+﻿using System.Threading.Tasks;
+using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
@@ -45,7 +46,7 @@ public class IdleState : FighterState
         return false;
     }
 
-    public override void Exit(Fighter fighter)
+    public override async Task Exit(Fighter fighter)
     {
         fighter.CombatStateChanged -= OnCombatStateChanged;
     }

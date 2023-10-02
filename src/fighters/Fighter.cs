@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Threading.Tasks;
+using Godot;
 using MathsMurderSpike.core.Commands;
 using MathsMurderSpike.Core.FighterStates;
 
@@ -81,19 +82,19 @@ public partial class Fighter : CharacterBody2D
         GodotLogger.LogDebug($"Fighter loaded! Health: {Health}");
     }
 
-    public void SwitchMovementState(FighterState to)
+    public async Task SwitchMovementState(FighterState to)
     {
         GodotLogger.LogDebug($"Switching movement state from: {MovementState?.GetType()} to {to?.GetType()}");
-        MovementState?.Exit(this);
+        await MovementState?.Exit(this);
         MovementState = to;
         to?.Enter(this);
         EmitSignal(SignalName.MovementStateChanged, this);
     }
 
-    public void SwitchCombatState(FighterState to)
+    public async Task SwitchCombatState(FighterState to)
     {
         GodotLogger.LogDebug($"Switching combat state from: {CombatState?.GetType()} to {to?.GetType()}");
-        CombatState?.Exit(this);
+        await CombatState?.Exit(this);
         CombatState = to;
         to?.Enter(this);
         EmitSignal(SignalName.CombatStateChanged, this);

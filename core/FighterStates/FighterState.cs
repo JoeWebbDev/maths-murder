@@ -1,4 +1,5 @@
-﻿using MathsMurderSpike.core.Commands;
+﻿using System.Threading.Tasks;
+using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
@@ -14,7 +15,7 @@ public abstract class FighterState
     public virtual void Process(Fighter fighter, double delta) { }
     public virtual void OnHit(Fighter fighter, Fighter target) { }
 
-    public virtual void Exit(Fighter fighter)
+    public async virtual Task Exit(Fighter fighter)
     {
         GodotLogger.LogDebug($"Fighter {fighter.PlayerNumber} exiting {GetType().Name}");
     }

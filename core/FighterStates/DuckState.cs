@@ -1,4 +1,6 @@
-﻿using MathsMurderSpike.core.Commands;
+﻿using System.Threading.Tasks;
+using Godot;
+using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
@@ -8,7 +10,7 @@ public class DuckState : FighterState
     {
         base.Enter(fighter);
         
-        // Code to change animation goes here
+        fighter.AnimationPlayer.Play("duck");
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
@@ -21,5 +23,12 @@ public class DuckState : FighterState
         // Code to handle punching while ducking etc goes here!
 
         return true;
+    }
+
+    public async override Task Exit(Fighter fighter)
+    {
+        base.Exit(fighter);
+        fighter.AnimationPlayer.Play("RESET");
+        await fighter.ToSignal(fighter.AnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
     }
 }
