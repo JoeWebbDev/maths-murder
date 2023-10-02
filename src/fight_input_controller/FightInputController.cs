@@ -14,8 +14,6 @@ public partial class FightInputController : Node
 
     public override void _Input(InputEvent @event)
     {
-        GodotLogger.LogDebug($"Received input: {@event.AsText()}");
-        
         // UI & non-fighter related actions
         if (@event.IsActionPressed("ui_cancel"))
         {
@@ -28,7 +26,7 @@ public partial class FightInputController : Node
             _dashLeftWindowOpen = false;
             _dashRightWindowOpen = false;
         }
-        GodotLogger.LogDebug($"{_dashWindowTimer}");
+        
         if (@event.IsActionPressed("move_left") && _dashLeftWindowOpen)
         {
             CurrentFighter.Execute(new DashCommand(Vector2.Left));
