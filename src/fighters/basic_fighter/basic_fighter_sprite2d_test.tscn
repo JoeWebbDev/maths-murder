@@ -687,11 +687,12 @@ height = 75.29
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvmeo"]
 size = Vector2(56.75, 14.5)
 
-[node name="Fighter" type="CharacterBody2D" node_paths=PackedStringArray("AnimationPlayer", "PunchColliderObject")]
+[node name="Fighter" type="CharacterBody2D" node_paths=PackedStringArray("NumberRef", "AnimationPlayer", "PunchColliderObject")]
 position = Vector2(95, 204)
 scale = Vector2(2, 2)
 collision_mask = 0
 script = ExtResource("1_u25jf")
+NumberRef = NodePath("NumberRef")
 AnimationPlayer = NodePath("AnimationPlayer")
 PunchColliderObject = NodePath("PunchColliderObject")
 MaxHealth = 10

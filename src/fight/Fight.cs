@@ -18,6 +18,9 @@ public partial class Fight : Node
 		if (Player.PlayerNumber == Enemy.PlayerNumber)
 			GodotLogger.LogError("Players must have different player numbers.");
 		GetTree().Paused = true;
+		// Load Fighter Data
+		var playerData = GD.Load<PlayerData>("res://src/data/player/player_data.tres");
+		Player.InitFighter(playerData.FighterData);
 		Ui.Retry += OnRetry;
 		Ui.QuitToMenu += OnQuitToMenu;
 		Player.HealthChanged += CheckDeath;

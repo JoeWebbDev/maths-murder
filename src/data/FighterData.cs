@@ -9,11 +9,11 @@ public partial class FighterData : Resource
     [Export] public int Speed { get; set; }
     [Export] public int Strength { get; set; }
     [Export] public int Defense { get; set; }
-    [Export] public Texture NumberTexture { get; set; }
+    [Export] public Texture2D NumberTexture { get; set; }
     
     public FighterData() : this(0, 0, 0, 0, null) { }
 
-    public FighterData(int health, int speed, int strength, int defense, Texture numberTexture)
+    public FighterData(int health, int speed, int strength, int defense, Texture2D numberTexture)
     {
         Health = health;
         Speed = speed;

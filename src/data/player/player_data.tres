@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cdpro86hqfw18"]
+
+[ext_resource type="Resource" uid="uid://41faep8dnjgx" path="res://src/data/player/player_fighter_data.tres" id="1_ii0p4"]
+[ext_resource type="Script" path="res://src/data/player/PlayerData.cs" id="2_61dpo"]
+
+[resource]
+script = ExtResource("2_61dpo")
+FighterData = ExtResource("1_ii0p4")
