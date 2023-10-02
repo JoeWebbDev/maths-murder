@@ -22,7 +22,7 @@ public class DashState : FighterState
         base.Enter(fighter);
         
         // using punch as a placeholder animation
-        fighter.AnimationPlayer.Play("fighter_anim_lib/punch");
+        fighter.AnimationPlayer.Play("punch");
         
         void OnAnimationFinished(StringName name)
         {
