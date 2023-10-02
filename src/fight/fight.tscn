@@ -39,11 +39,9 @@ TotalMatchTime = 30
 [node name="Player" parent="." instance=ExtResource("5_deabo")]
 PlayerNumber = 1
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("AnimationPlayer", "PunchColliderObject") instance=ExtResource("5_deabo")]
+[node name="Enemy" parent="." instance=ExtResource("5_deabo")]
 position = Vector2(532, 204)
 collision_layer = 2
-AnimationPlayer = NodePath("../Player/AnimationPlayer")
-PunchColliderObject = NodePath("../Player/PunchColliderObject")
 FlipH = true
 PlayerNumber = 2
 
