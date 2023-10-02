@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cdpro86hqfw18"]
+
+[ext_resource type="Script" path="res://src/data/PlayerData.cs" id="1_5ld5t"]
+
+[resource]
+script = ExtResource("1_5ld5t")

@@ -1,0 +1,24 @@
+using Godot;
+using System;
+using MonoCustomResourceRegistry;
+
+[RegisteredType(nameof(FighterData), "", nameof(Resource))]
+public partial class FighterData : Resource
+{
+    [Export] public int Health { get; set; }
+    [Export] public int Speed { get; set; }
+    [Export] public int Strength { get; set; }
+    [Export] public int Defense { get; set; }
+    [Export] public Texture NumberTexture { get; set; }
+    
+    public FighterData() : this(0, 0, 0, 0, null) { }
+
+    public FighterData(int health, int speed, int strength, int defense, Texture numberTexture)
+    {
+        Health = health;
+        Speed = speed;
+        Strength = strength;
+        Defense = defense;
+        NumberTexture = numberTexture;
+    }
+}

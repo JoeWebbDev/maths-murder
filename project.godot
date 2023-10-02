@@ -8,6 +8,12 @@
 
 config_version=5
 
+[MonoCustomResourceRegistry]
+
+ClassPrefix=""
+SearchType=0
+ResourceScriptDirectories=["res://"]
+
 [application]
 
 config/name="Maths Murder Spike"
@@ -32,7 +38,7 @@ project/assembly_name="Maths Murder Spike"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/MonoCustomResourceRegistry/plugin.cfg")
 
 [gui]
 
