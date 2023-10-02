@@ -21,7 +21,7 @@ public class WalkingState : FighterState
     public override void Enter(Fighter fighter)
     {
         base.Enter(fighter);
-        fighter.AnimationPlayer.Play("fighter_anim_lib/walk");
+        fighter.AnimationPlayer.Play("walk");
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
@@ -57,9 +57,9 @@ public class WalkingState : FighterState
     {
         if (fighter.CombatState != null) return;
 
-        if (fighter.AnimationPlayer.CurrentAnimation != "fighter_anim_lib/walk")
+        if (fighter.AnimationPlayer.CurrentAnimation != "walk")
         {
-            fighter.AnimationPlayer.Play("fighter_anim_lib/walk");
+            fighter.AnimationPlayer.Play("walk");
         }
         var vec = _direction * fighter.WalkingSpeed * (float)delta;
         fighter.MoveAndCollide(vec);

@@ -8,7 +8,7 @@ public class BlockState : FighterState
     {
         base.Enter(fighter);
         // fighter.AnimatedSprite.Play("block");
-        fighter.AnimationPlayer.Play("fighter_anim_lib/block");
+        fighter.AnimationPlayer.Play("block");
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)

@@ -3,7 +3,7 @@ using MathsMurderSpike.core.Logger;
 
 public partial class GodotLogger : Node
 {
-	private static LoggingLevel _loggingLevel = LoggingLevel.Info;
+	private static LoggingLevel _loggingLevel = LoggingLevel.Debug;
 	
 	public void SetLoggingLevel(LoggingLevel level)
 	{

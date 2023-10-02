@@ -16,7 +16,7 @@ public class RecoverState : FighterState
         
         // This will be a recover animation once I figure out how lol
         // Needed a non-looping animation so went with punch
-        fighter.AnimationPlayer.Play("fighter_anim_lib/punch");
+        fighter.AnimationPlayer.Play("punch");
         fighter.AnimationPlayer.AnimationFinished += OnAnimationFinish;
     }
 
