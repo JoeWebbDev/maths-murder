@@ -260,6 +260,8 @@ collision_mask = 0
 script = ExtResource("1_u25jf")
 AnimationPlayer = NodePath("AnimationPlayer")
 PunchColliderObject = NodePath("PunchColliderObject")
+MaxHealth = 10
+HitDamage = 1
 
 [node name="BackLeg" type="Sprite2D" parent="."]
 texture = ExtResource("3_ssagm")
