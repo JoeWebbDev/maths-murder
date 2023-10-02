@@ -82,19 +82,19 @@ public partial class Fighter : CharacterBody2D
         GodotLogger.LogDebug($"Fighter loaded! Health: {Health}");
     }
 
-    public async Task SwitchMovementState(FighterState to)
+    public async void SwitchMovementState(FighterState to)
     {
         GodotLogger.LogDebug($"Switching movement state from: {MovementState?.GetType()} to {to?.GetType()}");
-        await MovementState?.Exit(this);
+        await (MovementState?.Exit(this) ?? Task.CompletedTask);
         MovementState = to;
         to?.Enter(this);
         EmitSignal(SignalName.MovementStateChanged, this);
     }
 
-    public async Task SwitchCombatState(FighterState to)
+    public async void SwitchCombatState(FighterState to)
     {
         GodotLogger.LogDebug($"Switching combat state from: {CombatState?.GetType()} to {to?.GetType()}");
-        await CombatState?.Exit(this);
+        await (CombatState?.Exit(this) ?? Task.CompletedTask);
         CombatState = to;
         to?.Enter(this);
         EmitSignal(SignalName.CombatStateChanged, this);
