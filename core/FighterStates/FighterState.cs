@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Godot;
 using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
@@ -18,5 +19,11 @@ public abstract class FighterState
     public async virtual Task Exit(Fighter fighter)
     {
         GodotLogger.LogDebug($"Fighter {fighter.PlayerNumber} exiting {GetType().Name}");
+    }
+
+    protected async Task ResetAnimation(Fighter fighter)
+    {
+        fighter.AnimationPlayer.Play("RESET");
+        await fighter.ToSignal(fighter.AnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
     }
 }

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Godot;
 using MathsMurderSpike.core.Commands;
 
@@ -21,8 +22,7 @@ public class DashState : FighterState
     {
         base.Enter(fighter);
         
-        // using punch as a placeholder animation
-        fighter.AnimationPlayer.Play("punch");
+        fighter.AnimationPlayer.Play("dash");
         
         void OnAnimationFinished(StringName name)
         {
@@ -46,5 +46,11 @@ public class DashState : FighterState
 
         var vec = _direction * fighter.WalkingSpeed * fighter.DashMultiplier * (float)delta;
         fighter.MoveAndCollide(vec);
+    }
+
+    public override async Task Exit(Fighter fighter)
+    {
+        base.Exit(fighter);
+        await ResetAnimation(fighter);
     }
 }
