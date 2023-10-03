@@ -1,28 +1,39 @@
-﻿using Godot;
+﻿using System.Threading.Tasks;
+using Godot;
 using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
 public class RecoverState : FighterState
 {
+    private Fighter _fighterRef;
     public override void Enter(Fighter fighter)
     {
         base.Enter(fighter);
-        void OnAnimationFinish(StringName animName)
-        {
-            fighter.AnimationPlayer.AnimationFinished -= OnAnimationFinish;
-            fighter.SwitchCombatState(null);
-        }
-        
-        // This will be a recover animation once I figure out how lol
-        // Needed a non-looping animation so went with punch
-        fighter.AnimationPlayer.Play("punch");
+        _fighterRef = fighter;
+        fighter.AnimationPlayer.Play("recover");
+        fighter.AnimationPlayer.Seek(0);
         fighter.AnimationPlayer.AnimationFinished += OnAnimationFinish;
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
     {
-        // We are busy recovering, so we consume all state changes
+        if (cmd is WalkCommand { Completed: true }) fighter.SwitchMovementState(new IdleState());
+        if (cmd is DuckCommand { Completed: true }) fighter.SwitchMovementState(new IdleState());
+
+        // We are busy recovering, so we consume all commands
         return true;
+    }
+
+    public override Task Exit(Fighter fighter)
+    {
+        return base.Exit(fighter);
+        _fighterRef.AnimationPlayer.AnimationFinished -= OnAnimationFinish;
+    }
+
+    private void OnAnimationFinish(StringName animName)
+    {
+        _fighterRef.AnimationPlayer.AnimationFinished -= OnAnimationFinish;
+        _fighterRef.SwitchCombatState(null);
     }
 }
