@@ -11,7 +11,7 @@ public partial class AIController : Node
 	private double _timer;
 	private bool _initialized;
 	// Once we get to loading in different difficulties, we will likely expose this and update it in a load method
-	private AIStateController _stateController = new ProperNoobAIStateController();
+	private AIStateController _stateController = new NoobAIStateController();
 
 	public override void _Ready()
 	{
