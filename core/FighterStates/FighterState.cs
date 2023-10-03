@@ -20,10 +20,4 @@ public abstract class FighterState
     {
         GodotLogger.LogDebug($"Fighter {fighter.PlayerNumber} exiting {GetType().Name}");
     }
-
-    protected async Task ResetAnimation(Fighter fighter)
-    {
-        fighter.AnimationPlayer.Play("RESET");
-        await fighter.ToSignal(fighter.AnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
-    }
 }

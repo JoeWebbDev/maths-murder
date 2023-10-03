@@ -28,6 +28,5 @@ public class DuckState : FighterState
     public async override Task Exit(Fighter fighter)
     {
         base.Exit(fighter);
-        await ResetAnimation(fighter);
     }
 }
