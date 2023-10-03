@@ -48,8 +48,9 @@ PlayerNumber = 2
 [node name="InputController" parent="." node_paths=PackedStringArray("CurrentFighter") instance=ExtResource("6_5fy5m")]
 CurrentFighter = NodePath("../Player")
 
-[node name="AI Controller" parent="." node_paths=PackedStringArray("Fighter") instance=ExtResource("6_q1701")]
+[node name="AI Controller" parent="." node_paths=PackedStringArray("Fighter", "Player") instance=ExtResource("6_q1701")]
 Fighter = NodePath("../Enemy")
+Player = NodePath("../Player")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("_player", "_enemy")]
 script = ExtResource("7_vgb3u")

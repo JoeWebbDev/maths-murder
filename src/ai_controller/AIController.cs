@@ -1,12 +1,17 @@
 using Godot;
 using System;
+using MathsMurderSpike.core.AI;
 using MathsMurderSpike.core.Commands;
 
 public partial class AIController : Node
 {
 	[Export] public Fighter Fighter { get; set; }
+	// We will need the player injected in at some point so the AI can read player state and know how to behave
+	[Export] public Fighter Player { get; set; }
 	private double _timer;
 	private bool _initialized;
+	// Once we get to loading in different difficulties, we will likely expose this and update it in a load method
+	private AIStateController _stateController = new ProperNoobAIStateController();
 
 	public override void _Ready()
 	{
@@ -16,15 +21,6 @@ public partial class AIController : Node
 
 	public override void _Process(double delta)
 	{
-		if (!_initialized)
-			return;
-        
-		_timer += delta;
-		if (_timer >= 2)
-		{
-			GodotLogger.LogDebug("Executing punch.");
-			Fighter.Execute(new PunchCommand());
-			_timer = 0;
-		}
+		_stateController.Process(Fighter, Player, delta);
 	}
 }
