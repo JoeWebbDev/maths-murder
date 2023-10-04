@@ -1,39 +1,37 @@
-﻿using System.Threading.Tasks;
-using Godot;
+﻿using Godot;
 using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
-public class RecoverState : FighterState
+public class HighKickState : FighterState
 {
     private Fighter _fighterRef;
     public override void Enter(Fighter fighter)
     {
         base.Enter(fighter);
         _fighterRef = fighter;
-        fighter.AnimationPlayer.Play("recover");
-        fighter.AnimationPlayer.Seek(0);
-        fighter.AnimationPlayer.AnimationFinished += OnAnimationFinish;
+        fighter.AnimationPlayer.Play("high_kick");
+        fighter.AnimationPlayer.AnimationFinished += OnAnimationPlayerOnAnimationFinished;
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
     {
         if (cmd is WalkCommand { Completed: true }) fighter.SwitchMovementState(new IdleState());
         if (cmd is DuckCommand { Completed: true }) fighter.SwitchMovementState(new IdleState());
-
-        // We are busy recovering, so we consume all commands
+        
         return true;
     }
 
-    public override Task Exit(Fighter fighter)
+    public override void OnHit(Fighter fighter, Fighter target)
     {
-        return base.Exit(fighter);
-        _fighterRef.AnimationPlayer.AnimationFinished -= OnAnimationFinish;
+        GodotLogger.LogDebug($"Hit for {fighter.HitDamage}");
+        target.TakeDamage(fighter.HitDamage);
     }
-
-    private void OnAnimationFinish(StringName animName)
+    
+    private void OnAnimationPlayerOnAnimationFinished(StringName name)
     {
-        _fighterRef.AnimationPlayer.AnimationFinished -= OnAnimationFinish;
+        GodotLogger.LogDebug("High kick animation finished");
+        _fighterRef.AnimationPlayer.AnimationFinished -= OnAnimationPlayerOnAnimationFinished;
         _fighterRef.SwitchCombatState(null);
     }
 }

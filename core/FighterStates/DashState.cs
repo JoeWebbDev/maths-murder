@@ -51,6 +51,5 @@ public class DashState : FighterState
     public override async Task Exit(Fighter fighter)
     {
         base.Exit(fighter);
-        await ResetAnimation(fighter);
     }
 }

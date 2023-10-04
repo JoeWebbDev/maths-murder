@@ -3,10 +3,8 @@ using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
-public class PunchState : FighterState
+public class PunchTwoState : FighterState
 {
-    private bool _canDealDamage = true;
-    private bool _isDuckingPunch = false;
     private float _punchComboWindow = 0.3f;
     private double _elapsedTimeSincePunch;
     private Fighter _fighterRef;
@@ -14,8 +12,7 @@ public class PunchState : FighterState
     {
         base.Enter(fighter);
         _fighterRef = fighter;
-        _isDuckingPunch = fighter.MovementState is DuckState;
-        fighter.AnimationPlayer.Play(_isDuckingPunch ? "duck_punch" : "punch");
+        fighter.AnimationPlayer.Play("punch_two");
         fighter.AnimationPlayer.AnimationFinished += OnAnimationPlayerOnAnimationFinished;
     }
 
@@ -30,26 +27,31 @@ public class PunchState : FighterState
         if (cmd is WalkCommand { Completed: true }) fighter.SwitchMovementState(new IdleState());
         if (cmd is DuckCommand { Completed: true }) fighter.SwitchMovementState(new IdleState());
 
-        if (cmd is PunchCommand && _elapsedTimeSincePunch >= _punchComboWindow && !_isDuckingPunch)
+        if (cmd is PunchCommand && _elapsedTimeSincePunch >= _punchComboWindow)
         {
             _fighterRef.AnimationPlayer.AnimationFinished -= OnAnimationPlayerOnAnimationFinished;
-            fighter.SwitchCombatState(new PunchTwoState());
+            fighter.SwitchCombatState(new PunchThreeState());
+            return true;
         }
+        
+        if (cmd is KickCommand && _elapsedTimeSincePunch >= _punchComboWindow)
+        {
+            _fighterRef.AnimationPlayer.AnimationFinished -= OnAnimationPlayerOnAnimationFinished;
+            fighter.SwitchCombatState(new HighKickState());
+        }
+        
         return true;
     }
 
     public override void OnHit(Fighter fighter, Fighter target)
     {
-        if (!_canDealDamage) return;
-        
-        GodotLogger.LogDebug($"Hit for {fighter.HitDamage}");
-        target.TakeDamage(fighter.HitDamage);
-        _canDealDamage = false;
+        GodotLogger.LogDebug($"Second punch hit for {fighter.HitDamage + 1}");
+        target.TakeDamage(fighter.HitDamage + 1);
     }
     
     private void OnAnimationPlayerOnAnimationFinished(StringName name)
     {
-        GodotLogger.LogDebug("Punch animation finished");
+        GodotLogger.LogDebug("Animation finished");
         _fighterRef.AnimationPlayer.AnimationFinished -= OnAnimationPlayerOnAnimationFinished;
         _fighterRef.SwitchCombatState(null);
     }

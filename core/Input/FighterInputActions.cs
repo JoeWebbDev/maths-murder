@@ -12,6 +12,7 @@ public static class FighterInputActions
         new FighterInputAction("punch", new PunchCommand(), null),
         new FighterInputAction("block", new BlockCommand(), new BlockCommand(true)),
         new FighterInputAction("duck", new DuckCommand(), new DuckCommand(true)),
+        new FighterInputAction("kick", new KickCommand(), new KickCommand(true)),
     };
 
     public static FighterCommand TryGetCommand(InputEvent @event)
