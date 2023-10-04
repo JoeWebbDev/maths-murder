@@ -43,6 +43,7 @@ PlayerNumber = 1
 position = Vector2(532, 204)
 collision_layer = 2
 FlipH = true
+MaxHealth = 20
 PlayerNumber = 2
 
 [node name="InputController" parent="." node_paths=PackedStringArray("CurrentFighter") instance=ExtResource("6_5fy5m")]
