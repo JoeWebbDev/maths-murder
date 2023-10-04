@@ -3,14 +3,14 @@ using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
-public class KickState : FighterState
+public class HighKickState : FighterState
 {
     private Fighter _fighterRef;
     public override void Enter(Fighter fighter)
     {
         base.Enter(fighter);
         _fighterRef = fighter;
-        fighter.AnimationPlayer.Play(fighter.MovementState is DuckState ? "low_kick" : "kick");
+        fighter.AnimationPlayer.Play("high_kick");
         fighter.AnimationPlayer.AnimationFinished += OnAnimationPlayerOnAnimationFinished;
     }
 
@@ -30,7 +30,7 @@ public class KickState : FighterState
     
     private void OnAnimationPlayerOnAnimationFinished(StringName name)
     {
-        GodotLogger.LogDebug("Kick animation finished");
+        GodotLogger.LogDebug("High kick animation finished");
         _fighterRef.AnimationPlayer.AnimationFinished -= OnAnimationPlayerOnAnimationFinished;
         _fighterRef.SwitchCombatState(null);
     }

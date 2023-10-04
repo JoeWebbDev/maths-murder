@@ -31,6 +31,16 @@ public class DuckState : FighterState
         {
             fighter.SwitchCombatState(new PunchState());
         }
+
+        if (cmd is BlockCommand { Completed: false })
+        {
+            fighter.SwitchCombatState(new BlockState());
+        }
+        
+        if (cmd is KickCommand)
+        {
+            fighter.SwitchCombatState(new KickState());
+        }
         
         return true;
     }

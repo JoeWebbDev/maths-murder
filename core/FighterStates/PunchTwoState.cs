@@ -31,6 +31,13 @@ public class PunchTwoState : FighterState
         {
             _fighterRef.AnimationPlayer.AnimationFinished -= OnAnimationPlayerOnAnimationFinished;
             fighter.SwitchCombatState(new PunchThreeState());
+            return true;
+        }
+        
+        if (cmd is KickCommand && _elapsedTimeSincePunch >= _punchComboWindow)
+        {
+            _fighterRef.AnimationPlayer.AnimationFinished -= OnAnimationPlayerOnAnimationFinished;
+            fighter.SwitchCombatState(new HighKickState());
         }
         
         return true;
