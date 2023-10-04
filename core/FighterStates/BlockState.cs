@@ -8,7 +8,7 @@ public class BlockState : FighterState
     {
         base.Enter(fighter);
         // fighter.AnimatedSprite.Play("block");
-        fighter.AnimationPlayer.Play("block");
+        fighter.AnimationPlayer.Play(fighter.MovementState is DuckState ? "duck_block" : "block");
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
@@ -28,6 +28,11 @@ public class BlockState : FighterState
         }
 
         if (cmd is WalkCommand { Completed: true })
+        {
+            fighter.SwitchMovementState(new IdleState());
+        }
+
+        if (cmd is DuckCommand { Completed: true })
         {
             fighter.SwitchMovementState(new IdleState());
         }

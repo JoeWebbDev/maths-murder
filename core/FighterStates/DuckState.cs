@@ -11,6 +11,12 @@ public class DuckState : FighterState
         base.Enter(fighter);
         
         fighter.AnimationPlayer.Play("duck");
+        fighter.CombatStateChanged += OnCombatStateChanged;
+    }
+
+    private void OnCombatStateChanged(Fighter fighter)
+    {
+        if (fighter.CombatState == null) fighter.AnimationPlayer.Play("duck");
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
@@ -20,14 +26,27 @@ public class DuckState : FighterState
             fighter.SwitchMovementState(new IdleState());
             return false;
         }
-        // Code to handle punching while ducking etc goes here!
 
+        if (cmd is PunchCommand)
+        {
+            fighter.SwitchCombatState(new PunchState());
+        }
+
+        if (cmd is BlockCommand { Completed: false })
+        {
+            fighter.SwitchCombatState(new BlockState());
+        }
+        
+        if (cmd is KickCommand)
+        {
+            fighter.SwitchCombatState(new KickState());
+        }
+        
         return true;
     }
 
     public async override Task Exit(Fighter fighter)
     {
         base.Exit(fighter);
-        await ResetAnimation(fighter);
     }
 }

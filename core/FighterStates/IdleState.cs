@@ -28,6 +28,9 @@ public class IdleState : FighterState
             case PunchCommand:
                 fighter.SwitchCombatState(new PunchState());
                 break;
+            case KickCommand:
+                fighter.SwitchCombatState(new KickState());
+                break;
             case BlockCommand blockCommand:
                 if (blockCommand.Completed) break;
                 // Block should be in the CombatFSM, since we want to lock most movement when blocking, and we can never block and execute other combat moves simultaneously
