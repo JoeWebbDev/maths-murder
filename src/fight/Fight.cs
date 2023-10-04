@@ -27,6 +27,7 @@ public partial class Fight : Node
         _gameDataManager = GetNode<GameDataManager>("/root/GameDataManager");
         Player.InitFighter(_gameDataManager.GetPlayerFighterData());
         Enemy.InitFighter(_gameDataManager.GetRandomOpponentData());
+        Ui.SetFighters(Player, Enemy);
         Ui.Retry += OnRetry;
         Ui.QuitToMenu += OnQuitToMenu;
         Player.HealthChanged += CheckDeath;
@@ -66,6 +67,7 @@ public partial class Fight : Node
     private void OnQuitToMenu()
     {
         Engine.TimeScale = 1f;
+        _gameDataManager.ResetPlayerData();
         EmitSignal(SignalName.QuitRequested);
     }
 

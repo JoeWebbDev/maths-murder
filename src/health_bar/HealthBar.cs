@@ -8,7 +8,7 @@ public partial class HealthBar : TextureProgressBar
 
     public override void _Ready()
     {
-        Ui.Ready += OnUiReady;
+        Ui.FightersInitialized += OnUiReady;
     }
 
     private void OnUiReady()

@@ -14,13 +14,12 @@ public partial class FightUI : CanvasLayer
 	[Export] private Button _quitToMenuButton;
 	[Signal] public delegate void QuitToMenuEventHandler();
 	[Signal] public delegate void RetryEventHandler();
+	[Signal] public delegate void FightersInitializedEventHandler();
 
 	private bool _isTimerActive;
 	
 	public override void _Ready()
 	{
-		_playerHealthBar.Fighter = _player;
-		_enemyHealthBar.Fighter = _enemy;
 		_retryButton.Pressed += () =>
 		{
 			EmitSignal(SignalName.Retry);
@@ -35,6 +34,15 @@ public partial class FightUI : CanvasLayer
 	{
 		_isTimerActive = false;
 		_matchTimerLabel.Text = "0";
+	}
+	
+	public void SetFighters(Fighter player, Fighter enemy)
+	{
+		_player = player;
+		_enemy = enemy;
+		_playerHealthBar.Fighter = player;
+		_enemyHealthBar.Fighter = enemy;
+		EmitSignal(SignalName.FightersInitialized);
 	}
 
 	private void OnMatchTimerStart()

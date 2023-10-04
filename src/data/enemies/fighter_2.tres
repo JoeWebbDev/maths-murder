@@ -9,4 +9,5 @@ Health = 10
 Speed = 1
 Strength = 1
 Defense = 1
+ExperiencePointsValue = 2
 NumberTexture = ExtResource("1_exyy3")

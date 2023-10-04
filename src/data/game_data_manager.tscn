@@ -6,5 +6,5 @@
 
 [node name="GameDataManager" type="Node"]
 script = ExtResource("1_apn6j")
-_playerData = ExtResource("2_21lr8")
+_playerDataResource = ExtResource("2_21lr8")
 _enemyDataCollection = ExtResource("3_550nd")
