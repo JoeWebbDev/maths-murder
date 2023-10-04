@@ -6,3 +6,4 @@
 [resource]
 script = ExtResource("2_61dpo")
 FighterData = ExtResource("1_ii0p4")
+ExperiencePoints = 0

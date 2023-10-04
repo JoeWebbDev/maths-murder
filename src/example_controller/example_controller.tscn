@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1pfgtq0tohov"]
 
 [ext_resource type="Script" path="res://src/example_controller/ExampleController.cs" id="1_on5m0"]
-[ext_resource type="PackedScene" uid="uid://c6c4xa03gwcab" path="res://src/fighters/basic_fighter/basic_fighter.tscn" id="2_reas1"]
+[ext_resource type="PackedScene" uid="uid://c6c4xa03gwcab" path="res://src/fighters/basic_fighter/legacy_basic_fighter.tscn" id="2_reas1"]
 
 [node name="example_controller" type="Node"]
 script = ExtResource("1_on5m0")

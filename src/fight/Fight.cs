@@ -12,6 +12,8 @@ public partial class Fight : Node
 	[Export] public MatchTimer Timer { get; private set; }
 	[Export] private PauseMenu _pauseMenu;
 	[Export] private int _fightCountdownDuration;
+	private PlayerData _playerData;
+	private FighterData _enemyData;
 
 	public override void _Ready()
 	{
@@ -19,8 +21,8 @@ public partial class Fight : Node
 			GodotLogger.LogError("Players must have different player numbers.");
 		GetTree().Paused = true;
 		// Load Fighter Data
-		var playerData = GD.Load<PlayerData>("res://src/data/player/player_data.tres");
-		Player.InitFighter(playerData.FighterData);
+		_playerData = GD.Load<PlayerData>("res://src/data/player/player_data.tres");
+		Player.InitFighter(_playerData.FighterData);
 		Ui.Retry += OnRetry;
 		Ui.QuitToMenu += OnQuitToMenu;
 		Player.HealthChanged += CheckDeath;
@@ -74,6 +76,8 @@ public partial class Fight : Node
 		Engine.TimeScale = 0.2f;
 		// GetTree().Paused = true;
 		var playerWon = Player.Health > Enemy.Health;
+		_playerData.ExperiencePoints += 2;
+		ResourceSaver.Save(_playerData, "res://src/data/player/player_data.tres");
 		Ui.ShowResultScreen(playerWon);
 	}
 }
