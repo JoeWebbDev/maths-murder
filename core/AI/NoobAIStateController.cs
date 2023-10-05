@@ -13,7 +13,7 @@ namespace MathsMurderSpike.core.AI;
 /// </summary>
 public class NoobAIStateController : AIStateController
 {
-    private float _punchRange = 150f;
+    private float _punchRange = 140f;
     private float _punchRangeTolerance = 1f;
     private float _punchCooldown = 5f;
     private double _currentPunchCooldown = 5f;
