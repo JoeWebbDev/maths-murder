@@ -3138,10 +3138,11 @@ _data = {
 radius = 11.0
 height = 75.29
 
-[node name="Fighter" type="CharacterBody2D" node_paths=PackedStringArray("AnimationPlayer", "PunchColliderObject", "_nodeToFlip")]
+[node name="Fighter" type="CharacterBody2D" node_paths=PackedStringArray("NumberRef", "AnimationPlayer", "PunchColliderObject", "_nodeToFlip")]
 position = Vector2(95, 204)
 collision_mask = 0
 script = ExtResource("1_u25jf")
+NumberRef = NodePath("NumberRef")
 AnimationPlayer = NodePath("AnimationPlayer")
 PunchColliderObject = NodePath("ScalableChildren/PunchColliderObject")
 MaxHealth = 10

@@ -11,6 +11,7 @@ public partial class Fighter : CharacterBody2D
     [Signal] public delegate void MovementStateChangedEventHandler(Fighter fighter);
     [Signal] public delegate void CombatStateChangedEventHandler(Fighter fighter);
     [Export] public AnimatedSprite2D AnimatedSprite { get; set; }
+    [Export] public Sprite2D NumberRef { get; set; }
     [Export] public AnimationPlayer AnimationPlayer { get; set; }
     [Export] public Area2D PunchColliderObject { get; set; }
     [Export] public bool FlipH { get; set; }
@@ -23,6 +24,7 @@ public partial class Fighter : CharacterBody2D
     [Export] public float DashDetectPeriod { get; private set; } = 0.3f;
     [Export] public int PlayerNumber { get; private set; }
     [Export] private Node2D _nodeToFlip;
+    
     
     public int Health
     {
@@ -81,6 +83,14 @@ public partial class Fighter : CharacterBody2D
         MovementState = new IdleState();
         MovementState.Enter(this);
         GodotLogger.LogDebug($"Fighter loaded! Health: {Health}");
+    }
+
+    public void InitFighter(FighterData data)
+    {
+        MaxHealth = data.Health;
+        Health = data.Health;
+        NumberRef.Texture = data.NumberTexture;
+        GodotLogger.LogDebug($"Fighter loaded! FighterData: {data}");
     }
 
     public async void SwitchMovementState(FighterState to)

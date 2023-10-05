@@ -28,9 +28,7 @@ _fightCountdownDuration = 3
 position = Vector2(339, 51)
 texture = ExtResource("6_7fccv")
 
-[node name="FightUI" parent="." node_paths=PackedStringArray("_player", "_enemy", "_matchTimer") instance=ExtResource("2_ecqmq")]
-_player = NodePath("../Player")
-_enemy = NodePath("../Enemy")
+[node name="FightUI" parent="." node_paths=PackedStringArray("_matchTimer") instance=ExtResource("2_ecqmq")]
 _matchTimer = NodePath("../MatchTimer")
 
 [node name="MatchTimer" parent="." instance=ExtResource("3_gb5ic")]

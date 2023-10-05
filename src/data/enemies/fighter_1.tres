@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://byqaim383kubm"]
+
+[ext_resource type="Texture2D" uid="uid://4vt0t23jateu" path="res://assets/number_ref.png" id="1_ni4e4"]
+[ext_resource type="Script" path="res://src/data/FighterData.cs" id="1_xa5ab"]
+
+[resource]
+script = ExtResource("1_xa5ab")
+Health = 10
+Speed = 1
+Strength = 1
+Defense = 1
+ExperiencePointsValue = 1
+NumberTexture = ExtResource("1_ni4e4")
