@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://drnxccpqe5c0y"]
+
+[ext_resource type="Script" path="res://src/data/FighterData.cs" id="1_7p53w"]
+
+[resource]
+script = ExtResource("1_7p53w")
+Health = 0
+Speed = 0
+Strength = 0
+Defense = 0
