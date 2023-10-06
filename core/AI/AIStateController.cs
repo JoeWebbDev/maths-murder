@@ -1,4 +1,4 @@
-﻿using MathsMurderSpike.Core.FighterStates;
+﻿using Godot;
 
 namespace MathsMurderSpike.core.AI;
 
@@ -6,7 +6,9 @@ namespace MathsMurderSpike.core.AI;
 /// Base class for different intensity AI's. The <see cref="AIController"/> will call <see cref="Process"/> every frame,
 /// passing in the player's <see cref="Fighter"/> root node. See <see cref="ProperNoobAIStateController"/> for an example implementation.
 /// </summary>
-public abstract class AIStateController
+public partial class AIStateController : Resource
 {
-    public abstract void Process(Fighter aiFighter, Fighter playerTarget, double delta);
+    public AIStateController() { }
+
+    public virtual void Process(Fighter aiFighter, Fighter playerTarget, double delta) { }
 }

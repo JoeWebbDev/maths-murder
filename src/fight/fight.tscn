@@ -13,11 +13,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vkdp"]
 size = Vector2(20, 368)
 
-[node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "InputController", "Player", "Enemy", "Timer", "_pauseMenu")]
+[node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "InputController", "AiController", "Player", "Enemy", "Timer", "_pauseMenu")]
 process_mode = 1
 script = ExtResource("1_byaux")
 Ui = NodePath("FightUI")
 InputController = NodePath("InputController")
+AiController = NodePath("AI Controller")
 Player = NodePath("Player")
 Enemy = NodePath("Enemy")
 Timer = NodePath("MatchTimer")

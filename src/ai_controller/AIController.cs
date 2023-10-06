@@ -11,7 +11,7 @@ public partial class AIController : Node
 	private double _timer;
 	private bool _initialized;
 	// Once we get to loading in different difficulties, we will likely expose this and update it in a load method
-	private AIStateController _stateController = new NoobAIStateController();
+	public AIStateController StateController { get; set; }
 
 	public override void _Ready()
 	{
@@ -21,6 +21,6 @@ public partial class AIController : Node
 
 	public override void _Process(double delta)
 	{
-		_stateController.Process(Fighter, Player, delta);
+		StateController.Process(Fighter, Player, delta);
 	}
 }

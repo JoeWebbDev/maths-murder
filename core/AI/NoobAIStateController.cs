@@ -2,6 +2,7 @@
 using Godot;
 using MathsMurderSpike.core.Commands;
 using MathsMurderSpike.Core.FighterStates;
+using MonoCustomResourceRegistry;
 
 namespace MathsMurderSpike.core.AI;
 
@@ -11,7 +12,8 @@ namespace MathsMurderSpike.core.AI;
 /// All magic numbers & not the best implementation; just wanted to demonstrate how we can write up more advanced AI's
 /// using the existing state machine!
 /// </summary>
-public class NoobAIStateController : AIStateController
+[RegisteredType(nameof(NoobAIStateController), "", nameof(Resource))]
+public partial class NoobAIStateController : AIStateController
 {
     private float _punchRange = 140f;
     private float _punchRangeTolerance = 1f;
@@ -19,6 +21,8 @@ public class NoobAIStateController : AIStateController
     private double _currentPunchCooldown = 5f;
     private float _moveDelay = 1f;
     private double _currentMoveDelay = 1f;
+    
+    public NoobAIStateController() { }
     public override void Process(Fighter aiFighter, Fighter player, double delta)
     {
         _currentPunchCooldown += delta;

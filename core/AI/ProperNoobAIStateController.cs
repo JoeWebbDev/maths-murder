@@ -1,14 +1,18 @@
-﻿using MathsMurderSpike.core.Commands;
+﻿using Godot;
+using MathsMurderSpike.core.Commands;
+using MonoCustomResourceRegistry;
 
 namespace MathsMurderSpike.core.AI;
 
 /// <summary>
 /// A very basic implementation. Currently does the same as what the <see cref="AIController"/> used to do
 /// </summary>
-public class ProperNoobAIStateController : AIStateController
+[RegisteredType(nameof(ProperNoobAIStateController), "", nameof(Resource))]
+public partial class ProperNoobAIStateController : AIStateController
 {
     private double _timer = 0;
     
+    public ProperNoobAIStateController() { }
     public override void Process(Fighter aiFighter, Fighter playerTarget, double delta)
     {
         _timer += delta;
