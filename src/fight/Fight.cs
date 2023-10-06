@@ -11,6 +11,7 @@ public partial class Fight : Node
 
     [Export] public FightUI Ui;
     [Export] public FightInputController InputController { get; private set; }
+    [Export] public AIController AiController { get; set; }
     [Export] public Fighter Player { get; set; }
     [Export] public Fighter Enemy { get; set; }
     [Export] public MatchTimer Timer { get; private set; }
@@ -26,7 +27,9 @@ public partial class Fight : Node
         GetTree().Paused = true;
         _gameDataManager = GetNode<GameDataManager>("/root/GameDataManager");
         Player.InitFighter(_gameDataManager.GetPlayerFighterData());
-        Enemy.InitFighter(_gameDataManager.GetRandomOpponentData());
+        var enemyData = _gameDataManager.GetRandomOpponentData();
+        Enemy.InitFighter(enemyData);
+        AiController.StateController = enemyData.AiStateController;
         Ui.SetFighters(Player, Enemy);
         Ui.Retry += OnRetry;
         Ui.QuitToMenu += OnQuitToMenu;

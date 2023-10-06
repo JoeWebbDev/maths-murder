@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using MathsMurderSpike.core.AI;
 using MonoCustomResourceRegistry;
 
 [RegisteredType(nameof(FighterData), "", nameof(Resource))]
@@ -11,6 +12,7 @@ public partial class FighterData : Resource
     [Export] public int Defense { get; set; }
     [Export] public int ExperiencePointsValue;
     [Export] public Texture2D NumberTexture { get; set; }
+    [Export] public AIStateController AiStateController { get; set; }
     
     public FighterData() : this(0, 0, 0, 0, null) { }
 

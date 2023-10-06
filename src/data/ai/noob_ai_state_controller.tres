@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dh388vgfd31cu"]
+
+[ext_resource type="Script" path="res://core/AI/NoobAIStateController.cs" id="1_ajg2l"]
+
+[resource]
+script = ExtResource("1_ajg2l")

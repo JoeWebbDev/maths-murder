@@ -23,6 +23,7 @@ public partial class Fighter : CharacterBody2D
     // The period of time to detect dashes from repeated key presses
     [Export] public float DashDetectPeriod { get; private set; } = 0.3f;
     [Export] public int PlayerNumber { get; private set; }
+    [Export] private Node2D _nodeToFlip;
     
     
     public int Health
@@ -46,7 +47,7 @@ public partial class Fighter : CharacterBody2D
     public override void _Ready()
     {
         if (FlipH)
-            Scale = new Vector2(-Scale.X, Scale.Y);
+            _nodeToFlip.Scale = new Vector2(-_nodeToFlip.Scale.X, _nodeToFlip.Scale.Y);
         Health = MaxHealth;
         PunchColliderObject.BodyEntered += OnHit;
         MovementState = new IdleState();
