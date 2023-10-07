@@ -1,20 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxynmlovonl6s"]
+[gd_scene load_steps=4 format=3 uid="uid://dxynmlovonl6s"]
 
 [ext_resource type="Script" path="res://src/start_menu/StartMenu.cs" id="1_ka7b5"]
 [ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/maths_murder_button/maths_murder_button.tscn" id="2_8mrqp"]
+[ext_resource type="Texture2D" uid="uid://ydj0103w2qfe" path="res://assets/start_menu_background.png" id="2_l1vws"]
 
 [node name="StartMenu" type="Node" node_paths=PackedStringArray("_startButton", "_quitButton")]
 script = ExtResource("1_ka7b5")
 _startButton = NodePath("CanvasLayer/StartButton")
 _quitButton = NodePath("CanvasLayer/QuitButton")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.988235, 0.341176, 0.411765, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.376471, 0.376471, 0.376471, 1)
+position = Vector2(324, 174)
+scale = Vector2(1.28125, 1.28125)
+texture = ExtResource("2_l1vws")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -55,7 +54,7 @@ offset_top = 50.0
 offset_right = 100.0
 offset_bottom = 102.0
 grow_horizontal = 2
-text = "Maths Murder"
+text = "Maths Murder (tbc)"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
