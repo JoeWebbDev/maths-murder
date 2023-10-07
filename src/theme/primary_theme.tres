@@ -1,7 +1,10 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dgyr4v8iy4vqw"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dgyr4v8iy4vqw"]
+
+[ext_resource type="FontFile" uid="uid://ccsjhotyyojai" path="res://assets/funkrocker_font.otf" id="1_jo1dp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rls3m"]
 bg_color = Color(0.32549, 0.662745, 0.670588, 1)
 
 [resource]
+default_font = ExtResource("1_jo1dp")
 Button/styles/normal = SubResource("StyleBoxFlat_rls3m")
