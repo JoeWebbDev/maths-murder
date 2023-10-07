@@ -21,29 +21,29 @@ public partial class Training : Node
     {
         _gameDataManager = GetNode<GameDataManager>("/root/GameDataManager");
         _playerDataInstance = _gameDataManager.GetPlayerFighterData();
-        var remainingExp = _gameDataManager.GetPlayerExperienceValue();
+        var remainingExp = _gameDataManager.GetPlayerExperiencePoints();
         _remainingExpPointsLabel.Text = $"EXP Points Available: {remainingExp}";
         if (remainingExp <= 0) DisableAddButtons();
         _healthLabel.Text = _playerDataInstance.Health.ToString();
         _speedLabel.Text = _playerDataInstance.Speed.ToString();
         _strengthLabel.Text = _playerDataInstance.Strength.ToString();
         _defenseLabel.Text = _playerDataInstance.Defense.ToString();
-        _addHealthButton.Pressed += () => { _playerDataInstance.Health = IncrementPlayerFighterValue(_playerDataInstance.Health, _healthLabel); };
-        _addSpeedButton.Pressed += () => { _playerDataInstance.Speed = IncrementPlayerFighterValue(_playerDataInstance.Speed, _speedLabel); };
-        _addStrengthButton.Pressed += () => { _playerDataInstance.Strength = IncrementPlayerFighterValue(_playerDataInstance.Strength, _strengthLabel); };
-        _addDefenseButton.Pressed += () => { _playerDataInstance.Defense = IncrementPlayerFighterValue(_playerDataInstance.Defense, _defenseLabel); };
+        _addHealthButton.Pressed += () => { _playerDataInstance.Health = AddOneToPlayerFighterValue(_playerDataInstance.Health, _healthLabel); };
+        _addSpeedButton.Pressed += () => { _playerDataInstance.Speed = AddOneToPlayerFighterValue(_playerDataInstance.Speed, _speedLabel); };
+        _addStrengthButton.Pressed += () => { _playerDataInstance.Strength = AddOneToPlayerFighterValue(_playerDataInstance.Strength, _strengthLabel); };
+        _addDefenseButton.Pressed += () => { _playerDataInstance.Defense = AddOneToPlayerFighterValue(_playerDataInstance.Defense, _defenseLabel); };
         _nextFightButton.Pressed += () => EmitSignal(SignalName.NextFightRequested);
     }
     
-    private int IncrementPlayerFighterValue(int value, Label _labelToUpdate)
+    private int AddOneToPlayerFighterValue(int valueToAddTo, Label _labelToUpdate)
     {
-        value += 1;
-        _labelToUpdate.Text = value.ToString();
+        valueToAddTo += 1;
+        _labelToUpdate.Text = valueToAddTo.ToString();
         _gameDataManager.DecreasePlayerExperience(1);
-        var remainingExp = _gameDataManager.GetPlayerExperienceValue();
+        var remainingExp = _gameDataManager.GetPlayerExperiencePoints();
         _remainingExpPointsLabel.Text = $"EXP Points Available: {remainingExp}";
         if (remainingExp <= 0) DisableAddButtons();
-        return value;
+        return valueToAddTo;
     }
 
     private void DisableAddButtons()
