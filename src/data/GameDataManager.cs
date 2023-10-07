@@ -11,6 +11,11 @@ public partial class GameDataManager : Node
 		return _playerDataInstance.FighterData;
 	}
 
+	public int GetPlayerExperiencePoints()
+	{
+		return _playerDataInstance.ExperiencePoints;
+	}
+
 	public override void _Ready()
 	{
 		_playerDataInstance ??= _playerDataResource.Duplicate(true) as PlayerData;
@@ -25,6 +30,11 @@ public partial class GameDataManager : Node
 	public void IncreasePlayerExperience(int amount)
 	{
 		_playerDataInstance.ExperiencePoints += amount;
+	}
+
+	public void DecreasePlayerExperience(int amount)
+	{
+		_playerDataInstance.ExperiencePoints -= amount;
 	}
 	
 	public void IncreasePlayerExperienceFromCurrentOpponent()

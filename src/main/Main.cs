@@ -6,6 +6,7 @@ public partial class Main : Node
 {
 	[Export] private PackedScene _startMenuScene;
 	[Export] private PackedScene _fightScene;
+	[Export] private PackedScene _trainingScene;
 	[Export] private ScreenFader _screenFader;
 	private Node _currentScene;
 	
@@ -35,6 +36,13 @@ public partial class Main : Node
 		await _screenFader.FadeInAsync();
 	}
 
+	private async Task LoadTrainingScene()
+	{
+		await _screenFader.FadeOutAsync();
+		InstantiateTrainingScene();
+		await _screenFader.FadeInAsync();
+	}
+
 	private void QuitGame()
 	{
 		GetTree().Root.PropagateNotification((int)NotificationWMCloseRequest);
@@ -56,9 +64,19 @@ public partial class Main : Node
 		_currentScene?.QueueFree();
 		_currentScene = fightScene;
 		fightScene.QuitRequested += async () => { await LoadStartMenuScene(); };
-		fightScene.FightRetryRequested += async () => { await LoadFightScene(); };
+		fightScene.ContinueGameRequested += async () => { await LoadTrainingScene(); };
 		AddChild(fightScene);
 		return fightScene;
+	}
+
+	private void InstantiateTrainingScene()
+	{
+		GodotLogger.LogDebug("Loading Fight Scene");
+		var trainingScene = _trainingScene.Instantiate<Training>();
+		_currentScene?.QueueFree();
+		_currentScene = trainingScene;
+		trainingScene.NextFightRequested += async () => { await LoadFightScene(); };
+		AddChild(trainingScene);
 	}
 
 	public override void _Notification(int what)

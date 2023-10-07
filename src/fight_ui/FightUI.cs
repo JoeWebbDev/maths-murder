@@ -10,21 +10,19 @@ public partial class FightUI : CanvasLayer
 	[Export] private MatchTimer _matchTimer;
 	[Export] private Label _matchTimerLabel;
 	[Export] private Label _countdownLabel;
-	[Export] private Button _retryButton;
-	[Export] private Button _quitToMenuButton;
-	[Signal] public delegate void QuitToMenuEventHandler();
-	[Signal] public delegate void RetryEventHandler();
+	[Export] private Button _continueButton;
+
+	[Signal] public delegate void ContinueGameEventHandler();
 	[Signal] public delegate void FightersInitializedEventHandler();
 
 	private bool _isTimerActive;
 	
 	public override void _Ready()
 	{
-		_retryButton.Pressed += () =>
+		_continueButton.Pressed += () =>
 		{
-			EmitSignal(SignalName.Retry);
+			EmitSignal(SignalName.ContinueGame);
 		};
-		_quitToMenuButton.Pressed += () => EmitSignal(SignalName.QuitToMenu);
 
 		_matchTimer.MatchTimerStarted += OnMatchTimerStart;
 		_matchTimer.MatchTimerEnded += OnMatchTimerEnded;
@@ -65,8 +63,7 @@ public partial class FightUI : CanvasLayer
 
 	public void ShowResultScreen(bool playerWon)
 	{
-		_retryButton.Visible = true;
-		_quitToMenuButton.Visible = true;
+		_continueButton.Visible = true;
 		_countdownLabel.Text = playerWon ? "Player won! =)" : "Enemy won =(";
 		_countdownLabel.Show();
 	}

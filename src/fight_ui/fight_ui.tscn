@@ -4,46 +4,29 @@
 [ext_resource type="PackedScene" uid="uid://cut455t7ht2as" path="res://src/health_bar/health_bar.tscn" id="2_1m7ro"]
 [ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/maths_murder_button/maths_murder_button.tscn" id="3_jpomr"]
 
-[node name="FightUI" type="CanvasLayer" node_paths=PackedStringArray("_playerHealthBar", "_enemyHealthBar", "_matchTimerLabel", "_countdownLabel", "_retryButton", "_quitToMenuButton")]
+[node name="FightUI" type="CanvasLayer" node_paths=PackedStringArray("_playerHealthBar", "_enemyHealthBar", "_matchTimerLabel", "_countdownLabel", "_continueButton")]
 script = ExtResource("1_ryufm")
 _playerHealthBar = NodePath("PlayerHealthBar")
 _enemyHealthBar = NodePath("EnemyHealthBar")
 _matchTimerLabel = NodePath("MatchTimerLabel")
 _countdownLabel = NodePath("CountdownLabel")
-_retryButton = NodePath("RetryButton")
-_quitToMenuButton = NodePath("QuitButton")
+_continueButton = NodePath("ContinueButton")
 
-[node name="RetryButton" parent="." instance=ExtResource("3_jpomr")]
+[node name="ContinueButton" parent="." instance=ExtResource("3_jpomr")]
 visible = false
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -120.0
-offset_top = -85.0
-offset_right = -20.0
-offset_bottom = -35.0
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 75.0
+offset_right = 50.0
+offset_bottom = 125.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 action_mode = 0
-text = "Retry"
-
-[node name="QuitButton" parent="." instance=ExtResource("3_jpomr")]
-visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = -85.0
-offset_right = 130.0
-offset_bottom = -35.0
-grow_horizontal = 2
-grow_vertical = 0
-action_mode = 0
-text = "Quit"
+text = "Continue"
 
 [node name="CountdownLabel" type="Label" parent="."]
 anchors_preset = 8
