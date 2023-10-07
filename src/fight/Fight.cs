@@ -4,7 +4,7 @@ using Godot;
 public partial class Fight : Node
 {
     [Signal]
-    public delegate void FightRetryRequestedEventHandler();
+    public delegate void ContinueGameRequestedEventHandler();
 
     [Signal]
     public delegate void QuitRequestedEventHandler();
@@ -31,8 +31,7 @@ public partial class Fight : Node
         Enemy.InitFighter(enemyData);
         AiController.StateController = enemyData.AiStateController;
         Ui.SetFighters(Player, Enemy);
-        Ui.Retry += OnRetry;
-        Ui.QuitToMenu += OnQuitToMenu;
+        Ui.ContinueGame += OnContinueGame;
         Player.HealthChanged += CheckDeath;
         Enemy.HealthChanged += CheckDeath;
         Timer.MatchTimerEnded += EndFight;
@@ -40,6 +39,12 @@ public partial class Fight : Node
         _pauseMenu.ResumeButtonPressed += Resume;
         _pauseMenu.QuitToMenuButtonPressed += OnQuitToMenu;
         _pauseMenu.Hide();
+    }
+
+    private void OnContinueGame()
+    {
+        Engine.TimeScale = 1f;
+        EmitSignal(SignalName.ContinueGameRequested);
     }
 
     private void Pause()
@@ -59,12 +64,6 @@ public partial class Fight : Node
         await Ui.StartCountdown(_fightCountdownDuration);
         GetTree().Paused = false;
         Timer.Start();
-    }
-
-    private void OnRetry()
-    {
-        Engine.TimeScale = 1f;
-        EmitSignal(SignalName.FightRetryRequested);
     }
 
     private void OnQuitToMenu()

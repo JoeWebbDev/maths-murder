@@ -3,6 +3,7 @@ using System;
 
 public partial class Training : Node
 {
+    [Signal] public delegate void NextFightRequestedEventHandler();
     [Export] private Button _addHealthButton;
     [Export] private Button _addSpeedButton;
     [Export] private Button _addStrengthButton;
@@ -31,9 +32,9 @@ public partial class Training : Node
         _addSpeedButton.Pressed += () => { _playerDataInstance.Speed = IncrementPlayerFighterValue(_playerDataInstance.Speed, _speedLabel); };
         _addStrengthButton.Pressed += () => { _playerDataInstance.Strength = IncrementPlayerFighterValue(_playerDataInstance.Strength, _strengthLabel); };
         _addDefenseButton.Pressed += () => { _playerDataInstance.Defense = IncrementPlayerFighterValue(_playerDataInstance.Defense, _defenseLabel); };
+        _nextFightButton.Pressed += () => EmitSignal(SignalName.NextFightRequested);
     }
     
-    // We pass by reference so we can update the value on the player data directly
     private int IncrementPlayerFighterValue(int value, Label _labelToUpdate)
     {
         value += 1;
