@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cuvve83igm5fe"]
+[gd_scene load_steps=12 format=3 uid="uid://cuvve83igm5fe"]
 
 [ext_resource type="Script" path="res://src/fight/Fight.cs" id="1_byaux"]
 [ext_resource type="PackedScene" uid="uid://xy4kxgxscvui" path="res://src/fight_ui/fight_ui.tscn" id="2_ecqmq"]
 [ext_resource type="PackedScene" uid="uid://cwrt3mai5fuk7" path="res://src/match_timer/match_timer.tscn" id="3_gb5ic"]
+[ext_resource type="Texture2D" uid="uid://bxuhgb1q4g4tk" path="res://assets/super_cool_fight_animation.png" id="4_ok2y4"]
 [ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="5_deabo"]
 [ext_resource type="PackedScene" uid="uid://2ctuwd5ypoun" path="res://src/fight_input_controller/fight_input_controller.tscn" id="6_5fy5m"]
 [ext_resource type="Texture2D" uid="uid://jmbjatkvyuwa" path="res://assets/fight_background.png" id="6_7fccv"]
@@ -13,7 +14,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vkdp"]
 size = Vector2(20, 368)
 
-[node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "InputController", "AiController", "Player", "Enemy", "Timer", "_pauseMenu")]
+[node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "InputController", "AiController", "Player", "Enemy", "Timer", "_pauseMenu", "_preFightPlaceholderScreen")]
 process_mode = 1
 script = ExtResource("1_byaux")
 Ui = NodePath("FightUI")
@@ -24,6 +25,7 @@ Enemy = NodePath("Enemy")
 Timer = NodePath("MatchTimer")
 _pauseMenu = NodePath("PauseMenu")
 _fightCountdownDuration = 3
+_preFightPlaceholderScreen = NodePath("FightUI/Sprite2D")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(339, 51)
@@ -33,6 +35,11 @@ texture = ExtResource("6_7fccv")
 _player = NodePath("../Player")
 _enemy = NodePath("../Enemy")
 _matchTimer = NodePath("../MatchTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="FightUI"]
+visible = false
+position = Vector2(320, 180)
+texture = ExtResource("4_ok2y4")
 
 [node name="MatchTimer" parent="." instance=ExtResource("3_gb5ic")]
 TotalMatchTime = 30
