@@ -13,6 +13,7 @@ public partial class FightCameraController : Camera2D
     private Vector2 _destination;
     public override void _Ready()
     {
+        ProcessMode = ProcessModeEnum.Always;
         // Places the camera in the middle to match what we're used to in the editor
         _viewportSize = GetViewportRect().Size;
         Offset = new Vector2(_viewportSize.X / 2, _viewportSize.Y / 2);

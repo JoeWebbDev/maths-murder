@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkqyrde2kg3yf"]
+
+[ext_resource type="PackedScene" uid="uid://d7nubkluvyu7" path="res://src/bracket_fighter_box/bracket_fighter_box.tscn" id="1_bg5ia"]
+[ext_resource type="Script" path="res://src/bracket/Bracket.cs" id="1_e5avg"]
+[ext_resource type="Texture2D" uid="uid://dvcb1djym3td7" path="res://assets/bracket_question_mark.png" id="3_k1qh1"]
+[ext_resource type="Texture2D" uid="uid://dckhph64157n5" path="res://assets/bracket_line.png" id="3_tmxhs"]
+[ext_resource type="PackedScene" uid="uid://che4g3b2ucx37" path="res://src/cinematic_camera/cinematic_camera.tscn" id="5_r7tnj"]
+
+[node name="Bracket" type="Node" node_paths=PackedStringArray("_lineParent", "_camera")]
+script = ExtResource("1_e5avg")
+_bracketFighterBoxScene = ExtResource("1_bg5ia")
+_ladderSpawnStartPosition = Vector2(320, 290)
+_distanceBetweenBoxes = Vector2(0, -100)
+_distanceBetweenPlayerBoxAndLadderBoxes = Vector2(-100, 0)
+_defaultUpcomingFighterTexture = ExtResource("3_k1qh1")
+_lineTexture = ExtResource("3_tmxhs")
+_lineWidth = 20.0
+_lineParent = NodePath("LineContainer")
+_camera = NodePath("CinematicCamera")
+_cameraStartPosition = Vector2(320, 40)
+_cameraStartZoom = Vector2(0.45, 0.45)
+_cameraFocusOnPlayerZoom = Vector2(2, 2)
+_cameraOffsetFromPlayer = Vector2(50, 0)
+_cameraInitialTweenDelayInMs = 500
+
+[node name="BracketFighterBox" parent="." instance=ExtResource("1_bg5ia")]
+visible = false
+position = Vector2(320, 290)
+
+[node name="BracketFighterBox2" parent="." instance=ExtResource("1_bg5ia")]
+visible = false
+position = Vector2(320, 190)
+
+[node name="LineContainer" type="Node" parent="."]
+
+[node name="Line2D" type="Line2D" parent="LineContainer"]
+visible = false
+texture_repeat = 2
+position = Vector2(0, -231.849)
+scale = Vector2(1, 1.7479)
+points = PackedVector2Array(358, 286.543, 358, 300)
+width = 5.0
+texture = ExtResource("3_tmxhs")
+texture_mode = 1
+
+[node name="CinematicCamera" parent="." instance=ExtResource("5_r7tnj")]
+PositionLerpSpeed = 1.0
+ZoomLerpSpeed = 1.0
+PositionLerpTolerance = 10.0

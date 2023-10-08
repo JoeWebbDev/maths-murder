@@ -11,6 +11,11 @@ public partial class GameDataManager : Node
 		return _playerDataInstance.FighterData;
 	}
 
+	public PlayerData GetPlayerData()
+	{
+		return _playerDataInstance;
+	}
+
 	public int GetPlayerExperiencePoints()
 	{
 		return _playerDataInstance.ExperiencePoints;

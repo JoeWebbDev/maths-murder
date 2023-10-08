@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Godot;
 
 public partial class Fight : Node
@@ -17,6 +18,7 @@ public partial class Fight : Node
     [Export] public MatchTimer Timer { get; private set; }
     [Export] private PauseMenu _pauseMenu;
     [Export] private int _fightCountdownDuration;
+    [Export] private Sprite2D _preFightPlaceholderScreen;
 
     private GameDataManager _gameDataManager;
 
@@ -26,8 +28,9 @@ public partial class Fight : Node
             GodotLogger.LogError("Players must have different player numbers.");
         GetTree().Paused = true;
         _gameDataManager = GetNode<GameDataManager>("/root/GameDataManager");
-        Player.InitFighter(_gameDataManager.GetPlayerFighterData());
-        var enemyData = _gameDataManager.GetRandomOpponentData();
+        var playerData = _gameDataManager.GetPlayerData();
+        Player.InitFighter(playerData.FighterData);
+        var enemyData = playerData.CurrentOpponent ?? _gameDataManager.GetRandomOpponentData();
         Enemy.InitFighter(enemyData);
         AiController.StateController = enemyData.AiStateController;
         Ui.SetFighters(Player, Enemy);
@@ -39,6 +42,7 @@ public partial class Fight : Node
         _pauseMenu.ResumeButtonPressed += Resume;
         _pauseMenu.QuitToMenuButtonPressed += OnQuitToMenu;
         _pauseMenu.Hide();
+        _preFightPlaceholderScreen.Show();
     }
 
     private void OnContinueGame()
@@ -61,6 +65,10 @@ public partial class Fight : Node
 
     public async void Start()
     {
+        // Wait for the ACTUAL pre-fight animation to finish
+        await Task.Delay(1500);
+        _preFightPlaceholderScreen.Hide();
+        await Task.Delay(200);
         await Ui.StartCountdown(_fightCountdownDuration);
         GetTree().Paused = false;
         Timer.Start();
@@ -69,6 +77,7 @@ public partial class Fight : Node
     private void OnQuitToMenu()
     {
         Engine.TimeScale = 1f;
+        GetTree().Paused = false;
         _gameDataManager.ResetPlayerData();
         EmitSignal(SignalName.QuitRequested);
     }

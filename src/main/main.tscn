@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv7uoo65r5r11"]
+[gd_scene load_steps=8 format=3 uid="uid://cv7uoo65r5r11"]
 
 [ext_resource type="Script" path="res://src/main/Main.cs" id="1_jlfth"]
 [ext_resource type="PackedScene" uid="uid://dxynmlovonl6s" path="res://src/start_menu/start_menu.tscn" id="2_4ks5h"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://o3t21jrr1pt0" path="res://src/training/training.tscn" id="4_0hsuc"]
 [ext_resource type="PackedScene" uid="uid://c2nci3gapsobm" path="res://src/screen_fader/screen_fader.tscn" id="4_2oecl"]
 [ext_resource type="PackedScene" uid="uid://bg0hipyfquusd" path="res://src/global_input_controller/global_input_controller.tscn" id="4_qw5jr"]
+[ext_resource type="PackedScene" uid="uid://dkqyrde2kg3yf" path="res://src/bracket/bracket.tscn" id="5_cyiiq"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("_screenFader")]
 process_mode = 3
@@ -13,6 +14,7 @@ script = ExtResource("1_jlfth")
 _startMenuScene = ExtResource("2_4ks5h")
 _fightScene = ExtResource("3_agthi")
 _trainingScene = ExtResource("4_0hsuc")
+_bracketScene = ExtResource("5_cyiiq")
 _screenFader = NodePath("ScreenFader")
 
 [node name="GlobalInputController" parent="." instance=ExtResource("4_qw5jr")]
