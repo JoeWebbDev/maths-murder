@@ -5,10 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://4vt0t23jateu" path="res://assets/number_ref.png" id="2_f6pdm"]
 [ext_resource type="Texture2D" uid="uid://byqe1r5fmycqi" path="res://assets/box_fill_green.png" id="3_5vemp"]
 
-[node name="BracketFighterBox" type="Node2D" node_paths=PackedStringArray("FighterSprite")]
+[node name="BracketFighterBox" type="Node2D" node_paths=PackedStringArray("FighterSprite", "Fill")]
 position = Vector2(309, 288)
 script = ExtResource("1_0pyf2")
 FighterSprite = NodePath("FighterSprite")
+Fill = NodePath("BoxFill")
 
 [node name="Box" type="Sprite2D" parent="."]
 texture = ExtResource("1_r8t8y")

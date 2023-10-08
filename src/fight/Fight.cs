@@ -94,7 +94,10 @@ public partial class Fight : Node
         // GetTree().Paused = true;
         var playerWon = Player.Health > Enemy.Health;
         if (playerWon)
-            _gameDataManager.IncreasePlayerExperienceFromCurrentOpponent();
+        {
+            _gameDataManager.RegisterDefeatedOpponent();
+        }
+
         Ui.ShowResultScreen(playerWon);
     }
 }

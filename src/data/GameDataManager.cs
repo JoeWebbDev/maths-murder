@@ -54,9 +54,22 @@ public partial class GameDataManager : Node
 		return _playerDataInstance.CurrentOpponent;
 	}
 
-	public FighterData GetRandomOpponentData()
+	public void SetCurrentOpponentData(FighterData opponent)
 	{
-		_playerDataInstance.CurrentOpponent = _enemyDataCollection.GetRandomOpponent();
-		return _playerDataInstance.CurrentOpponent;
+		_playerDataInstance.CurrentOpponent = opponent;
+	}
+
+	public FighterData GetRandomOpponentData(bool setAsCurrentOpponent = true)
+	{
+		var opponent = _enemyDataCollection.GetRandomOpponent();
+		if (setAsCurrentOpponent) _playerDataInstance.CurrentOpponent = opponent;
+		return opponent;
+	}
+
+	public void RegisterDefeatedOpponent()
+	{
+		IncreasePlayerExperienceFromCurrentOpponent();
+		_playerDataInstance.DefeatedOpponents.Add(_playerDataInstance.CurrentOpponent);
+		_playerDataInstance.CurrentOpponent = null;
 	}
 }

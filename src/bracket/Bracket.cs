@@ -12,6 +12,7 @@ public partial class Bracket : Node
     [Export] private Vector2 _distanceBetweenPlayerBoxAndLadderBoxes;
     [Export] private Texture2D _defaultUpcomingFighterTexture;
     [Export] private Texture2D _lineTexture;
+    [Export] private Texture2D _defeatedOpponentsFillTexture;
     [Export] private float _lineWidth;
     [Export] private Node _lineParent;
     [ExportGroup("Camera control properties")]
@@ -61,6 +62,10 @@ public partial class Bracket : Node
             var upcomingBracketFighterBox = _bracketFighterBoxScene.Instantiate<BracketFighterBox>();
             upcomingBracketFighterBox.GlobalPosition = _ladderSpawnStartPosition + (_distanceBetweenBoxes * i);
             upcomingBracketFighterBox.FighterSprite.Texture = GetEnemyFighterSpriteForFighterBox(i);
+            if (i < _playerData.DefeatedOpponents.Count)
+            {
+                upcomingBracketFighterBox.Fill.Texture = _defeatedOpponentsFillTexture;
+            }
             AddChild(upcomingBracketFighterBox);
             
             // If this isn't the first box, spawn connecting line
@@ -98,6 +103,12 @@ public partial class Bracket : Node
     // Otherwise, we return the default 
     private Texture2D GetEnemyFighterSpriteForFighterBox(int boxIndex)
     {
+        if (boxIndex < _playerData.DefeatedOpponents.Count)
+        {
+            
+            return _playerData.DefeatedOpponents[boxIndex].NumberTexture;
+        }
+        
         if (boxIndex == _playerData.DefeatedOpponents.Count)
         {
             return _playerData.CurrentOpponent.NumberTexture;

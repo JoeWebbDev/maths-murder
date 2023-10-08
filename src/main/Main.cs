@@ -8,6 +8,7 @@ public partial class Main : Node
 	[Export] private PackedScene _fightScene;
 	[Export] private PackedScene _trainingScene;
 	[Export] private PackedScene _bracketScene;
+	[Export] private PackedScene _chooseNextFightScene;
 	[Export] private ScreenFader _screenFader;
 	private Node _currentScene;
 	
@@ -18,7 +19,7 @@ public partial class Main : Node
 
 	private async void NewGame()
 	{
-		await LoadBracketScene();
+		OnNextFightRequested();
 	}
 
 	private async Task LoadFightScene()
@@ -50,6 +51,13 @@ public partial class Main : Node
 		var bracketScene = InstantiateBracketScene();
 		await _screenFader.FadeInAsync();
 		bracketScene.PlayCameraTweens();
+	}
+
+	private async Task LoadChooseNextFightScene()
+	{
+		await _screenFader.FadeOutAsync();
+		InstantiateChooseNextFightScene();
+		await _screenFader.FadeInAsync();
 	}
 
 	private void QuitGame()
@@ -84,19 +92,40 @@ public partial class Main : Node
 		var trainingScene = _trainingScene.Instantiate<Training>();
 		_currentScene?.QueueFree();
 		_currentScene = trainingScene;
-		trainingScene.NextFightRequested += async () => { await LoadBracketScene(); };
+		trainingScene.NextFightRequested += OnNextFightRequested;
 		AddChild(trainingScene);
 	}
 
 	private Bracket InstantiateBracketScene()
 	{
-		GodotLogger.LogDebug("Loading Bracket Scene");
+		GodotLogger.LogDebug($"Loading {nameof(Bracket)} Scene");
 		var bracketScene = _bracketScene.Instantiate<Bracket>();
 		_currentScene?.QueueFree();
 		_currentScene = bracketScene;
 		bracketScene.BracketAnimationsComplete += async () => { await LoadFightScene(); };
 		AddChild(bracketScene);
 		return bracketScene;
+	}
+
+	private void InstantiateChooseNextFightScene()
+	{
+		GodotLogger.LogDebug($"Loading {nameof(ChooseNextFight)} Scene");
+		var chooseNextFightScene = _chooseNextFightScene.Instantiate<ChooseNextFight>();
+		_currentScene?.QueueFree();
+		_currentScene = chooseNextFightScene;
+		chooseNextFightScene.FighterSelected += async () => { await LoadBracketScene(); };
+		AddChild(chooseNextFightScene);
+	}
+
+	private async void OnNextFightRequested()
+	{
+		var currentOpponent = GetNode<GameDataManager>("/root/GameDataManager").GetCurrentOpponentData();
+		if (currentOpponent == null)
+		{
+			await LoadChooseNextFightScene();
+			return;
+		}
+		await LoadBracketScene();
 	}
 
 	public override void _Notification(int what)
