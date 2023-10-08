@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccjxyrjb7puo0"]
+
+[ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="1_4qjqh"]
+[ext_resource type="Script" path="res://src/choose_next_fight/ChooseNextFight.cs" id="1_erx7v"]
+
+[node name="ChooseNextFight" type="Node" node_paths=PackedStringArray("_optionOneButton", "_optionTwoButton")]
+script = ExtResource("1_erx7v")
+_fighterScene = ExtResource("1_4qjqh")
+_optionOnePos = Vector2(150, 140)
+_optionTwoPos = Vector2(500, 140)
+_optionOneButton = NodePath("CanvasLayer/Button")
+_optionTwoButton = NodePath("CanvasLayer/Button2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Choose Next Fighter"
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 108.0
+offset_top = 307.0
+offset_right = 185.0
+offset_bottom = 344.0
+text = "This guy
+"
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+offset_left = 457.0
+offset_top = 306.0
+offset_right = 545.0
+offset_bottom = 343.0
+text = "Or that guy
+"
