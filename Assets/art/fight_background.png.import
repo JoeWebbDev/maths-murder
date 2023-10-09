@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byqe1r5fmycqi"
-path="res://.godot/imported/box_fill_green.png-b3f402d177dfe8b409b96c2e07a04e48.ctex"
+uid="uid://jmbjatkvyuwa"
+path="res://.godot/imported/fight_background.png-d5e7e26bfb05741402fb66893f7f6b5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/box_fill_green.png"
-dest_files=["res://.godot/imported/box_fill_green.png-b3f402d177dfe8b409b96c2e07a04e48.ctex"]
+source_file="res://assets/art/fight_background.png"
+dest_files=["res://.godot/imported/fight_background.png-d5e7e26bfb05741402fb66893f7f6b5f.ctex"]
 
 [params]
 

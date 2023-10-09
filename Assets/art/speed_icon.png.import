@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvcb1djym3td7"
-path="res://.godot/imported/bracket_question_mark.png-e0501d0f483924c8cd0674a8bce2fc28.ctex"
+uid="uid://clihia4jre5h3"
+path="res://.godot/imported/speed_icon.png-25594696eb77489f2fb48bec6820ac33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bracket_question_mark.png"
-dest_files=["res://.godot/imported/bracket_question_mark.png-e0501d0f483924c8cd0674a8bce2fc28.ctex"]
+source_file="res://assets/art/speed_icon.png"
+dest_files=["res://.godot/imported/speed_icon.png-25594696eb77489f2fb48bec6820ac33.ctex"]
 
 [params]
 

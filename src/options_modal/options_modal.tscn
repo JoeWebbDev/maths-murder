@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6i1fliuwmnv5"]
 
 [ext_resource type="PackedScene" uid="uid://c2i78jw1rvawt" path="res://src/volume_slider/Volume Slider.tscn" id="1_bhi05"]
-[ext_resource type="AudioStream" uid="uid://ynwrfv72llra" path="res://assets/audio/DodgeTheme.wav" id="2_yhcxm"]
+[ext_resource type="AudioStream" uid="uid://ynwrfv72llra" path="res://assets/art/DodgeTheme.wav" id="2_uws37"]
 
 [node name="Options Modal" type="Node"]
 
@@ -40,6 +40,6 @@ _busName = "SFX"
 _labelText = "SFX"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_yhcxm")
+stream = ExtResource("2_uws37")
 autoplay = true
 bus = &"Music"

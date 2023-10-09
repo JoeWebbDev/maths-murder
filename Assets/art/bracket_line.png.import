@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpgcuiac032kl"
-path="res://.godot/imported/training_placeholder.png-fe2164e14f692d33eff75637ddd51cf3.ctex"
+uid="uid://dckhph64157n5"
+path="res://.godot/imported/bracket_line.png-a339433ff42bd7ce984e78ff435da787.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/training_placeholder.png"
-dest_files=["res://.godot/imported/training_placeholder.png-fe2164e14f692d33eff75637ddd51cf3.ctex"]
+source_file="res://assets/art/bracket_line.png"
+dest_files=["res://.godot/imported/bracket_line.png-a339433ff42bd7ce984e78ff435da787.ctex"]
 
 [params]
 

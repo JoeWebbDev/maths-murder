@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dckhph64157n5"
-path="res://.godot/imported/bracket_line.png-9849be7c3139c12d5372188d705ae279.ctex"
+uid="uid://dir6t41d51bts"
+path="res://.godot/imported/box_fill_red.png-7ba2664648a1c67831ef45a696bdd538.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bracket_line.png"
-dest_files=["res://.godot/imported/bracket_line.png-9849be7c3139c12d5372188d705ae279.ctex"]
+source_file="res://assets/art/box_fill_red.png"
+dest_files=["res://.godot/imported/box_fill_red.png-7ba2664648a1c67831ef45a696bdd538.ctex"]
 
 [params]
 

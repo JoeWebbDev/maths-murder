@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nm142i22xbar"
-path="res://.godot/imported/bracket_box.png-4ef99345ff0982d6c2f81d48e231e5b3.ctex"
+uid="uid://dvcb1djym3td7"
+path="res://.godot/imported/bracket_question_mark.png-36d978f231fc48b458eead95e31fe33d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bracket_box.png"
-dest_files=["res://.godot/imported/bracket_box.png-4ef99345ff0982d6c2f81d48e231e5b3.ctex"]
+source_file="res://assets/art/bracket_question_mark.png"
+dest_files=["res://.godot/imported/bracket_question_mark.png-36d978f231fc48b458eead95e31fe33d.ctex"]
 
 [params]
 

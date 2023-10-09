@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cut455t7ht2as"]
 
-[ext_resource type="Texture2D" uid="uid://nunhatcm1f6l" path="res://assets/health_bar_border.png" id="1_kdw1o"]
+[ext_resource type="Texture2D" uid="uid://nunhatcm1f6l" path="res://assets/art/health_bar_border.png" id="1_kdw1o"]
 [ext_resource type="Script" path="res://src/health_bar/HealthBar.cs" id="2_roi5m"]
-[ext_resource type="Texture2D" uid="uid://wygojufepl5k" path="res://assets/health_bar_fill.png" id="2_yvjac"]
+[ext_resource type="Texture2D" uid="uid://wygojufepl5k" path="res://assets/art/health_bar_fill.png" id="2_yvjac"]
 
 [node name="HealthBar" type="TextureProgressBar"]
 anchors_preset = 5

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jmbjatkvyuwa"
-path="res://.godot/imported/fight_background.png-db408b8f89d010d5052b945b34989530.ctex"
+uid="uid://cxpxs34kkyu2q"
+path="res://.godot/imported/number_ref - 2.png-74ca9f4b90ae58dadaa53317766a3571.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fight_background.png"
-dest_files=["res://.godot/imported/fight_background.png-db408b8f89d010d5052b945b34989530.ctex"]
+source_file="res://assets/art/number_ref - 2.png"
+dest_files=["res://.godot/imported/number_ref - 2.png-74ca9f4b90ae58dadaa53317766a3571.ctex"]
 
 [params]
 

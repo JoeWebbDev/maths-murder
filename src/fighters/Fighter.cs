@@ -90,6 +90,31 @@ public partial class Fighter : CharacterBody2D
         MaxHealth = data.Health;
         Health = data.Health;
         NumberRef.Texture = data.NumberTexture;
+        // var backLeg = GetNode<Sprite2D>("ScalableChildren/BackLeg");
+        // var frontLeg = GetNode<Sprite2D>("ScalableChildren/FrontLeg");
+        // var backArm = GetNode<Sprite2D>("ScalableChildren/BackArm");
+        // var frontArm = GetNode<Sprite2D>("ScalableChildren/FrontArm");
+        // var punchColliderObject = GetNode<Area2D>("ScalableChildren/PunchColliderObject");
+        // var bodyCollider = GetNode<CollisionShape2D>("BodyCollider");
+        //
+        // if (data.LegsTransformOffset != Vector2.Zero)
+        // {
+        //     // Workaround for offset on the back leg.
+        //     var backLegPos = backLeg.Position;
+        //     backLegPos.X += data.LegsTransformOffset.X;
+        //     backLeg.Position = backLegPos;
+        //     
+        //     backLeg.Offset += data.LegsTransformOffset;
+        //     frontLeg.Offset += data.LegsTransformOffset;
+        // }
+        // if (data.ArmsTransformOffset != Vector2.Zero)
+        // {
+        //     backArm.Offset += data.ArmsTransformOffset;
+        //     frontArm.Offset += data.ArmsTransformOffset;
+        //     punchColliderObject.Position += data.ArmsTransformOffset;
+        //     bodyCollider.Position += data.ArmsTransformOffset;
+        // }
+        
         GodotLogger.LogDebug($"Fighter loaded! FighterData: {data}");
     }
 

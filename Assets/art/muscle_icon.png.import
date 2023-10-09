@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3ghk6bhu8ome"
-path="res://.godot/imported/back_arm.png-c09cf09d6374f30efa8f8197b4a825ad.ctex"
+uid="uid://cpag42hxupqsh"
+path="res://.godot/imported/muscle_icon.png-2827b2f95f475eb881c1b5c711d3f914.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/back_arm.png"
-dest_files=["res://.godot/imported/back_arm.png-c09cf09d6374f30efa8f8197b4a825ad.ctex"]
+source_file="res://assets/art/muscle_icon.png"
+dest_files=["res://.godot/imported/muscle_icon.png-2827b2f95f475eb881c1b5c711d3f914.ctex"]
 
 [params]
 
