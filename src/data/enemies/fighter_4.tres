@@ -12,6 +12,6 @@ Strength = 1
 Defense = 1
 ExperiencePointsValue = 4
 NumberTexture = ExtResource("2_l5fhu")
-ArmsTransformOffset = Vector2(0, 0)
+ArmsTransformOffset = Vector2(50, 0)
 LegsTransformOffset = Vector2(0, 0)
 AiStateController = ExtResource("1_3v635")

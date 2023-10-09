@@ -45,7 +45,6 @@ texture = ExtResource("4_gmqol")
 TotalMatchTime = 30
 
 [node name="Player" parent="." instance=ExtResource("5_deabo")]
-PlayerNumber = 1
 
 [node name="Enemy" parent="." instance=ExtResource("5_deabo")]
 position = Vector2(532, 204)
