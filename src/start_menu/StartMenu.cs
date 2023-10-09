@@ -26,7 +26,7 @@ public partial class StartMenu : Node
 	[Export] private Sprite2D _background;
 	[Export] private Color _startColor;
 	[Export] private Color _endColor;
-	[Export] private int _colorChangeDurationInMs;
+	[Export] private float _colorChangeDuration;
 
 	public override void _Ready()
 	{
@@ -52,7 +52,7 @@ public partial class StartMenu : Node
 		tween.TweenProperty(_murderSprite, "scale", _finishScale, _murderScaleDuration);
 		await ToSignal(tween, "finished");
 		tween = tree.CreateTween();
-		tween.TweenProperty(_background, "modulate", _endColor, _colorChangeDurationInMs);
+		tween.TweenProperty(_background, "modulate", _endColor, _colorChangeDuration);
 		await ToSignal(tween, "finished");
 		await Task.Delay(_uiShowDelayInMs);
 		_ui.Show();

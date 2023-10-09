@@ -24,7 +24,7 @@ _murderScaleDuration = 0.4
 _background = NodePath("Sprite2D")
 _startColor = Color(0, 0, 0, 1)
 _endColor = Color(0.364706, 0.364706, 0.364706, 1)
-_colorChangeDurationInMs = 1
+_colorChangeDuration = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.372549, 0.372549, 0.372549, 1)
