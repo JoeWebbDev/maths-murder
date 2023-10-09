@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://r1lb1gi63llw" path="res://assets/maths.png" id="4_0p4a0"]
 [ext_resource type="Texture2D" uid="uid://327s7rtw0lvm" path="res://assets/murder.png" id="5_frr7c"]
 
-[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_startButton", "_quitButton", "_ui", "_mask", "_murderSprite")]
+[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_startButton", "_quitButton", "_ui", "_mask", "_murderSprite", "_background")]
 script = ExtResource("1_ka7b5")
 _startButton = NodePath("CanvasLayer/StartButton")
 _quitButton = NodePath("CanvasLayer/QuitButton")
@@ -21,9 +21,13 @@ _murderSprite = NodePath("Murder")
 _startScale = Vector2(100, 100)
 _finishScale = Vector2(1, 1)
 _murderScaleDuration = 0.4
+_background = NodePath("Sprite2D")
+_startColor = Color(0, 0, 0, 1)
+_endColor = Color(0.364706, 0.364706, 0.364706, 1)
+_colorChangeDurationInMs = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.133333, 0.133333, 0.133333, 1)
+modulate = Color(0.372549, 0.372549, 0.372549, 1)
 position = Vector2(324, 174)
 scale = Vector2(1.28125, 1.28125)
 texture = ExtResource("2_l1vws")
@@ -57,8 +61,6 @@ offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Quit"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Murder" type="Sprite2D" parent="."]
 position = Vector2(427, 97)

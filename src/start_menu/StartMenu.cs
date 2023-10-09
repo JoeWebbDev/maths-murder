@@ -22,11 +22,17 @@ public partial class StartMenu : Node
 	[Export] private Vector2 _startScale;
 	[Export] private Vector2 _finishScale;
 	[Export] private float _murderScaleDuration;
+	[ExportSubgroup("Background animation properties")] 
+	[Export] private Sprite2D _background;
+	[Export] private Color _startColor;
+	[Export] private Color _endColor;
+	[Export] private int _colorChangeDurationInMs;
 
 	public override void _Ready()
 	{
 		_ui.Hide();
 		_murderSprite.Hide();
+		_background.Modulate = _startColor;
 		_startButton.Pressed += OnStartButtonPressed;
 		_quitButton.Pressed += OnQuitButtonPressed;
 		PlayTitleAnimation();
@@ -42,9 +48,12 @@ public partial class StartMenu : Node
 		await Task.Delay(_delayBetweenAnimationsInMs);
 		_murderSprite.Scale = _startScale;
 		_murderSprite.Show();
-		var murderTween = tree.CreateTween();
-		murderTween.TweenProperty(_murderSprite, "scale", _finishScale, _murderScaleDuration);
-		await ToSignal(murderTween, "finished");
+		tween = tree.CreateTween();
+		tween.TweenProperty(_murderSprite, "scale", _finishScale, _murderScaleDuration);
+		await ToSignal(tween, "finished");
+		tween = tree.CreateTween();
+		tween.TweenProperty(_background, "modulate", _endColor, _colorChangeDurationInMs);
+		await ToSignal(tween, "finished");
 		await Task.Delay(_uiShowDelayInMs);
 		_ui.Show();
 	}
