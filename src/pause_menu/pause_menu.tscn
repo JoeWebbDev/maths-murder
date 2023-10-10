@@ -3,12 +3,13 @@
 [ext_resource type="Script" path="res://src/pause_menu/PauseMenu.cs" id="1_2eerj"]
 [ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/maths_murder_button/maths_murder_button.tscn" id="1_x4mfi"]
 
-[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("_resumeButton", "_settingsButton", "_quitToMenuButton")]
+[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("_resumeButton", "_settingsButton", "_quitToMenuButton", "_label")]
 process_mode = 3
 script = ExtResource("1_2eerj")
 _resumeButton = NodePath("ResumeButton")
 _settingsButton = NodePath("SettingsButton")
 _quitToMenuButton = NodePath("QuitToMenuButton")
+_label = NodePath("Label")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8
