@@ -17,7 +17,6 @@ size = Vector2(20, 368)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uxfqg"]
 shader = ExtResource("11_r80ku")
-shader_parameter/size = Vector2(32, 28)
 
 [node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "InputController", "AiController", "Player", "Enemy", "Timer", "_pauseMenu", "_preFightPlaceholderScreen", "_cameraController", "_deathPostProcess")]
 process_mode = 1

@@ -1,6 +1,5 @@
 shader_type canvas_item;
 
-uniform vec2 size = vec2(32.0, 28.0);
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
 void fragment() {

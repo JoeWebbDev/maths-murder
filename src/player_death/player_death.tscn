@@ -1,22 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3rs2pv57bf2d"]
+[gd_scene load_steps=9 format=3 uid="uid://c3rs2pv57bf2d"]
 
 [ext_resource type="Texture2D" uid="uid://4v243800outr" path="res://assets/death_spotlight.png" id="1_fbq3f"]
 [ext_resource type="Script" path="res://src/player_death/PlayerDeath.cs" id="1_nh301"]
-
-[sub_resource type="Animation" id="Animation_b7f6x"]
-resource_name = "initial_death"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-}
+[ext_resource type="Shader" path="res://src/shaders/fight_death.gdshader" id="2_0exdu"]
 
 [sub_resource type="Animation" id="Animation_lgjhd"]
 length = 0.001
@@ -49,12 +35,30 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
+[sub_resource type="Animation" id="Animation_b7f6x"]
+resource_name = "initial_death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w12yt"]
 _data = {
 "RESET": SubResource("Animation_lgjhd"),
 "arm_bleed": SubResource("Animation_6t6pw"),
 "initial_death": SubResource("Animation_b7f6x")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x5kic"]
+shader = ExtResource("2_0exdu")
 
 [node name="PlayerDeath" type="Node2D" node_paths=PackedStringArray("_playAgainButton", "_numOfEnemiesDefeated", "_animPlayer")]
 scale = Vector2(2, 2)
@@ -76,6 +80,15 @@ libraries = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GreyscaleFilter" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_x5kic")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Title" type="Label" parent="CanvasLayer"]
 anchors_preset = 5
