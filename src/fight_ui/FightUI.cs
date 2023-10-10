@@ -61,10 +61,10 @@ public partial class FightUI : CanvasLayer
 		_countdownLabel.Hide();
 	}
 
-	public void ShowResultScreen(bool playerWon)
+	public void ShowVictoryScreen()
 	{
 		_continueButton.Visible = true;
-		_countdownLabel.Text = playerWon ? "Player won! =)" : "Enemy won =(";
+		_countdownLabel.Text = "You win!";
 		_countdownLabel.Show();
 	}
 

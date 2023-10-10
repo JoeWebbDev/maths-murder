@@ -4,15 +4,8 @@ using System.Threading.Tasks;
 
 public partial class CinematicCamera : Camera2D
 {
-    [Export] public float PositionLerpSpeed { get; set; }
-    [Export] public float ZoomLerpSpeed { get; set; }
-    [Export] public float PositionLerpTolerance { get; set; } = 2f;
-    [Export] public float ZoomLerpTolerance { get; set; } = 0.1f;
-
     private Vector2 _viewportSize;
     private bool _isInitialized;
-    private Vector2 _destination;
-    private Vector2 _zoom;
     public override void _Ready()
     {
         ProcessMode = ProcessModeEnum.Always;
