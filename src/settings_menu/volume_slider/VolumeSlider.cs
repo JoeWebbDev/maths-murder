@@ -39,5 +39,4 @@ public partial class VolumeSlider : Node
 		_currentVolume = value;
 		AudioServer.SetBusVolumeDb(_busIndex, (float)Mathf.LinearToDb(value));
 	}
-
 }
