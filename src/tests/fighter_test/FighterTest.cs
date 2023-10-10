@@ -7,8 +7,6 @@ public partial class FighterTest : Node
 	[Export] private FighterData _fighterData;
 	[Export] private Fighter _fighter;
 	[Export] private SpinBox _legsYSpinBox;
-
-
 	private Node2D _armsGroup;
 	private Node2D _legsGroup;
 	private Node2D _spriteGroup;
@@ -24,12 +22,7 @@ public partial class FighterTest : Node
 	private Vector2 _armsOffset;
 	private Vector2 _bodyOffset;
 	private Vector2 _spriteOffset;
-	
 
-	private double _logDelay;
-
-
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		
@@ -42,16 +35,6 @@ public partial class FighterTest : Node
 		_legsOriginalGlobalYPosition = _legsGroup.GlobalPosition.Y;
 		_bodyOriginalPosition = _fighter.Position;
 		_spriteGroupOriginalPosition = _spriteGroup.Position;
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		// _logDelay += delta;
-		// if (_logDelay > 5)
-		// {
-		// 	LogFighterPositions();
-		// }
 	}
 
 	private void LogFighterPositions()
@@ -98,12 +81,10 @@ public partial class FighterTest : Node
 	
 	public void OnBodyYValueChanged(float value)
 	{
-		
 		_bodyOffset = new Vector2(_bodyOffset.X,value);
 		// Keeping feet on the floor by clamping Y pos of legs when body Y pos changes
 		_legsOffset = new Vector2(_legsOffset.X, -value/2);
 		_legsYSpinBox.SetValueNoSignal(_legsOffset.Y);
-		
 		OverrideSpritePositions();
 	}
 	

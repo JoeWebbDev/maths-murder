@@ -24,6 +24,9 @@ public partial class Fighter : CharacterBody2D
     [Export] public float DashDetectPeriod { get; private set; } = 0.3f;
     [Export] public int PlayerNumber { get; private set; }
     [Export] private Node2D _nodeToFlip;
+    private Node2D _armsGroup;
+    private Node2D _legsGroup;
+    private Node2D _spriteGroup;
     
     
     public int Health
@@ -56,6 +59,9 @@ public partial class Fighter : CharacterBody2D
         var enemyMask = (uint)(PlayerNumber == 1 ? 2 : 1);
         PunchColliderObject.CollisionMask = enemyMask;
         CollisionMask = enemyMask;
+        _spriteGroup = GetNode<Node2D>("ScalableChildren/SpriteGroup");
+        _armsGroup = GetNode<Node2D>("ScalableChildren/ArmsGroup");
+        _legsGroup = GetNode<Node2D>("ScalableChildren/LegsGroup");
     }
 
     public override void _Process(double delta)
@@ -90,31 +96,10 @@ public partial class Fighter : CharacterBody2D
         MaxHealth = data.Health;
         Health = data.Health;
         NumberRef.Texture = data.NumberTexture;
-        // var backLeg = GetNode<Sprite2D>("ScalableChildren/BackLeg");
-        // var frontLeg = GetNode<Sprite2D>("ScalableChildren/FrontLeg");
-        // var backArm = GetNode<Sprite2D>("ScalableChildren/BackArm");
-        // var frontArm = GetNode<Sprite2D>("ScalableChildren/FrontArm");
-        // var punchColliderObject = GetNode<Area2D>("ScalableChildren/PunchColliderObject");
-        // var bodyCollider = GetNode<CollisionShape2D>("BodyCollider");
-        //
-        // if (data.LegsTransformOffset != Vector2.Zero)
-        // {
-        //     // Workaround for offset on the back leg.
-        //     var backLegPos = backLeg.Position;
-        //     backLegPos.X += data.LegsTransformOffset.X;
-        //     backLeg.Position = backLegPos;
-        //     
-        //     backLeg.Offset += data.LegsTransformOffset;
-        //     frontLeg.Offset += data.LegsTransformOffset;
-        // }
-        // if (data.ArmsTransformOffset != Vector2.Zero)
-        // {
-        //     backArm.Offset += data.ArmsTransformOffset;
-        //     frontArm.Offset += data.ArmsTransformOffset;
-        //     punchColliderObject.Position += data.ArmsTransformOffset;
-        //     bodyCollider.Position += data.ArmsTransformOffset;
-        // }
-        
+        _armsGroup.Position += data.ArmsOffset;
+        _legsGroup.Position += data.LegsOffset;
+        Position += data.BodyOffset;
+        _spriteGroup.Position += data.SpriteOffset;
         GodotLogger.LogDebug($"Fighter loaded! FighterData: {data}");
     }
 
