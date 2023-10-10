@@ -10,6 +10,9 @@ public partial class Fight : Node
     [Signal]
     public delegate void QuitRequestedEventHandler();
 
+    [Signal]
+    public delegate void PlayerDeathEventHandler();
+
     [Export] public FightUI Ui;
     [Export] public FightInputController InputController { get; private set; }
     [Export] public AIController AiController { get; set; }
@@ -19,6 +22,14 @@ public partial class Fight : Node
     [Export] private PauseMenu _pauseMenu;
     [Export] private int _fightCountdownDuration;
     [Export] private Sprite2D _preFightPlaceholderScreen;
+    [Export] private FightCameraController _cameraController;
+
+    [ExportGroup("Death related properties")]
+    [Export] private float _engineTimeScaleOnDeath = 0.3f;
+    [Export] private ColorRect _deathPostProcess;
+    [Export] private float _cameraPanAndZoomRawDurationOnDeath = 1f;
+    [Export] private Vector2 _cameraZoomOnDeath = new(2f, 2f);
+    [Export] private float _maxDurationBeforeSceneSwitchOnDeath = 2f;
 
     private GameDataManager _gameDataManager;
 
@@ -78,7 +89,6 @@ public partial class Fight : Node
     {
         Engine.TimeScale = 1f;
         GetTree().Paused = false;
-        _gameDataManager.ResetPlayerData();
         EmitSignal(SignalName.QuitRequested);
     }
 
@@ -89,15 +99,35 @@ public partial class Fight : Node
 
     private void EndFight()
     {
-        // We can use this as an alternative to GetTree().Paused for bullet time
-        Engine.TimeScale = 0.2f;
-        // GetTree().Paused = true;
         var playerWon = Player.Health > Enemy.Health;
         if (playerWon)
         {
-            _gameDataManager.RegisterDefeatedOpponent();
+            OnFightWon();
+            return;
         }
 
-        Ui.ShowResultScreen(playerWon);
+        OnFightLost();
+    }
+
+    private void OnFightWon()
+    {
+        // We can use this as an alternative to GetTree().Paused for bullet time
+        Engine.TimeScale = 0.5f;
+        _gameDataManager.RegisterDefeatedOpponent();
+        Ui.ShowVictoryScreen();
+        return;
+    }
+
+    private async void OnFightLost()
+    {
+        _deathPostProcess.Show();
+        Engine.TimeScale = _engineTimeScaleOnDeath;
+        _cameraController.Freeze = true;
+        var cameraMoveTask = _cameraController.CinematicCamera.SendToPosition(Player.GlobalPosition, _cameraPanAndZoomRawDurationOnDeath);
+        var cameraZoomTask = _cameraController.CinematicCamera.SendToZoomValue(_cameraZoomOnDeath, _cameraPanAndZoomRawDurationOnDeath);
+        var maxDurationTask = Task.Delay((int)(_maxDurationBeforeSceneSwitchOnDeath * 1000));
+        await Task.WhenAny(maxDurationTask, Task.WhenAll(cameraMoveTask, cameraZoomTask));
+        // Go to death scene, shows stats of the game etc
+        EmitSignal(SignalName.PlayerDeath);
     }
 }

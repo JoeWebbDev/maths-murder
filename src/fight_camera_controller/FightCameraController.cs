@@ -1,26 +1,26 @@
 using Godot;
 using System;
 
-public partial class FightCameraController : Camera2D
+public partial class FightCameraController : Node2D
 {
     [Export] private Fighter _player;
     [Export] private Fighter _enemy;
     [Export] private float _boundaryFeather;
     [Export] private float _lerpSpeed;
-
+    [Export] public CinematicCamera CinematicCamera { get; private set; }
+    public bool Freeze { get; set; }
     private Vector2 _viewportSize;
-
     private Vector2 _destination;
+    
     public override void _Ready()
     {
-        ProcessMode = ProcessModeEnum.Always;
-        // Places the camera in the middle to match what we're used to in the editor
         _viewportSize = GetViewportRect().Size;
-        Offset = new Vector2(_viewportSize.X / 2, _viewportSize.Y / 2);
     }
 
     public override void _Process(double delta)
     {
+        if (Freeze) return;
+        
         // 1 - find the distance between player & enemy
         var playerPos = _player.GlobalPosition;
         var enemyPos = _enemy.GlobalPosition;
@@ -29,7 +29,7 @@ public partial class FightCameraController : Camera2D
         var xMidpoint = sumOfXPositions != 0 ? sumOfXPositions / 2 : sumOfXPositions;
         
         // While we're here, lets lerp to the midpoint of both players
-        Offset = Offset.Lerp(new Vector2(xMidpoint, Offset.Y), (float)delta * _lerpSpeed);
+        CinematicCamera.Offset = CinematicCamera.Offset.Lerp(new Vector2(xMidpoint, CinematicCamera.Offset.Y), (float)delta * _lerpSpeed);
         
 
         // 2 - If distance > viewport size, find multiplier required to get viewport size > distance
@@ -50,6 +50,6 @@ public partial class FightCameraController : Camera2D
         _destination = new Vector2(multiplier, multiplier);
         
         // 4 - Lerp to destination
-        Zoom = Zoom.Lerp(_destination, (float)delta * _lerpSpeed);
+        CinematicCamera.Zoom = CinematicCamera.Zoom.Lerp(_destination, (float)delta * _lerpSpeed);
     }
 }

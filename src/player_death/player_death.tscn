@@ -1,0 +1,131 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3rs2pv57bf2d"]
+
+[ext_resource type="Texture2D" uid="uid://4v243800outr" path="res://assets/death_spotlight.png" id="1_fbq3f"]
+[ext_resource type="Script" path="res://src/player_death/PlayerDeath.cs" id="1_nh301"]
+[ext_resource type="Shader" path="res://src/shaders/fight_death.gdshader" id="2_0exdu"]
+
+[sub_resource type="Animation" id="Animation_lgjhd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_6t6pw"]
+resource_name = "arm_bleed"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_b7f6x"]
+resource_name = "initial_death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w12yt"]
+_data = {
+"RESET": SubResource("Animation_lgjhd"),
+"arm_bleed": SubResource("Animation_6t6pw"),
+"initial_death": SubResource("Animation_b7f6x")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x5kic"]
+shader = ExtResource("2_0exdu")
+
+[node name="PlayerDeath" type="Node2D" node_paths=PackedStringArray("_playAgainButton", "_numOfEnemiesDefeated", "_animPlayer")]
+scale = Vector2(2, 2)
+script = ExtResource("1_nh301")
+_playAgainButton = NodePath("CanvasLayer/Button")
+_numOfEnemiesDefeated = NodePath("CanvasLayer/NumOfTotalEnemiesDefeated")
+_animPlayer = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+texture = ExtResource("1_fbq3f")
+hframes = 10
+vframes = 2
+frame = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w12yt")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GreyscaleFilter" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_x5kic")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.5
+offset_top = 82.0
+offset_right = 35.5
+offset_bottom = 108.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Wasted..."
+
+[node name="TotalEnemiesDefeated" type="Label" parent="CanvasLayer"]
+offset_left = 21.0
+offset_top = 140.0
+offset_right = 203.0
+offset_bottom = 166.0
+text = "Total enemies defeated"
+
+[node name="NumOfTotalEnemiesDefeated" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = -10.0
+offset_right = -32.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 520.0
+offset_top = 290.0
+offset_right = 606.0
+offset_bottom = 330.0
+text = "Play again?"
