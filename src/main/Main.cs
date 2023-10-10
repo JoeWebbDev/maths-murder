@@ -9,11 +9,14 @@ public partial class Main : Node
 	[Export] private PackedScene _trainingScene;
 	[Export] private PackedScene _bracketScene;
 	[Export] private PackedScene _chooseNextFightScene;
+	[Export] private PackedScene _playerDeathScene;
 	[Export] private ScreenFader _screenFader;
 	private Node _currentScene;
+	private GameDataManager _gameDataManager;
 	
 	public override void _Ready()
 	{
+		_gameDataManager = GetNode<GameDataManager>("/root/GameDataManager");
 		InstantiateStartMenuScene();
 	}
 
@@ -33,6 +36,7 @@ public partial class Main : Node
 
 	private async Task LoadStartMenuScene()
 	{
+		_gameDataManager.ResetPlayerData();
 		await _screenFader.FadeOutAsync();
 		InstantiateStartMenuScene();
 		await _screenFader.FadeInAsync();
@@ -60,6 +64,25 @@ public partial class Main : Node
 		await _screenFader.FadeInAsync();
 	}
 
+	private async Task LoadPlayerDeathScene()
+	{
+		await _screenFader.FadeOutAsync();
+		Engine.TimeScale = 1f;
+		var playerDeathScene = InstantiatePlayerDeathScene();
+		playerDeathScene.PlayAnimations();
+		await _screenFader.FadeInAsync();
+	}
+
+	private PlayerDeath InstantiatePlayerDeathScene()
+	{
+		var playerDeathScene = _playerDeathScene.Instantiate<PlayerDeath>();
+		_currentScene?.QueueFree();
+		_currentScene = playerDeathScene;
+		playerDeathScene.PlayAgainRequested += async () => { await LoadStartMenuScene(); };
+		AddChild(playerDeathScene);
+		return playerDeathScene;
+	}
+
 	private void QuitGame()
 	{
 		GetTree().Root.PropagateNotification((int)NotificationWMCloseRequest);
@@ -82,6 +105,7 @@ public partial class Main : Node
 		_currentScene = fightScene;
 		fightScene.QuitRequested += async () => { await LoadStartMenuScene(); };
 		fightScene.ContinueGameRequested += async () => { await LoadTrainingScene(); };
+		fightScene.PlayerDeath += async () => { await LoadPlayerDeathScene(); };
 		AddChild(fightScene);
 		return fightScene;
 	}

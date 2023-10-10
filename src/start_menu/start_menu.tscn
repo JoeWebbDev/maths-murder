@@ -1,20 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxynmlovonl6s"]
+[gd_scene load_steps=6 format=3 uid="uid://dxynmlovonl6s"]
 
 [ext_resource type="Script" path="res://src/start_menu/StartMenu.cs" id="1_ka7b5"]
 [ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/maths_murder_button/maths_murder_button.tscn" id="2_8mrqp"]
+[ext_resource type="Texture2D" uid="uid://ydj0103w2qfe" path="res://assets/start_menu_background.png" id="2_l1vws"]
+[ext_resource type="Texture2D" uid="uid://r1lb1gi63llw" path="res://assets/maths.png" id="4_0p4a0"]
+[ext_resource type="Texture2D" uid="uid://327s7rtw0lvm" path="res://assets/murder.png" id="5_frr7c"]
 
-[node name="StartMenu" type="Node" node_paths=PackedStringArray("_startButton", "_quitButton")]
+[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_startButton", "_quitButton", "_ui", "_mask", "_murderSprite", "_background")]
 script = ExtResource("1_ka7b5")
 _startButton = NodePath("CanvasLayer/StartButton")
 _quitButton = NodePath("CanvasLayer/QuitButton")
+_ui = NodePath("CanvasLayer")
+_uiShowDelayInMs = 1500
+_delayBetweenAnimationsInMs = 500
+_mask = NodePath("Control")
+_maskStartingSize = Vector2(50, 140)
+_maskFinishingSize = Vector2(240, 140)
+_maskSlideDuration = 0.75
+_murderSprite = NodePath("Murder")
+_startScale = Vector2(100, 100)
+_finishScale = Vector2(1, 1)
+_murderScaleDuration = 0.4
+_background = NodePath("Sprite2D")
+_startColor = Color(0, 0, 0, 1)
+_endColor = Color(0.364706, 0.364706, 0.364706, 1)
+_colorChangeDuration = 1.0
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.988235, 0.341176, 0.411765, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.372549, 0.372549, 0.372549, 1)
+position = Vector2(320, 177)
+scale = Vector2(1.25098, 1.25098)
+texture = ExtResource("2_l1vws")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -46,16 +62,21 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Quit"
 
-[node name="TitleLabel" type="Label" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -100.0
-offset_top = 50.0
-offset_right = 100.0
-offset_bottom = 102.0
-grow_horizontal = 2
-text = "Maths Murder"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="Murder" type="Sprite2D" parent="."]
+position = Vector2(427, 97)
+texture = ExtResource("5_frr7c")
+
+[node name="Control" type="Control" parent="."]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 60.0
+offset_top = 24.0
+offset_right = 320.0
+offset_bottom = 164.0
+metadata/_edit_group_ = true
+
+[node name="Maths" type="Sprite2D" parent="Control"]
+position = Vector2(142, 67)
+texture = ExtResource("4_0p4a0")
+region_rect = Rect2(-385, -192, 617, 317)

@@ -1,7 +1,76 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dgyr4v8iy4vqw"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dgyr4v8iy4vqw"]
+
+[ext_resource type="FontFile" uid="uid://ccsjhotyyojai" path="res://assets/funkrocker_font.otf" id="1_jo1dp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llcjk"]
+bg_color = Color(0, 0, 0, 0.517647)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.980392, 0, 0, 0.356863)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0712v"]
+bg_color = Color(0.682353, 0.0117647, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.917647, 0.603922, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fuq4r"]
+bg_color = Color(0.682353, 0.0117647, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rls3m"]
-bg_color = Color(0.32549, 0.662745, 0.670588, 1)
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.980392, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ylorj"]
+bg_color = Color(0.839216, 0.513726, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.980392, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
 
 [resource]
+default_font = ExtResource("1_jo1dp")
+Button/styles/disabled = SubResource("StyleBoxFlat_llcjk")
+Button/styles/focus = SubResource("StyleBoxFlat_0712v")
+Button/styles/hover = SubResource("StyleBoxFlat_fuq4r")
 Button/styles/normal = SubResource("StyleBoxFlat_rls3m")
+Button/styles/pressed = SubResource("StyleBoxFlat_ylorj")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bawgstg5kpa4c"]
+
+[ext_resource type="Script" path="res://src/fight_camera_controller/FightCameraController.cs" id="1_tnvfh"]
+[ext_resource type="PackedScene" uid="uid://che4g3b2ucx37" path="res://src/cinematic_camera/cinematic_camera.tscn" id="2_amwrk"]
+
+[node name="FightCamera" type="Node2D" node_paths=PackedStringArray("CinematicCamera")]
+script = ExtResource("1_tnvfh")
+_boundaryFeather = 150.0
+_lerpSpeed = 4.0
+CinematicCamera = NodePath("CinematicCamera")
+
+[node name="CinematicCamera" parent="." instance=ExtResource("2_amwrk")]
+process_mode = 3
