@@ -28,6 +28,11 @@ public partial class AIStateController : Resource
     [Export] protected bool EnableCombos { get; set; } = true;
     [ExportSubgroup("Punch")]
     [Export] protected float PunchRange { get; set; } = 130f;
+    [ExportGroup("Block")]
+    [Export] protected bool PredictiveBlock { get; set; } = true;
+
+    [Export(PropertyHint.Range, "0,100,1")]
+    protected int PredictiveBlockChance { get; set; } = 50;
 
     protected float CurrentDistanceBetweenFighters { get; set; }
     
@@ -41,7 +46,22 @@ public partial class AIStateController : Resource
     {
         CurrentDistanceBetweenFighters = CalculateDistanceBetweenFighters(aiFighter, playerTarget);
         if (AttackOnCooldown()) _currentAttackCooldown -= (float)delta;
-        
+
+        if (playerTarget.CombatState is not null && PredictiveBlock)
+        {
+            var shouldBlock = GD.Randi() % 100 < PredictiveBlockChance;
+            if (shouldBlock)
+            {
+                aiFighter.Execute(new BlockCommand());
+                return;
+            }
+        }
+
+        if (playerTarget.CombatState is null && aiFighter.CombatState is BlockState)
+        {
+            aiFighter.Execute(new BlockCommand(true));
+        }
+
         if (TrackPlayer)
         {
             if (!AtPreferredDistance())
