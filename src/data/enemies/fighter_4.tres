@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bw8b5twih23h4"]
+
+[ext_resource type="Resource" uid="uid://dh388vgfd31cu" path="res://src/data/ai/noob_ai_state_controller.tres" id="1_3v635"]
+[ext_resource type="Texture2D" uid="uid://bdcorg8w00xdl" path="res://assets/art/number_4.png" id="2_l5fhu"]
+[ext_resource type="Script" path="res://src/data/FighterData.cs" id="3_x8e7w"]
+
+[resource]
+script = ExtResource("3_x8e7w")
+Health = 10
+Speed = 1
+Strength = 1
+Defense = 1
+ExperiencePointsValue = 4
+NumberTexture = ExtResource("2_l5fhu")
+ArmsTransformOffset = Vector2(50, 0)
+LegsTransformOffset = Vector2(0, 0)
+AiStateController = ExtResource("1_3v635")

@@ -5,6 +5,7 @@ public partial class StartMenu : Node
 {
 	[Export] private Button _startButton;
 	[Export] private Button _quitButton;
+	[Export] private TextureButton _settingsButton;
 	[Export] private CanvasLayer _ui;
 	[Signal] public delegate void StartGameEventHandler();
 	[Signal] public delegate void QuitGameEventHandler();
@@ -27,14 +28,19 @@ public partial class StartMenu : Node
 	[Export] private Color _startColor;
 	[Export] private Color _endColor;
 	[Export] private float _colorChangeDuration;
+	private SettingsModal _settingsModal;
 
 	public override void _Ready()
 	{
+		_settingsModal = GetNode<SettingsModal>("/root/SettingsModal");
 		_ui.Hide();
 		_murderSprite.Hide();
 		_background.Modulate = _startColor;
 		_startButton.Pressed += OnStartButtonPressed;
 		_quitButton.Pressed += OnQuitButtonPressed;
+		_settingsButton.Pressed += OnSettingsButtonPressed;
+		_settingsModal.VisibilityChanged += OnModalVisibilityChanged;
+
 		PlayTitleAnimation();
 	}
 
@@ -66,5 +72,16 @@ public partial class StartMenu : Node
 	private void OnQuitButtonPressed()
 	{
 		EmitSignal(SignalName.QuitGame);
+	}
+	
+	private void OnSettingsButtonPressed()
+	{
+		_settingsModal.Show();
+	}
+	
+	private void OnModalVisibilityChanged()
+	{
+		var visible = _settingsModal.Visible;
+		_ui.Visible = !visible;
 	}
 }

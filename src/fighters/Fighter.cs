@@ -24,6 +24,9 @@ public partial class Fighter : CharacterBody2D
     [Export] public float DashDetectPeriod { get; private set; } = 0.3f;
     [Export] public int PlayerNumber { get; private set; }
     [Export] private Node2D _nodeToFlip;
+    private Node2D _armsGroup;
+    private Node2D _legsGroup;
+    private Node2D _spriteGroup;
     
     
     public int Health
@@ -56,6 +59,9 @@ public partial class Fighter : CharacterBody2D
         var enemyMask = (uint)(PlayerNumber == 1 ? 2 : 1);
         PunchColliderObject.CollisionMask = enemyMask;
         CollisionMask = enemyMask;
+        _spriteGroup = GetNode<Node2D>("ScalableChildren/SpriteGroup");
+        _armsGroup = GetNode<Node2D>("ScalableChildren/ArmsGroup");
+        _legsGroup = GetNode<Node2D>("ScalableChildren/LegsGroup");
     }
 
     public override void _Process(double delta)
@@ -90,6 +96,10 @@ public partial class Fighter : CharacterBody2D
         MaxHealth = data.Health;
         Health = data.Health;
         NumberRef.Texture = data.NumberTexture;
+        _armsGroup.Position += data.ArmsOffset;
+        _legsGroup.Position += data.LegsOffset;
+        Position += data.BodyOffset;
+        _spriteGroup.Position += data.SpriteOffset;
         GodotLogger.LogDebug($"Fighter loaded! FighterData: {data}");
     }
 

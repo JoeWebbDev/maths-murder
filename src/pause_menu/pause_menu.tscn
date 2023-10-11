@@ -3,12 +3,13 @@
 [ext_resource type="Script" path="res://src/pause_menu/PauseMenu.cs" id="1_2eerj"]
 [ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/maths_murder_button/maths_murder_button.tscn" id="1_x4mfi"]
 
-[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("_resumeButton", "_settingsButton", "_quitToMenuButton")]
+[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("_resumeButton", "_settingsButton", "_quitToMenuButton", "_label")]
 process_mode = 3
 script = ExtResource("1_2eerj")
-_resumeButton = NodePath("ResumeButton")
-_settingsButton = NodePath("SettingsButton")
-_quitToMenuButton = NodePath("QuitToMenuButton")
+_resumeButton = NodePath("MarginContainer/VBoxContainer/ResumeButton")
+_settingsButton = NodePath("MarginContainer/VBoxContainer/SettingsButton")
+_quitToMenuButton = NodePath("MarginContainer/VBoxContainer/QuitToMenuButton")
+_label = NodePath("Label")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8
@@ -16,53 +17,52 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -28.5
-offset_top = -70.0
-offset_right = 28.5
-offset_bottom = -44.0
+offset_left = -63.5
+offset_top = -80.0
+offset_right = 63.5
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.976563, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
 text = "Paused"
 
-[node name="ResumeButton" parent="." instance=ExtResource("1_x4mfi")]
-anchors_preset = 8
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -15.5
-offset_right = 31.0
-offset_bottom = 15.5
+anchor_bottom = 1.0
+offset_left = -112.5
+offset_top = -200.0
+offset_right = 112.5
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ResumeButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_x4mfi")]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_vertical = 8
 text = "Resume"
 
-[node name="SettingsButton" parent="." instance=ExtResource("1_x4mfi")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = 34.5
-offset_right = 35.0
-offset_bottom = 65.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SettingsButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_x4mfi")]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_vertical = 8
 text = "Settings"
 
-[node name="QuitToMenuButton" parent="." instance=ExtResource("1_x4mfi")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -56.5
-offset_top = 84.5
-offset_right = 56.5
-offset_bottom = 115.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="QuitToMenuButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_x4mfi")]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_vertical = 8
 text = "Quit To Menu
 "

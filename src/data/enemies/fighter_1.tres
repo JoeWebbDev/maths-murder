@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://byqaim383kubm"]
 
-[ext_resource type="Texture2D" uid="uid://4vt0t23jateu" path="res://assets/number_ref.png" id="1_ni4e4"]
 [ext_resource type="Script" path="res://src/data/FighterData.cs" id="1_xa5ab"]
 [ext_resource type="Resource" uid="uid://3xio7un0d7uw" path="res://src/data/ai/proper_noob_ai_state_controller.tres" id="1_ywwgc"]
+[ext_resource type="Texture2D" uid="uid://4vt0t23jateu" path="res://assets/art/number_ref.png" id="2_utlo1"]
 
 [resource]
 script = ExtResource("1_xa5ab")
@@ -11,5 +11,9 @@ Speed = 1
 Strength = 1
 Defense = 1
 ExperiencePointsValue = 1
-NumberTexture = ExtResource("1_ni4e4")
+NumberTexture = ExtResource("2_utlo1")
+ArmsOffset = Vector2(0, 0)
+LegsOffset = Vector2(0, 0)
+BodyOffset = Vector2(0, 0)
+SpriteOffset = Vector2(0, 0)
 AiStateController = ExtResource("1_ywwgc")

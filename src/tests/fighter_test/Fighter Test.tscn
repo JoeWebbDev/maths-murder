@@ -1,0 +1,150 @@
+[gd_scene load_steps=5 format=3 uid="uid://cal7htm4swys"]
+
+[ext_resource type="Script" path="res://src/tests/fighter_test/FighterTest.cs" id="1_tv0lk"]
+[ext_resource type="Resource" uid="uid://bw8b5twih23h4" path="res://src/data/enemies/fighter_4.tres" id="2_63r1p"]
+[ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="3_t7njm"]
+[ext_resource type="PackedScene" uid="uid://2ctuwd5ypoun" path="res://src/fight_input_controller/fight_input_controller.tscn" id="4_xgesm"]
+
+[node name="Fighter Test" type="Node" node_paths=PackedStringArray("_fighter", "_legsYSpinBox")]
+script = ExtResource("1_tv0lk")
+_fighterData = ExtResource("2_63r1p")
+_fighter = NodePath("Fighter")
+_legsYSpinBox = NodePath("VBoxContainer/HBoxContainer/LegsYInput")
+
+[node name="Fighter" parent="." instance=ExtResource("3_t7njm")]
+
+[node name="InputController" parent="." node_paths=PackedStringArray("CurrentFighter") instance=ExtResource("4_xgesm")]
+CurrentFighter = NodePath("../Fighter")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -182.0
+offset_top = 15.0
+offset_right = -18.0
+offset_bottom = 103.0
+grow_horizontal = 0
+theme_override_constants/separation = 5
+
+[node name="BodyOffsetLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Character Body Offset"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "X: "
+
+[node name="BodyXInput" type="SpinBox" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+min_value = -500.0
+max_value = 500.0
+update_on_text_changed = true
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Y: "
+
+[node name="BodyYInput" type="SpinBox" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+min_value = -500.0
+max_value = 500.0
+update_on_text_changed = true
+
+[node name="LegsOffsetLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Legs Offset"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "X: "
+
+[node name="LegsXInput" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+min_value = -500.0
+max_value = 500.0
+update_on_text_changed = true
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Y: "
+
+[node name="LegsYInput" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+min_value = -500.0
+max_value = 500.0
+editable = false
+update_on_text_changed = true
+
+[node name="ArmsOffsetLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Arms Offset"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "X: "
+
+[node name="ArmsXInput" type="SpinBox" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+min_value = -500.0
+max_value = 500.0
+update_on_text_changed = true
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Y: "
+
+[node name="ArmsYInput" type="SpinBox" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+min_value = -500.0
+max_value = 500.0
+update_on_text_changed = true
+
+[node name="SpriteOffsetLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Sprite Offset"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "X: "
+
+[node name="SpriteXInput" type="SpinBox" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+min_value = -500.0
+max_value = 500.0
+update_on_text_changed = true
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Y: "
+
+[node name="SpriteYInput" type="SpinBox" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+min_value = -500.0
+max_value = 500.0
+update_on_text_changed = true
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Log positions"
+
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer3/BodyXInput" to="." method="OnBodyXValueChanged"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer3/BodyYInput" to="." method="OnBodyYValueChanged"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/LegsXInput" to="." method="OnLegsXValueChanged"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/ArmsXInput" to="." method="OnArmsXValueChanged"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/ArmsYInput" to="." method="OnArmsYValueChanged"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer4/SpriteXInput" to="." method="OnSpriteXValueChanged"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer4/SpriteYInput" to="." method="OnSpriteYValueChanged"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="OnButtonPressed"]

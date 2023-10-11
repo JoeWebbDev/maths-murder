@@ -2,21 +2,21 @@
 
 [ext_resource type="Script" path="res://src/fight/Fight.cs" id="1_byaux"]
 [ext_resource type="PackedScene" uid="uid://xy4kxgxscvui" path="res://src/fight_ui/fight_ui.tscn" id="2_ecqmq"]
+[ext_resource type="Texture2D" uid="uid://jmbjatkvyuwa" path="res://assets/art/fight_background.png" id="2_nvten"]
 [ext_resource type="PackedScene" uid="uid://cwrt3mai5fuk7" path="res://src/match_timer/match_timer.tscn" id="3_gb5ic"]
-[ext_resource type="Texture2D" uid="uid://bxuhgb1q4g4tk" path="res://assets/super_cool_fight_animation.png" id="4_ok2y4"]
+[ext_resource type="Texture2D" uid="uid://bxuhgb1q4g4tk" path="res://assets/art/super_cool_fight_animation.png" id="4_gmqol"]
 [ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="5_deabo"]
 [ext_resource type="PackedScene" uid="uid://2ctuwd5ypoun" path="res://src/fight_input_controller/fight_input_controller.tscn" id="6_5fy5m"]
-[ext_resource type="Texture2D" uid="uid://jmbjatkvyuwa" path="res://assets/fight_background.png" id="6_7fccv"]
 [ext_resource type="PackedScene" uid="uid://dmq57kpgult53" path="res://src/ai_controller/ai_controller.tscn" id="6_q1701"]
 [ext_resource type="PackedScene" uid="uid://bflo0k1k6urxb" path="res://src/pause_menu/pause_menu.tscn" id="9_4f5w0"]
 [ext_resource type="PackedScene" uid="uid://bawgstg5kpa4c" path="res://src/fight_camera_controller/fight_camera_controller.tscn" id="9_07pf4"]
 [ext_resource type="Shader" path="res://src/shaders/fight_death.gdshader" id="11_r80ku"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vkdp"]
-size = Vector2(20, 368)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uxfqg"]
 shader = ExtResource("11_r80ku")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vkdp"]
+size = Vector2(20, 368)
 
 [node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "InputController", "AiController", "Player", "Enemy", "Timer", "_pauseMenu", "_preFightPlaceholderScreen", "_cameraController", "_deathPostProcess")]
 process_mode = 1
@@ -35,13 +35,32 @@ _deathPostProcess = NodePath("FightUI/DeathPostProcess")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(339, 51)
-texture = ExtResource("6_7fccv")
+texture = ExtResource("2_nvten")
+
+[node name="FightUI" parent="." node_paths=PackedStringArray("_player", "_enemy", "_matchTimer") instance=ExtResource("2_ecqmq")]
+_player = NodePath("../Player")
+_enemy = NodePath("../Enemy")
+_matchTimer = NodePath("../MatchTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="FightUI"]
+visible = false
+position = Vector2(320, 180)
+texture = ExtResource("4_gmqol")
+
+[node name="DeathPostProcess" type="ColorRect" parent="FightUI"]
+visible = false
+material = SubResource("ShaderMaterial_uxfqg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="MatchTimer" parent="." instance=ExtResource("3_gb5ic")]
 TotalMatchTime = 30
 
 [node name="Player" parent="." instance=ExtResource("5_deabo")]
-PlayerNumber = 1
 
 [node name="Enemy" parent="." instance=ExtResource("5_deabo")]
 position = Vector2(532, 204)
@@ -74,23 +93,3 @@ position = Vector2(800, 174)
 shape = SubResource("RectangleShape2D_6vkdp")
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_4f5w0")]
-
-[node name="FightUI" parent="." node_paths=PackedStringArray("_player", "_enemy", "_matchTimer") instance=ExtResource("2_ecqmq")]
-_player = NodePath("../Player")
-_enemy = NodePath("../Enemy")
-_matchTimer = NodePath("../MatchTimer")
-
-[node name="Sprite2D" type="Sprite2D" parent="FightUI"]
-visible = false
-position = Vector2(320, 180)
-texture = ExtResource("4_ok2y4")
-
-[node name="DeathPostProcess" type="ColorRect" parent="FightUI"]
-visible = false
-material = SubResource("ShaderMaterial_uxfqg")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
