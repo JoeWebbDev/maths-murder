@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://byqaim383kubm"]
 
-[ext_resource type="Resource" uid="uid://dh388vgfd31cu" path="res://src/data/ai/noob_ai_state_controller.tres" id="1_nii4v"]
 [ext_resource type="Script" path="res://src/data/FighterData.cs" id="1_xa5ab"]
+[ext_resource type="Resource" uid="uid://3xio7un0d7uw" path="res://src/data/ai/proper_noob_ai_state_controller.tres" id="1_ywwgc"]
 [ext_resource type="Texture2D" uid="uid://4vt0t23jateu" path="res://assets/art/number_ref.png" id="2_utlo1"]
 
 [resource]
@@ -16,4 +16,4 @@ ArmsOffset = Vector2(0, 0)
 LegsOffset = Vector2(0, 0)
 BodyOffset = Vector2(0, 0)
 SpriteOffset = Vector2(0, 0)
-AiStateController = ExtResource("1_nii4v")
+AiStateController = ExtResource("1_ywwgc")

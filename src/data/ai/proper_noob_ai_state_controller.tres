@@ -1,6 +1,18 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://3xio7un0d7uw"]
 
-[ext_resource type="Script" path="res://core/AI/ProperNoobAIStateController.cs" id="1_gmtv4"]
+[ext_resource type="Script" path="res://core/AI/NoobAIStateController.cs" id="1_32mgv"]
 
 [resource]
-script = ExtResource("1_gmtv4")
+script = ExtResource("1_32mgv")
+TrackPlayer = true
+TrackDelay = 1.0
+PreferredTrackingDistance = 130.0
+EnableDash = true
+DashDelay = 1.0
+DistanceFromPreferredRequiredToDash = 400.0
+AttackCooldown = 6.0
+AutoAttack = true
+EnableCombos = true
+PunchRange = 130.0
+PredictiveBlock = false
+PredictiveBlockChance = 50

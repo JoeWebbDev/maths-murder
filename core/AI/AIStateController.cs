@@ -39,6 +39,7 @@ public partial class AIStateController : Resource
     private float _currentAttackCooldown = 0f;
     private float _currentTrackDelay = 0f;
     private float _currentDashDelay = 0f;
+    private bool _blockConsumed = false;
     
     public AIStateController() { }
 
@@ -47,17 +48,24 @@ public partial class AIStateController : Resource
         CurrentDistanceBetweenFighters = CalculateDistanceBetweenFighters(aiFighter, playerTarget);
         if (AttackOnCooldown()) _currentAttackCooldown -= (float)delta;
 
-        if (playerTarget.CombatState is not null && PredictiveBlock)
+        if (playerTarget.CombatState is not null and not BlockState && PredictiveBlock)
         {
-            var shouldBlock = GD.Randi() % 100 < PredictiveBlockChance;
+            if (_blockConsumed) return;
+            var randomNum = GD.Randi() % 100;
+            var shouldBlock = randomNum < PredictiveBlockChance;
+            GodotLogger.LogDebug(randomNum.ToString());
             if (shouldBlock)
             {
                 aiFighter.Execute(new BlockCommand());
                 return;
             }
+            _blockConsumed = true;
+            return;
         }
+        
+        if (playerTarget.CombatState is null or BlockState) _blockConsumed = false;
 
-        if (playerTarget.CombatState is null && aiFighter.CombatState is BlockState)
+        if (playerTarget.CombatState is null or BlockState && aiFighter.CombatState is BlockState)
         {
             aiFighter.Execute(new BlockCommand(true));
         }

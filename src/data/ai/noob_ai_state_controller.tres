@@ -14,3 +14,5 @@ AttackCooldown = 2.0
 AutoAttack = true
 EnableCombos = true
 PunchRange = 130.0
+PredictiveBlock = true
+PredictiveBlockChance = 50
