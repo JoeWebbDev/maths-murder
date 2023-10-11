@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://ccsjhotyyojai"
-path="res://.godot/imported/funkrocker_font.otf-d7687ae4ec43d32d8e6665e066c41606.fontdata"
+path="res://.godot/imported/funkrocker_font.otf-19aee4b6e02eab23ee5dbd354651b3ef.fontdata"
 
 [deps]
 
-source_file="res://assets/funkrocker_font.otf"
-dest_files=["res://.godot/imported/funkrocker_font.otf-d7687ae4ec43d32d8e6665e066c41606.fontdata"]
+source_file="res://assets/art/funkrocker_font.otf"
+dest_files=["res://.godot/imported/funkrocker_font.otf-19aee4b6e02eab23ee5dbd354651b3ef.fontdata"]
 
 [params]
 

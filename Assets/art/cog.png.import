@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4v243800outr"
-path="res://.godot/imported/death_spotlight.png-fd966bf3527c56e3b0b22b2994c859a5.ctex"
+uid="uid://bp3105bycs526"
+path="res://.godot/imported/cog.png-7130f488f9b8a09d80bd1a42034130ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/death_spotlight.png"
-dest_files=["res://.godot/imported/death_spotlight.png-fd966bf3527c56e3b0b22b2994c859a5.ctex"]
+source_file="res://assets/art/cog.png"
+dest_files=["res://.godot/imported/cog.png-7130f488f9b8a09d80bd1a42034130ae.ctex"]
 
 [params]
 

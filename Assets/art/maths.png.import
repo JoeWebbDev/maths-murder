@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://327s7rtw0lvm"
-path="res://.godot/imported/murder.png-89f66d36709df6264b8b675c6f981667.ctex"
+uid="uid://r1lb1gi63llw"
+path="res://.godot/imported/maths.png-2424be156c5b030a0f7261457e288de8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/murder.png"
-dest_files=["res://.godot/imported/murder.png-89f66d36709df6264b8b675c6f981667.ctex"]
+source_file="res://assets/art/maths.png"
+dest_files=["res://.godot/imported/maths.png-2424be156c5b030a0f7261457e288de8.ctex"]
 
 [params]
 

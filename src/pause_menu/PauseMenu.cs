@@ -8,7 +8,6 @@ public partial class PauseMenu : CanvasLayer
     [Export] private Button _quitToMenuButton;
     [Export] private Label _label;
     private SettingsModal _settingsModal;
-    private Godot.Collections.Array<Control> _pauseMenuItems;
     
     [Signal] public delegate void ResumeButtonPressedEventHandler();
     [Signal] public delegate void QuitToMenuButtonPressedEventHandler();

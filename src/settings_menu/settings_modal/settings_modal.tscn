@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c76mbffvhaped" path="res://src/settings_menu/display_mode_drop_down/display_mode_drop_down.tscn" id="1_8yc00"]
 [ext_resource type="Script" path="res://src/settings_menu/settings_modal/SettingsModal.cs" id="1_14per"]
 [ext_resource type="PackedScene" uid="uid://c2i78jw1rvawt" path="res://src/settings_menu/volume_slider/Volume Slider.tscn" id="2_boicf"]
-[ext_resource type="AudioStream" uid="uid://ynwrfv72llra" path="res://assets/art/DodgeTheme.wav" id="3_5okk6"]
+[ext_resource type="AudioStream" uid="uid://ynwrfv72llra" path="res://assets/audio/music/DodgeTheme.wav" id="4_y0lb7"]
 
 [node name="Settings Modal" type="CanvasLayer" node_paths=PackedStringArray("_displayModeOptionButton", "_masterSlider", "_musicSlider", "_sfxSlider", "_okayButton", "_closeButton")]
 process_mode = 3
@@ -103,6 +103,6 @@ size_flags_horizontal = 6
 text = "Close"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_5okk6")
+stream = ExtResource("4_y0lb7")
 autoplay = true
 bus = &"Music"

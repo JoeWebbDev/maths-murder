@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://c3rs2pv57bf2d"]
 
-[ext_resource type="Texture2D" uid="uid://4v243800outr" path="res://assets/death_spotlight.png" id="1_fbq3f"]
 [ext_resource type="Script" path="res://src/player_death/PlayerDeath.cs" id="1_nh301"]
 [ext_resource type="Shader" path="res://src/shaders/fight_death.gdshader" id="2_0exdu"]
+[ext_resource type="Texture2D" uid="uid://4v243800outr" path="res://assets/art/death_spotlight.png" id="2_oayef"]
 
 [sub_resource type="Animation" id="Animation_lgjhd"]
 length = 0.001
@@ -69,7 +69,7 @@ _animPlayer = NodePath("AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(160, 90)
-texture = ExtResource("1_fbq3f")
+texture = ExtResource("2_oayef")
 hframes = 10
 vframes = 2
 frame = 10

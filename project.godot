@@ -45,6 +45,7 @@ enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/MonoCust
 [gui]
 
 theme/custom="res://src/theme/primary_theme.tres"
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 

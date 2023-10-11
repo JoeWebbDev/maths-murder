@@ -1,15 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxynmlovonl6s"]
+[gd_scene load_steps=8 format=3 uid="uid://dxynmlovonl6s"]
 
 [ext_resource type="Script" path="res://src/start_menu/StartMenu.cs" id="1_ka7b5"]
 [ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/maths_murder_button/maths_murder_button.tscn" id="2_8mrqp"]
-[ext_resource type="Texture2D" uid="uid://ydj0103w2qfe" path="res://assets/start_menu_background.png" id="2_l1vws"]
-[ext_resource type="Texture2D" uid="uid://r1lb1gi63llw" path="res://assets/maths.png" id="4_0p4a0"]
-[ext_resource type="Texture2D" uid="uid://327s7rtw0lvm" path="res://assets/murder.png" id="5_frr7c"]
+[ext_resource type="Texture2D" uid="uid://ydj0103w2qfe" path="res://assets/art/start_menu_background.png" id="2_l1vws"]
+[ext_resource type="Texture2D" uid="uid://r1lb1gi63llw" path="res://assets/art/maths.png" id="4_0p4a0"]
+[ext_resource type="Texture2D" uid="uid://bp3105bycs526" path="res://assets/art/cog.png" id="4_c58vp"]
+[ext_resource type="Texture2D" uid="uid://327s7rtw0lvm" path="res://assets/art/murder.png" id="5_frr7c"]
+[ext_resource type="Texture2D" uid="uid://c734vj8ggxrhc" path="res://assets/art/cog_hover.png" id="5_p0m31"]
 
-[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_startButton", "_quitButton", "_ui", "_mask", "_murderSprite", "_background")]
+[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_startButton", "_quitButton", "_settingsButton", "_ui", "_mask", "_murderSprite", "_background")]
 script = ExtResource("1_ka7b5")
 _startButton = NodePath("CanvasLayer/StartButton")
 _quitButton = NodePath("CanvasLayer/QuitButton")
+_settingsButton = NodePath("CanvasLayer/MarginContainer/SettingsButton")
 _ui = NodePath("CanvasLayer")
 _uiShowDelayInMs = 1500
 _delayBetweenAnimationsInMs = 500
@@ -61,6 +64,21 @@ offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Quit"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="SettingsButton" type="TextureButton" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_c58vp")
+texture_hover = ExtResource("5_p0m31")
 
 [node name="Murder" type="Sprite2D" parent="."]
 position = Vector2(427, 97)

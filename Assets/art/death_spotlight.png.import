@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r1lb1gi63llw"
-path="res://.godot/imported/maths.png-6e1d562a992d1cfed853e81597ab6322.ctex"
+uid="uid://4v243800outr"
+path="res://.godot/imported/death_spotlight.png-c6821221f1ebd374db22550fd9da6692.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/maths.png"
-dest_files=["res://.godot/imported/maths.png-6e1d562a992d1cfed853e81597ab6322.ctex"]
+source_file="res://assets/art/death_spotlight.png"
+dest_files=["res://.godot/imported/death_spotlight.png-c6821221f1ebd374db22550fd9da6692.ctex"]
 
 [params]
 

@@ -12,11 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://bawgstg5kpa4c" path="res://src/fight_camera_controller/fight_camera_controller.tscn" id="9_07pf4"]
 [ext_resource type="Shader" path="res://src/shaders/fight_death.gdshader" id="11_r80ku"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vkdp"]
-size = Vector2(20, 368)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uxfqg"]
 shader = ExtResource("11_r80ku")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vkdp"]
+size = Vector2(20, 368)
 
 [node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "InputController", "AiController", "Player", "Enemy", "Timer", "_pauseMenu", "_preFightPlaceholderScreen", "_cameraController", "_deathPostProcess")]
 process_mode = 1
@@ -47,11 +47,20 @@ visible = false
 position = Vector2(320, 180)
 texture = ExtResource("4_gmqol")
 
+[node name="DeathPostProcess" type="ColorRect" parent="FightUI"]
+visible = false
+material = SubResource("ShaderMaterial_uxfqg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
 [node name="MatchTimer" parent="." instance=ExtResource("3_gb5ic")]
 TotalMatchTime = 30
 
 [node name="Player" parent="." instance=ExtResource("5_deabo")]
-PlayerNumber = 1
 
 [node name="Enemy" parent="." instance=ExtResource("5_deabo")]
 position = Vector2(532, 204)
@@ -84,23 +93,3 @@ position = Vector2(800, 174)
 shape = SubResource("RectangleShape2D_6vkdp")
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_4f5w0")]
-
-[node name="FightUI" parent="." node_paths=PackedStringArray("_player", "_enemy", "_matchTimer") instance=ExtResource("2_ecqmq")]
-_player = NodePath("../Player")
-_enemy = NodePath("../Enemy")
-_matchTimer = NodePath("../MatchTimer")
-
-[node name="Sprite2D" type="Sprite2D" parent="FightUI"]
-visible = false
-position = Vector2(320, 180)
-texture = ExtResource("4_ok2y4")
-
-[node name="DeathPostProcess" type="ColorRect" parent="FightUI"]
-visible = false
-material = SubResource("ShaderMaterial_uxfqg")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
