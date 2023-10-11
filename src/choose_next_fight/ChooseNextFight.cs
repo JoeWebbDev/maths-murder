@@ -21,12 +21,12 @@ public partial class ChooseNextFight : Node
             var fighterOption = _fighterScene.Instantiate<Fighter>();
             // We would have to figure out a smarter way rather than selected a random fighter!
             var randomFighter = _gameDataManager.GetRandomOpponentData(false);
+            AddChild(fighterOption);
             fighterOption.InitFighter(randomFighter);
             fighterOption.GlobalPosition = i == 0 ? _optionOnePos : _optionTwoPos;
             fighterOption.FlipH = i != 0;
             var button = i == 0 ? _optionOneButton : _optionTwoButton;
             button.Pressed += () => { OnFighterSelected(randomFighter); };
-            AddChild(fighterOption);
         }
     }
     
