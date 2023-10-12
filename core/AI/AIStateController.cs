@@ -48,7 +48,7 @@ public partial class AIStateController : Resource
         CurrentDistanceBetweenFighters = CalculateDistanceBetweenFighters(aiFighter, playerTarget);
         if (AttackOnCooldown()) _currentAttackCooldown -= (float)delta;
 
-        if (playerTarget.CombatState is not null and not BlockState && PredictiveBlock)
+        if (playerTarget.CombatState is not null and not BlockState && PredictiveBlock && InPunchRange())
         {
             if (_blockConsumed) return;
             var randomNum = GD.Randi() % 100;

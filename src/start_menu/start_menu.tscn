@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxynmlovonl6s"]
+[gd_scene load_steps=9 format=3 uid="uid://dxynmlovonl6s"]
 
 [ext_resource type="Script" path="res://src/start_menu/StartMenu.cs" id="1_ka7b5"]
 [ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/maths_murder_button/maths_murder_button.tscn" id="2_8mrqp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bp3105bycs526" path="res://assets/art/cog.png" id="4_c58vp"]
 [ext_resource type="Texture2D" uid="uid://327s7rtw0lvm" path="res://assets/art/murder.png" id="5_frr7c"]
 [ext_resource type="Texture2D" uid="uid://c734vj8ggxrhc" path="res://assets/art/cog_hover.png" id="5_p0m31"]
+[ext_resource type="PackedScene" uid="uid://bnm7url52twv3" path="res://src/random_flashing_light/random_flashing_light.tscn" id="6_q4hd0"]
 
 [node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_startButton", "_quitButton", "_settingsButton", "_ui", "_mask", "_murderSprite", "_background")]
 script = ExtResource("1_ka7b5")
@@ -79,6 +80,44 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 texture_normal = ExtResource("4_c58vp")
 texture_hover = ExtResource("5_p0m31")
+
+[node name="FlashingLightsContainer" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PointLight2D" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+position = Vector2(46, 96)
+
+[node name="PointLight2D2" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+position = Vector2(86, 70)
+
+[node name="PointLight2D3" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+position = Vector2(118, 38)
+
+[node name="PointLight2D4" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+position = Vector2(202, 31)
+
+[node name="PointLight2D5" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+position = Vector2(343, 30)
+
+[node name="PointLight2D6" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+position = Vector2(456, 31)
+
+[node name="PointLight2D7" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+position = Vector2(545, 38)
+
+[node name="PointLight2D8" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+position = Vector2(583, 78)
+
+[node name="PointLight2D9" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+position = Vector2(611, 133)
+
+[node name="PointLight2D10" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+position = Vector2(135, 24)
 
 [node name="Murder" type="Sprite2D" parent="."]
 position = Vector2(427, 97)
