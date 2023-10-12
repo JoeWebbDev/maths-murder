@@ -25,7 +25,7 @@ public class KickState : FighterState
     public override void OnHit(Fighter fighter, Fighter target)
     {
         GodotLogger.LogDebug($"Hit for {fighter.HitDamage}");
-        target.TakeDamage(fighter.HitDamage);
+        fighter.DealDamage(fighter.HitDamage, target);
     }
     
     private void OnAnimationPlayerOnAnimationFinished(StringName name)

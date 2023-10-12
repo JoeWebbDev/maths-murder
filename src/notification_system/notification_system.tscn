@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://hpn158bbxwab"]
+
+[ext_resource type="Script" path="res://src/notification_system/NotificationSystem.cs" id="1_wp4yl"]
+
+[node name="NotificationSystem" type="Node"]
+script = ExtResource("1_wp4yl")

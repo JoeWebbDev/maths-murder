@@ -26,6 +26,7 @@ config/icon="res://icon.svg"
 GodotLogger="*res://core/Logger/GodotLogger.cs"
 GameDataManager="*res://src/data/game_data_manager.tscn"
 SettingsModal="*res://src/settings_menu/settings_modal/settings_modal.tscn"
+NotificationSystem="*res://src/notification_system/notification_system.tscn"
 
 [display]
 

@@ -43,7 +43,7 @@ public class PunchState : FighterState
         if (!_canDealDamage) return;
         
         GodotLogger.LogDebug($"Hit for {fighter.HitDamage}");
-        target.TakeDamage(fighter.HitDamage);
+        fighter.DealDamage(fighter.HitDamage, target);
         _canDealDamage = false;
     }
     

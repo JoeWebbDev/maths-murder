@@ -46,7 +46,7 @@ public class PunchTwoState : FighterState
     public override void OnHit(Fighter fighter, Fighter target)
     {
         GodotLogger.LogDebug($"Second punch hit for {fighter.HitDamage + 1}");
-        target.TakeDamage(fighter.HitDamage + 1);
+        fighter.DealDamage(fighter.HitDamage + 1, target);
     }
     
     private void OnAnimationPlayerOnAnimationFinished(StringName name)
