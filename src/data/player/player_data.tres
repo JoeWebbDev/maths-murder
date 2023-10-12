@@ -1,13 +1,21 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cdpro86hqfw18"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://cdpro86hqfw18"]
 
 [ext_resource type="Resource" uid="uid://41faep8dnjgx" path="res://src/data/player/player_fighter_data.tres" id="1_ii0p4"]
 [ext_resource type="Resource" uid="uid://byqaim383kubm" path="res://src/data/enemies/fighter_1.tres" id="1_xf36c"]
 [ext_resource type="Script" path="res://src/data/player/PlayerData.cs" id="2_61dpo"]
+[ext_resource type="Resource" uid="uid://b67dmuiigkh67" path="res://src/data/enemies/fighter_2.tres" id="2_kiiop"]
+[ext_resource type="Resource" uid="uid://bw8b5twih23h4" path="res://src/data/enemies/fighter_4.tres" id="3_a2a8i"]
+[ext_resource type="Resource" uid="uid://cwi7rkgf1ovpt" path="res://src/data/enemies/fighter_5.tres" id="4_lu7la"]
+[ext_resource type="Resource" uid="uid://wpmvhaulll2w" path="res://src/data/enemies/fighter_6.tres" id="5_r21jo"]
+[ext_resource type="Resource" uid="uid://bnioqsw5xd76h" path="res://src/data/enemies/fighter_8.tres" id="6_p1aq6"]
 
 [resource]
 script = ExtResource("2_61dpo")
 FighterData = ExtResource("1_ii0p4")
 ExperiencePoints = 0
 CurrentOpponent = ExtResource("1_xf36c")
-DefeatedOpponents = null
+DefeatedOpponents = Array[Resource]([ExtResource("1_xf36c"), ExtResource("2_kiiop"), ExtResource("3_a2a8i"), ExtResource("4_lu7la"), ExtResource("5_r21jo"), ExtResource("5_r21jo"), ExtResource("6_p1aq6")])
 TotalNumberOfFightsPerGame = 7
+TotalExpGained = 0
+DamageDealt = 0
+DamageTaken = 0

@@ -3139,7 +3139,6 @@ _data = {
 }
 
 [node name="Fighter" type="CharacterBody2D" node_paths=PackedStringArray("NumberRef", "AnimationPlayer", "PunchColliderObject", "_nodeToFlip")]
-position = Vector2(95, 204)
 collision_mask = 0
 script = ExtResource("1_u25jf")
 NumberRef = NodePath("ScalableChildren/SpriteGroup/NumberRef")
@@ -3156,7 +3155,6 @@ position = Vector2(0, 7.655)
 shape = SubResource("CapsuleShape2D_w5gpp")
 
 [node name="ScalableChildren" type="Node2D" parent="."]
-scale = Vector2(2, 2)
 
 [node name="SpriteGroup" type="Node2D" parent="ScalableChildren"]
 

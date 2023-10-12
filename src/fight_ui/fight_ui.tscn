@@ -16,17 +16,17 @@ _continueButton = NodePath("ContinueButton")
 
 [node name="ContinueButton" parent="." instance=ExtResource("3_jpomr")]
 visible = false
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = 75.0
-offset_right = 50.0
-offset_bottom = 125.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -47.0
+offset_right = 45.0
+offset_bottom = -12.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 action_mode = 0
 text = "Continue"
 
@@ -46,20 +46,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PlayerHealthBar" parent="." node_paths=PackedStringArray("Ui") instance=ExtResource("2_1m7ro")]
-position = Vector2(163, 53)
-scale = Vector2(2, 2)
+position = Vector2(80, 30)
 Ui = NodePath("..")
 
 [node name="EnemyHealthBar" parent="." node_paths=PackedStringArray("Ui") instance=ExtResource("2_1m7ro")]
-position = Vector2(482, 53)
-scale = Vector2(-2, 2)
+position = Vector2(240, 30)
+scale = Vector2(-1, 1)
 Ui = NodePath("..")
 
 [node name="MatchTimerBox" type="Node2D" parent="."]
-position = Vector2(322, 36)
+position = Vector2(160, 22)
 
 [node name="MatchTimerBox" type="Sprite2D" parent="MatchTimerBox"]
-scale = Vector2(2, 2)
 texture = ExtResource("4_b4nxf")
 
 [node name="Fill" type="Sprite2D" parent="MatchTimerBox/MatchTimerBox"]
@@ -68,18 +66,19 @@ show_behind_parent = true
 texture = ExtResource("5_4grm0")
 
 [node name="MatchTimerLabel" type="Label" parent="MatchTimerBox"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -12.0
-offset_top = -15.0
-offset_right = 36.0
-offset_bottom = 45.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 28.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 24
 text = "30"
 horizontal_alignment = 1
 vertical_alignment = 1

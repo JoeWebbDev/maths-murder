@@ -16,18 +16,18 @@ public partial class AIStateController : Resource
     [ExportGroup("Movement")]
     [Export] protected bool TrackPlayer { get; set; } = true;
     [Export] protected float TrackDelay { get; set; } = 1f;
-    [Export] protected float PreferredTrackingDistance { get; set; } = 130f;
+    [Export] protected float PreferredTrackingDistance { get; set; } = 75f;
 
     [ExportSubgroup("Dash")]
     [Export] protected bool EnableDash { get; set; } = true;
     [Export] protected float DashDelay { get; set; } = 1f;
-    [Export] protected float DistanceFromPreferredRequiredToDash { get; set; } = 400f;
+    [Export] protected float DistanceFromPreferredRequiredToDash { get; set; } = 150f;
     [ExportGroup("Attack")]
     [Export] protected float AttackCooldown { get; set; } = 2f;
     [Export] protected bool AutoAttack { get; set; } = true;
     [Export] protected bool EnableCombos { get; set; } = true;
     [ExportSubgroup("Punch")]
-    [Export] protected float PunchRange { get; set; } = 130f;
+    [Export] protected float PunchRange { get; set; } = 75f;
     [ExportGroup("Block")]
     [Export] protected bool PredictiveBlock { get; set; } = true;
 
@@ -131,8 +131,8 @@ public partial class AIStateController : Resource
     }
 
     protected bool AtPreferredDistance() => Math.Abs(CurrentDistanceBetweenFighters - PreferredTrackingDistance) < DefaultFloatingPointTolerance;
-    protected bool IsDashViable() => CurrentDistanceBetweenFighters > PreferredTrackingDistance + DistanceFromPreferredRequiredToDash;
-    protected bool InPunchRange() => PunchRange > CurrentDistanceBetweenFighters;
+    protected bool IsDashViable() => CurrentDistanceBetweenFighters + DefaultFloatingPointTolerance >= PreferredTrackingDistance + DistanceFromPreferredRequiredToDash;
+    protected bool InPunchRange() => PunchRange + DefaultFloatingPointTolerance >= CurrentDistanceBetweenFighters;
     protected bool AttackOnCooldown() => _currentAttackCooldown > 0;
     protected bool TrackingOnCooldown() => _currentTrackDelay > 0;
     protected bool DashOnCooldown() => _currentDashDelay > 0;

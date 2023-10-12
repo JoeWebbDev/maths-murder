@@ -62,11 +62,11 @@ _data = {
 shader = ExtResource("2_0exdu")
 
 [node name="PlayerDeath" type="Node2D" node_paths=PackedStringArray("_playAgainButton", "_animPlayer", "_defeatedOpponentsContainer", "_damageDealtLabel", "_damageTakenLabel", "_experiencePointsGainedLabel")]
-scale = Vector2(2, 2)
 script = ExtResource("1_nh301")
 _playAgainButton = NodePath("CanvasLayer/Button")
 _animPlayer = NodePath("AnimationPlayer")
 _fighterScene = ExtResource("2_048tu")
+_defeatedOpponentScale = 0.4
 _defeatedOpponentsContainer = NodePath("CanvasLayer/HBoxContainer")
 _maxDefeatedOpponentsInARow = 7
 _defeatedOpponentsOffset = Vector2(25, 50)
@@ -87,6 +87,8 @@ libraries = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
 [node name="GreyscaleFilter" type="ColorRect" parent="CanvasLayer"]
 visible = false
@@ -101,10 +103,10 @@ grow_vertical = 2
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -32.0
-offset_top = 53.0
-offset_right = 39.0
-offset_bottom = 81.0
+offset_left = 126.0
+offset_top = 58.0
+offset_right = 197.0
+offset_bottom = 86.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Wasted..."
@@ -112,7 +114,7 @@ text = "Wasted..."
 [node name="TotalEnemiesDefeated" type="Label" parent="CanvasLayer"]
 offset_left = 26.0
 offset_top = 54.0
-offset_right = 208.0
+offset_right = 190.0
 offset_bottom = 82.0
 text = "Total enemies defeated"
 
