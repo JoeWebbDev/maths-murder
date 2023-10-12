@@ -10,7 +10,6 @@ public partial class Fighter : CharacterBody2D
     [Signal] public delegate void HealthChangedEventHandler(int from, int to);
     [Signal] public delegate void MovementStateChangedEventHandler(Fighter fighter);
     [Signal] public delegate void CombatStateChangedEventHandler(Fighter fighter);
-    [Export] public AnimatedSprite2D AnimatedSprite { get; set; }
     [Export] public Sprite2D NumberRef { get; set; }
     [Export] public AnimationPlayer AnimationPlayer { get; set; }
     [Export] public Area2D PunchColliderObject { get; set; }
@@ -78,17 +77,6 @@ public partial class Fighter : CharacterBody2D
         // the MovementState FSM (which should largely be locked when mid-combat anyway).
         var cmdConsumed = CombatState?.HandleCommand(this, cmd) ?? false;
         if (!cmdConsumed) MovementState?.HandleCommand(this, cmd);
-    }
-
-    public void LoadFighter(FighterResource resource)
-    {
-        GodotLogger.LogDebug($"Loading fighter from resource: {resource.ResourcePath}");
-        MaxHealth = resource.Health;
-        Health = resource.Health;
-        AnimatedSprite.SpriteFrames = resource.SpriteFrames;
-        MovementState = new IdleState();
-        MovementState.Enter(this);
-        GodotLogger.LogDebug($"Fighter loaded! Health: {Health}");
     }
 
     public void InitFighter(FighterData data)
