@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 using MathsMurderSpike.core.Commands;
 using MathsMurderSpike.Core.FighterStates;
