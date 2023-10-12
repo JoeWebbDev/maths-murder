@@ -6,8 +6,8 @@
 [node name="ChooseNextFight" type="Node" node_paths=PackedStringArray("_optionOneButton", "_optionTwoButton")]
 script = ExtResource("1_erx7v")
 _fighterScene = ExtResource("1_4qjqh")
-_optionOnePos = Vector2(150, 140)
-_optionTwoPos = Vector2(500, 140)
+_optionOnePos = Vector2(65, 70)
+_optionTwoPos = Vector2(250, 70)
 _optionOneButton = NodePath("CanvasLayer/Button")
 _optionTwoButton = NodePath("CanvasLayer/Button2")
 
@@ -17,24 +17,27 @@ _optionTwoButton = NodePath("CanvasLayer/Button2")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+offset_left = -67.0
+offset_top = 3.0
+offset_right = 72.0
+offset_bottom = 31.0
 grow_horizontal = 2
 text = "Choose Next Fighter"
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 108.0
-offset_top = 307.0
-offset_right = 185.0
-offset_bottom = 344.0
+offset_left = 44.0
+offset_top = 156.0
+offset_right = 128.0
+offset_bottom = 191.0
+scale = Vector2(0.5, 0.5)
 text = "This guy
 "
 
 [node name="Button2" type="Button" parent="CanvasLayer"]
-offset_left = 457.0
-offset_top = 306.0
-offset_right = 545.0
-offset_bottom = 343.0
+offset_left = 225.0
+offset_top = 155.0
+offset_right = 333.0
+offset_bottom = 192.0
+scale = Vector2(0.5, 0.5)
 text = "Or that guy
 "

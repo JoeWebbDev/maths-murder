@@ -5,6 +5,7 @@ public partial class GameDataManager : Node
 	[Export] private PlayerData _playerDataResource;
 	[Export] private EnemyDataCollection _enemyDataCollection;
 	private PlayerData _playerDataInstance;
+	private NotificationSystem _notificationSystem;
 
 	public FighterData GetPlayerFighterData()
 	{
@@ -24,6 +25,15 @@ public partial class GameDataManager : Node
 	public override void _Ready()
 	{
 		_playerDataInstance ??= _playerDataResource.Duplicate(true) as PlayerData;
+		_notificationSystem = GetNode<NotificationSystem>("/root/NotificationSystem");
+		_notificationSystem.DamageDealt += (fighter, amount) =>
+		{
+			if (fighter.PlayerNumber == 1) _playerDataInstance.DamageDealt += amount;
+		};
+		_notificationSystem.DamageTaken += (fighter, amount) =>
+		{
+			if (fighter.PlayerNumber == 1) _playerDataInstance.DamageTaken += amount;
+		};
 	}
 
 	public void ResetPlayerData()
@@ -35,6 +45,7 @@ public partial class GameDataManager : Node
 	public void IncreasePlayerExperience(int amount)
 	{
 		_playerDataInstance.ExperiencePoints += amount;
+		_playerDataInstance.TotalExpGained += amount;
 	}
 
 	public void DecreasePlayerExperience(int amount)
@@ -44,7 +55,7 @@ public partial class GameDataManager : Node
 	
 	public void IncreasePlayerExperienceFromCurrentOpponent()
 	{
-		_playerDataInstance.ExperiencePoints += _playerDataInstance.CurrentOpponent.ExperiencePointsValue;
+		IncreasePlayerExperience(_playerDataInstance.CurrentOpponent.ExperiencePointsValue);
 		GodotLogger.LogDebug($"Player gained {_playerDataInstance.CurrentOpponent.ExperiencePointsValue} experience points");
 		GodotLogger.LogDebug($"Player EXP: {_playerDataInstance.ExperiencePoints}");
 	}

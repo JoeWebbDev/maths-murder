@@ -23,7 +23,7 @@ public partial class MatchTimer : Node
 			return;
 		}
 		EmitSignal(SignalName.MatchTimerStarted);
-		_timer = GetTree().CreateTimer(TotalMatchTime);
+		_timer = GetTree().CreateTimer(TotalMatchTime, processAlways: false);
 		_ongoingTask = ToSignal(_timer, SceneTreeTimer.SignalName.Timeout);
 		await _ongoingTask;
 		EmitSignal(SignalName.MatchTimerEnded);

@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" path="res://src/bracket_fighter_box/BracketFighterBox.cs" id="1_0pyf2"]
 [ext_resource type="Texture2D" uid="uid://nm142i22xbar" path="res://assets/art/bracket_box.png" id="1_r8t8y"]
-[ext_resource type="Texture2D" uid="uid://4vt0t23jateu" path="res://assets/art/number_ref.png" id="2_f6pdm"]
+[ext_resource type="Texture2D" uid="uid://4vt0t23jateu" path="res://assets/art/number_1.png" id="2_f6pdm"]
 [ext_resource type="Texture2D" uid="uid://byqe1r5fmycqi" path="res://assets/art/box_fill_green.png" id="3_5vemp"]
 
 [node name="BracketFighterBox" type="Node2D" node_paths=PackedStringArray("FighterSprite", "Fill")]
 position = Vector2(309, 288)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0pyf2")
 FighterSprite = NodePath("FighterSprite")
 Fill = NodePath("BoxFill")
