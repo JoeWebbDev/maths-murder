@@ -99,7 +99,7 @@ public partial class Fight : Node
 
     private void EndFight()
     {
-        var playerWon = Player.Health > Enemy.Health;
+        var playerWon = Player.CurrentHealth / Player.TotalHealth > Enemy.CurrentHealth / Enemy.TotalHealth;
         if (playerWon)
         {
             OnFightWon();

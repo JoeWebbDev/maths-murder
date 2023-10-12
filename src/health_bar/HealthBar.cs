@@ -14,8 +14,8 @@ public partial class HealthBar : TextureProgressBar
     private void OnUiReady()
     {
         Fighter.HealthChanged += OnHealthChange;
-        MaxValue = Fighter.MaxHealth;
-        Value = Fighter.Health;
+        MaxValue = Fighter.TotalHealth;
+        Value = Fighter.CurrentHealth;
     }
 
     private void OnHealthChange(int from, int to)

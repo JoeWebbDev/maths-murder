@@ -25,7 +25,7 @@ public class PunchThreeState : FighterState
     public override void OnHit(Fighter fighter, Fighter target)
     {
         GodotLogger.LogDebug($"Second punch hit for {fighter.HitDamage + 2}");
-        target.TakeDamage(fighter.HitDamage + 2);
+        target.TakeDamage(fighter.HitDamage + 2 - target.DamageReduction);
     }
     
     private void OnAnimationPlayerOnAnimationFinished(StringName name)
