@@ -36,9 +36,9 @@ position = Vector2(320, 177)
 scale = Vector2(1.25098, 1.25098)
 texture = ExtResource("2_l1vws")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
-[node name="FlashingLightsContainer" type="Control" parent="CanvasLayer"]
+[node name="FlashingLightsContainer" type="Control" parent="CanvasLayer2"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,35 +46,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PointLight2D" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+[node name="PointLight2D" parent="CanvasLayer2/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
 position = Vector2(46, 96)
 
-[node name="PointLight2D2" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+[node name="PointLight2D2" parent="CanvasLayer2/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
 position = Vector2(86, 70)
 
-[node name="PointLight2D3" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+[node name="PointLight2D3" parent="CanvasLayer2/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
 position = Vector2(118, 38)
 
-[node name="PointLight2D4" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+[node name="PointLight2D4" parent="CanvasLayer2/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
 position = Vector2(202, 31)
 
-[node name="PointLight2D5" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+[node name="PointLight2D5" parent="CanvasLayer2/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
 position = Vector2(343, 30)
 
-[node name="PointLight2D6" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+[node name="PointLight2D6" parent="CanvasLayer2/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
 position = Vector2(456, 31)
 
-[node name="PointLight2D7" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+[node name="PointLight2D7" parent="CanvasLayer2/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
 position = Vector2(545, 38)
 
-[node name="PointLight2D8" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+[node name="PointLight2D8" parent="CanvasLayer2/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
 position = Vector2(583, 78)
 
-[node name="PointLight2D9" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+[node name="PointLight2D9" parent="CanvasLayer2/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
 position = Vector2(611, 133)
 
-[node name="PointLight2D10" parent="CanvasLayer/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
+[node name="PointLight2D10" parent="CanvasLayer2/FlashingLightsContainer" instance=ExtResource("6_q4hd0")]
 position = Vector2(135, 24)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="StartButton" parent="CanvasLayer" instance=ExtResource("2_8mrqp")]
 anchors_preset = 7
