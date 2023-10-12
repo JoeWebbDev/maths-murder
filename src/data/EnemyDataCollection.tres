@@ -1,9 +1,13 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://0rcw1d0xxhj7"]
+[gd_resource type="Resource" load_steps=8 format=3 uid="uid://0rcw1d0xxhj7"]
 
 [ext_resource type="Resource" uid="uid://b67dmuiigkh67" path="res://src/data/enemies/fighter_2.tres" id="1_k1fwt"]
 [ext_resource type="Script" path="res://src/data/EnemyDataCollection.cs" id="1_u6doe"]
 [ext_resource type="Resource" uid="uid://byqaim383kubm" path="res://src/data/enemies/fighter_1.tres" id="2_aqxf4"]
+[ext_resource type="Resource" uid="uid://bw8b5twih23h4" path="res://src/data/enemies/fighter_4.tres" id="3_3oomu"]
+[ext_resource type="Resource" uid="uid://cwi7rkgf1ovpt" path="res://src/data/enemies/fighter_5.tres" id="4_1alic"]
+[ext_resource type="Resource" uid="uid://wpmvhaulll2w" path="res://src/data/enemies/fighter_6.tres" id="5_egaaj"]
+[ext_resource type="Resource" uid="uid://bnioqsw5xd76h" path="res://src/data/enemies/fighter_8.tres" id="6_oq2ca"]
 
 [resource]
 script = ExtResource("1_u6doe")
-FighterDataCollection = Array[Resource]([ExtResource("1_k1fwt"), ExtResource("2_aqxf4")])
+FighterDataCollection = Array[Resource]([ExtResource("1_k1fwt"), ExtResource("2_aqxf4"), ExtResource("3_3oomu"), ExtResource("4_1alic"), ExtResource("5_egaaj"), ExtResource("6_oq2ca")])
