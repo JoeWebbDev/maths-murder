@@ -4,3 +4,15 @@
 
 [resource]
 script = ExtResource("1_ajg2l")
+TrackPlayer = true
+TrackDelay = 1.0
+PreferredTrackingDistance = 75.0
+EnableDash = true
+DashDelay = 1.0
+DistanceFromPreferredRequiredToDash = 150.0
+AttackCooldown = 2.0
+AutoAttack = true
+EnableCombos = true
+PunchRange = 75.0
+PredictiveBlock = true
+PredictiveBlockChance = 50

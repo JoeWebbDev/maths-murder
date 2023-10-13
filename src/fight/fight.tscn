@@ -34,7 +34,8 @@ _cameraController = NodePath("FightCamera")
 _deathPostProcess = NodePath("FightUI/DeathPostProcess")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(339, 51)
+position = Vector2(166, 76)
+scale = Vector2(0.339228, 0.339228)
 texture = ExtResource("2_nvten")
 
 [node name="FightUI" parent="." node_paths=PackedStringArray("_player", "_enemy", "_matchTimer") instance=ExtResource("2_ecqmq")]
@@ -43,8 +44,8 @@ _enemy = NodePath("../Enemy")
 _matchTimer = NodePath("../MatchTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="FightUI"]
-visible = false
-position = Vector2(320, 180)
+position = Vector2(160, 90)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_gmqol")
 
 [node name="DeathPostProcess" type="ColorRect" parent="FightUI"]
@@ -61,10 +62,11 @@ color = Color(1, 1, 1, 0)
 TotalMatchTime = 30
 
 [node name="Player" parent="." instance=ExtResource("5_deabo")]
+position = Vector2(44, 88)
 HitDamage = 0.0
 
 [node name="Enemy" parent="." instance=ExtResource("5_deabo")]
-position = Vector2(532, 204)
+position = Vector2(262, 87)
 collision_layer = 2
 FlipH = true
 HitDamage = 0.0
@@ -81,16 +83,18 @@ Player = NodePath("../Player")
 process_mode = 3
 _player = NodePath("../Player")
 _enemy = NodePath("../Enemy")
+_boundaryFeather = 100.0
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-200, 174)
+position = Vector2(-150, 174)
 shape = SubResource("RectangleShape2D_6vkdp")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(800, 174)
+position = Vector2(500, 174)
 shape = SubResource("RectangleShape2D_6vkdp")
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_4f5w0")]
+visible = false

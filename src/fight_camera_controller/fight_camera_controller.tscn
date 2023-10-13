@@ -11,3 +11,4 @@ CinematicCamera = NodePath("CinematicCamera")
 
 [node name="CinematicCamera" parent="." instance=ExtResource("2_amwrk")]
 process_mode = 3
+offset = Vector2(160, 90)

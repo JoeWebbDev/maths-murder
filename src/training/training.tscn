@@ -31,8 +31,8 @@ grow_vertical = 2
 color = Color(0.996094, 0.917969, 0.808594, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="UI"]
-position = Vector2(138, 227)
-scale = Vector2(0.472656, 0.472656)
+position = Vector2(88, 106)
+scale = Vector2(0.287109, 0.287109)
 texture = ExtResource("1_2thfk")
 
 [node name="TrainingContainer" type="Control" parent="UI"]
@@ -41,7 +41,7 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -130.0
+offset_left = -84.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
@@ -62,12 +62,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = -40.0
-offset_right = -17.0
-offset_bottom = -10.0
+offset_left = -69.0
+offset_top = -23.0
+offset_right = 30.0
+offset_bottom = 12.0
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(0.5, 0.5)
 text = "Next fight"
 
 [node name="Health" type="Control" parent="UI/TrainingContainer"]
@@ -75,11 +76,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -46.0
-offset_top = 33.0
-offset_right = 38.0
-offset_bottom = 89.0
+offset_left = -22.0
+offset_top = 15.0
+offset_right = 62.0
+offset_bottom = 71.0
 grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
 tooltip_text = "You're healthier"
 
 [node name="Image" type="Sprite2D" parent="UI/TrainingContainer/Health"]
@@ -108,11 +110,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -46.0
-offset_top = 103.0
-offset_right = 38.0
-offset_bottom = 159.0
+offset_left = -22.0
+offset_top = 50.0
+offset_right = 62.0
+offset_bottom = 106.0
 grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
 tooltip_text = "You're faster"
 
 [node name="Image" type="Sprite2D" parent="UI/TrainingContainer/Speed"]
@@ -141,11 +144,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -46.0
-offset_top = 173.0
-offset_right = 38.0
-offset_bottom = 229.0
+offset_left = -22.0
+offset_top = 85.0
+offset_right = 62.0
+offset_bottom = 141.0
 grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
 tooltip_text = "You're stronger"
 
 [node name="Image" type="Sprite2D" parent="UI/TrainingContainer/Strength"]
@@ -174,11 +178,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -46.0
-offset_top = 243.0
-offset_right = 38.0
-offset_bottom = 299.0
+offset_left = -22.0
+offset_top = 120.0
+offset_right = 62.0
+offset_bottom = 176.0
 grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
 tooltip_text = "You're...shield-ier? (your block is more effective)"
 
 [node name="Image" type="Sprite2D" parent="UI/TrainingContainer/Defense"]
@@ -204,52 +209,58 @@ vertical_alignment = 1
 
 [node name="AddHealthButton" type="Button" parent="UI/TrainingContainer"]
 layout_mode = 0
-offset_left = -65.0
-offset_top = 35.0
-offset_right = -25.0
-offset_bottom = 80.0
+offset_left = -30.0
+offset_top = 15.0
+offset_right = 17.0
+offset_bottom = 74.0
+scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 32
 text = "+"
 
 [node name="AddSpeedButton" type="Button" parent="UI/TrainingContainer"]
 layout_mode = 0
-offset_left = -65.0
-offset_top = 105.0
-offset_right = -25.0
-offset_bottom = 150.0
+offset_left = -30.0
+offset_top = 50.0
+offset_right = 17.0
+offset_bottom = 109.0
+scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 32
 text = "+"
 
 [node name="AddStrengthButton" type="Button" parent="UI/TrainingContainer"]
 layout_mode = 0
-offset_left = -65.0
-offset_top = 175.0
-offset_right = -25.0
-offset_bottom = 220.0
+offset_left = -30.0
+offset_top = 85.0
+offset_right = 17.0
+offset_bottom = 144.0
+scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 32
 text = "+"
 
 [node name="AddDefenseButton" type="Button" parent="UI/TrainingContainer"]
 layout_mode = 0
-offset_left = -65.0
-offset_top = 245.0
-offset_right = -25.0
-offset_bottom = 290.0
+offset_left = -30.0
+offset_top = 120.0
+offset_right = 17.0
+offset_bottom = 179.0
+scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 32
 text = "+"
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
-offset_left = 50.0
-offset_top = 71.0
-offset_right = 229.0
-offset_bottom = 98.0
+offset_left = 17.0
+offset_top = 17.0
+offset_right = 191.0
+offset_bottom = 44.0
+scale = Vector2(0.5, 0.5)
 
 [node name="RemainingExpLabel" type="Label" parent="UI/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 10.0
+offset_right = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)

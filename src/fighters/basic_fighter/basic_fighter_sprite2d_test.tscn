@@ -3140,7 +3140,6 @@ _data = {
 }
 
 [node name="Fighter" type="CharacterBody2D" node_paths=PackedStringArray("NumberRef", "AnimationPlayer", "PunchColliderObject", "_nodeToFlip")]
-position = Vector2(95, 204)
 collision_mask = 0
 script = ExtResource("1_u25jf")
 NumberRef = NodePath("ScalableChildren/SpriteGroup/NumberRef")
@@ -3156,13 +3155,28 @@ position = Vector2(0, 7.655)
 shape = SubResource("CapsuleShape2D_w5gpp")
 
 [node name="ScalableChildren" type="Node2D" parent="."]
-scale = Vector2(2, 2)
 
 [node name="SpriteGroup" type="Node2D" parent="ScalableChildren"]
 
 [node name="NumberRef" type="Sprite2D" parent="ScalableChildren/SpriteGroup"]
 z_index = 2
-texture = ExtResource("4_ol61m")
+texture = ExtResource("2_q4hmu")
+
+[node name="LegsGroup" type="Node2D" parent="ScalableChildren"]
+
+[node name="BackLeg" type="Sprite2D" parent="ScalableChildren/LegsGroup"]
+z_index = 1
+position = Vector2(-5.405, 0)
+texture = ExtResource("2_kxch2")
+offset = Vector2(20, -1.5)
+hframes = 17
+
+[node name="FrontLeg" type="Sprite2D" parent="ScalableChildren/LegsGroup"]
+z_index = 3
+texture = ExtResource("6_xsdqg")
+offset = Vector2(20, -1.5)
+hframes = 17
+region_rect = Rect2(0.986954, 1.10532, 206.29, 62.6053)
 
 [node name="ArmsGroup" type="Node2D" parent="ScalableChildren"]
 
@@ -3186,22 +3200,6 @@ collision_mask = 0
 position = Vector2(17, -18.75)
 shape = SubResource("RectangleShape2D_lvmeo")
 disabled = true
-
-[node name="LegsGroup" type="Node2D" parent="ScalableChildren"]
-
-[node name="BackLeg" type="Sprite2D" parent="ScalableChildren/LegsGroup"]
-z_index = 1
-position = Vector2(-5.405, 0)
-texture = ExtResource("2_kxch2")
-offset = Vector2(20, -1.5)
-hframes = 17
-
-[node name="FrontLeg" type="Sprite2D" parent="ScalableChildren/LegsGroup"]
-z_index = 3
-texture = ExtResource("6_xsdqg")
-offset = Vector2(20, -1.5)
-hframes = 17
-region_rect = Rect2(0.986954, 1.10532, 206.29, 62.6053)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

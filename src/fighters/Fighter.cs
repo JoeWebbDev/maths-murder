@@ -10,7 +10,6 @@ public partial class Fighter : CharacterBody2D
     [Signal] public delegate void HealthChangedEventHandler(int from, int to);
     [Signal] public delegate void MovementStateChangedEventHandler(Fighter fighter);
     [Signal] public delegate void CombatStateChangedEventHandler(Fighter fighter);
-    [Export] public AnimatedSprite2D AnimatedSprite { get; set; }
     [Export] public Sprite2D NumberRef { get; set; }
     [Export] public AnimationPlayer AnimationPlayer { get; set; }
     [Export] public Area2D PunchColliderObject { get; set; }
@@ -25,6 +24,7 @@ public partial class Fighter : CharacterBody2D
     [Export] public float DashDetectPeriod { get; private set; } = 0.3f;
     [Export] public int PlayerNumber { get; private set; }
     [Export] private Node2D _nodeToFlip;
+    private NotificationSystem _notificationSystem;
     private Node2D _armsGroup;
     private Node2D _legsGroup;
     private Node2D _spriteGroup;
@@ -50,6 +50,7 @@ public partial class Fighter : CharacterBody2D
     
     public override void _Ready()
     {
+        _notificationSystem = GetNode<NotificationSystem>("/root/NotificationSystem");
         if (FlipH)
             _nodeToFlip.Scale = new Vector2(-_nodeToFlip.Scale.X, _nodeToFlip.Scale.Y);
         PunchColliderObject.BodyEntered += OnHit;
@@ -62,7 +63,6 @@ public partial class Fighter : CharacterBody2D
         _spriteGroup = GetNode<Node2D>("ScalableChildren/SpriteGroup");
         _armsGroup = GetNode<Node2D>("ScalableChildren/ArmsGroup");
         _legsGroup = GetNode<Node2D>("ScalableChildren/LegsGroup");
-        
     }
 
     public override void _Process(double delta)
@@ -79,17 +79,6 @@ public partial class Fighter : CharacterBody2D
         // the MovementState FSM (which should largely be locked when mid-combat anyway).
         var cmdConsumed = CombatState?.HandleCommand(this, cmd) ?? false;
         if (!cmdConsumed) MovementState?.HandleCommand(this, cmd);
-    }
-
-    public void LoadFighter(FighterResource resource)
-    {
-        GodotLogger.LogDebug($"Loading fighter from resource: {resource.ResourcePath}");
-        TotalHealth = resource.Health;
-        CurrentHealth = resource.Health;
-        AnimatedSprite.SpriteFrames = resource.SpriteFrames;
-        MovementState = new IdleState();
-        MovementState.Enter(this);
-        GodotLogger.LogDebug($"Fighter loaded! Health: {CurrentHealth}");
     }
 
     public void InitFighter(FighterData data)
@@ -132,20 +121,32 @@ public partial class Fighter : CharacterBody2D
         to?.Enter(this);
         EmitSignal(SignalName.CombatStateChanged, this);
     }
+
+    // Consolidates dealing damage to one place
+    public void DealDamage(int damage, Fighter target)
+    {
+        var damageDealt = target.TakeDamage(damage);
+        if (damageDealt <= 0) return;
+        _notificationSystem.Notify(NotificationSystem.SignalName.DamageDealt, this, damageDealt);
+    }
     
     // We're doing a crude check here to see if we're in a block state, and if not, take damage & enter RecoverState.
     // Ideally, this is deferred to the state machine too; but that seems like over-engineering given that only the
     // BlockState will have any impact on what happens when damage is received
-    public void TakeDamage(float damage)
+    // Returning an int so that we can pass the actual damage dealt back to the dealer. For stats
+    public float TakeDamage(float damage)
     {
         if (CombatState is BlockState blockState)
         {
             // Chip damage etc
-            return;
+            return 0;
         }
         GodotLogger.LogDebug($"Taking {damage} damage");
-        CurrentHealth -= damage * (20/(20 * DamageReduction)) ;
+        var actualDamage = damage * (20/(20 * DamageReduction));
+        CurrentHealth -= actualDamage;
+        _notificationSystem.Notify(NotificationSystem.SignalName.DamageTaken, this, actualDamage);
         if (CurrentHealth > 0) SwitchCombatState(new RecoverState());
+        return actualDamage;
     }
     
     // Moving functionality down to individual states - will come in handy in the future when we want

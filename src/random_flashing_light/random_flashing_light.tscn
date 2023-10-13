@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnm7url52twv3"]
+
+[ext_resource type="Texture2D" uid="uid://4ccurs3vofk6" path="res://assets/art/neutral_point_light.png" id="1_6uq0h"]
+[ext_resource type="Script" path="res://src/random_flashing_light/RandomFlashingLight.cs" id="2_jnhc5"]
+
+[node name="PointLight2D" type="PointLight2D"]
+position = Vector2(81, 28)
+color = Color(1, 1, 0.670588, 1)
+energy = 13.04
+texture = ExtResource("1_6uq0h")
+texture_scale = 0.04
+script = ExtResource("2_jnhc5")
+_minMaxEnergy = Vector2(0, 80)
+_minMaxTimeUntilFlash = Vector2(2, 4)
+_minMaxFlashDuration = Vector2(0.2, 0.4)
