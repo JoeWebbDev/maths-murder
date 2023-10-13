@@ -16,6 +16,3 @@ ExperiencePoints = 0
 CurrentOpponent = ExtResource("1_xf36c")
 DefeatedOpponents = Array[Resource]([ExtResource("1_xf36c"), ExtResource("2_kiiop"), ExtResource("3_a2a8i"), ExtResource("4_lu7la"), ExtResource("5_r21jo"), ExtResource("5_r21jo"), ExtResource("6_p1aq6")])
 TotalNumberOfFightsPerGame = 7
-TotalExpGained = 0
-DamageDealt = 0
-DamageTaken = 0

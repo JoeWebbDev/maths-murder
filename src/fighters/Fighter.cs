@@ -123,7 +123,7 @@ public partial class Fighter : CharacterBody2D
     }
 
     // Consolidates dealing damage to one place
-    public void DealDamage(int damage, Fighter target)
+    public void DealDamage(float damage, Fighter target)
     {
         var damageDealt = target.TakeDamage(damage);
         if (damageDealt <= 0) return;

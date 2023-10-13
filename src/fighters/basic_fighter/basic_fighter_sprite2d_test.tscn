@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://src/fighters/basic_fighter/BasicFighter.cs" id="1_u25jf"]
 [ext_resource type="Resource" uid="uid://den6qs1g5ja2w" path="res://src/data/stat_scaling_config.tres" id="2_6u7ht"]
 [ext_resource type="Texture2D" uid="uid://bmvsvme6j6ksy" path="res://assets/art/back_leg.png" id="2_kxch2"]
+[ext_resource type="Texture2D" uid="uid://4vt0t23jateu" path="res://assets/art/numbers/number_1.png" id="3_36rq6"]
 [ext_resource type="Texture2D" uid="uid://c3ghk6bhu8ome" path="res://assets/art/back_arm.png" id="3_gy4vi"]
-[ext_resource type="Texture2D" uid="uid://4vt0t23jateu" path="res://assets/art/numbers/number_1.png" id="4_ol61m"]
 [ext_resource type="Texture2D" uid="uid://31od6ali041a" path="res://assets/art/front_arm.png" id="5_da3cx"]
 [ext_resource type="Texture2D" uid="uid://bbgcberdsl4d8" path="res://assets/art/front_leg.png" id="6_xsdqg"]
 
@@ -3160,7 +3160,7 @@ shape = SubResource("CapsuleShape2D_w5gpp")
 
 [node name="NumberRef" type="Sprite2D" parent="ScalableChildren/SpriteGroup"]
 z_index = 2
-texture = ExtResource("2_q4hmu")
+texture = ExtResource("3_36rq6")
 
 [node name="LegsGroup" type="Node2D" parent="ScalableChildren"]
 
