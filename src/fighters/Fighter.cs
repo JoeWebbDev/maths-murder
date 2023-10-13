@@ -144,7 +144,7 @@ public partial class Fighter : CharacterBody2D
             return;
         }
         GodotLogger.LogDebug($"Taking {damage} damage");
-        CurrentHealth -= damage;
+        CurrentHealth -= damage * (20/(20 * DamageReduction)) ;
         if (CurrentHealth > 0) SwitchCombatState(new RecoverState());
     }
     
