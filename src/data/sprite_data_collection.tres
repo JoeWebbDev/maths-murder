@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=8 format=3 uid="uid://dg13qd3dqjyfu"]
+
+[ext_resource type="Resource" uid="uid://ch6wj0712digg" path="res://src/data/number_sprite_data/number_1.tres" id="1_lq6wq"]
+[ext_resource type="Resource" uid="uid://btyhdck6sw8gy" path="res://src/data/number_sprite_data/number_2.tres" id="2_3h250"]
+[ext_resource type="Resource" uid="uid://ci1eh0ghyt2jb" path="res://src/data/number_sprite_data/number_4.tres" id="3_qhnun"]
+[ext_resource type="Script" path="res://src/data/SpriteDataCollection.cs" id="4_6mlgu"]
+[ext_resource type="Resource" uid="uid://b8h6x1xujrog6" path="res://src/data/number_sprite_data/number_5.tres" id="4_konea"]
+[ext_resource type="Resource" uid="uid://che40v11d6rpv" path="res://src/data/number_sprite_data/number_6.tres" id="5_wh32m"]
+[ext_resource type="Resource" uid="uid://ccvsatnhejvxf" path="res://src/data/number_sprite_data/number_8.tres" id="6_7gihv"]
+
+[resource]
+script = ExtResource("4_6mlgu")
+NumberSpriteDataCollection = Array[Resource]([ExtResource("1_lq6wq"), ExtResource("2_3h250"), ExtResource("3_qhnun"), ExtResource("4_konea"), ExtResource("5_wh32m"), ExtResource("6_7gihv")])

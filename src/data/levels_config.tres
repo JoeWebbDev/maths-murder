@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dwsk1jerwt2rk"]
+
+[ext_resource type="Script" path="res://src/data/LevelsConfig.cs" id="1_2sn26"]
+
+[resource]
+script = ExtResource("1_2sn26")
+LevelThresholdConfig = Array[int]([10, 16, 20, 24, 28])

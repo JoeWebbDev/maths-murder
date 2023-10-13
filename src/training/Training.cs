@@ -35,7 +35,7 @@ public partial class Training : Node
         _nextFightButton.Pressed += () => EmitSignal(SignalName.NextFightRequested);
     }
     
-    private int AddOneToPlayerFighterValue(int valueToAddTo, Label _labelToUpdate)
+    private float AddOneToPlayerFighterValue(float valueToAddTo, Label _labelToUpdate)
     {
         valueToAddTo += 1;
         _labelToUpdate.Text = valueToAddTo.ToString();

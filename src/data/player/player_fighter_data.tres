@@ -1,17 +1,15 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://41faep8dnjgx"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://41faep8dnjgx"]
 
+[ext_resource type="Resource" uid="uid://dwsk1jerwt2rk" path="res://src/data/levels_config.tres" id="1_65nbl"]
 [ext_resource type="Script" path="res://src/data/FighterData.cs" id="1_r305s"]
-[ext_resource type="Texture2D" uid="uid://cxpxs34kkyu2q" path="res://assets/art/number_2.png" id="1_t2mqx"]
+[ext_resource type="Resource" uid="uid://dg13qd3dqjyfu" path="res://src/data/sprite_data_collection.tres" id="2_ahhed"]
 
 [resource]
 script = ExtResource("1_r305s")
-Health = 10
-Speed = 1
-Strength = 1
-Defense = 1
-ExperiencePointsValue = 0
-NumberTexture = ExtResource("1_t2mqx")
-ArmsOffset = Vector2(0, 0)
-LegsOffset = Vector2(0, 0)
-BodyOffset = Vector2(0, 0)
-SpriteOffset = Vector2(0, 0)
+Health = 2.0
+Speed = 2.0
+Strength = 2.0
+Defense = 2.0
+ExperiencePointsValue = 2
+SpriteDataCollection = ExtResource("2_ahhed")
+LevelsConfig = ExtResource("1_65nbl")

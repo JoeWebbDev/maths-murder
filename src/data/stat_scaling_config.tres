@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://den6qs1g5ja2w"]
+
+[ext_resource type="Script" path="res://src/data/StatScalingConfig.cs" id="1_e1cy5"]
+
+[resource]
+script = ExtResource("1_e1cy5")
+HealthModifier = 5.0
+DamageModifier = 1.05
+DamageReductionModifier = 1.03
+SpeedModifier = 1.3
+DashMultiplier = 3.0

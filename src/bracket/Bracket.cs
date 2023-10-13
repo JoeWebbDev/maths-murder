@@ -94,7 +94,7 @@ public partial class Bracket : Node
         _playerBox = _bracketFighterBoxScene.Instantiate<BracketFighterBox>();
         var pos = _ladderSpawnStartPosition + (_distanceBetweenBoxes * _playerData.DefeatedOpponents.Count) - _distanceBetweenBoxes + _distanceBetweenPlayerBoxAndLadderBoxes;
         _playerBox.GlobalPosition = pos;
-        _playerBox.FighterSprite.Texture = _playerData.FighterData.NumberTexture;
+        _playerBox.FighterSprite.Texture = _playerData.FighterData.GetSpriteData().NumberTexture;
         AddChild(_playerBox);
     }
 
@@ -106,12 +106,12 @@ public partial class Bracket : Node
         if (boxIndex < _playerData.DefeatedOpponents.Count)
         {
             
-            return _playerData.DefeatedOpponents[boxIndex].NumberTexture;
+            return _playerData.DefeatedOpponents[boxIndex].GetSpriteData().NumberTexture;
         }
         
         if (boxIndex == _playerData.DefeatedOpponents.Count)
         {
-            return _playerData.CurrentOpponent.NumberTexture;
+            return _playerData.CurrentOpponent.GetSpriteData().NumberTexture;
         }
 
         if (boxIndex == _playerData.TotalNumberOfFightsPerGame - 1)

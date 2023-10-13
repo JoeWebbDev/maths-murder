@@ -41,9 +41,9 @@ public partial class HealthBar : Node2D
     private void OnUiReady()
     {
         Fighter.HealthChanged += OnHealthChange;
-        _maxValue = Fighter.MaxHealth;
-        _value = Fighter.Health;
-        _underlyingValue = Fighter.Health;
+        _maxValue = Fighter.TotalHealth;
+        _value = Fighter.CurrentHealth;
+        _underlyingValue = Fighter.CurrentHealth;
         UpdateShader();
     }
 

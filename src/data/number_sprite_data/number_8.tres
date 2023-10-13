@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ccvsatnhejvxf"]
+
+[ext_resource type="Script" path="res://src/data/NumberSpriteData.cs" id="1_h53au"]
+[ext_resource type="Texture2D" uid="uid://dvf5ki3rpe4s2" path="res://assets/art/numbers/number_8.png" id="1_o7k6v"]
+
+[resource]
+script = ExtResource("1_h53au")
+NumberTexture = ExtResource("1_o7k6v")
+ArmsOffset = Vector2(0, 0)
+LegsOffset = Vector2(0, 0)
+BodyOffset = Vector2(0, 0)
+SpriteOffset = Vector2(0, 0)

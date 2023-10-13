@@ -1,19 +1,17 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bnioqsw5xd76h"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bnioqsw5xd76h"]
 
 [ext_resource type="Resource" uid="uid://dh388vgfd31cu" path="res://src/data/ai/noob_ai_state_controller.tres" id="1_f218p"]
-[ext_resource type="Texture2D" uid="uid://dvf5ki3rpe4s2" path="res://assets/art/number_8.png" id="2_5ix10"]
+[ext_resource type="Resource" uid="uid://dwsk1jerwt2rk" path="res://src/data/levels_config.tres" id="2_o5a0w"]
 [ext_resource type="Script" path="res://src/data/FighterData.cs" id="3_cl7x4"]
+[ext_resource type="Resource" uid="uid://dg13qd3dqjyfu" path="res://src/data/sprite_data_collection.tres" id="3_fj87j"]
 
 [resource]
 script = ExtResource("3_cl7x4")
-Health = 10
-Speed = 1
-Strength = 1
-Defense = 1
+Health = 7.0
+Speed = 7.0
+Strength = 7.0
+Defense = 7.0
 ExperiencePointsValue = 4
-NumberTexture = ExtResource("2_5ix10")
-ArmsOffset = Vector2(0, 0)
-LegsOffset = Vector2(0, 0)
-BodyOffset = Vector2(0, 0)
-SpriteOffset = Vector2(0, 0)
+SpriteDataCollection = ExtResource("3_fj87j")
+LevelsConfig = ExtResource("2_o5a0w")
 AiStateController = ExtResource("1_f218p")

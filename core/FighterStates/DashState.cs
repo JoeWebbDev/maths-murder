@@ -44,7 +44,7 @@ public class DashState : FighterState
         
         if (fighter.CombatState != null) return;
 
-        var vec = _direction * fighter.WalkingSpeed * fighter.DashMultiplier * (float)delta;
+        var vec = _direction * fighter.WalkingSpeed * fighter.StatScaling.DashMultiplier * (float)delta;
         fighter.MoveAndCollide(vec);
     }
 
