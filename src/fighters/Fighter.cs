@@ -125,7 +125,7 @@ public partial class Fighter : CharacterBody2D
     // Consolidates dealing damage to one place
     public void DealDamage(float damage, Fighter target)
     {
-        var damageDealt = target.TakeDamage(damage);
+        var damageDealt = target.TakeDamage(damage, this);
         if (damageDealt <= 0) return;
         _notificationSystem.Notify(NotificationSystem.SignalName.DamageDealt, this, damageDealt);
     }
@@ -134,9 +134,10 @@ public partial class Fighter : CharacterBody2D
     // Ideally, this is deferred to the state machine too; but that seems like over-engineering given that only the
     // BlockState will have any impact on what happens when damage is received
     // Returning an int so that we can pass the actual damage dealt back to the dealer. For stats
-    public float TakeDamage(float damage)
+    public float TakeDamage(float damage, Fighter attacker)
     {
-        if (CombatState is BlockState blockState)
+        // Only block if height is the same
+        if (CombatState is BlockState blockState && (attacker.MovementState is DuckState && MovementState is DuckState || attacker.MovementState is not DuckState && MovementState is not DuckState))
         {
             // Chip damage etc
             return 0;

@@ -35,6 +35,8 @@ public partial class AIStateController : Resource
     [Export] protected bool EnableKick { get; set; } = true;
     [Export(PropertyHint.Range, "0,100,1")]
     protected int KickChance { get; set; } = 25;
+    [Export] protected bool BreakBlocksWithLowHit { get; set; } = true;
+    [Export] protected float BreakBlockDelay { get; set; } = 2f;
     [ExportGroup("Block")]
     [Export] protected bool PredictiveBlock { get; set; } = true;
     [Export(PropertyHint.Range, "0,100,1")]
@@ -48,20 +50,48 @@ public partial class AIStateController : Resource
     private float _currentAttackCooldown = 0f;
     private float _currentTrackDelay = 0f;
     private float _currentDashDelay = 0f;
-    private int _timesPlayerHasLandedConsecutiveCombos = 0;
-    private bool _blockConsumed = false;
-    
+    private bool _isSpammingCombos;
+    private int _timesPlayerHasLandedConsecutiveMoves = 0;
+    private bool _currentSpammedMoveConsumed;
+    private bool _blockConsumed;
+    private float _currentBreakBlockDelay = 0f;
+
     public AIStateController() { }
 
     public virtual void Process(Fighter aiFighter, Fighter playerTarget, double delta)
     {
         CurrentDistanceBetweenFighters = CalculateDistanceBetweenFighters(aiFighter, playerTarget);
         if (AttackOnCooldown()) _currentAttackCooldown -= (float)delta;
+        if (playerTarget.CombatState is BlockState && BreakBlocksWithLowHit) _currentBreakBlockDelay += (float)delta;
         
-        if (EnableSpamDenial)
+        if (EnableSpamDenial && !_currentSpammedMoveConsumed)
         {
+            // Prevent combo spammers
             if (playerTarget.CombatState is PunchThreeState or HighKickState)
-                _timesPlayerHasLandedConsecutiveCombos += 1;
+            {
+                if (!_isSpammingCombos)
+                {
+                    _isSpammingCombos = true;
+                    _timesPlayerHasLandedConsecutiveMoves = 0;
+                }
+                _timesPlayerHasLandedConsecutiveMoves += 1;
+            }
+            // Prevent duck spammers
+            if (playerTarget.MovementState is DuckState && playerTarget.CombatState is not null or BlockState)
+            {
+                if (_isSpammingCombos)
+                {
+                    _isSpammingCombos = false;
+                    _timesPlayerHasLandedConsecutiveMoves = 0;
+                }
+                _timesPlayerHasLandedConsecutiveMoves += 1;
+            }
+
+            _currentSpammedMoveConsumed = true;
+        }
+        else if (_currentSpammedMoveConsumed && playerTarget.CombatState is null or BlockState)
+        {
+            _currentSpammedMoveConsumed = false;
         }
 
         if (EnableDuck && playerTarget.MovementState is DuckState && InAttackRange())
@@ -72,7 +102,7 @@ public partial class AIStateController : Resource
                 aiFighter.Execute(new DuckCommand());
             }
         }
-        else
+        else if (aiFighter.CombatState is null or BlockState)
         {
             aiFighter.Execute(new DuckCommand(true));
             _currentDuckDelay = 0f;
@@ -80,7 +110,7 @@ public partial class AIStateController : Resource
 
         if (playerTarget.CombatState is not null and not BlockState && PredictiveBlock && InAttackRange())
         {
-            if (EnableSpamDenial && _timesPlayerHasLandedConsecutiveCombos >= SpamAllowedBeforeDenial)
+            if (EnableSpamDenial && _timesPlayerHasLandedConsecutiveMoves >= SpamAllowedBeforeDenial)
             {
                 aiFighter.Execute(new BlockCommand());
             }
@@ -106,10 +136,11 @@ public partial class AIStateController : Resource
         if (playerTarget.CombatState is null or BlockState && aiFighter.CombatState is BlockState)
         {
             aiFighter.Execute(new BlockCommand(true));
-            if (_timesPlayerHasLandedConsecutiveCombos >= SpamAllowedBeforeDenial)
+            if (EnableSpamDenial && _timesPlayerHasLandedConsecutiveMoves >= SpamAllowedBeforeDenial)
             {
+                if (playerTarget.MovementState is DuckState) aiFighter.Execute(new DuckCommand());
                 aiFighter.Execute(new PunchCommand());
-                _timesPlayerHasLandedConsecutiveCombos = 0;
+                _timesPlayerHasLandedConsecutiveMoves = 0;
                 return;
             }
         }
@@ -138,7 +169,13 @@ public partial class AIStateController : Resource
         if (!InAttackRange()) return;
         FighterCommand attackCommand = EnableKick && GD.Randi() % 100 < KickChance ? new KickCommand() : new PunchCommand();
         // Block high kicks because of funky rotation issues
-        if (aiFighter.CombatState is PunchTwoState) attackCommand = new PunchCommand();
+        if (aiFighter.CombatState is PunchTwoState && attackCommand is KickCommand) attackCommand = new PunchCommand();
+        if (playerTarget.CombatState is BlockState && BreakBlocksWithLowHit &&
+            _currentBreakBlockDelay >= BreakBlockDelay)
+        {
+            aiFighter.Execute(new DuckCommand());
+            _currentBreakBlockDelay = 0f;
+        }
         aiFighter.Execute(attackCommand);
         _currentAttackCooldown = AttackCooldown;
     }
