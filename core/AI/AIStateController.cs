@@ -42,25 +42,32 @@ public partial class AIStateController : Resource
     [Export(PropertyHint.Range, "0,100,1")]
     protected int PredictiveBlockChance { get; set; } = 50;
     [Export] protected bool EnableSpamDenial { get; set; } = true;
-    [Export] protected int SpamAllowedBeforeDenial { get; set; } = 3;
+    [Export] protected int SpamAllowedBeforeAttemptingToDeny { get; set; } = 3;
 
     protected float CurrentDistanceBetweenFighters { get; set; }
 
-    private float _currentDuckDelay = 0f;
-    private float _currentAttackCooldown = 0f;
-    private float _currentTrackDelay = 0f;
-    private float _currentDashDelay = 0f;
+    private float _currentDuckDelay;
+    private float _currentAttackCooldown;
+    private float _currentTrackDelay;
+    private float _currentDashDelay;
     private bool _isSpammingCombos;
-    private int _timesPlayerHasLandedConsecutiveMoves = 0;
+    private int _timesPlayerHasLandedConsecutiveMoves;
     private bool _currentSpammedMoveConsumed;
     private bool _blockConsumed;
-    private float _currentBreakBlockDelay = 0f;
+    private float _currentBreakBlockDelay;
 
     public AIStateController() { }
 
     public virtual void Process(Fighter aiFighter, Fighter playerTarget, double delta)
     {
         CurrentDistanceBetweenFighters = CalculateDistanceBetweenFighters(aiFighter, playerTarget);
+        if (EnableSpamDenial && _timesPlayerHasLandedConsecutiveMoves >= SpamAllowedBeforeAttemptingToDeny && playerTarget.CombatState is null)
+        {
+            if (playerTarget.MovementState is DuckState) aiFighter.Execute(new DuckCommand());
+            aiFighter.Execute(new PunchCommand());
+            _timesPlayerHasLandedConsecutiveMoves = 0;
+            return;
+        }
         if (AttackOnCooldown()) _currentAttackCooldown -= (float)delta;
         if (playerTarget.CombatState is BlockState && BreakBlocksWithLowHit) _currentBreakBlockDelay += (float)delta;
         
@@ -77,7 +84,7 @@ public partial class AIStateController : Resource
                 _timesPlayerHasLandedConsecutiveMoves += 1;
             }
             // Prevent duck spammers
-            if (playerTarget.MovementState is DuckState && playerTarget.CombatState is not null or BlockState)
+            else if (playerTarget.MovementState is DuckState && playerTarget.CombatState is not null or BlockState)
             {
                 if (_isSpammingCombos)
                 {
@@ -86,7 +93,6 @@ public partial class AIStateController : Resource
                 }
                 _timesPlayerHasLandedConsecutiveMoves += 1;
             }
-
             _currentSpammedMoveConsumed = true;
         }
         else if (_currentSpammedMoveConsumed && playerTarget.CombatState is null or BlockState)
@@ -110,7 +116,7 @@ public partial class AIStateController : Resource
 
         if (playerTarget.CombatState is not null and not BlockState && PredictiveBlock && InAttackRange())
         {
-            if (EnableSpamDenial && _timesPlayerHasLandedConsecutiveMoves >= SpamAllowedBeforeDenial)
+            if (EnableSpamDenial && _timesPlayerHasLandedConsecutiveMoves >= SpamAllowedBeforeAttemptingToDeny)
             {
                 aiFighter.Execute(new BlockCommand());
             }
@@ -136,13 +142,6 @@ public partial class AIStateController : Resource
         if (playerTarget.CombatState is null or BlockState && aiFighter.CombatState is BlockState)
         {
             aiFighter.Execute(new BlockCommand(true));
-            if (EnableSpamDenial && _timesPlayerHasLandedConsecutiveMoves >= SpamAllowedBeforeDenial)
-            {
-                if (playerTarget.MovementState is DuckState) aiFighter.Execute(new DuckCommand());
-                aiFighter.Execute(new PunchCommand());
-                _timesPlayerHasLandedConsecutiveMoves = 0;
-                return;
-            }
         }
 
         if (TrackPlayer)

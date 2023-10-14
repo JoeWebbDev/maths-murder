@@ -51,6 +51,10 @@ public class WalkingState : FighterState
                 if (duckCommand.Completed) break;
                 fighter.SwitchMovementState(new DuckState());
                 break;
+            case DashCommand dashCommand:
+                if (dashCommand.Completed) break;
+                fighter.SwitchMovementState(new DashState(dashCommand));
+                break;
         }
 
         return false;
