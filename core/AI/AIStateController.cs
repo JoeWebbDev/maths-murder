@@ -2,6 +2,7 @@ using System;
 using Godot;
 using MathsMurderSpike.core.Commands;
 using MathsMurderSpike.Core.FighterStates;
+using MonoCustomResourceRegistry;
 
 namespace MathsMurderSpike.core.AI;
 
@@ -9,6 +10,7 @@ namespace MathsMurderSpike.core.AI;
 /// Base class for different intensity AI's. The <see cref="AIController"/> will call <see cref="Process"/> every frame,
 /// passing in the player's <see cref="Fighter"/> root node. See <see cref="ProperNoobAIStateController"/> for an example implementation.
 /// </summary>
+[RegisteredType(nameof(AIStateController), "", nameof(Resource))]
 public partial class AIStateController : Resource
 {
     private const float DefaultFloatingPointTolerance = 1f;

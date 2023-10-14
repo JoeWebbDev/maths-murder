@@ -58,7 +58,7 @@ public partial class Fighter : CharacterBody2D
         get => _currentStamina;
         private set
         {
-            var clampedValue = Mathf.Clamp(value, 0, TotalStamina);
+            var clampedValue = Mathf.Clamp(value, 0, TotalStamina + 0.1f);
             if (Math.Abs(_currentStamina - clampedValue) < 0.01f) return;
             _currentStamina = value;
             EmitSignal(SignalName.StaminaChanged, value);
@@ -137,7 +137,11 @@ public partial class Fighter : CharacterBody2D
 
     public async void SwitchMovementState(FighterState to)
     {
-        if (UsesStamina && StaminaDepleted && to is StaminaConsumingState) return;
+        if (UsesStamina && StaminaDepleted && to is StaminaConsumingState)
+        {
+            GodotLogger.LogDebug($"OUT OF STAMINA! Overriding movement state switch from {MovementState?.GetType()} to {to?.GetType()}");
+            to = new IdleState();
+        }
         GodotLogger.LogDebug($"Switching movement state from: {MovementState?.GetType()} to {to?.GetType()}");
         await (MovementState?.Exit(this) ?? Task.CompletedTask);
         MovementState = to;
@@ -147,8 +151,11 @@ public partial class Fighter : CharacterBody2D
 
     public async void SwitchCombatState(FighterState to)
     {
-        if (UsesStamina && StaminaDepleted && to is StaminaConsumingState) return;
-        GodotLogger.LogDebug($"Switching combat state from: {CombatState?.GetType()} to {to?.GetType()}");
+        if (UsesStamina && StaminaDepleted && to is StaminaConsumingState)
+        {
+            to = null;
+        }
+        GodotLogger.LogDebug($"OUT OF STAMINA! Overriding combat state switch from {MovementState?.GetType()} to {to?.GetType()}");
         await (CombatState?.Exit(this) ?? Task.CompletedTask);
         CombatState = to;
         to?.Enter(this);

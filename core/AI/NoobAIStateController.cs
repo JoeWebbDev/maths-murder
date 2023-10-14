@@ -12,7 +12,6 @@ namespace MathsMurderSpike.core.AI;
 /// All magic numbers & not the best implementation; just wanted to demonstrate how we can write up more advanced AI's
 /// using the existing state machine!
 /// </summary>
-[RegisteredType(nameof(NoobAIStateController), "", nameof(Resource))]
 public partial class NoobAIStateController : AIStateController
 {
     public NoobAIStateController() { }

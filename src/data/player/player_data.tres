@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://cdpro86hqfw18"]
 
-[ext_resource type="Resource" uid="uid://b67dmuiigkh67" path="res://src/data/enemies/fighter_2.tres" id="1_dvq40"]
+[ext_resource type="Resource" uid="uid://byqaim383kubm" path="res://src/data/enemies/fighter_1.tres" id="1_7ww1j"]
 [ext_resource type="Resource" uid="uid://41faep8dnjgx" path="res://src/data/player/player_fighter_data.tres" id="1_ii0p4"]
 [ext_resource type="Script" path="res://src/data/player/PlayerData.cs" id="2_61dpo"]
 
@@ -8,7 +8,7 @@
 script = ExtResource("2_61dpo")
 FighterData = ExtResource("1_ii0p4")
 ExperiencePoints = 0
-CurrentOpponent = ExtResource("1_dvq40")
+CurrentOpponent = ExtResource("1_7ww1j")
 DefeatedOpponents = null
 TotalNumberOfFightsPerGame = 5
 TotalExpGained = 0
