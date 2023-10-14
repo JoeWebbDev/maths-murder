@@ -1,15 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://xy4kxgxscvui"]
+[gd_scene load_steps=9 format=3 uid="uid://xy4kxgxscvui"]
 
 [ext_resource type="Script" path="res://src/fight_ui/FightUI.cs" id="1_ryufm"]
 [ext_resource type="PackedScene" uid="uid://cut455t7ht2as" path="res://src/health_bar/health_bar.tscn" id="2_1m7ro"]
+[ext_resource type="Texture2D" uid="uid://bmmxvkr215kni" path="res://assets/art/stamina_bar_fill.png" id="2_asc0u"]
+[ext_resource type="Texture2D" uid="uid://dra3yf5m0hq45" path="res://assets/art/stamina_bar_depleted_fill.png" id="3_ecu3w"]
 [ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/maths_murder_button/maths_murder_button.tscn" id="3_jpomr"]
 [ext_resource type="Texture2D" uid="uid://bl2yvio6xdu6f" path="res://assets/art/match_timer_box.png" id="4_b4nxf"]
 [ext_resource type="Texture2D" uid="uid://duw6sb3fwet1f" path="res://assets/art/match_timer_box_fill.png" id="5_4grm0"]
+[ext_resource type="PackedScene" uid="uid://32rjr6u2oqea" path="res://src/stamina_bar/stamina_bar.tscn" id="6_j7pdn"]
 
-[node name="FightUI" type="CanvasLayer" node_paths=PackedStringArray("_playerHealthBar", "_enemyHealthBar", "_matchTimerLabel", "_countdownLabel", "_continueButton")]
+[node name="FightUI" type="CanvasLayer" node_paths=PackedStringArray("_playerHealthBar", "_enemyHealthBar", "_playerStaminaBar", "_matchTimerLabel", "_countdownLabel", "_continueButton")]
 script = ExtResource("1_ryufm")
 _playerHealthBar = NodePath("PlayerHealthBar")
 _enemyHealthBar = NodePath("EnemyHealthBar")
+_playerStaminaBar = NodePath("StaminaBar")
+_playerStaminaBarFullTexture = ExtResource("2_asc0u")
+_playerStaminaBarDepletedTexture = ExtResource("3_ecu3w")
 _matchTimerLabel = NodePath("MatchTimerBox/MatchTimerLabel")
 _countdownLabel = NodePath("CountdownLabel")
 _continueButton = NodePath("ContinueButton")
@@ -45,14 +51,15 @@ grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerHealthBar" parent="." node_paths=PackedStringArray("Ui") instance=ExtResource("2_1m7ro")]
-position = Vector2(80, 30)
-Ui = NodePath("..")
+[node name="StaminaBar" parent="." instance=ExtResource("6_j7pdn")]
+position = Vector2(99, 37)
 
-[node name="EnemyHealthBar" parent="." node_paths=PackedStringArray("Ui") instance=ExtResource("2_1m7ro")]
+[node name="PlayerHealthBar" parent="." instance=ExtResource("2_1m7ro")]
+position = Vector2(80, 30)
+
+[node name="EnemyHealthBar" parent="." instance=ExtResource("2_1m7ro")]
 position = Vector2(240, 30)
 scale = Vector2(-1, 1)
-Ui = NodePath("..")
 
 [node name="MatchTimerBox" type="Node2D" parent="."]
 position = Vector2(160, 22)

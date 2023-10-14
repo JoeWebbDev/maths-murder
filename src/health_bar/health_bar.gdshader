@@ -7,8 +7,8 @@ uniform float underlying_color_fill_amount : hint_range(0.0, 1.0) = 0.5;
 
 void fragment() {
 	vec4 tex = texture(TEXTURE, UV);
-	vec2 sample_tex_pos = vec2(fill_amount, fill_amount);
-	vec2 underlying_color_pos = vec2(underlying_color_fill_amount, underlying_color_fill_amount);
+	vec2 sample_tex_pos = vec2(fill_amount, 0.5);
+	vec2 underlying_color_pos = vec2(underlying_color_fill_amount, 0.5);
 	vec4 sample_tex = texture(sample_fill_texture, sample_tex_pos);
 	// Filter out transparent pixels
 	if (tex.a > 0.1) {

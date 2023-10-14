@@ -22,5 +22,5 @@ BreakBlocksWithLowHit = true
 BreakBlockDelay = 2.0
 PredictiveBlock = true
 PredictiveBlockChance = 50
-EnableSpamDenial = true
-SpamAllowedBeforeDenial = 4
+EnableSpamDenial = false
+SpamAllowedBeforeAttemptingToDeny = 3

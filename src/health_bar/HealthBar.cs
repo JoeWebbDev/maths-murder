@@ -7,10 +7,9 @@ public partial class HealthBar : Node2D
     {
         public static string FillAmount = "fill_amount";
         public static string UnderlyingColorFillAmount = "underlying_color_fill_amount";
+        public static string FillTexture = "sample_fill_texture";
     }
-    [Export] public Fighter Fighter { get; set; }
-    [Export] public FightUI Ui { get; private set; }
-
+    
     [Export] private float _underlyingColorDelayTime;
     [Export] private float _underlyingColorSpeed;
 
@@ -23,46 +22,54 @@ public partial class HealthBar : Node2D
     private float _underlyingValue;
     private float _currentUnderlyingValueDelay;
     private bool _isUpdatingUnderlyingValue;
+    private bool _useUnderlyingValue = true;
+    private bool _useBorderFrame = true;
     private ShaderMaterial _fillShader;
     
-    public float CurrentHealthDecimal => _value > 0 ? (float)_value / _maxValue : 0;
+    public float CurrentValueAsDecimal => _value > 0 ? (float)_value / _maxValue : 0;
 
     public override void _Ready()
     {
-        Ui.FightersInitialized += OnUiReady;
         _fillShader = (_fill.Material as ShaderMaterial);
     }
 
     public override void _Process(double delta)
     {
-        UpdateShaderUnderlyingColor((float)delta);
+        if (_useUnderlyingValue) UpdateShaderUnderlyingColor((float)delta);
     }
 
-    private void OnUiReady()
+    public void Initialize(float value, float maxValue, bool useUnderlyingValue = true, bool useBorderFrame = true)
     {
-        Fighter.HealthChanged += OnHealthChange;
-        _maxValue = Fighter.TotalHealth;
-        _value = Fighter.CurrentHealth;
-        _underlyingValue = Fighter.CurrentHealth;
+        _maxValue = maxValue;
+        _value = value;
+        _useUnderlyingValue = useUnderlyingValue;
+        _underlyingValue = useUnderlyingValue ? value : 0;
+        _useBorderFrame = useBorderFrame;
         UpdateShader();
     }
 
-    private void OnHealthChange(int from, int to)
+    public void UpdateValue(float to)
     {
         _value = to;
         UpdateShader();
         TryUpdateBorderFrame();
     }
 
+    public void UpdateFillTexture(Texture2D tex)
+    {
+        _fillShader.SetShaderParameter(ShaderParameters.FillTexture, tex);
+    }
+
     private void UpdateShader()
     {
-        _fillShader.SetShaderParameter(ShaderParameters.FillAmount, CurrentHealthDecimal);
+        _fillShader.SetShaderParameter(ShaderParameters.FillAmount, CurrentValueAsDecimal);
         if (!_isUpdatingUnderlyingValue) _currentUnderlyingValueDelay = _underlyingColorDelayTime;
     }
 
     private void TryUpdateBorderFrame()
     {
-        var targetFrame = Mathf.Abs(Mathf.CeilToInt(CurrentHealthDecimal * 4) - 4);
+        if (!_useBorderFrame) return;
+        var targetFrame = Mathf.Abs(Mathf.CeilToInt(CurrentValueAsDecimal * 4) - 4);
         if (_border.Frame != targetFrame) _border.Frame = targetFrame;
     }
 

@@ -41,7 +41,7 @@ public partial class Fight : Node
         GetTree().Paused = true;
         _gameDataManager = GetNode<GameDataManager>("/root/GameDataManager");
         var playerData = _gameDataManager.GetPlayerData();
-        Player.InitFighter(playerData.FighterData);
+        Player.InitFighter(playerData.FighterData, true);
         var enemyData = playerData.CurrentOpponent ?? _gameDataManager.GetRandomOpponentData();
         Enemy.InitFighter(enemyData);
         AiController.StateController = enemyData.AiStateController;

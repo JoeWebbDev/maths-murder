@@ -3,9 +3,11 @@ using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
-public class PunchThreeState : FighterState
+public class PunchThreeState : StaminaConsumingState
 {
     private Fighter _fighterRef;
+
+    public override float EnterStaminaCost { get; set; } = 14f;
     public override void Enter(Fighter fighter)
     {
         base.Enter(fighter);

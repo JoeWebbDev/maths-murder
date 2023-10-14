@@ -2,18 +2,19 @@
 
 namespace MathsMurderSpike.Core.FighterStates;
 
-public class BlockState : FighterState
+public class BlockState : StaminaConsumingState
 {
+    public override float ProcessStaminaCost { get; set; } = 5f;
+
     public override void Enter(Fighter fighter)
     {
         base.Enter(fighter);
-        // fighter.AnimatedSprite.Play("block");
         fighter.AnimationPlayer.Play(fighter.MovementState is DuckState ? "duck_block" : "block");
     }
 
     public override bool HandleCommand(Fighter fighter, FighterCommand cmd)
     {
-        if (cmd is BlockCommand { Completed: true })
+        if (cmd is BlockCommand { Completed: true } || fighter.StaminaDepleted)
         {
             fighter.SwitchCombatState(null);
             return false;

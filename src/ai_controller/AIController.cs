@@ -17,6 +17,8 @@ public partial class AIController : Node
 	{
 		_initialized = true;
 		GodotLogger.LogDebug("AI fighter initialized");
+		Fighter.ProcessPriority = 0;
+		Player.ProcessPriority = 1;
 	}
 
 	public override void _Process(double delta)

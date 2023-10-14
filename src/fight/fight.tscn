@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/fight/Fight.cs" id="1_byaux"]
 [ext_resource type="PackedScene" uid="uid://xy4kxgxscvui" path="res://src/fight_ui/fight_ui.tscn" id="2_ecqmq"]
-[ext_resource type="Texture2D" uid="uid://jmbjatkvyuwa" path="res://assets/art/fight_background.png" id="2_nvten"]
+[ext_resource type="Texture2D" uid="uid://dd84pynqihvml" path="res://assets/art/boxing_fight_scene_background.png" id="2_gwtpi"]
 [ext_resource type="PackedScene" uid="uid://cwrt3mai5fuk7" path="res://src/match_timer/match_timer.tscn" id="3_gb5ic"]
 [ext_resource type="Texture2D" uid="uid://bxuhgb1q4g4tk" path="res://assets/art/super_cool_fight_animation.png" id="4_gmqol"]
 [ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="5_deabo"]
@@ -41,7 +41,7 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vkdp"]
-size = Vector2(20, 368)
+size = Vector2(27, 198)
 
 [node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "InputController", "AiController", "Player", "Enemy", "Timer", "_pauseMenu", "_pausePostProcess", "_preFightPlaceholderScreen", "_cameraController", "_deathPostProcess")]
 process_mode = 1
@@ -60,9 +60,8 @@ _cameraController = NodePath("FightCamera")
 _deathPostProcess = NodePath("FightUI/DeathPostProcess")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(166, 76)
-scale = Vector2(0.339228, 0.339228)
-texture = ExtResource("2_nvten")
+position = Vector2(160, 90)
+texture = ExtResource("2_gwtpi")
 
 [node name="FightUI" parent="." node_paths=PackedStringArray("_player", "_enemy", "_matchTimer") instance=ExtResource("2_ecqmq")]
 _player = NodePath("../Player")
@@ -124,11 +123,11 @@ _boundaryFeather = 100.0
 collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-150, 174)
+position = Vector2(-65, 89)
 shape = SubResource("RectangleShape2D_6vkdp")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(500, 174)
+position = Vector2(390, 93)
 shape = SubResource("RectangleShape2D_6vkdp")
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_4f5w0")]
