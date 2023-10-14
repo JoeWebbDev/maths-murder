@@ -95,7 +95,7 @@ public partial class AIStateController : Resource
             }
             _currentSpammedMoveConsumed = true;
         }
-        else if (_currentSpammedMoveConsumed)
+        else if (_currentSpammedMoveConsumed && playerTarget.CombatState is null or BlockState)
         {
             _currentSpammedMoveConsumed = false;
         }
