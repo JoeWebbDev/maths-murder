@@ -8,6 +8,8 @@ public partial class FightCameraController : Node2D
     [Export] private float _boundaryFeather;
     [Export] private float _lerpSpeed;
     [Export] public CinematicCamera CinematicCamera { get; private set; }
+    // X - left bound, Y - right bound
+    [Export] private Vector2 _fightBounds;
     public bool Freeze { get; set; }
     private Vector2 _viewportSize;
     private Vector2 _destination;
@@ -29,7 +31,7 @@ public partial class FightCameraController : Node2D
         var xMidpoint = sumOfXPositions != 0 ? sumOfXPositions / 2 : sumOfXPositions;
         
         // While we're here, lets lerp to the midpoint of both players
-        CinematicCamera.Offset = CinematicCamera.Offset.Lerp(new Vector2(xMidpoint, CinematicCamera.Offset.Y), (float)delta * _lerpSpeed);
+        CinematicCamera.Offset = CinematicCamera.Offset.Lerp(new Vector2(Mathf.Clamp(xMidpoint, _fightBounds.X, _fightBounds.Y), CinematicCamera.Offset.Y), (float)delta * _lerpSpeed);
         
 
         // 2 - If distance > viewport size, find multiplier required to get viewport size > distance
