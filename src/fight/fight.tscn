@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cuvve83igm5fe"]
+[gd_scene load_steps=16 format=3 uid="uid://cuvve83igm5fe"]
 
 [ext_resource type="Script" path="res://src/fight/Fight.cs" id="1_byaux"]
 [ext_resource type="PackedScene" uid="uid://xy4kxgxscvui" path="res://src/fight_ui/fight_ui.tscn" id="2_ecqmq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bxuhgb1q4g4tk" path="res://assets/art/super_cool_fight_animation.png" id="4_gmqol"]
 [ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="5_deabo"]
 [ext_resource type="PackedScene" uid="uid://2ctuwd5ypoun" path="res://src/fight_input_controller/fight_input_controller.tscn" id="6_5fy5m"]
+[ext_resource type="Shader" path="res://src/shaders/vhs_effect.gdshader" id="6_56mjq"]
 [ext_resource type="PackedScene" uid="uid://dmq57kpgult53" path="res://src/ai_controller/ai_controller.tscn" id="6_q1701"]
 [ext_resource type="PackedScene" uid="uid://bflo0k1k6urxb" path="res://src/pause_menu/pause_menu.tscn" id="9_4f5w0"]
 [ext_resource type="PackedScene" uid="uid://bawgstg5kpa4c" path="res://src/fight_camera_controller/fight_camera_controller.tscn" id="9_07pf4"]
@@ -15,10 +16,34 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uxfqg"]
 shader = ExtResource("11_r80ku")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bvsy2"]
+shader = ExtResource("6_56mjq")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.187
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 6.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.105
+shader_parameter/noise_opacity = 0.614
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vkdp"]
 size = Vector2(20, 368)
 
-[node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "InputController", "AiController", "Player", "Enemy", "Timer", "_pauseMenu", "_preFightPlaceholderScreen", "_cameraController", "_deathPostProcess")]
+[node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "InputController", "AiController", "Player", "Enemy", "Timer", "_pauseMenu", "_pausePostProcess", "_preFightPlaceholderScreen", "_cameraController", "_deathPostProcess")]
 process_mode = 1
 script = ExtResource("1_byaux")
 Ui = NodePath("FightUI")
@@ -28,6 +53,7 @@ Player = NodePath("Player")
 Enemy = NodePath("Enemy")
 Timer = NodePath("MatchTimer")
 _pauseMenu = NodePath("PauseMenu")
+_pausePostProcess = NodePath("FightUI/VHSPausePostProcess")
 _fightCountdownDuration = 3
 _preFightPlaceholderScreen = NodePath("FightUI/Sprite2D")
 _cameraController = NodePath("FightCamera")
@@ -52,6 +78,16 @@ texture = ExtResource("4_gmqol")
 [node name="DeathPostProcess" type="ColorRect" parent="FightUI"]
 visible = false
 material = SubResource("ShaderMaterial_uxfqg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="VHSPausePostProcess" type="ColorRect" parent="FightUI"]
+visible = false
+material = SubResource("ShaderMaterial_bvsy2")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -20,6 +20,7 @@ public partial class Fight : Node
     [Export] public Fighter Enemy { get; set; }
     [Export] public MatchTimer Timer { get; private set; }
     [Export] private PauseMenu _pauseMenu;
+    [Export] private ColorRect _pausePostProcess;
     [Export] private int _fightCountdownDuration;
     [Export] private Sprite2D _preFightPlaceholderScreen;
     [Export] private FightCameraController _cameraController;
@@ -65,12 +66,14 @@ public partial class Fight : Node
     private void Pause()
     {
         GetTree().Paused = true;
+        _pausePostProcess.Show();
         _pauseMenu.Show();
     }
 
     private void Resume()
     {
         GetTree().Paused = false;
+        _pausePostProcess.Hide();
         _pauseMenu.Hide();
     }
 
