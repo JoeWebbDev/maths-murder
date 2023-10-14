@@ -8,6 +8,7 @@ public partial class StatScalingConfig : Resource
     [Export] public float DamageReductionModifier;
     [Export] public float SpeedModifier;
     [Export] public float DashMultiplier;
+    [Export] public float StaminaRechargeSpeedModifier;
     
     public StatScalingConfig() : this(0, 0, 0, 0, 0, null) { }
 

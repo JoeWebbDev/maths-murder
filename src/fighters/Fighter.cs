@@ -108,14 +108,19 @@ public partial class Fighter : CharacterBody2D
         // Load texture depending on level
         // Set stats using scaling config.
         TotalHealth = data.Health * StatScaling.HealthModifier;
-        CurrentHealth = data.Health * StatScaling.HealthModifier;
+        CurrentHealth = TotalHealth;
         HitDamage = data.Strength * StatScaling.DamageModifier;
         DamageReduction = data.Defense * StatScaling.DamageReductionModifier;
-        WalkingSpeed = WalkingSpeed + data.Speed * StatScaling.SpeedModifier;
+        WalkingSpeed += data.Speed * StatScaling.SpeedModifier;
         
         // Implement stats for stamina?
         UsesStamina = usesStamina;
-        if (usesStamina) CurrentStamina = TotalStamina;
+        if (usesStamina)
+        {
+            CurrentStamina = TotalStamina;
+            StaminaRechargeRate += (data.Speed * StatScaling.StaminaRechargeSpeedModifier);
+            StaminaDepletedRechargeRate = StaminaRechargeRate * 2f;
+        }
         
         // Need to separate numbers from fighter data
         var spriteData = data.GetSpriteData();

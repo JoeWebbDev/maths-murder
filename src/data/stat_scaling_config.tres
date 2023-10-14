@@ -9,3 +9,4 @@ DamageModifier = 1.05
 DamageReductionModifier = 1.03
 SpeedModifier = 1.3
 DashMultiplier = 3.0
+StaminaRechargeSpeedModifier = 0.4

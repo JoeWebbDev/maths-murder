@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_r305s")
 Health = 2.0
-Speed = 2.0
+Speed = 10.0
 Strength = 2.0
 Defense = 2.0
 ExperiencePointsValue = 2
