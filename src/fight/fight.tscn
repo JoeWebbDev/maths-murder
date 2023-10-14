@@ -118,7 +118,7 @@ process_mode = 3
 _player = NodePath("../Player")
 _enemy = NodePath("../Enemy")
 _boundaryFeather = 100.0
-_fightBounds = Vector2(20, 360)
+_fightBounds = Vector2(20, 320)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 3
@@ -128,7 +128,7 @@ position = Vector2(-146, 89)
 shape = SubResource("RectangleShape2D_6vkdp")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(466, 93)
+position = Vector2(481, 93)
 shape = SubResource("RectangleShape2D_6vkdp")
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_4f5w0")]
