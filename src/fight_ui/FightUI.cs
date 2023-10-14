@@ -78,7 +78,7 @@ public partial class FightUI : CanvasLayer
 		if (_isTimerActive) _matchTimerLabel.Text = (Mathf.CeilToInt(_matchTimer.TimeLeft ?? 0)).ToString();
 	}
 
-	private void OnPlayerStaminaChanged(int to)
+	private void OnPlayerStaminaChanged(float to)
 	{
 		_playerStaminaBar.UpdateValue(to);
 		if (to <= 0) _playerStaminaBar.UpdateFillTexture(_playerStaminaBarDepletedTexture);

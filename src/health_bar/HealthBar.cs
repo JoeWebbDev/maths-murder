@@ -26,7 +26,7 @@ public partial class HealthBar : Node2D
     private bool _useBorderFrame = true;
     private ShaderMaterial _fillShader;
     
-    public float CurrentValueAsDecimal => _value > 0 ? (float)_value / _maxValue : 0;
+    public float CurrentValueAsDecimal => _value > 0 ? _value / _maxValue : 0;
 
     public override void _Ready()
     {

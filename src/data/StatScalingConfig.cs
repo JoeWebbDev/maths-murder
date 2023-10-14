@@ -9,6 +9,7 @@ public partial class StatScalingConfig : Resource
     [Export] public float SpeedModifier;
     [Export] public float DashMultiplier;
     [Export] public float StaminaRechargeSpeedModifier;
+    [Export] public float ChipDamageModifier;
     
     public StatScalingConfig() : this(0, 0, 0, 0, 0, null) { }
 

@@ -95,7 +95,7 @@ public partial class Fight : Node
         EmitSignal(SignalName.QuitRequested);
     }
 
-    private void CheckDeath(int from, int to)
+    private void CheckDeath(float from, float to)
     {
         if (to <= 0) EndFight();
     }

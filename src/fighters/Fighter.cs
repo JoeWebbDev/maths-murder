@@ -8,8 +8,8 @@ public partial class Fighter : CharacterBody2D
 {
     private float _currentHealth;
     [Signal] public delegate void HitRegisteredEventHandler();
-    [Signal] public delegate void HealthChangedEventHandler(int from, int to);
-    [Signal] public delegate void StaminaChangedEventHandler(int to);
+    [Signal] public delegate void HealthChangedEventHandler(float from, float to);
+    [Signal] public delegate void StaminaChangedEventHandler(float to);
     [Signal] public delegate void MovementStateChangedEventHandler(Fighter fighter);
     [Signal] public delegate void CombatStateChangedEventHandler(Fighter fighter);
     [Export] public Sprite2D NumberRef { get; set; }
@@ -169,14 +169,17 @@ public partial class Fighter : CharacterBody2D
     // Returning an int so that we can pass the actual damage dealt back to the dealer. For stats
     public float TakeDamage(float damage, Fighter attacker)
     {
+        var actualDamage = damage * (20/(20 * DamageReduction));
         // Only block if height is the same
         if (CombatState is BlockState blockState && (attacker.MovementState is DuckState && MovementState is DuckState || attacker.MovementState is not DuckState && MovementState is not DuckState))
         {
-            // Chip damage etc
-            return 0;
+            GodotLogger.LogDebug($"Chip damage applying...Reducing {actualDamage} to {actualDamage *= StatScaling.ChipDamageModifier}. Chip damage modifier: {StatScaling.ChipDamageModifier}");
+            actualDamage *= StatScaling.ChipDamageModifier;
+            CurrentHealth -= actualDamage;
+            _notificationSystem.Notify(NotificationSystem.SignalName.DamageTaken, this, actualDamage);
+            return actualDamage;
         }
         GodotLogger.LogDebug($"Taking {damage} damage");
-        var actualDamage = damage * (20/(20 * DamageReduction));
         CurrentHealth -= actualDamage;
         _notificationSystem.Notify(NotificationSystem.SignalName.DamageTaken, this, actualDamage);
         if (CurrentHealth > 0) SwitchCombatState(new RecoverState());
