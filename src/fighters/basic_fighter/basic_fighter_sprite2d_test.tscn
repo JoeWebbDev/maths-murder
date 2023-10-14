@@ -3145,6 +3145,7 @@ script = ExtResource("1_u25jf")
 NumberRef = NodePath("ScalableChildren/SpriteGroup/NumberRef")
 AnimationPlayer = NodePath("AnimationPlayer")
 PunchColliderObject = NodePath("ScalableChildren/ArmsGroup/PunchColliderObject")
+WalkingSpeed = 50.0
 StatScaling = ExtResource("2_6u7ht")
 PlayerNumber = 1
 _nodeToFlip = NodePath("ScalableChildren")

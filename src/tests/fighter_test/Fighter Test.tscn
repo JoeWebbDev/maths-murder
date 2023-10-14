@@ -12,7 +12,6 @@ _fighter = NodePath("Fighter")
 _legsYSpinBox = NodePath("VBoxContainer/HBoxContainer/LegsYInput")
 
 [node name="Fighter" parent="." instance=ExtResource("3_t7njm")]
-HitDamage = 0.0
 
 [node name="InputController" parent="." node_paths=PackedStringArray("CurrentFighter") instance=ExtResource("4_xgesm")]
 CurrentFighter = NodePath("../Fighter")
