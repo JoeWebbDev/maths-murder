@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 public partial class GameDataManager : Node
@@ -76,6 +77,9 @@ public partial class GameDataManager : Node
 		if (setAsCurrentOpponent) _playerDataInstance.CurrentOpponent = opponent;
 		return opponent;
 	}
+
+	public FighterData GetOpponentDataFromCollection(int index) => _enemyDataCollection.FighterDataCollection[index];
+	public FighterData GetHardestOpponent() => _enemyDataCollection.FighterDataCollection.Last();
 
 	public void RegisterDefeatedOpponent()
 	{
