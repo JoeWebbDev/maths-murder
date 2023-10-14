@@ -32,9 +32,10 @@ public class BlockState : FighterState
             fighter.SwitchMovementState(new IdleState());
         }
 
-        if (cmd is DuckCommand { Completed: true })
+        if (cmd is DuckCommand duckCommand)
         {
-            fighter.SwitchMovementState(new IdleState());
+            fighter.SwitchMovementState(duckCommand.Completed ? new IdleState() : new DuckState());
+            fighter.AnimationPlayer.Play(duckCommand.Completed ? "block" : "duck_block");
         }
         
         // Currently not interested in any other commands, as holding block should prevent players from moving.

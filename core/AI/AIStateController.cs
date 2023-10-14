@@ -22,23 +22,33 @@ public partial class AIStateController : Resource
     [Export] protected bool EnableDash { get; set; } = true;
     [Export] protected float DashDelay { get; set; } = 1f;
     [Export] protected float DistanceFromPreferredRequiredToDash { get; set; } = 150f;
+
+    [ExportSubgroup("Duck")]
+    [Export] protected bool EnableDuck { get; set; } = true;
+    [Export] protected float DuckDelay { get; set; } = 0.2f;
     [ExportGroup("Attack")]
     [Export] protected float AttackCooldown { get; set; } = 2f;
+    [Export] protected float AttackRange { get; set; } = 75f;
     [Export] protected bool AutoAttack { get; set; } = true;
     [Export] protected bool EnableCombos { get; set; } = true;
-    [ExportSubgroup("Punch")]
-    [Export] protected float PunchRange { get; set; } = 75f;
+    [ExportSubgroup("Kick")]
+    [Export] protected bool EnableKick { get; set; } = true;
+    [Export(PropertyHint.Range, "0,100,1")]
+    protected int KickChance { get; set; } = 25;
     [ExportGroup("Block")]
     [Export] protected bool PredictiveBlock { get; set; } = true;
-
     [Export(PropertyHint.Range, "0,100,1")]
     protected int PredictiveBlockChance { get; set; } = 50;
+    [Export] protected bool EnableSpamDenial { get; set; } = true;
+    [Export] protected int SpamAllowedBeforeDenial { get; set; } = 3;
 
     protected float CurrentDistanceBetweenFighters { get; set; }
-    
+
+    private float _currentDuckDelay = 0f;
     private float _currentAttackCooldown = 0f;
     private float _currentTrackDelay = 0f;
     private float _currentDashDelay = 0f;
+    private int _timesPlayerHasLandedConsecutiveCombos = 0;
     private bool _blockConsumed = false;
     
     public AIStateController() { }
@@ -47,20 +57,48 @@ public partial class AIStateController : Resource
     {
         CurrentDistanceBetweenFighters = CalculateDistanceBetweenFighters(aiFighter, playerTarget);
         if (AttackOnCooldown()) _currentAttackCooldown -= (float)delta;
-
-        if (playerTarget.CombatState is not null and not BlockState && PredictiveBlock && InPunchRange())
+        
+        if (EnableSpamDenial)
         {
-            if (_blockConsumed) return;
-            var randomNum = GD.Randi() % 100;
-            var shouldBlock = randomNum < PredictiveBlockChance;
-            GodotLogger.LogDebug(randomNum.ToString());
-            if (shouldBlock)
+            if (playerTarget.CombatState is PunchThreeState or HighKickState)
+                _timesPlayerHasLandedConsecutiveCombos += 1;
+        }
+
+        if (EnableDuck && playerTarget.MovementState is DuckState && InAttackRange())
+        {
+            _currentDuckDelay += (float)delta;
+            if (_currentDuckDelay >= DuckDelay)
+            {
+                aiFighter.Execute(new DuckCommand());
+            }
+        }
+        else
+        {
+            aiFighter.Execute(new DuckCommand(true));
+            _currentDuckDelay = 0f;
+        }
+
+        if (playerTarget.CombatState is not null and not BlockState && PredictiveBlock && InAttackRange())
+        {
+            if (EnableSpamDenial && _timesPlayerHasLandedConsecutiveCombos >= SpamAllowedBeforeDenial)
             {
                 aiFighter.Execute(new BlockCommand());
+            }
+            else
+            {
+                if (_blockConsumed) return;
+                var randomNum = GD.Randi() % 100;
+                var shouldBlock = randomNum < PredictiveBlockChance;
+                GodotLogger.LogDebug(randomNum.ToString());
+                if (shouldBlock)
+                {
+                    aiFighter.Execute(new BlockCommand());
+                    return;
+                }
+
+                _blockConsumed = true;
                 return;
             }
-            _blockConsumed = true;
-            return;
         }
         
         if (playerTarget.CombatState is null or BlockState) _blockConsumed = false;
@@ -68,6 +106,12 @@ public partial class AIStateController : Resource
         if (playerTarget.CombatState is null or BlockState && aiFighter.CombatState is BlockState)
         {
             aiFighter.Execute(new BlockCommand(true));
+            if (_timesPlayerHasLandedConsecutiveCombos >= SpamAllowedBeforeDenial)
+            {
+                aiFighter.Execute(new PunchCommand());
+                _timesPlayerHasLandedConsecutiveCombos = 0;
+                return;
+            }
         }
 
         if (TrackPlayer)
@@ -89,10 +133,13 @@ public partial class AIStateController : Resource
         
         if (!AutoAttack) return;
         // If EnableCombo, we only bomb out of attacks if there's no combo opportunity (CombatState is null)
-        if (AttackOnCooldown() && !EnableCombos || AttackOnCooldown() && aiFighter.CombatState == null) return;
+        if (AttackOnCooldown() && !EnableCombos || AttackOnCooldown() && aiFighter.CombatState is null) return;
         // Atm, only supporting melee attacks. 
-        if (!InPunchRange()) return;
-        aiFighter.Execute(new PunchCommand());
+        if (!InAttackRange()) return;
+        FighterCommand attackCommand = EnableKick && GD.Randi() % 100 < KickChance ? new KickCommand() : new PunchCommand();
+        // Block high kicks because of funky rotation issues
+        if (aiFighter.CombatState is PunchTwoState) attackCommand = new PunchCommand();
+        aiFighter.Execute(attackCommand);
         _currentAttackCooldown = AttackCooldown;
     }
 
@@ -132,7 +179,7 @@ public partial class AIStateController : Resource
 
     protected bool AtPreferredDistance() => Math.Abs(CurrentDistanceBetweenFighters - PreferredTrackingDistance) < DefaultFloatingPointTolerance;
     protected bool IsDashViable() => CurrentDistanceBetweenFighters + DefaultFloatingPointTolerance >= PreferredTrackingDistance + DistanceFromPreferredRequiredToDash;
-    protected bool InPunchRange() => PunchRange + DefaultFloatingPointTolerance >= CurrentDistanceBetweenFighters;
+    protected bool InAttackRange() => AttackRange + DefaultFloatingPointTolerance >= CurrentDistanceBetweenFighters;
     protected bool AttackOnCooldown() => _currentAttackCooldown > 0;
     protected bool TrackingOnCooldown() => _currentTrackDelay > 0;
     protected bool DashOnCooldown() => _currentDashDelay > 0;
