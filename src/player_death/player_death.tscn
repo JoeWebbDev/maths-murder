@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3rs2pv57bf2d"]
+[gd_scene load_steps=11 format=3 uid="uid://c3rs2pv57bf2d"]
 
 [ext_resource type="Script" path="res://src/player_death/PlayerDeath.cs" id="1_nh301"]
 [ext_resource type="Shader" path="res://src/shaders/fight_death.gdshader" id="2_0exdu"]
 [ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="2_048tu"]
+[ext_resource type="Texture2D" uid="uid://klqsij6os2k7" path="res://assets/art/spotlight.png" id="2_lrc1p"]
 [ext_resource type="Texture2D" uid="uid://4v243800outr" path="res://assets/art/death_spotlight.png" id="2_oayef"]
 
 [sub_resource type="Animation" id="Animation_lgjhd"]
@@ -10,7 +11,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("DefeatSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +27,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("DefeatSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -41,7 +42,7 @@ resource_name = "initial_death"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("DefeatSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -61,11 +62,14 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x5kic"]
 shader = ExtResource("2_0exdu")
 
-[node name="PlayerDeath" type="Node2D" node_paths=PackedStringArray("_playAgainButton", "_animPlayer", "_defeatedOpponentsContainer", "_damageDealtLabel", "_damageTakenLabel", "_experiencePointsGainedLabel")]
+[node name="PlayerDeath" type="Node2D" node_paths=PackedStringArray("_playAgainButton", "_animPlayer", "_defeatSprite", "_victorySprite", "_defeatedOpponentsContainer", "_damageDealtLabel", "_damageTakenLabel", "_experiencePointsGainedLabel", "_titleLabel")]
 script = ExtResource("1_nh301")
 _playAgainButton = NodePath("CanvasLayer/Button")
 _animPlayer = NodePath("AnimationPlayer")
+_defeatSprite = NodePath("DefeatSprite")
+_victorySprite = NodePath("VictorySprite")
 _fighterScene = ExtResource("2_048tu")
+_playerFighterPos = Vector2(160, 80)
 _defeatedOpponentScale = 0.4
 _defeatedOpponentsContainer = NodePath("CanvasLayer/HBoxContainer")
 _maxDefeatedOpponentsInARow = 7
@@ -73,13 +77,21 @@ _defeatedOpponentsOffset = Vector2(25, 50)
 _damageDealtLabel = NodePath("CanvasLayer/DamageDealtNumber")
 _damageTakenLabel = NodePath("CanvasLayer/DamageTakenNumber")
 _experiencePointsGainedLabel = NodePath("CanvasLayer/TotalEXPGainedNumber")
+_titleLabel = NodePath("CanvasLayer/Title")
+_defeatText = "Wasted..."
+_victoryText = "Victory!"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="DefeatSprite" type="Sprite2D" parent="."]
 position = Vector2(160, 90)
 texture = ExtResource("2_oayef")
 hframes = 10
 vframes = 2
 frame = 10
+
+[node name="VictorySprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(160, 90)
+texture = ExtResource("2_lrc1p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -110,6 +122,7 @@ offset_bottom = 86.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Wasted..."
+horizontal_alignment = 1
 
 [node name="TotalEnemiesDefeated" type="Label" parent="CanvasLayer"]
 offset_left = 26.0

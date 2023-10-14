@@ -118,7 +118,6 @@ public partial class Fight : Node
         Engine.TimeScale = 0.5f;
         _gameDataManager.RegisterDefeatedOpponent();
         Ui.ShowVictoryScreen();
-        return;
     }
 
     private async void OnFightLost()
