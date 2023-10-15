@@ -105,6 +105,8 @@ public partial class Fight : Node
 
     private void EndFight()
     {
+        Player.FreezeCommandInput = true;
+        Enemy.FreezeCommandInput = true;
         var playerWon = Player.CurrentHealth / Player.TotalHealth > Enemy.CurrentHealth / Enemy.TotalHealth;
         if (playerWon)
         {
