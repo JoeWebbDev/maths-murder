@@ -68,7 +68,8 @@ public partial class Fighter : CharacterBody2D
     }
     public FighterState MovementState { get; private set; }
     public FighterState CombatState { get; private set; }
-    
+    public bool FreezeCommandInput { get; set; }
+
     public override void _Ready()
     {
         _notificationSystem = GetNode<NotificationSystem>("/root/NotificationSystem");
@@ -95,6 +96,7 @@ public partial class Fighter : CharacterBody2D
 
     public void Execute(FighterCommand cmd)
     {
+        if (FreezeCommandInput) return;
         GodotLogger.LogDebug($"Command received: {cmd.GetType()}");
         // I found that I was writing lots of "if (doing some combat) then do nothing" in the movement states.
         // This provides a way for the CombatState machine to consume commands, so that they never reach

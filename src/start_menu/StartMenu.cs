@@ -29,13 +29,21 @@ public partial class StartMenu : Node
 	[Export] private Color _startColor;
 	[Export] private Color _endColor;
 	[Export] private float _colorChangeDuration;
+	[ExportGroup("Music/SFX properties")]
+	[Export] private AudioStream _musicTrack;
+	[Export] private float _musicDb;
+	[Export] private AudioStream _mathsMurderAnnouncerTrack;
+	[Export] private float _mathsMurderAnnouncerDb;
+	
 	private SettingsModal _settingsModal;
 	private HowToPlayModal _howToPlayModal;
+	private GlobalAudioManager _audioManager;
 
 	public override void _Ready()
 	{
 		_settingsModal = GetNode<SettingsModal>("/root/SettingsModal");
 		_howToPlayModal = GetNode<HowToPlayModal>("/root/HowToPlayModal");
+		_audioManager = GetNode<GlobalAudioManager>("/root/GlobalAudioManager");
 		_ui.Hide();
 		_murderSprite.Hide();
 		_background.Modulate = _startColor;
@@ -50,6 +58,8 @@ public partial class StartMenu : Node
 
 	private async void PlayTitleAnimation()
 	{
+		_audioManager.PlayMusic(_musicTrack, _musicDb);
+		_audioManager.PlaySfx(_mathsMurderAnnouncerTrack, _mathsMurderAnnouncerDb);
 		_mask.Size = _maskStartingSize;
 		var tree = GetTree();
 		var tween = tree.CreateTween();

@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxynmlovonl6s"]
+[gd_scene load_steps=11 format=3 uid="uid://dxynmlovonl6s"]
 
 [ext_resource type="Script" path="res://src/start_menu/StartMenu.cs" id="1_ka7b5"]
 [ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/maths_murder_button/maths_murder_button.tscn" id="2_8mrqp"]
+[ext_resource type="AudioStream" uid="uid://ynwrfv72llra" path="res://assets/audio/music/DodgeTheme.wav" id="2_bnccb"]
 [ext_resource type="Texture2D" uid="uid://ydj0103w2qfe" path="res://assets/art/start_menu_background.png" id="2_l1vws"]
+[ext_resource type="AudioStream" uid="uid://c2oqmuncm0mgw" path="res://assets/audio/announcer_voicelines/maths_murder.wav" id="3_e3ecj"]
 [ext_resource type="Texture2D" uid="uid://r1lb1gi63llw" path="res://assets/art/maths.png" id="4_0p4a0"]
 [ext_resource type="Texture2D" uid="uid://bp3105bycs526" path="res://assets/art/cog.png" id="4_c58vp"]
 [ext_resource type="Texture2D" uid="uid://327s7rtw0lvm" path="res://assets/art/murder.png" id="5_frr7c"]
@@ -30,6 +32,8 @@ _background = NodePath("Sprite2D")
 _startColor = Color(0, 0, 0, 1)
 _endColor = Color(0.364706, 0.364706, 0.364706, 1)
 _colorChangeDuration = 1.0
+_musicTrack = ExtResource("2_bnccb")
+_mathsMurderAnnouncerTrack = ExtResource("3_e3ecj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.372549, 0.372549, 0.372549, 1)

@@ -28,6 +28,7 @@ GameDataManager="*res://src/data/game_data_manager.tscn"
 SettingsModal="*res://src/modals/settings_menu/settings_modal/settings_modal.tscn"
 NotificationSystem="*res://src/notification_system/notification_system.tscn"
 HowToPlayModal="*res://src/modals/how_to_play_modal/how_to_play_modal.tscn"
+GlobalAudioManager="*res://src/global_audio_manager/global_audio_manager.tscn"
 
 [display]
 
