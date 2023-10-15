@@ -7,9 +7,9 @@
 
 [resource]
 script = ExtResource("3_12lxx")
-Health = 10.0
+Health = 8.0
 Speed = 7.0
-Strength = 10.0
+Strength = 7.0
 Defense = 9.0
 ExperiencePointsValue = 13
 SpriteDataCollection = ExtResource("3_ryoj1")
