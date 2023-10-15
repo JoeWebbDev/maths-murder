@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://ckpebmwlfswpw"]
+
+[ext_resource type="Script" path="res://src/data/FighterData.cs" id="1_2iow7"]
+[ext_resource type="Resource" uid="uid://dg13qd3dqjyfu" path="res://src/data/sprite_data_collection.tres" id="1_mpwm5"]
+[ext_resource type="Resource" uid="uid://dwu8aot8mtoau" path="res://src/data/ai/fighter_3_ai.tres" id="1_v6hde"]
+[ext_resource type="Resource" uid="uid://dwsk1jerwt2rk" path="res://src/data/levels_config.tres" id="2_skp5f"]
+
+[resource]
+script = ExtResource("1_2iow7")
+Health = 5.0
+Speed = 4.0
+Strength = 5.0
+Defense = 5.0
+ExperiencePointsValue = 7
+SpriteDataCollection = ExtResource("1_mpwm5")
+LevelsConfig = ExtResource("2_skp5f")
+AiStateController = ExtResource("1_v6hde")

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dh388vgfd31cu"]
+
+[ext_resource type="Script" path="res://core/AI/NoobAIStateController.cs" id="1_vq187"]
+
+[resource]
+script = ExtResource("1_vq187")
+TrackPlayer = true
+TrackDelay = 2.0
+PreferredTrackingDistance = 75.0
+EnableDash = false
+DashDelay = 1.0
+DistanceFromPreferredRequiredToDash = 150.0
+EnableDuck = true
+DuckDelay = 1.0
+AttackCooldown = 4.0
+AttackRange = 75.0
+AutoAttack = true
+EnableCombos = false
+EnableKick = true
+KickChance = 55
+BreakBlocksWithLowHit = false
+BreakBlockDelay = 4.0
+PredictiveBlock = true
+PredictiveBlockChance = 25
+EnableSpamDenial = false
+SpamAllowedBeforeAttemptingToDeny = 3

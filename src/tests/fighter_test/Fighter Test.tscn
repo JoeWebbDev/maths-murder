@@ -12,7 +12,7 @@ _fighter = NodePath("Fighter")
 _legsYSpinBox = NodePath("VBoxContainer/HBoxContainer/LegsYInput")
 
 [node name="Fighter" parent="." instance=ExtResource("3_t7njm")]
-HitDamage = 0.0
+position = Vector2(96, 81)
 
 [node name="InputController" parent="." node_paths=PackedStringArray("CurrentFighter") instance=ExtResource("4_xgesm")]
 CurrentFighter = NodePath("../Fighter")
@@ -21,11 +21,12 @@ CurrentFighter = NodePath("../Fighter")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -182.0
-offset_top = 15.0
-offset_right = -18.0
-offset_bottom = 103.0
+offset_left = -101.0
+offset_top = 8.0
+offset_right = 78.0
+offset_bottom = 327.0
 grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
 theme_override_constants/separation = 5
 
 [node name="BodyOffsetLabel" type="Label" parent="VBoxContainer"]

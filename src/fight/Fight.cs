@@ -20,9 +20,12 @@ public partial class Fight : Node
     [Export] public Fighter Enemy { get; set; }
     [Export] public MatchTimer Timer { get; private set; }
     [Export] private PauseMenu _pauseMenu;
+    [Export] private ColorRect _pausePostProcess;
     [Export] private int _fightCountdownDuration;
     [Export] private Sprite2D _preFightPlaceholderScreen;
     [Export] private FightCameraController _cameraController;
+    [Export] private Sprite2D _background;
+    [Export] private GenericSpriteCollection _backgroundCollection;
 
     [ExportGroup("Death related properties")]
     [Export] private float _engineTimeScaleOnDeath = 0.3f;
@@ -40,7 +43,7 @@ public partial class Fight : Node
         GetTree().Paused = true;
         _gameDataManager = GetNode<GameDataManager>("/root/GameDataManager");
         var playerData = _gameDataManager.GetPlayerData();
-        Player.InitFighter(playerData.FighterData);
+        Player.InitFighter(playerData.FighterData, true);
         var enemyData = playerData.CurrentOpponent ?? _gameDataManager.GetRandomOpponentData();
         Enemy.InitFighter(enemyData);
         AiController.StateController = enemyData.AiStateController;
@@ -54,6 +57,7 @@ public partial class Fight : Node
         _pauseMenu.QuitToMenuButtonPressed += OnQuitToMenu;
         _pauseMenu.Hide();
         _preFightPlaceholderScreen.Show();
+        _background.Texture = _backgroundCollection.Sprites[(int)(GD.Randi() % _backgroundCollection.Sprites.Count)];
     }
 
     private void OnContinueGame()
@@ -65,12 +69,14 @@ public partial class Fight : Node
     private void Pause()
     {
         GetTree().Paused = true;
+        _pausePostProcess.Show();
         _pauseMenu.Show();
     }
 
     private void Resume()
     {
         GetTree().Paused = false;
+        _pausePostProcess.Hide();
         _pauseMenu.Hide();
     }
 
@@ -92,7 +98,7 @@ public partial class Fight : Node
         EmitSignal(SignalName.QuitRequested);
     }
 
-    private void CheckDeath(int from, int to)
+    private void CheckDeath(float from, float to)
     {
         if (to <= 0) EndFight();
     }
@@ -115,7 +121,6 @@ public partial class Fight : Node
         Engine.TimeScale = 0.5f;
         _gameDataManager.RegisterDefeatedOpponent();
         Ui.ShowVictoryScreen();
-        return;
     }
 
     private async void OnFightLost()

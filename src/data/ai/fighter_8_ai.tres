@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ck8e2eujgawtg"]
+
+[ext_resource type="Script" path="res://core/AI/AIStateController.cs" id="1_mmbgj"]
+
+[resource]
+script = ExtResource("1_mmbgj")
+TrackPlayer = true
+TrackDelay = 0.4
+PreferredTrackingDistance = 75.0
+EnableDash = true
+DashDelay = 0.8
+DistanceFromPreferredRequiredToDash = 150.0
+EnableDuck = true
+DuckDelay = 0.1
+AttackCooldown = 1.5
+AttackRange = 75.0
+AutoAttack = true
+EnableCombos = true
+EnableKick = true
+KickChance = 10
+BreakBlocksWithLowHit = true
+BreakBlockDelay = 1.5
+PredictiveBlock = true
+PredictiveBlockChance = 85
+EnableSpamDenial = true
+SpamAllowedBeforeAttemptingToDeny = 2

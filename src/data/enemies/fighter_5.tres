@@ -1,17 +1,17 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://cwi7rkgf1ovpt"]
 
-[ext_resource type="Resource" uid="uid://dh388vgfd31cu" path="res://src/data/ai/noob_ai_state_controller.tres" id="1_7d3mw"]
+[ext_resource type="Resource" uid="uid://ckieey813b4f5" path="res://src/data/ai/fighter_5_ai.tres" id="1_6hvbl"]
 [ext_resource type="Resource" uid="uid://dwsk1jerwt2rk" path="res://src/data/levels_config.tres" id="2_spyhl"]
 [ext_resource type="Script" path="res://src/data/FighterData.cs" id="3_l7gpj"]
 [ext_resource type="Resource" uid="uid://dg13qd3dqjyfu" path="res://src/data/sprite_data_collection.tres" id="3_ymr2n"]
 
 [resource]
 script = ExtResource("3_l7gpj")
-Health = 5.0
+Health = 9.0
 Speed = 5.0
-Strength = 5.0
-Defense = 5.0
-ExperiencePointsValue = 2
+Strength = 6.0
+Defense = 7.0
+ExperiencePointsValue = 11
 SpriteDataCollection = ExtResource("3_ymr2n")
 LevelsConfig = ExtResource("2_spyhl")
-AiStateController = ExtResource("1_7d3mw")
+AiStateController = ExtResource("1_6hvbl")

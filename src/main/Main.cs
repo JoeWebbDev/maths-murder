@@ -42,8 +42,14 @@ public partial class Main : Node
 		await _screenFader.FadeInAsync();
 	}
 
-	private async Task LoadTrainingScene()
+	private async Task TryLoadTrainingScene()
 	{
+		var playerData = _gameDataManager.GetPlayerData();
+		if (playerData.DefeatedOpponents.Count >= playerData.TotalNumberOfFightsPerGame)
+		{
+			await LoadPlayerDeathScene(true);
+			return;
+		}
 		await _screenFader.FadeOutAsync();
 		InstantiateTrainingScene();
 		await _screenFader.FadeInAsync();
@@ -64,12 +70,12 @@ public partial class Main : Node
 		await _screenFader.FadeInAsync();
 	}
 
-	private async Task LoadPlayerDeathScene()
+	private async Task LoadPlayerDeathScene(bool playerWin)
 	{
 		await _screenFader.FadeOutAsync();
 		Engine.TimeScale = 1f;
 		var playerDeathScene = InstantiatePlayerDeathScene();
-		playerDeathScene.PlayAnimations();
+		playerDeathScene.PlayBasedOnWinOrLoss(playerWin);
 		await _screenFader.FadeInAsync();
 	}
 
@@ -104,8 +110,8 @@ public partial class Main : Node
 		_currentScene?.QueueFree();
 		_currentScene = fightScene;
 		fightScene.QuitRequested += async () => { await LoadStartMenuScene(); };
-		fightScene.ContinueGameRequested += async () => { await LoadTrainingScene(); };
-		fightScene.PlayerDeath += async () => { await LoadPlayerDeathScene(); };
+		fightScene.ContinueGameRequested += async () => { await TryLoadTrainingScene(); };
+		fightScene.PlayerDeath += async () => { await LoadPlayerDeathScene(false); };
 		AddChild(fightScene);
 		return fightScene;
 	}

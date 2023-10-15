@@ -1,0 +1,109 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy2ckslmfm4cr"]
+
+[ext_resource type="Script" path="res://src/modals/how_to_play_modal/HowToPlayModal.cs" id="1_uuq02"]
+[ext_resource type="PackedScene" uid="uid://c2ublii3tqxol" path="res://src/modals/modal_shroud/modal_shroud.tscn" id="2_gw1mf"]
+[ext_resource type="PackedScene" uid="uid://k8dff01hk0jb" path="res://src/modals/modal_color_rect/modal_color_rect.tscn" id="2_rl0pq"]
+
+[node name="HowToPlayModal" type="CanvasLayer" node_paths=PackedStringArray("_closeButton")]
+process_mode = 3
+layer = 2
+visible = false
+script = ExtResource("1_uuq02")
+_closeButton = NodePath("MarginContainer2/VBoxContainer/MarginContainer3/HBoxContainer/OkayButton")
+
+[node name="ModalShroud" parent="." instance=ExtResource("2_gw1mf")]
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -95.0
+offset_right = 415.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="ModalColorRect" parent="MarginContainer2" instance=ExtResource("2_rl0pq")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = -3
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "How to play"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = -10
+
+[node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "You must grow your strength as a number, to climb"
+horizontal_alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+text = "the ranks and win the Number Boxing World Cup"
+horizontal_alignment = 1
+
+[node name="MarginContainer5" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer5"]
+layout_mode = 2
+text = "Controls:"
+horizontal_alignment = 1
+
+[node name="MarginContainer6" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer6"]
+layout_mode = 2
+text = "←↑↓→ - move	          Z - Punch"
+horizontal_alignment = 1
+
+[node name="MarginContainer7" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer7"]
+layout_mode = 2
+text = "X - Kick	          C - Block"
+horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="OkayButton" type="Button" parent="MarginContainer2/VBoxContainer/MarginContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Got it!"

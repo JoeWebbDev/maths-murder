@@ -9,18 +9,19 @@
 [ext_resource type="Texture2D" uid="uid://c734vj8ggxrhc" path="res://assets/art/cog_hover.png" id="5_p0m31"]
 [ext_resource type="PackedScene" uid="uid://bnm7url52twv3" path="res://src/random_flashing_light/random_flashing_light.tscn" id="6_q4hd0"]
 
-[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_startButton", "_quitButton", "_settingsButton", "_ui", "_mask", "_murderSprite", "_background")]
+[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_startButton", "_quitButton", "_settingsButton", "_howToPlayButton", "_ui", "_mask", "_murderSprite", "_background")]
 script = ExtResource("1_ka7b5")
 _startButton = NodePath("CanvasLayer/StartButton")
 _quitButton = NodePath("CanvasLayer/QuitButton")
 _settingsButton = NodePath("CanvasLayer/MarginContainer/SettingsButton")
+_howToPlayButton = NodePath("CanvasLayer/HowToPlayButton")
 _ui = NodePath("CanvasLayer")
 _uiShowDelayInMs = 1500
-_delayBetweenAnimationsInMs = 500
+_delayBetweenAnimationsInMs = 50
 _mask = NodePath("Control")
 _maskStartingSize = Vector2(50, 140)
 _maskFinishingSize = Vector2(240, 140)
-_maskSlideDuration = 0.75
+_maskSlideDuration = 0.6
 _murderSprite = NodePath("Murder")
 _startScale = Vector2(100, 100)
 _finishScale = Vector2(0.5, 0.5)
@@ -79,32 +80,27 @@ position = Vector2(161, 21)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="StartButton" parent="CanvasLayer" instance=ExtResource("2_8mrqp")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -94.0
-offset_top = -57.0
-offset_right = -30.0
-offset_bottom = -22.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_left = 128.0
+offset_top = 136.0
+offset_right = 192.0
+offset_bottom = 171.0
 text = "Start"
 
 [node name="QuitButton" parent="CanvasLayer" instance=ExtResource("2_8mrqp")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 14.0
-offset_top = -57.0
-offset_right = 74.0
-offset_bottom = -22.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_left = 228.0
+offset_top = 143.0
+offset_right = 288.0
+offset_bottom = 178.0
+scale = Vector2(0.8, 0.8)
 text = "Quit"
+
+[node name="HowToPlayButton" type="Button" parent="CanvasLayer"]
+offset_left = 47.0
+offset_top = 143.0
+offset_right = 98.0
+offset_bottom = 178.0
+scale = Vector2(0.8, 0.8)
+text = "?"
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 1
@@ -126,7 +122,7 @@ texture_normal = ExtResource("4_c58vp")
 texture_hover = ExtResource("5_p0m31")
 
 [node name="Murder" type="Sprite2D" parent="."]
-position = Vector2(157, 77)
+position = Vector2(162, 77)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_frr7c")
 
@@ -134,9 +130,9 @@ texture = ExtResource("5_frr7c")
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = 47.0
+offset_left = 52.0
 offset_top = -21.0
-offset_right = 307.0
+offset_right = 312.0
 offset_bottom = 119.0
 metadata/_edit_group_ = true
 

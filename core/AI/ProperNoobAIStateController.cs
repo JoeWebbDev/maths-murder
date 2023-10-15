@@ -7,7 +7,6 @@ namespace MathsMurderSpike.core.AI;
 /// <summary>
 /// A very basic implementation. Currently does the same as what the <see cref="AIController"/> used to do
 /// </summary>
-[RegisteredType(nameof(ProperNoobAIStateController), "", nameof(Resource))]
 public partial class ProperNoobAIStateController : AIStateController
 {
     private double _timer = 0;

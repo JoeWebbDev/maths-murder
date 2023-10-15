@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkqyrde2kg3yf"]
+[gd_scene load_steps=8 format=3 uid="uid://dkqyrde2kg3yf"]
 
 [ext_resource type="PackedScene" uid="uid://d7nubkluvyu7" path="res://src/bracket_fighter_box/bracket_fighter_box.tscn" id="1_bg5ia"]
 [ext_resource type="Script" path="res://src/bracket/Bracket.cs" id="1_e5avg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dckhph64157n5" path="res://assets/art/bracket_line.png" id="3_tmxhs"]
 [ext_resource type="Texture2D" uid="uid://dir6t41d51bts" path="res://assets/art/box_fill_red.png" id="5_7xmag"]
 [ext_resource type="PackedScene" uid="uid://che4g3b2ucx37" path="res://src/cinematic_camera/cinematic_camera.tscn" id="5_r7tnj"]
+[ext_resource type="Texture2D" uid="uid://btdi4b0p7f1tl" path="res://assets/art/bracket_wall.png" id="7_8ahrt"]
 
 [node name="Bracket" type="Node" node_paths=PackedStringArray("_lineParent", "_camera")]
 script = ExtResource("1_e5avg")
@@ -19,11 +20,15 @@ _defeatedOpponentsFillTexture = ExtResource("5_7xmag")
 _lineWidth = 20.0
 _lineParent = NodePath("LineContainer")
 _camera = NodePath("CinematicCamera")
-_cameraStartPosition = Vector2(320, 160)
-_cameraStartZoom = Vector2(0.4, 0.4)
+_cameraStartPosition = Vector2(320, 215)
+_cameraStartZoom = Vector2(0.6, 0.6)
 _cameraFocusOnPlayerZoom = Vector2(2, 2)
 _cameraOffsetFromPlayer = Vector2(25, 0)
 _cameraInitialTweenDelayInMs = 500
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(320, 220)
+texture = ExtResource("7_8ahrt")
 
 [node name="TESTBracketFighterBox" parent="." instance=ExtResource("1_bg5ia")]
 visible = false

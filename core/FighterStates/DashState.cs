@@ -4,9 +4,11 @@ using MathsMurderSpike.core.Commands;
 
 namespace MathsMurderSpike.Core.FighterStates;
 
-public class DashState : FighterState
+public class DashState : StaminaConsumingState
 {
     private Vector2 _direction;
+
+    public override float EnterStaminaCost { get; set; } = 10f;
 
     public DashState(FighterCommand cmd)
     {
