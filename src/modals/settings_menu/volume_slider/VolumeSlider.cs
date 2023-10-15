@@ -1,9 +1,10 @@
 using System;
 using Godot;
+using MathsMurderSpike.core.Audio;
 
 public partial class VolumeSlider : Node
 {
-	[Export] private string _busName;
+	[Export(PropertyHint.Enum, $"{AudioBusName.AllAsHintString}")] private string _busName;
 	[Export] private string _labelText;
 	private int _busIndex;
 	private double _previousVolume;

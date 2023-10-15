@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6i1fliuwmnv5"]
+[gd_scene load_steps=6 format=3 uid="uid://c6i1fliuwmnv5"]
 
 [ext_resource type="PackedScene" uid="uid://c76mbffvhaped" path="res://src/modals/settings_menu/display_mode_drop_down/display_mode_drop_down.tscn" id="1_8yc00"]
 [ext_resource type="Script" path="res://src/modals/settings_menu/settings_modal/SettingsModal.cs" id="1_14per"]
 [ext_resource type="PackedScene" uid="uid://c2i78jw1rvawt" path="res://src/modals/settings_menu/volume_slider/Volume Slider.tscn" id="2_boicf"]
 [ext_resource type="PackedScene" uid="uid://c2ublii3tqxol" path="res://src/modals/modal_shroud/modal_shroud.tscn" id="2_ew7gd"]
 [ext_resource type="PackedScene" uid="uid://k8dff01hk0jb" path="res://src/modals/modal_color_rect/modal_color_rect.tscn" id="2_nkj6j"]
-[ext_resource type="AudioStream" uid="uid://ynwrfv72llra" path="res://assets/audio/music/DodgeTheme.wav" id="4_y0lb7"]
 
 [node name="Settings Modal" type="CanvasLayer" node_paths=PackedStringArray("_displayModeOptionButton", "_masterSlider", "_musicSlider", "_sfxSlider", "_okayButton", "_closeButton")]
 process_mode = 3
@@ -111,8 +110,3 @@ custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Close"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_y0lb7")
-autoplay = true
-bus = &"Music"
