@@ -9,11 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://c734vj8ggxrhc" path="res://assets/art/cog_hover.png" id="5_p0m31"]
 [ext_resource type="PackedScene" uid="uid://bnm7url52twv3" path="res://src/random_flashing_light/random_flashing_light.tscn" id="6_q4hd0"]
 
-[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_startButton", "_quitButton", "_settingsButton", "_ui", "_mask", "_murderSprite", "_background")]
+[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_startButton", "_quitButton", "_settingsButton", "_howToPlayButton", "_ui", "_mask", "_murderSprite", "_background")]
 script = ExtResource("1_ka7b5")
 _startButton = NodePath("CanvasLayer/StartButton")
 _quitButton = NodePath("CanvasLayer/QuitButton")
 _settingsButton = NodePath("CanvasLayer/MarginContainer/SettingsButton")
+_howToPlayButton = NodePath("CanvasLayer/HowToPlayButton")
 _ui = NodePath("CanvasLayer")
 _uiShowDelayInMs = 1500
 _delayBetweenAnimationsInMs = 50

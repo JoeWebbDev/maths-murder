@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c76mbffvhaped"]
 
-[ext_resource type="Script" path="res://src/settings_menu/display_mode_drop_down/DisplayModeDropDown.cs" id="1_n8ovs"]
+[ext_resource type="Script" path="res://src/modals/settings_menu/display_mode_drop_down/DisplayModeDropDown.cs" id="1_n8ovs"]
 
 [node name="Display Mode Drop Down" type="HBoxContainer"]
 anchors_preset = 14

@@ -6,6 +6,7 @@ public partial class StartMenu : Node
 	[Export] private Button _startButton;
 	[Export] private Button _quitButton;
 	[Export] private TextureButton _settingsButton;
+	[Export] private Button _howToPlayButton;
 	[Export] private CanvasLayer _ui;
 	[Signal] public delegate void StartGameEventHandler();
 	[Signal] public delegate void QuitGameEventHandler();
@@ -29,10 +30,12 @@ public partial class StartMenu : Node
 	[Export] private Color _endColor;
 	[Export] private float _colorChangeDuration;
 	private SettingsModal _settingsModal;
+	private HowToPlayModal _howToPlayModal;
 
 	public override void _Ready()
 	{
 		_settingsModal = GetNode<SettingsModal>("/root/SettingsModal");
+		_howToPlayModal = GetNode<HowToPlayModal>("/root/HowToPlayModal");
 		_ui.Hide();
 		_murderSprite.Hide();
 		_background.Modulate = _startColor;
@@ -40,6 +43,7 @@ public partial class StartMenu : Node
 		_quitButton.Pressed += OnQuitButtonPressed;
 		_settingsButton.Pressed += OnSettingsButtonPressed;
 		_settingsModal.VisibilityChanged += OnModalVisibilityChanged;
+		_howToPlayButton.Pressed += () => { _howToPlayModal.Show(); };
 
 		PlayTitleAnimation();
 	}
