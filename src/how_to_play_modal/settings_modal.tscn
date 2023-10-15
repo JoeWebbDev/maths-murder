@@ -1,15 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6i1fliuwmnv5"]
+[gd_scene load_steps=5 format=3 uid="uid://dy2ckslmfm4cr"]
 
-[ext_resource type="PackedScene" uid="uid://c76mbffvhaped" path="res://src/settings_menu/display_mode_drop_down/display_mode_drop_down.tscn" id="1_8yc00"]
-[ext_resource type="Script" path="res://src/settings_menu/settings_modal/SettingsModal.cs" id="1_14per"]
-[ext_resource type="PackedScene" uid="uid://c2i78jw1rvawt" path="res://src/settings_menu/volume_slider/Volume Slider.tscn" id="2_boicf"]
-[ext_resource type="PackedScene" uid="uid://k8dff01hk0jb" path="res://src/settings_menu/modal_color_rect/modal_color_rect.tscn" id="2_nkj6j"]
-[ext_resource type="AudioStream" uid="uid://ynwrfv72llra" path="res://assets/audio/music/DodgeTheme.wav" id="4_y0lb7"]
+[ext_resource type="Script" path="res://src/settings_menu/settings_modal/SettingsModal.cs" id="1_bg7om"]
+[ext_resource type="PackedScene" uid="uid://c76mbffvhaped" path="res://src/settings_menu/display_mode_drop_down/display_mode_drop_down.tscn" id="2_0yvof"]
+[ext_resource type="PackedScene" uid="uid://c2i78jw1rvawt" path="res://src/settings_menu/volume_slider/Volume Slider.tscn" id="3_5i48m"]
+[ext_resource type="AudioStream" uid="uid://ynwrfv72llra" path="res://assets/audio/music/DodgeTheme.wav" id="4_315we"]
 
 [node name="Settings Modal" type="CanvasLayer" node_paths=PackedStringArray("_displayModeOptionButton", "_masterSlider", "_musicSlider", "_sfxSlider", "_okayButton", "_closeButton")]
 process_mode = 3
 layer = 2
-script = ExtResource("1_14per")
+script = ExtResource("1_bg7om")
 _displayModeOptionButton = NodePath("MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer/Display Mode Drop Down")
 _masterSlider = NodePath("MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer/Master Volume Slider")
 _musicSlider = NodePath("MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer/Music Volume Slider")
@@ -35,8 +34,9 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 50
 
-[node name="ColorRect" parent="MarginContainer2" instance=ExtResource("2_nkj6j")]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer2"]
 layout_mode = 2
+color = Color(0.415686, 0.0431373, 0.0117647, 0.580392)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
 layout_mode = 2
@@ -64,24 +64,24 @@ theme_override_constants/margin_right = 30
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Display Mode Drop Down" parent="MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_8yc00")]
+[node name="Display Mode Drop Down" parent="MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_0yvof")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="Master Volume Slider" parent="MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_boicf")]
+[node name="Master Volume Slider" parent="MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_5i48m")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 _busName = "Master"
 _labelText = "Master Volume"
 
-[node name="Music Volume Slider" parent="MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_boicf")]
+[node name="Music Volume Slider" parent="MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_5i48m")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 _busName = "Music"
 _labelText = "Music"
 
-[node name="SFX Volume Slider" parent="MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_boicf")]
+[node name="SFX Volume Slider" parent="MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_5i48m")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 _busName = "SFX"
@@ -110,6 +110,6 @@ size_flags_horizontal = 6
 text = "Close"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_y0lb7")
+stream = ExtResource("4_315we")
 autoplay = true
 bus = &"Music"
