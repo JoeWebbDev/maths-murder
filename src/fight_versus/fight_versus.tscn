@@ -52,7 +52,7 @@ size = Vector2i(320, 180)
 render_target_update_mode = 4
 
 [node name="Background" type="Sprite2D" parent="PlayerViewport/SubViewport"]
-modulate = Color(0.552941, 0.552941, 0.552941, 1)
+modulate = Color(0.388235, 0.388235, 0.388235, 1)
 position = Vector2(160, 90)
 texture = ExtResource("4_tbmry")
 
@@ -62,7 +62,6 @@ scale = Vector2(2, 2)
 
 [node name="PlayerFighter" parent="PlayerViewport/SubViewport/PlayerContainer" instance=ExtResource("1_ng7ww")]
 position = Vector2(-1.52588e-05, 0)
-scale = Vector2(1, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_4d4l6")
@@ -84,7 +83,7 @@ size = Vector2i(320, 180)
 render_target_update_mode = 4
 
 [node name="Background" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
-modulate = Color(0.552941, 0.552941, 0.552941, 1)
+modulate = Color(0.388235, 0.388235, 0.388235, 1)
 position = Vector2(9.685, 90)
 texture = ExtResource("4_tbmry")
 
