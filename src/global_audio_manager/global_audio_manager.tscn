@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://src/global_audio_manager/GlobalAudioManager.cs" id="1_71lxl"]
 
 [node name="GlobalAudioManager" type="Node" node_paths=PackedStringArray("_musicPlayer", "_sfxPlayerPool")]
+process_mode = 3
 script = ExtResource("1_71lxl")
 _musicPlayer = NodePath("MusicPlayer")
 _sfxPlayerPool = [NodePath("SFXPlayer"), NodePath("SFXPlayer2"), NodePath("SFXPlayer3"), NodePath("SFXPlayer4"), NodePath("SFXPlayer5"), NodePath("SFXPlayer6"), NodePath("SFXPlayer7"), NodePath("SFXPlayer8")]
