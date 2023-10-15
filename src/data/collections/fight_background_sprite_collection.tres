@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://byy4mj3lwq1gs"]
+
+[ext_resource type="Script" path="res://src/data/collections/GenericSpriteCollection.cs" id="1_iih4q"]
+[ext_resource type="Texture2D" uid="uid://c1j32cyvt7apn" path="res://assets/art/beach_fight_scene_background.png" id="1_wp6qc"]
+[ext_resource type="Texture2D" uid="uid://ds8ek8355vvd4" path="res://assets/art/road_fight_scene_background.png" id="2_gjuey"]
+[ext_resource type="Texture2D" uid="uid://dd84pynqihvml" path="res://assets/art/boxing_fight_scene_background.png" id="3_ds2cv"]
+
+[resource]
+script = ExtResource("1_iih4q")
+Sprites = Array[Texture2D]([ExtResource("1_wp6qc"), ExtResource("2_gjuey"), ExtResource("3_ds2cv")])

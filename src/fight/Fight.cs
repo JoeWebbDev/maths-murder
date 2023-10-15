@@ -24,6 +24,8 @@ public partial class Fight : Node
     [Export] private int _fightCountdownDuration;
     [Export] private Sprite2D _preFightPlaceholderScreen;
     [Export] private FightCameraController _cameraController;
+    [Export] private Sprite2D _background;
+    [Export] private GenericSpriteCollection _backgroundCollection;
 
     [ExportGroup("Death related properties")]
     [Export] private float _engineTimeScaleOnDeath = 0.3f;
@@ -55,6 +57,7 @@ public partial class Fight : Node
         _pauseMenu.QuitToMenuButtonPressed += OnQuitToMenu;
         _pauseMenu.Hide();
         _preFightPlaceholderScreen.Show();
+        _background.Texture = _backgroundCollection.Sprites[(int)(GD.Randi() % _backgroundCollection.Sprites.Count)];
     }
 
     private void OnContinueGame()
