@@ -22,7 +22,7 @@ public partial class Fight : Node
     [Export] private PauseMenu _pauseMenu;
     [Export] private ColorRect _pausePostProcess;
     [Export] private int _fightCountdownDuration;
-    [Export] private Sprite2D _preFightPlaceholderScreen;
+    [Export] private FightVersus _preFightVersus;
     [Export] private FightCameraController _cameraController;
     [Export] private Sprite2D _background;
     [Export] private GenericSpriteCollection _backgroundCollection;
@@ -35,6 +35,8 @@ public partial class Fight : Node
     [Export] private float _maxDurationBeforeSceneSwitchOnDeath = 2f;
 
     private GameDataManager _gameDataManager;
+    private FighterData _playerFighterData;
+    private FighterData _enemyFighterData;
 
     public override void _Ready()
     {
@@ -43,10 +45,11 @@ public partial class Fight : Node
         GetTree().Paused = true;
         _gameDataManager = GetNode<GameDataManager>("/root/GameDataManager");
         var playerData = _gameDataManager.GetPlayerData();
-        Player.InitFighter(playerData.FighterData, true);
-        var enemyData = playerData.CurrentOpponent ?? _gameDataManager.GetRandomOpponentData();
-        Enemy.InitFighter(enemyData);
-        AiController.StateController = enemyData.AiStateController;
+        _playerFighterData = playerData.FighterData;
+        Player.InitFighter(_playerFighterData, true);
+        _enemyFighterData = playerData.CurrentOpponent ?? _gameDataManager.GetRandomOpponentData();
+        Enemy.InitFighter(_enemyFighterData);
+        AiController.StateController = _enemyFighterData.AiStateController;
         Ui.SetFighters(Player, Enemy);
         Ui.ContinueGame += OnContinueGame;
         Player.HealthChanged += CheckDeath;
@@ -56,7 +59,6 @@ public partial class Fight : Node
         _pauseMenu.ResumeButtonPressed += Resume;
         _pauseMenu.QuitToMenuButtonPressed += OnQuitToMenu;
         _pauseMenu.Hide();
-        _preFightPlaceholderScreen.Show();
         _background.Texture = _backgroundCollection.Sprites[(int)(GD.Randi() % _backgroundCollection.Sprites.Count)];
     }
 
@@ -82,9 +84,7 @@ public partial class Fight : Node
 
     public async void Start()
     {
-        // Wait for the ACTUAL pre-fight animation to finish
-        await Task.Delay(1500);
-        _preFightPlaceholderScreen.Hide();
+        await _preFightVersus.PlayPreFightVersusSequence(_playerFighterData, _enemyFighterData, _background.Texture);
         await Task.Delay(200);
         await Ui.StartCountdown(_fightCountdownDuration);
         GetTree().Paused = false;

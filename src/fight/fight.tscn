@@ -5,11 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://xy4kxgxscvui" path="res://src/fight_ui/fight_ui.tscn" id="2_ecqmq"]
 [ext_resource type="Resource" uid="uid://byy4mj3lwq1gs" path="res://src/data/collections/fight_background_sprite_collection.tres" id="2_ys8a2"]
 [ext_resource type="PackedScene" uid="uid://cwrt3mai5fuk7" path="res://src/match_timer/match_timer.tscn" id="3_gb5ic"]
-[ext_resource type="Texture2D" uid="uid://bxuhgb1q4g4tk" path="res://assets/art/super_cool_fight_animation.png" id="4_gmqol"]
 [ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="5_deabo"]
 [ext_resource type="PackedScene" uid="uid://2ctuwd5ypoun" path="res://src/fight_input_controller/fight_input_controller.tscn" id="6_5fy5m"]
 [ext_resource type="Shader" path="res://src/shaders/vhs_effect.gdshader" id="6_56mjq"]
 [ext_resource type="PackedScene" uid="uid://dmq57kpgult53" path="res://src/ai_controller/ai_controller.tscn" id="6_q1701"]
+[ext_resource type="PackedScene" uid="uid://cy0e1fonov818" path="res://src/fight_versus/fight_versus.tscn" id="7_h7hxa"]
 [ext_resource type="PackedScene" uid="uid://bflo0k1k6urxb" path="res://src/pause_menu/pause_menu.tscn" id="9_4f5w0"]
 [ext_resource type="PackedScene" uid="uid://bawgstg5kpa4c" path="res://src/fight_camera_controller/fight_camera_controller.tscn" id="9_07pf4"]
 [ext_resource type="Shader" path="res://src/shaders/fight_death.gdshader" id="11_r80ku"]
@@ -44,7 +44,7 @@ shader_parameter/vignette_opacity = 0.5
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vkdp"]
 size = Vector2(27, 198)
 
-[node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "InputController", "AiController", "Player", "Enemy", "Timer", "_pauseMenu", "_pausePostProcess", "_preFightPlaceholderScreen", "_cameraController", "_background", "_deathPostProcess")]
+[node name="Fight" type="Node" node_paths=PackedStringArray("Ui", "InputController", "AiController", "Player", "Enemy", "Timer", "_pauseMenu", "_pausePostProcess", "_preFightVersus", "_cameraController", "_background", "_deathPostProcess")]
 process_mode = 1
 script = ExtResource("1_byaux")
 Ui = NodePath("FightUI")
@@ -56,7 +56,7 @@ Timer = NodePath("MatchTimer")
 _pauseMenu = NodePath("PauseMenu")
 _pausePostProcess = NodePath("FightUI/VHSPausePostProcess")
 _fightCountdownDuration = 3
-_preFightPlaceholderScreen = NodePath("FightUI/Sprite2D")
+_preFightVersus = NodePath("FightUI/FightVersus")
 _cameraController = NodePath("FightCamera")
 _background = NodePath("Background")
 _backgroundCollection = ExtResource("2_ys8a2")
@@ -70,12 +70,6 @@ texture = ExtResource("2_0evcg")
 _player = NodePath("../Player")
 _enemy = NodePath("../Enemy")
 _matchTimer = NodePath("../MatchTimer")
-
-[node name="Sprite2D" type="Sprite2D" parent="FightUI"]
-visible = false
-position = Vector2(160, 90)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_gmqol")
 
 [node name="DeathPostProcess" type="ColorRect" parent="FightUI"]
 visible = false
@@ -96,6 +90,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
+
+[node name="FightVersus" parent="FightUI" instance=ExtResource("7_h7hxa")]
+process_mode = 3
 
 [node name="MatchTimer" parent="." instance=ExtResource("3_gb5ic")]
 TotalMatchTime = 30

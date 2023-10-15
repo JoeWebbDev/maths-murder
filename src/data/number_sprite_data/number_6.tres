@@ -1,7 +1,8 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://che40v11d6rpv"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://che40v11d6rpv"]
 
 [ext_resource type="Script" path="res://src/data/NumberSpriteData.cs" id="1_ga57s"]
 [ext_resource type="Texture2D" uid="uid://bt6x0jd3uham1" path="res://assets/art/numbers/number_6.png" id="1_lsovy"]
+[ext_resource type="AudioStream" uid="uid://ydnqonab1qil" path="res://assets/audio/announcer_voicelines/six.wav" id="1_oe2ud"]
 
 [resource]
 script = ExtResource("1_ga57s")
@@ -10,3 +11,4 @@ ArmsOffset = Vector2(0, 0)
 LegsOffset = Vector2(0, 0)
 BodyOffset = Vector2(0, 0)
 SpriteOffset = Vector2(0, 0)
+AnnouncerAudio = ExtResource("1_oe2ud")
