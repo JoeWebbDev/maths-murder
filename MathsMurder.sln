@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maths Murder Spike", "Maths Murder Spike.csproj", "{5A9F3850-6B03-4027-855D-68AC24B45FDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathsMurder", "MathsMurder.csproj", "{5A9F3850-6B03-4027-855D-68AC24B45FDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
