@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccjxyrjb7puo0"]
+[gd_scene load_steps=4 format=3 uid="uid://ccjxyrjb7puo0"]
 
 [ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="1_4qjqh"]
 [ext_resource type="Script" path="res://src/choose_next_fight/ChooseNextFight.cs" id="1_erx7v"]
+[ext_resource type="Texture2D" uid="uid://dqbg1f0sib41r" path="res://assets/art/choose_next_fighter_scene_background.png" id="3_jtbkb"]
 
 [node name="ChooseNextFight" type="Node" node_paths=PackedStringArray("_optionOneButton", "_optionTwoButton", "_superSecretOptionThreeButton")]
 script = ExtResource("1_erx7v")
@@ -59,3 +60,7 @@ offset_bottom = 187.0
 scale = Vector2(0.5, 0.5)
 text = "Or that guy
 "
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+texture = ExtResource("3_jtbkb")
