@@ -13,6 +13,7 @@ public class PunchThreeState : StaminaConsumingState
         base.Enter(fighter);
         _fighterRef = fighter;
         fighter.AnimationPlayer.Play("punch_three");
+        fighter.AudioManager.PlaySfx(fighter.FighterSfx.SwooshPool.GetRandomFromPool());
         fighter.AnimationPlayer.AnimationFinished += OnAnimationPlayerOnAnimationFinished;
     }
 

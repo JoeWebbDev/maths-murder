@@ -14,6 +14,7 @@ public class HighKickState : StaminaConsumingState
         base.Enter(fighter);
         _fighterRef = fighter;
         fighter.AnimationPlayer.Play("high_kick");
+        fighter.AudioManager.PlaySfx(fighter.FighterSfx.SwooshPool.GetRandomFromPool());
         fighter.AnimationPlayer.AnimationFinished += OnAnimationPlayerOnAnimationFinished;
     }
 

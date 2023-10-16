@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=10 format=3 uid="uid://bc1odvrpashnc"]
+
+[ext_resource type="AudioStream" uid="uid://baps5b4kudbj0" path="res://assets/audio/sfx/hits/hit_1.wav" id="1_0xalk"]
+[ext_resource type="Script" path="res://src/data/audio/AudioPool.cs" id="1_fn047"]
+[ext_resource type="AudioStream" uid="uid://chdi51x8qs0ce" path="res://assets/audio/sfx/hits/hit_2.wav" id="2_w3n3y"]
+[ext_resource type="AudioStream" uid="uid://gmij5urw35v0" path="res://assets/audio/sfx/hits/hit_3.wav" id="3_iu5c1"]
+[ext_resource type="AudioStream" uid="uid://cnu38f6dpfjo5" path="res://assets/audio/sfx/hits/hit_4.wav" id="4_0ka54"]
+[ext_resource type="AudioStream" uid="uid://bwsf5586v6j5a" path="res://assets/audio/sfx/hits/hit_5.wav" id="5_yto2r"]
+[ext_resource type="AudioStream" uid="uid://bavfct3v0eks1" path="res://assets/audio/sfx/hits/hit_7.wav" id="6_xuqu6"]
+[ext_resource type="AudioStream" uid="uid://dnkogqd4amks1" path="res://assets/audio/sfx/hits/hit_8.wav" id="7_x8hw7"]
+[ext_resource type="AudioStream" uid="uid://c12cm6hqunife" path="res://assets/audio/sfx/hits/hit_9.wav" id="8_xhlac"]
+
+[resource]
+script = ExtResource("1_fn047")
+_pool = Array[AudioStream]([ExtResource("1_0xalk"), ExtResource("2_w3n3y"), ExtResource("3_iu5c1"), ExtResource("4_0ka54"), ExtResource("5_yto2r"), ExtResource("6_xuqu6"), ExtResource("7_x8hw7"), ExtResource("8_xhlac")])

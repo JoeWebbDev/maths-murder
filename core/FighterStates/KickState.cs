@@ -13,6 +13,7 @@ public class KickState : StaminaConsumingState
         base.Enter(fighter);
         _fighterRef = fighter;
         fighter.AnimationPlayer.Play(fighter.MovementState is DuckState ? "low_kick" : "kick");
+        fighter.AudioManager.PlaySfx(fighter.FighterSfx.SwooshPool.GetRandomFromPool());
         fighter.AnimationPlayer.AnimationFinished += OnAnimationPlayerOnAnimationFinished;
     }
 

@@ -18,6 +18,7 @@ public class PunchState : StaminaConsumingState
         _fighterRef = fighter;
         _isDuckingPunch = fighter.MovementState is DuckState;
         fighter.AnimationPlayer.Play(_isDuckingPunch ? "duck_punch" : "punch");
+        fighter.AudioManager.PlaySfx(fighter.FighterSfx.SwooshPool.GetRandomFromPool());
         fighter.AnimationPlayer.AnimationFinished += OnAnimationPlayerOnAnimationFinished;
     }
 

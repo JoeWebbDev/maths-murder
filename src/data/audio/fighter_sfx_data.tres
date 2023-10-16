@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dc8qubifo8mbd"]
+
+[ext_resource type="Resource" uid="uid://bc1odvrpashnc" path="res://src/data/audio/audio_pools/hits.tres" id="1_1if3f"]
+[ext_resource type="Resource" uid="uid://djj6eclldwbn5" path="res://src/data/audio/audio_pools/final_hit.tres" id="1_i3iqd"]
+[ext_resource type="Script" path="res://src/data/audio/FighterSfxData.cs" id="1_jqha4"]
+[ext_resource type="Resource" uid="uid://85eeh0rcjhsj" path="res://src/data/audio/audio_pools/swooshes.tres" id="2_ui54f"]
+
+[resource]
+script = ExtResource("1_jqha4")
+HitPool = ExtResource("1_1if3f")
+SwooshPool = ExtResource("2_ui54f")
+FinalHitPool = ExtResource("1_i3iqd")

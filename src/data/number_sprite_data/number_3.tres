@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://do25p8hwujfnl" path="res://assets/art/numbers/number_3.png" id="1_bi7uf"]
 [ext_resource type="Script" path="res://src/data/NumberSpriteData.cs" id="1_h5qa0"]
-[ext_resource type="AudioStream" uid="uid://cxyg01ikrvm1d" path="res://assets/audio/announcer_voicelines/three.wav" id="1_ni0if"]
+[ext_resource type="AudioStream" uid="uid://cxyg01ikrvm1d" path="res://assets/audio/announcer_voicelines/three.wav" id="1_kkw3g"]
 
 [resource]
 script = ExtResource("1_h5qa0")
@@ -11,4 +11,4 @@ ArmsOffset = Vector2(0, 0)
 LegsOffset = Vector2(0, 0)
 BodyOffset = Vector2(0, 0)
 SpriteOffset = Vector2(0, 0)
-AnnouncerAudio = ExtResource("1_ni0if")
+AnnouncerAudio = ExtResource("1_kkw3g")
