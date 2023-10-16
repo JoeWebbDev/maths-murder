@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://85eeh0rcjhsj"]
+
+[ext_resource type="Script" path="res://src/data/audio/AudioPool.cs" id="1_5ihvb"]
+[ext_resource type="AudioStream" uid="uid://baw5yvrycnkw6" path="res://assets/audio/sfx/swooshes/swoosh_1.wav" id="1_l1upw"]
+[ext_resource type="AudioStream" uid="uid://baiv1lqaepedc" path="res://assets/audio/sfx/swooshes/swoosh_2.wav" id="2_wx42k"]
+[ext_resource type="AudioStream" uid="uid://0q6y5qw31ah" path="res://assets/audio/sfx/swooshes/swoosh_3.wav" id="3_kgp6l"]
+[ext_resource type="AudioStream" uid="uid://tqhubdnfvuqs" path="res://assets/audio/sfx/swooshes/swoosh_4.wav" id="4_3j84n"]
+[ext_resource type="AudioStream" uid="uid://b3dkiqisxm2ll" path="res://assets/audio/sfx/swooshes/swoosh_5.wav" id="5_rd3cq"]
+
+[resource]
+script = ExtResource("1_5ihvb")
+_pool = Array[AudioStream]([ExtResource("1_l1upw"), ExtResource("2_wx42k"), ExtResource("3_kgp6l"), ExtResource("4_3j84n"), ExtResource("5_rd3cq")])

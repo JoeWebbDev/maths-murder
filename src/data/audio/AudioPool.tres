@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b47sq6l0ek3xo"]
+
+[ext_resource type="Script" path="res://src/data/audio/AudioPool.cs" id="1_lpx6j"]
+
+[resource]
+script = ExtResource("1_lpx6j")
+_pool = Array[AudioStream]([null, null, null, null, null, null, null, null, null])

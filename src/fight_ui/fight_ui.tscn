@@ -16,7 +16,7 @@ _enemyHealthBar = NodePath("EnemyHealthBar")
 _playerStaminaBar = NodePath("StaminaBar")
 _playerStaminaBarFullTexture = ExtResource("2_asc0u")
 _playerStaminaBarDepletedTexture = ExtResource("3_ecu3w")
-_matchTimerLabel = NodePath("MatchTimerBox/MatchTimerLabel")
+_matchTimerLabel = NodePath("MatchTimerBox/MatchTimerBox/MatchTimerLabel")
 _countdownLabel = NodePath("CountdownLabel")
 _continueButton = NodePath("ContinueButton")
 
@@ -67,25 +67,26 @@ position = Vector2(160, 22)
 [node name="MatchTimerBox" type="Sprite2D" parent="MatchTimerBox"]
 texture = ExtResource("4_b4nxf")
 
-[node name="Fill" type="Sprite2D" parent="MatchTimerBox/MatchTimerBox"]
-modulate = Color(0.654902, 0.654902, 0, 1)
-show_behind_parent = true
-texture = ExtResource("5_4grm0")
-
-[node name="MatchTimerLabel" type="Label" parent="MatchTimerBox"]
+[node name="MatchTimerLabel" type="Label" parent="MatchTimerBox/MatchTimerBox"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 28.0
-offset_bottom = 30.0
+offset_left = -23.0
+offset_top = -16.5
+offset_right = 15.0
+offset_bottom = 23.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 24
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
 text = "30"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Fill" type="Sprite2D" parent="MatchTimerBox/MatchTimerBox"]
+modulate = Color(0.654902, 0.654902, 0, 1)
+show_behind_parent = true
+texture = ExtResource("5_4grm0")

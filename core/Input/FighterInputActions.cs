@@ -9,10 +9,10 @@ public static class FighterInputActions
 {
     private static FighterInputAction[] _combatActions = new[]
     {
-        new FighterInputAction("punch", new PunchCommand(), null),
-        new FighterInputAction("block", new BlockCommand(), new BlockCommand(true)),
-        new FighterInputAction("duck", new DuckCommand(), new DuckCommand(true)),
-        new FighterInputAction("kick", new KickCommand(), new KickCommand(true)),
+        new FighterInputAction("p_punch", new PunchCommand(), null),
+        new FighterInputAction("p_block", new BlockCommand(), new BlockCommand(true)),
+        new FighterInputAction("p_duck", new DuckCommand(), new DuckCommand(true)),
+        new FighterInputAction("p_kick", new KickCommand(), new KickCommand(true)),
     };
 
     public static FighterCommand TryGetCommand(InputEvent @event)

@@ -24,7 +24,9 @@ public partial class Fighter : CharacterBody2D
     [Export] public bool UsesStamina { get; set; }
     [Export] public float StaminaRechargeRate { get; set; } = 5f;
     [Export] public float StaminaDepletedRechargeRate { get; set; } = 10f;
-    [Export] public StatScalingConfig StatScaling; 
+    [Export] public StatScalingConfig StatScaling;
+    [Export] public FighterSfxData FighterSfx;
+    public GlobalAudioManager AudioManager;
         
     // The period of time to detect dashes from repeated key presses
     [Export] public float DashDetectPeriod { get; private set; } = 0.3f;
@@ -47,6 +49,7 @@ public partial class Fighter : CharacterBody2D
             if (_currentHealth <= 0)
             {
                 // Should emit another signal here & maybe take the CheckDeath code out of Fight.cs?
+                AudioManager.PlaySfx(FighterSfx.FinalHitPool.GetRandomFromPool());
                 SwitchCombatState(new DeathState());
             }
         }
@@ -85,6 +88,7 @@ public partial class Fighter : CharacterBody2D
         _spriteGroup = GetNode<Node2D>("ScalableChildren/SpriteGroup");
         _armsGroup = GetNode<Node2D>("ScalableChildren/ArmsGroup");
         _legsGroup = GetNode<Node2D>("ScalableChildren/LegsGroup");
+        AudioManager = GetNode<GlobalAudioManager>("/root/GlobalAudioManager");
     }
 
     public override void _Process(double delta)
@@ -186,12 +190,20 @@ public partial class Fighter : CharacterBody2D
             actualDamage *= StatScaling.ChipDamageModifier;
             CurrentHealth -= actualDamage;
             _notificationSystem.Notify(NotificationSystem.SignalName.DamageTaken, this, actualDamage);
+            // play block sound
+
             return actualDamage;
         }
         GodotLogger.LogDebug($"Taking {damage} damage");
         CurrentHealth -= actualDamage;
         _notificationSystem.Notify(NotificationSystem.SignalName.DamageTaken, this, actualDamage);
-        if (CurrentHealth > 0) SwitchCombatState(new RecoverState());
+        // play hit sound
+        if (CurrentHealth > 0)
+        {
+            SwitchCombatState(new RecoverState());
+            AudioManager.PlaySfx(FighterSfx.HitPool.GetRandomFromPool());
+        }
+
         return actualDamage;
     }
 
