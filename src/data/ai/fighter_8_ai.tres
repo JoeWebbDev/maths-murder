@@ -21,6 +21,6 @@ KickChance = 10
 BreakBlocksWithLowHit = true
 BreakBlockDelay = 1.5
 PredictiveBlock = true
-PredictiveBlockChance = 85
+PredictiveBlockChance = 70
 EnableSpamDenial = true
 SpamAllowedBeforeAttemptingToDeny = 2

@@ -95,7 +95,7 @@ color = Color(1, 1, 1, 0)
 process_mode = 3
 
 [node name="MatchTimer" parent="." instance=ExtResource("3_gb5ic")]
-TotalMatchTime = 30
+TotalMatchTime = 60
 
 [node name="Player" parent="." instance=ExtResource("5_deabo")]
 position = Vector2(44, 88)

@@ -34,6 +34,7 @@ GlobalAudioManager="*res://src/global_audio_manager/global_audio_manager.tscn"
 
 window/size/viewport_width=320
 window/size/viewport_height=180
+window/size/mode=3
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="res://assets/art/cursor_default.png"
 
