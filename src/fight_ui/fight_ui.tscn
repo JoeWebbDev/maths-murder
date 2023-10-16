@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://xy4kxgxscvui"]
+[gd_scene load_steps=10 format=3 uid="uid://xy4kxgxscvui"]
 
 [ext_resource type="Script" path="res://src/fight_ui/FightUI.cs" id="1_ryufm"]
 [ext_resource type="PackedScene" uid="uid://cut455t7ht2as" path="res://src/health_bar/health_bar.tscn" id="2_1m7ro"]
@@ -8,6 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://bl2yvio6xdu6f" path="res://assets/art/match_timer_box.png" id="4_b4nxf"]
 [ext_resource type="Texture2D" uid="uid://duw6sb3fwet1f" path="res://assets/art/match_timer_box_fill.png" id="5_4grm0"]
 [ext_resource type="PackedScene" uid="uid://32rjr6u2oqea" path="res://src/stamina_bar/stamina_bar.tscn" id="6_j7pdn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ksit"]
+font_size = 4
+outline_size = 200
+outline_color = Color(0, 0, 0, 1)
 
 [node name="FightUI" type="CanvasLayer" node_paths=PackedStringArray("_playerHealthBar", "_enemyHealthBar", "_playerStaminaBar", "_matchTimerLabel", "_countdownLabel", "_continueButton")]
 script = ExtResource("1_ryufm")
@@ -90,3 +95,13 @@ vertical_alignment = 1
 modulate = Color(0.654902, 0.654902, 0, 1)
 show_behind_parent = true
 texture = ExtResource("5_4grm0")
+
+[node name="StaminaLabel" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 33.0
+offset_right = 44.0
+offset_bottom = 41.0
+text = "stamina"
+label_settings = SubResource("LabelSettings_3ksit")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -189,6 +189,8 @@ public partial class Fighter : CharacterBody2D
             GodotLogger.LogDebug($"Chip damage applying...Reducing {actualDamage} to {actualDamage *= StatScaling.ChipDamageModifier}. Chip damage modifier: {StatScaling.ChipDamageModifier}");
             actualDamage *= StatScaling.ChipDamageModifier;
             CurrentHealth -= actualDamage;
+            // Adding some stamina spend here to prevent duck block max defense exploit - thanks beans
+            SpendStamina(blockState.SuccessfulBlockStaminaCost);
             _notificationSystem.Notify(NotificationSystem.SignalName.DamageTaken, this, actualDamage);
             // play block sound
 

@@ -4,7 +4,8 @@ namespace MathsMurderSpike.Core.FighterStates;
 
 public class BlockState : StaminaConsumingState
 {
-    public override float ProcessStaminaCost { get; set; } = 5f;
+    public override float ProcessStaminaCost { get; set; } = 8f;
+    public float SuccessfulBlockStaminaCost { get; set; } = 3f;
 
     public override void Enter(Fighter fighter)
     {
