@@ -19,6 +19,7 @@ public partial class AIStateController : Resource
     [Export] protected bool TrackPlayer { get; set; } = true;
     [Export] protected float TrackDelay { get; set; } = 1f;
     [Export] protected float PreferredTrackingDistance { get; set; } = 75f;
+    [Export] protected float FightBoundary { get; set; } = 450f;
 
     [ExportSubgroup("Dash")]
     [Export] protected bool EnableDash { get; set; } = true;
@@ -154,13 +155,17 @@ public partial class AIStateController : Resource
                 if (TrackingOnCooldown())
                 {
                     _currentTrackDelay -= (float)delta;
-                    return;
                 }
-                MoveTowardsPreferredDistance(aiFighter, playerTarget);
-                _currentTrackDelay = TrackDelay;
-                return;
+                else
+                {
+                    if (TryMoveTowardsPreferredDistance(aiFighter, playerTarget)) _currentTrackDelay = TrackDelay;
+                    else if (aiFighter.MovementState is WalkingState) aiFighter.Execute(new WalkCommand(Vector2.Zero, true));
+                }
             }
-            if (aiFighter.MovementState is WalkingState) aiFighter.Execute(new WalkCommand(Vector2.Zero, true));
+            else
+            {
+                if (aiFighter.MovementState is WalkingState) aiFighter.Execute(new WalkCommand(Vector2.Zero, true));
+            }
         }
         
         if (!AutoAttack) return;
@@ -209,10 +214,12 @@ public partial class AIStateController : Resource
         return CurrentDistanceBetweenFighters > PreferredTrackingDistance ? directionTowardsPlayer : directionTowardsPlayer * -1;
     }
 
-    protected void MoveTowardsPreferredDistance(Fighter aiFighter, Fighter player)
+    protected bool TryMoveTowardsPreferredDistance(Fighter aiFighter, Fighter player)
     {
         var directionToMove = GetDirectionToMove(aiFighter, player);
+        if (directionToMove.X > 0 && AtFightBoundary(aiFighter)) return false;
         aiFighter.Execute(new WalkCommand(directionToMove));
+        return true;
     }
 
     protected bool AtPreferredDistance() => Math.Abs(CurrentDistanceBetweenFighters - PreferredTrackingDistance) < DefaultFloatingPointTolerance;
@@ -221,4 +228,5 @@ public partial class AIStateController : Resource
     protected bool AttackOnCooldown() => _currentAttackCooldown > 0;
     protected bool TrackingOnCooldown() => _currentTrackDelay > 0;
     protected bool DashOnCooldown() => _currentDashDelay > 0;
+    protected bool AtFightBoundary(Fighter aiFighter) => aiFighter.Position.X >= FightBoundary;
 }
