@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_2sn26")
-LevelThresholdConfig = Array[int]([10, 16, 20, 24, 28, 32])
+LevelThresholdConfig = Array[int]([10, 14, 18, 22, 28, 32])
