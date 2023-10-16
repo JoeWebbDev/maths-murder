@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/maths_murder_button/MathsMurderButton.cs" id="1_lq8hn"]
 [ext_resource type="Texture2D" uid="uid://dhra85a82njqx" path="res://assets/art/cursor_default.png" id="2_0nlde"]
 [ext_resource type="Texture2D" uid="uid://cjgqot0qbbg5l" path="res://assets/art/cursor_hover.png" id="3_tt4ga"]
-[ext_resource type="AudioStream" uid="uid://dablc6pqf54ey" path="res://assets/audio/sfx/button_hover.mp3" id="4_v3qyd"]
+[ext_resource type="AudioStream" uid="uid://dsnl8tnrkhdql" path="res://assets/audio/sfx/beeps/beep_1.wav" id="4_qpg64"]
 
 [node name="Button" type="Button"]
 process_mode = 3
@@ -13,5 +13,5 @@ text = "Button"
 script = ExtResource("1_lq8hn")
 _defaultCursor = ExtResource("2_0nlde")
 _hoverCursor = ExtResource("3_tt4ga")
-_hoverSfx = ExtResource("4_v3qyd")
+_hoverSfx = ExtResource("4_qpg64")
 _hoverDb = -6.0

@@ -1,4 +1,4 @@
 [gd_scene format=3 uid="uid://k8dff01hk0jb"]
 
 [node name="ColorRect" type="ColorRect"]
-color = Color(0.415686, 0.0431373, 0.0117647, 0.74902)
+color = Color(0.415686, 0.0431373, 0.0117647, 0.929412)
