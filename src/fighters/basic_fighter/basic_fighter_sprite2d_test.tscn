@@ -3156,17 +3156,22 @@ position = Vector2(0, 18.2)
 shape = SubResource("CapsuleShape2D_w5gpp")
 
 [node name="ScalableChildren" type="Node2D" parent="."]
+use_parent_material = true
 
 [node name="SpriteGroup" type="Node2D" parent="ScalableChildren"]
+use_parent_material = true
 
 [node name="NumberRef" type="Sprite2D" parent="ScalableChildren/SpriteGroup"]
 z_index = 2
+use_parent_material = true
 texture = ExtResource("3_36rq6")
 
 [node name="LegsGroup" type="Node2D" parent="ScalableChildren"]
+use_parent_material = true
 
 [node name="BackLeg" type="Sprite2D" parent="ScalableChildren/LegsGroup"]
 z_index = 1
+use_parent_material = true
 position = Vector2(-5.405, 0)
 texture = ExtResource("2_kxch2")
 offset = Vector2(20, -1.5)
@@ -3174,21 +3179,25 @@ hframes = 17
 
 [node name="FrontLeg" type="Sprite2D" parent="ScalableChildren/LegsGroup"]
 z_index = 3
+use_parent_material = true
 texture = ExtResource("6_xsdqg")
 offset = Vector2(20, -1.5)
 hframes = 17
 region_rect = Rect2(0.986954, 1.10532, 206.29, 62.6053)
 
 [node name="ArmsGroup" type="Node2D" parent="ScalableChildren"]
+use_parent_material = true
 
 [node name="BackArm" type="Sprite2D" parent="ScalableChildren/ArmsGroup"]
 z_index = 1
+use_parent_material = true
 texture = ExtResource("3_gy4vi")
 offset = Vector2(21, 0)
 hframes = 17
 
 [node name="FrontArm" type="Sprite2D" parent="ScalableChildren/ArmsGroup"]
 z_index = 3
+use_parent_material = true
 texture = ExtResource("5_da3cx")
 offset = Vector2(21, -1.5)
 hframes = 17

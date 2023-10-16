@@ -10,6 +10,7 @@ public partial class NumberSpriteData : Resource
     [Export] public Vector2 LegsOffset;
     [Export] public Vector2 BodyOffset;
     [Export] public Vector2 SpriteOffset;
+    [Export] public AudioStream AnnouncerAudio;
 
     public NumberSpriteData() : this(null, Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero) { }
         

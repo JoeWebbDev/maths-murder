@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=3 uid="uid://cy0e1fonov818"]
+
+[ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="1_ng7ww"]
+[ext_resource type="Script" path="res://src/fight_versus/FightVersus.cs" id="1_x1etu"]
+[ext_resource type="AudioStream" uid="uid://dq2ccw8ok6h1y" path="res://assets/audio/announcer_voicelines/versus.wav" id="2_f513g"]
+[ext_resource type="Shader" path="res://src/shaders/mask.gdshader" id="2_x0bjt"]
+[ext_resource type="Texture2D" uid="uid://buiph33d45k3h" path="res://assets/art/versus_player_mask.png" id="3_vitqw"]
+[ext_resource type="Texture2D" uid="uid://jkkw0gtwsquf" path="res://assets/art/versus_background.png" id="3_x8fug"]
+[ext_resource type="Texture2D" uid="uid://dd84pynqihvml" path="res://assets/art/boxing_fight_scene_background.png" id="4_tbmry"]
+[ext_resource type="Texture2D" uid="uid://cru1k3otiadwp" path="res://assets/art/versus_enemy_mask.png" id="6_t3dur"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8esqg"]
+shader = ExtResource("2_x0bjt")
+shader_parameter/mask = ExtResource("3_vitqw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4d4l6"]
+shader = ExtResource("2_x0bjt")
+shader_parameter/mask = ExtResource("6_t3dur")
+
+[node name="FightVersus" type="Node2D" node_paths=PackedStringArray("_playerFighter", "_playerBackground", "_enemyFighter", "_enemyBackground")]
+position = Vector2(160, 90)
+script = ExtResource("1_x1etu")
+_playerFighter = NodePath("PlayerViewport/SubViewport/PlayerContainer/PlayerFighter")
+_playerBackground = NodePath("PlayerViewport/SubViewport/Background")
+_enemyFighter = NodePath("SubViewportContainer/SubViewport/EnemyContainer/EnemyFighter")
+_enemyBackground = NodePath("SubViewportContainer/SubViewport/Background")
+_versusAnnouncerAudio = ExtResource("2_f513g")
+
+[node name="VersusSign" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(4, 0)
+texture = ExtResource("3_x8fug")
+
+[node name="PlayerViewport" type="SubViewportContainer" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_8esqg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="PlayerViewport"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="Background" type="Sprite2D" parent="PlayerViewport/SubViewport"]
+modulate = Color(0.388235, 0.388235, 0.388235, 1)
+position = Vector2(160, 90)
+texture = ExtResource("4_tbmry")
+
+[node name="PlayerContainer" type="Node2D" parent="PlayerViewport/SubViewport"]
+position = Vector2(60, 75)
+scale = Vector2(2, 2)
+
+[node name="PlayerFighter" parent="PlayerViewport/SubViewport/PlayerContainer" instance=ExtResource("1_ng7ww")]
+position = Vector2(-1.52588e-05, 0)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_4d4l6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="Background" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+modulate = Color(0.388235, 0.388235, 0.388235, 1)
+position = Vector2(9.685, 90)
+texture = ExtResource("4_tbmry")
+
+[node name="EnemyContainer" type="Node2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(260, 75)
+rotation = 3.14159
+scale = Vector2(2, -2)
+
+[node name="EnemyFighter" parent="SubViewportContainer/SubViewport/EnemyContainer" instance=ExtResource("1_ng7ww")]
