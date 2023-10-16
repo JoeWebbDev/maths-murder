@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://b8h6x1xujrog6"]
 
-[ext_resource type="AudioStream" uid="uid://dipl3lam2y47l" path="res://assets/audio/announcer_voicelines/five.wav" id="1_0bhl3"]
+[ext_resource type="AudioStream" uid="uid://dipl3lam2y47l" path="res://assets/audio/announcer_voicelines/five.wav" id="1_lwi5q"]
 [ext_resource type="Texture2D" uid="uid://cgnft4iatpyby" path="res://assets/art/numbers/number_5.png" id="1_mo1mr"]
 [ext_resource type="Script" path="res://src/data/NumberSpriteData.cs" id="1_pyt8i"]
 
@@ -11,4 +11,4 @@ ArmsOffset = Vector2(0, 0)
 LegsOffset = Vector2(0, 0)
 BodyOffset = Vector2(0, 0)
 SpriteOffset = Vector2(0, 0)
-AnnouncerAudio = ExtResource("1_0bhl3")
+AnnouncerAudio = ExtResource("1_lwi5q")

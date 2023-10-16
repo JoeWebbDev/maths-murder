@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://d2f3cn4tlq5tv"]
+[gd_scene load_steps=27 format=3 uid="uid://d2f3cn4tlq5tv"]
 
 [ext_resource type="Script" path="res://src/fighters/basic_fighter/BasicFighter.cs" id="1_u25jf"]
 [ext_resource type="Resource" uid="uid://den6qs1g5ja2w" path="res://src/data/stat_scaling_config.tres" id="2_6u7ht"]
 [ext_resource type="Texture2D" uid="uid://bmvsvme6j6ksy" path="res://assets/art/back_leg.png" id="2_kxch2"]
 [ext_resource type="Texture2D" uid="uid://4vt0t23jateu" path="res://assets/art/numbers/number_1.png" id="3_36rq6"]
 [ext_resource type="Texture2D" uid="uid://c3ghk6bhu8ome" path="res://assets/art/back_arm.png" id="3_gy4vi"]
+[ext_resource type="Resource" uid="uid://dc8qubifo8mbd" path="res://src/data/audio/fighter_sfx_data.tres" id="3_hul3s"]
 [ext_resource type="Texture2D" uid="uid://31od6ali041a" path="res://assets/art/front_arm.png" id="5_da3cx"]
 [ext_resource type="Texture2D" uid="uid://bbgcberdsl4d8" path="res://assets/art/front_leg.png" id="6_xsdqg"]
 
@@ -3147,6 +3148,7 @@ AnimationPlayer = NodePath("AnimationPlayer")
 PunchColliderObject = NodePath("ScalableChildren/ArmsGroup/PunchColliderObject")
 WalkingSpeed = 50.0
 StatScaling = ExtResource("2_6u7ht")
+FighterSfx = ExtResource("3_hul3s")
 PlayerNumber = 1
 _nodeToFlip = NodePath("ScalableChildren")
 

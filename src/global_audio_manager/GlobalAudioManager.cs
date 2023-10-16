@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot.Collections;
 using MathsMurderSpike.core.Audio;
 
@@ -13,10 +14,15 @@ public partial class GlobalAudioManager : Node
     [ExportGroup("Internal properties")]
     [Export] private AudioStreamPlayer _musicPlayer;
     [Export] private Array<AudioStreamPlayer> _sfxPlayerPool;
+    private int _sfxBusId;
+    private int _delayEffectId;
 
     public override void _Ready()
     {
         _musicPlayer.Bus = AudioBusName.Music;
+        _sfxBusId = AudioServer.GetBusIndex(AudioBusName.Sfx);
+        AudioServer.SetBusBypassEffects(_sfxBusId, true);
+
         foreach (var sfxPlayer in _sfxPlayerPool)
         {
             sfxPlayer.Bus = AudioBusName.Sfx;
@@ -25,8 +31,11 @@ public partial class GlobalAudioManager : Node
 
     public AudioStreamPlayer PlayMusic(AudioStream track, float db = 0f) => Play(track, _musicPlayer, db);
 
-    public AudioStreamPlayer PlaySfx(AudioStream sfx, float db = 0f) =>
-        Play(sfx, _sfxPlayerPool.FirstOrDefault(asp => !asp.Playing), db);
+    public AudioStreamPlayer PlaySfx(AudioStream sfx, float db = 0f) 
+    {
+        var player = _sfxPlayerPool.First(asp => !asp.Playing);
+        return Play(sfx, player, db);
+    }
 
     private AudioStreamPlayer Play(AudioStream audioStream, AudioStreamPlayer player, float db)
     {

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://djj6eclldwbn5"]
+
+[ext_resource type="AudioStream" uid="uid://0hwcaut1wpur" path="res://assets/audio/sfx/hits/BigHit.wav" id="1_fh252"]
+[ext_resource type="Script" path="res://src/data/audio/AudioPool.cs" id="1_qim08"]
+
+[resource]
+script = ExtResource("1_qim08")
+_pool = Array[AudioStream]([ExtResource("1_fh252")])
