@@ -10,22 +10,21 @@ public partial class DisplayModeDropDown : HBoxContainer
 	public override void _Ready()
 	{
 		_optionButton = GetNode<OptionButton>("OptionButton");
+		_optionButton.AddItem(DisplayServer.WindowMode.Windowed.ToString(), (int)DisplayServer.WindowMode.Windowed);
+		_optionButton.AddItem(DisplayServer.WindowMode.Maximized.ToString(), (int)DisplayServer.WindowMode.Maximized);
+		_optionButton.AddItem(DisplayServer.WindowMode.Fullscreen.ToString(), (int)DisplayServer.WindowMode.Fullscreen);
+		// _optionButton.AddItem(DisplayServer.WindowMode.ExclusiveFullscreen.ToString(), (int)DisplayServer.WindowMode.ExclusiveFullscreen);
+		var modeOnLoad = DisplayServer.WindowGetMode();
 		_optionButton.ItemSelected += OnItemSelected;
+		_optionButton.Selected = (int)modeOnLoad;
+		_currentIndex = _optionButton.Selected;
 		_previousIndex = _optionButton.Selected;
 	}
 
 	private void OnItemSelected(long index)
 	{
-		if (index == 0)
-		{
-			_currentIndex = 0;
-			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-		}
-		else if (index == 1)
-		{
-			_currentIndex = 1;
-			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
-		}
+		_currentIndex = index;
+		DisplayServer.WindowSetMode((DisplayServer.WindowMode)_optionButton.GetItemId((int)index));
 	}
 	
 	public void OnCloseRequested()

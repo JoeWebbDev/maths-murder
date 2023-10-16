@@ -27,12 +27,12 @@ public partial class FightInputController : Node
             _dashRightWindowOpen = false;
         }
         
-        if (@event.IsActionPressed("move_left") && _dashLeftWindowOpen)
+        if (@event.IsActionPressed("p_move_left") && _dashLeftWindowOpen)
         {
             CurrentFighter.Execute(new DashCommand(Vector2.Left));
             _dashLeftWindowOpen = false;
         }
-        if (@event.IsActionPressed("move_right") && _dashRightWindowOpen)
+        if (@event.IsActionPressed("p_move_right") && _dashRightWindowOpen)
         {
             CurrentFighter.Execute(new DashCommand(Vector2.Right));
             _dashRightWindowOpen = false;
@@ -56,7 +56,7 @@ public partial class FightInputController : Node
         
         // Similarly to movement below, we have to treat block differently. Without this, if you try to block while punching, the command will be missed :/
         // Is there a better way?
-        if (Input.IsActionPressed("block"))
+        if (Input.IsActionPressed("p_block"))
         {
             CurrentFighter.Execute(new BlockCommand());
         }
@@ -65,7 +65,7 @@ public partial class FightInputController : Node
         // ducking. Like Joe has mentioned before, this is wasteful as we're sending 2 block/duck commands on initial key press.
         // Starting to think there's a better way here!
 
-        if (Input.IsActionPressed("duck"))
+        if (Input.IsActionPressed("p_duck"))
         {
             CurrentFighter.Execute(new DuckCommand());
         }
@@ -73,13 +73,13 @@ public partial class FightInputController : Node
         var direction = Vector2.Zero;
         var leftKeyPressed = false;
         var rightKeyPressed = false;
-        if (Input.IsActionPressed("move_left"))
+        if (Input.IsActionPressed("p_move_left"))
         {
             direction += Vector2.Left;
             leftKeyPressed = true;
         }
 
-        if (Input.IsActionPressed("move_right"))
+        if (Input.IsActionPressed("p_move_right"))
         {
             direction += Vector2.Right;
             rightKeyPressed = true;
@@ -97,13 +97,13 @@ public partial class FightInputController : Node
             // We don't have movement because both keys are held, so we should dispatch a "Completed" WalkCommand.
             CurrentFighter.Execute(new WalkCommand(direction, true));
         }
-        else if (Input.IsActionJustReleased("move_left"))
+        else if (Input.IsActionJustReleased("p_move_left"))
         {
             CurrentFighter.Execute(new WalkCommand(direction, true));
             _dashLeftWindowOpen = true;
             _dashWindowTimer = 0f;
         }
-        else if (Input.IsActionJustReleased("move_right"))
+        else if (Input.IsActionJustReleased("p_move_right"))
         {
             CurrentFighter.Execute(new WalkCommand(direction, true));
             _dashRightWindowOpen = true;
