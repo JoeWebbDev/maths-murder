@@ -34,7 +34,13 @@ public partial class Fight : Node
     [Export] private Vector2 _cameraZoomOnDeath = new(2f, 2f);
     [Export] private float _maxDurationBeforeSceneSwitchOnDeath = 2f;
 
+    [ExportGroup("SFX tracks")] 
+    [Export] private AudioStream _fightCountdownAnnouncerSfx;
+    [Export] private AudioStream _victoryAnnouncerSfx;
+    [Export] private AudioStream _failureAnnouncerSfx;
+
     private GameDataManager _gameDataManager;
+    private GlobalAudioManager _audioManager;
     private FighterData _playerFighterData;
     private FighterData _enemyFighterData;
 
@@ -44,6 +50,7 @@ public partial class Fight : Node
             GodotLogger.LogError("Players must have different player numbers.");
         GetTree().Paused = true;
         _gameDataManager = GetNode<GameDataManager>("/root/GameDataManager");
+        _audioManager = GetNode<GlobalAudioManager>("/root/GlobalAudioManager");
         var playerData = _gameDataManager.GetPlayerData();
         _playerFighterData = playerData.FighterData;
         Player.InitFighter(_playerFighterData, true);
@@ -86,6 +93,7 @@ public partial class Fight : Node
     {
         await _preFightVersus.PlayPreFightVersusSequence(_playerFighterData, _enemyFighterData, _background.Texture);
         await Task.Delay(200);
+        _audioManager.PlaySfx(_fightCountdownAnnouncerSfx);
         await Ui.StartCountdown(_fightCountdownDuration);
         GetTree().Paused = false;
         Timer.Start();
@@ -119,6 +127,7 @@ public partial class Fight : Node
 
     private void OnFightWon()
     {
+        _audioManager.PlaySfx(_victoryAnnouncerSfx);
         // We can use this as an alternative to GetTree().Paused for bullet time
         Engine.TimeScale = 0.5f;
         _gameDataManager.RegisterDefeatedOpponent();
@@ -127,6 +136,7 @@ public partial class Fight : Node
 
     private async void OnFightLost()
     {
+        _audioManager.PlaySfx(_failureAnnouncerSfx);
         _deathPostProcess.Show();
         Engine.TimeScale = _engineTimeScaleOnDeath;
         _cameraController.Freeze = true;

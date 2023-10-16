@@ -14,13 +14,16 @@ public partial class FightUI : CanvasLayer
 	[Export] private Label _matchTimerLabel;
 	[Export] private Label _countdownLabel;
 	[Export] private Button _continueButton;
+	[Export] private AudioStream _fightAnnouncerSfx;
 
 	[Signal] public delegate void ContinueGameEventHandler();
 
 	private bool _isTimerActive;
+	private GlobalAudioManager _audioManager;
 	
 	public override void _Ready()
 	{
+		_audioManager = GetNode<GlobalAudioManager>("/root/GlobalAudioManager");
 		_continueButton.Pressed += () =>
 		{
 			EmitSignal(SignalName.ContinueGame);
@@ -61,6 +64,7 @@ public partial class FightUI : CanvasLayer
 			await Task.Delay(1000);
 		}
 
+		_audioManager.PlaySfx(_fightAnnouncerSfx);
 		_countdownLabel.Text = "Fight!";
 		await Task.Delay(1000);
 		_countdownLabel.Hide();
