@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://src/main/Main.cs" id="1_jlfth"]
 [ext_resource type="PackedScene" uid="uid://dxynmlovonl6s" path="res://src/start_menu/start_menu.tscn" id="2_4ks5h"]
 [ext_resource type="PackedScene" uid="uid://cuvve83igm5fe" path="res://src/fight/fight.tscn" id="3_agthi"]
-[ext_resource type="PackedScene" uid="uid://o3t21jrr1pt0" path="res://src/training/training.tscn" id="4_0hsuc"]
 [ext_resource type="PackedScene" uid="uid://c2nci3gapsobm" path="res://src/screen_fader/screen_fader.tscn" id="4_2oecl"]
 [ext_resource type="PackedScene" uid="uid://bg0hipyfquusd" path="res://src/global_input_controller/global_input_controller.tscn" id="4_qw5jr"]
+[ext_resource type="PackedScene" uid="uid://us1y0rho26f8" path="res://src/training/training_scene.tscn" id="4_ukm4h"]
 [ext_resource type="PackedScene" uid="uid://dkqyrde2kg3yf" path="res://src/bracket/bracket.tscn" id="5_cyiiq"]
 [ext_resource type="PackedScene" uid="uid://ccjxyrjb7puo0" path="res://src/choose_next_fight/choose_next_fight.tscn" id="6_0yqcu"]
 [ext_resource type="PackedScene" uid="uid://c3rs2pv57bf2d" path="res://src/player_death/player_death.tscn" id="7_7sel6"]
@@ -15,7 +15,7 @@ process_mode = 3
 script = ExtResource("1_jlfth")
 _startMenuScene = ExtResource("2_4ks5h")
 _fightScene = ExtResource("3_agthi")
-_trainingScene = ExtResource("4_0hsuc")
+_trainingScene = ExtResource("4_ukm4h")
 _bracketScene = ExtResource("5_cyiiq")
 _chooseNextFightScene = ExtResource("6_0yqcu")
 _playerDeathScene = ExtResource("7_7sel6")

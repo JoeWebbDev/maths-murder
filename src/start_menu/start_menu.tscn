@@ -32,7 +32,7 @@ _background = NodePath("Sprite2D")
 _startColor = Color(0, 0, 0, 1)
 _endColor = Color(0.364706, 0.364706, 0.364706, 1)
 _colorChangeDuration = 1.0
-_musicTrack = ExtResource("2_bnccb")
+_menuMusicTrack = ExtResource("2_bnccb")
 _mathsMurderAnnouncerTrack = ExtResource("3_e3ecj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -106,11 +106,9 @@ size_flags_horizontal = 8
 texture_normal = ExtResource("4_c58vp")
 texture_hover = ExtResource("5_p0m31")
 
-[node name="HowToPlayButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="HowToPlayButton" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("2_8mrqp")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 text = "?"
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
@@ -135,8 +133,6 @@ size_flags_vertical = 4
 [node name="StartButton" parent="CanvasLayer/MarginContainer2/HBoxContainer" instance=ExtResource("2_8mrqp")]
 custom_minimum_size = Vector2(76, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 text = "Start"
 
 [node name="QuitButton" parent="CanvasLayer/MarginContainer2/HBoxContainer" instance=ExtResource("2_8mrqp")]

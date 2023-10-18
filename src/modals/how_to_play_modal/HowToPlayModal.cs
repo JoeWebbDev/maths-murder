@@ -9,6 +9,7 @@ public partial class HowToPlayModal : CanvasLayer
     [Export] private Label _punchKey;
     [Export] private Label _kickKey;
     [Export] private Label _blockKey;
+    [Export] private Label _duckKey;
 
     public override void _Ready()
     {
@@ -17,6 +18,7 @@ public partial class HowToPlayModal : CanvasLayer
         _punchKey.Text = $"{InputMap.ActionGetEvents(InputAction.Punch)[0].AsText()}";
         _kickKey.Text = $"{InputMap.ActionGetEvents(InputAction.Kick)[0].AsText()}";
         _blockKey.Text = $"{InputMap.ActionGetEvents(InputAction.Block)[0].AsText()}";
+        _duckKey.Text = $"{InputMap.ActionGetEvents(InputAction.Duck)[0].AsText()}";
         _closeButton.Pressed += Hide;
         Hide();
     }

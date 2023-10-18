@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c2ublii3tqxol" path="res://src/modals/modal_shroud/modal_shroud.tscn" id="2_gw1mf"]
 [ext_resource type="PackedScene" uid="uid://k8dff01hk0jb" path="res://src/modals/modal_color_rect/modal_color_rect.tscn" id="2_rl0pq"]
 
-[node name="HowToPlayModal" type="CanvasLayer" node_paths=PackedStringArray("_closeButton", "_moveLeftKey", "_moveRightKey", "_punchKey", "_kickKey", "_blockKey")]
+[node name="HowToPlayModal" type="CanvasLayer" node_paths=PackedStringArray("_closeButton", "_moveLeftKey", "_moveRightKey", "_punchKey", "_kickKey", "_blockKey", "_duckKey")]
 process_mode = 3
 layer = 2
 script = ExtResource("1_uuq02")
@@ -14,6 +14,7 @@ _moveRightKey = NodePath("MarginContainer2/VBoxContainer/MarginContainer6/VBoxCo
 _punchKey = NodePath("MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 1/PunchContainer/PunchKey")
 _kickKey = NodePath("MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 2/KickContainer/KickKey")
 _blockKey = NodePath("MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 2/BlockContainer/BlockKey")
+_duckKey = NodePath("MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 2/DuckContainer/DuckKey")
 
 [node name="ModalShroud" parent="." instance=ExtResource("2_gw1mf")]
 
@@ -43,7 +44,7 @@ theme_override_constants/margin_top = 10
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 8
 text = "How to play"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
@@ -54,6 +55,7 @@ theme_override_constants/margin_right = 5
 [node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
 text = "Grow your strength as a number, climb the ranks and win the Number Boxing World Cup!"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -61,7 +63,7 @@ autowrap_mode = 3
 [node name="MarginContainer5" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 10
 
 [node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer5"]
@@ -79,9 +81,12 @@ theme_override_constants/margin_right = 10
 
 [node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer6"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
 
 [node name="Column 1" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="MoveLeftContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 1"]
@@ -91,12 +96,14 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
 text = "MoveLeft:"
 horizontal_alignment = 1
 
 [node name="MoveLeftKey" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 1/MoveLeftContainer"]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
 text = "Left"
 
 [node name="MoveRightContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 1"]
@@ -106,12 +113,14 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
 text = "MoveRight:"
 horizontal_alignment = 1
 
 [node name="MoveRightKey" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 1/MoveRightContainer"]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
 text = "Right"
 
 [node name="PunchContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 1"]
@@ -122,16 +131,19 @@ size_flags_horizontal = 0
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
 text = "Punch:"
 
 [node name="PunchKey" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 1/PunchContainer"]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
 text = "Z"
 
 [node name="Column 2" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 4
+size_flags_vertical = 0
 
 [node name="KickContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 2"]
 layout_mode = 2
@@ -139,11 +151,13 @@ layout_mode = 2
 [node name="KickLabel" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 2/KickContainer"]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
 text = "Kick:"
 
 [node name="KickKey" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 2/KickContainer"]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
 text = "K"
 
 [node name="BlockContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 2"]
@@ -153,17 +167,43 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
 text = "Block:"
 
 [node name="BlockKey" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 2/BlockContainer"]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
 text = "C"
+
+[node name="DuckContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 2"]
+layout_mode = 2
+
+[node name="DuckLabel" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 2/DuckContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
+text = "Duck:
+"
+
+[node name="DuckKey" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer6/VBoxContainer/Column 2/DuckContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
+text = "Down
+"
 
 [node name="MarginContainer7" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
+size_flags_vertical = 8
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer7"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Dash: 2 x MoveLeft/MoveRight"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2

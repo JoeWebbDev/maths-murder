@@ -30,7 +30,7 @@ public partial class StartMenu : Node
 	[Export] private Color _endColor;
 	[Export] private float _colorChangeDuration;
 	[ExportGroup("Music/SFX properties")]
-	[Export] private AudioStream _musicTrack;
+	[Export] private AudioStream _menuMusicTrack;
 	[Export] private float _musicDb;
 	[Export] private AudioStream _mathsMurderAnnouncerTrack;
 	[Export] private float _mathsMurderAnnouncerDb;
@@ -58,7 +58,7 @@ public partial class StartMenu : Node
 
 	private async void PlayTitleAnimation()
 	{
-		_audioManager.PlayMusic(_musicTrack, _musicDb);
+		_audioManager.PlayMusic(_menuMusicTrack, _musicDb);
 		_audioManager.PlaySfx(_mathsMurderAnnouncerTrack, _mathsMurderAnnouncerDb);
 		_mask.Size = _maskStartingSize;
 		var tree = GetTree();

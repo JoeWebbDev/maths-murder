@@ -45,4 +45,9 @@ public partial class GlobalAudioManager : Node
         player.Play();
         return player;
     }
+
+    public void StopMusic()
+    {
+        _musicPlayer.Stop();
+    }
 }

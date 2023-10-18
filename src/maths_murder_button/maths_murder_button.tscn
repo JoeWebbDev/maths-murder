@@ -9,6 +9,8 @@
 process_mode = 3
 offset_right = 76.0
 offset_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text = "Button"
 script = ExtResource("1_lq8hn")
 _defaultCursor = ExtResource("2_0nlde")

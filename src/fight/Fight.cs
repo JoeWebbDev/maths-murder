@@ -38,6 +38,10 @@ public partial class Fight : Node
     [Export] private AudioStream _fightCountdownAnnouncerSfx;
     [Export] private AudioStream _victoryAnnouncerSfx;
     [Export] private AudioStream _failureAnnouncerSfx;
+    
+    [ExportGroup("Music")] 
+    [Export] private AudioStream _fightMusicTrack;
+
 
     private GameDataManager _gameDataManager;
     private GlobalAudioManager _audioManager;
@@ -93,8 +97,10 @@ public partial class Fight : Node
     {
         await _preFightVersus.PlayPreFightVersusSequence(_playerFighterData, _enemyFighterData, _background.Texture);
         await Task.Delay(200);
+        _audioManager.StopMusic();
         _audioManager.PlaySfx(_fightCountdownAnnouncerSfx);
         await Ui.StartCountdown(_fightCountdownDuration);
+        _audioManager.PlayMusic(_fightMusicTrack);
         GetTree().Paused = false;
         Timer.Start();
     }
