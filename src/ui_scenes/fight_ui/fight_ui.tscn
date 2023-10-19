@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://xy4kxgxscvui"]
+
+[ext_resource type="Script" path="res://src/ui_scenes/fight_ui/FightUI.cs" id="1_ryufm"]
+[ext_resource type="PackedScene" uid="uid://cut455t7ht2as" path="res://src/ui_components/health_bar/health_bar.tscn" id="2_1m7ro"]
+[ext_resource type="Texture2D" uid="uid://bmmxvkr215kni" path="res://assets/art/stamina_bar_fill.png" id="2_asc0u"]
+[ext_resource type="Texture2D" uid="uid://dra3yf5m0hq45" path="res://assets/art/stamina_bar_depleted_fill.png" id="3_ecu3w"]
+[ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/ui_components/maths_murder_button/maths_murder_button.tscn" id="3_jpomr"]
+[ext_resource type="Texture2D" uid="uid://bl2yvio6xdu6f" path="res://assets/art/match_timer_box.png" id="4_b4nxf"]
+[ext_resource type="Texture2D" uid="uid://duw6sb3fwet1f" path="res://assets/art/match_timer_box_fill.png" id="5_4grm0"]
+[ext_resource type="PackedScene" uid="uid://32rjr6u2oqea" path="res://src/ui_components/stamina_bar/stamina_bar.tscn" id="6_j7pdn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ksit"]
+font_size = 4
+outline_size = 200
+outline_color = Color(0, 0, 0, 1)
+
+[node name="FightUI" type="CanvasLayer" node_paths=PackedStringArray("_playerHealthBar", "_enemyHealthBar", "_playerStaminaBar", "_matchTimerLabel", "_countdownLabel", "_continueButton")]
+script = ExtResource("1_ryufm")
+_playerHealthBar = NodePath("PlayerHealthBar")
+_enemyHealthBar = NodePath("EnemyHealthBar")
+_playerStaminaBar = NodePath("StaminaBar")
+_playerStaminaBarFullTexture = ExtResource("2_asc0u")
+_playerStaminaBarDepletedTexture = ExtResource("3_ecu3w")
+_matchTimerLabel = NodePath("MatchTimerBox/MatchTimerBox/MatchTimerLabel")
+_countdownLabel = NodePath("CountdownLabel")
+_continueButton = NodePath("ContinueButton")
+
+[node name="ContinueButton" parent="." instance=ExtResource("3_jpomr")]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -47.0
+offset_right = 45.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+action_mode = 0
+text = "Continue"
+
+[node name="CountdownLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaminaBar" parent="." instance=ExtResource("6_j7pdn")]
+position = Vector2(99, 37)
+
+[node name="PlayerHealthBar" parent="." instance=ExtResource("2_1m7ro")]
+position = Vector2(80, 30)
+
+[node name="EnemyHealthBar" parent="." instance=ExtResource("2_1m7ro")]
+position = Vector2(240, 30)
+scale = Vector2(-1, 1)
+
+[node name="MatchTimerBox" type="Node2D" parent="."]
+position = Vector2(160, 22)
+
+[node name="MatchTimerBox" type="Sprite2D" parent="MatchTimerBox"]
+texture = ExtResource("4_b4nxf")
+
+[node name="MatchTimerLabel" type="Label" parent="MatchTimerBox/MatchTimerBox"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -16.5
+offset_right = 15.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fill" type="Sprite2D" parent="MatchTimerBox/MatchTimerBox"]
+modulate = Color(0.654902, 0.654902, 0, 1)
+show_behind_parent = true
+texture = ExtResource("5_4grm0")
+
+[node name="StaminaLabel" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 33.0
+offset_right = 44.0
+offset_bottom = 41.0
+text = "stamina"
+label_settings = SubResource("LabelSettings_3ksit")
+horizontal_alignment = 1
+vertical_alignment = 1

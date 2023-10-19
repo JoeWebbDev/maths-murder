@@ -17,7 +17,7 @@ ResourceScriptDirectories=["res://"]
 [application]
 
 config/name="Maths Murder"
-run/main_scene="res://src/main/main.tscn"
+run/main_scene="res://src/game_scenes/main/main.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 config/windows_native_icon="res://icon.ico"
@@ -26,16 +26,15 @@ config/windows_native_icon="res://icon.ico"
 
 GodotLogger="*res://core/Logger/GodotLogger.cs"
 GameDataManager="*res://src/data/game_data_manager.tscn"
-SettingsModal="*res://src/modals/settings_menu/settings_modal/settings_modal.tscn"
+SettingsModal="*res://src/ui_scenes/settings_modal/settings_modal.tscn"
 NotificationSystem="*res://src/notification_system/notification_system.tscn"
-HowToPlayModal="*res://src/modals/how_to_play_modal/how_to_play_modal.tscn"
-GlobalAudioManager="*res://src/global_audio_manager/global_audio_manager.tscn"
+HowToPlayModal="*res://src/ui_scenes/how_to_play_modal/how_to_play_modal.tscn"
+GlobalAudioManager="*res://src/audio/global_audio_manager/global_audio_manager.tscn"
 
 [display]
 
 window/size/viewport_width=320
 window/size/viewport_height=180
-window/size/mode=3
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="res://assets/art/cursor_default.png"
 

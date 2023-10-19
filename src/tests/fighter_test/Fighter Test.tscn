@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/tests/fighter_test/FighterTest.cs" id="1_tv0lk"]
 [ext_resource type="Resource" uid="uid://bw8b5twih23h4" path="res://src/data/enemies/fighter_4.tres" id="2_63r1p"]
 [ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="3_t7njm"]
-[ext_resource type="PackedScene" uid="uid://2ctuwd5ypoun" path="res://src/fight_input_controller/fight_input_controller.tscn" id="4_xgesm"]
+[ext_resource type="PackedScene" uid="uid://2ctuwd5ypoun" path="res://src/input/fight_input_controller/fight_input_controller.tscn" id="4_xgesm"]
 
 [node name="Fighter Test" type="Node" node_paths=PackedStringArray("_fighter", "_legsYSpinBox")]
 script = ExtResource("1_tv0lk")

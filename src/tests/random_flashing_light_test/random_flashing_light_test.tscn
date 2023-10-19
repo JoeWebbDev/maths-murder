@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cfjlmx60oo1ur"]
 
-[ext_resource type="PackedScene" uid="uid://bnm7url52twv3" path="res://src/random_flashing_light/random_flashing_light.tscn" id="1_ynlli"]
+[ext_resource type="PackedScene" uid="uid://bnm7url52twv3" path="res://src/ui_components/random_flashing_light/random_flashing_light.tscn" id="1_ynlli"]
 [ext_resource type="Texture2D" uid="uid://verpibpuh12w" path="res://icon.svg" id="2_hmxgr"]
 
 [node name="RandomFlashingLightTest" type="Node2D"]

@@ -49,9 +49,9 @@ public partial class GameDataManager : Node
 		_playerDataInstance.TotalExpGained += amount;
 	}
 
-	public void DecreasePlayerExperience(int amount)
+	public void SetPlayerExperience(int amount)
 	{
-		_playerDataInstance.ExperiencePoints -= amount;
+		_playerDataInstance.ExperiencePoints = amount;
 	}
 	
 	public void IncreasePlayerExperienceFromCurrentOpponent()

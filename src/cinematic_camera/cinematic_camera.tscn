@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://che4g3b2ucx37"]
-
-[ext_resource type="Script" path="res://src/cinematic_camera/CinematicCamera.cs" id="1_bbkrg"]
-
-[node name="CinematicCamera" type="Camera2D"]
-script = ExtResource("1_bbkrg")
