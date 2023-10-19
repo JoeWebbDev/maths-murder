@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://ju5rbig8b0a6"]
+
+[ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/ui_components/maths_murder_button/maths_murder_button.tscn" id="1_gbgx6"]
+[ext_resource type="Script" path="res://src/ui_components/numeric_stepper/NumericStepper.cs" id="1_iblno"]
+
+[node name="NumericStepper" type="HBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -7.0
+offset_right = 33.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_iblno")
+Value = 1
+
+[node name="MinusButton" parent="." instance=ExtResource("1_gbgx6")]
+layout_mode = 2
+theme_type_variation = &"button_no_frame"
+text = "-"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 12
+text = "00
+"
+
+[node name="PlusButton" parent="." instance=ExtResource("1_gbgx6")]
+layout_mode = 2
+theme_type_variation = &"button_no_frame"
+text = "+"

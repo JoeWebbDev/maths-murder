@@ -1,0 +1,179 @@
+[gd_scene load_steps=11 format=3 uid="uid://us1y0rho26f8"]
+
+[ext_resource type="Script" path="res://src/game_scenes/training/Training.cs" id="1_2v8x7"]
+[ext_resource type="PackedScene" uid="uid://k8dff01hk0jb" path="res://src/ui_scenes/modal_color_rect/modal_color_rect.tscn" id="2_d6vic"]
+[ext_resource type="Texture2D" uid="uid://cpe55ua4ie1pf" path="res://assets/art/training_scene_background.png" id="2_mma3l"]
+[ext_resource type="Texture2D" uid="uid://cksios6t3xxda" path="res://assets/art/icons/heart.png" id="4_ssqbg"]
+[ext_resource type="PackedScene" uid="uid://dk2fg1a8sr1oa" path="res://src/ui_components/maths_murder_button/maths_murder_button.tscn" id="4_wd8d2"]
+[ext_resource type="PackedScene" uid="uid://ju5rbig8b0a6" path="res://src/ui_components/numeric_stepper/numeric_stepper.tscn" id="5_otd7j"]
+[ext_resource type="Texture2D" uid="uid://ffrl20yjp3qx" path="res://assets/art/icons/speed_icon.png" id="6_6njom"]
+[ext_resource type="Texture2D" uid="uid://1jby07qfyaku" path="res://assets/art/icons/bicep_icon.png" id="6_qdyc6"]
+[ext_resource type="PackedScene" uid="uid://d2f3cn4tlq5tv" path="res://src/fighters/basic_fighter/basic_fighter_sprite2d_test.tscn" id="7_1nenb"]
+[ext_resource type="Texture2D" uid="uid://blnbgwqmoosce" path="res://assets/art/icons/shield_icon.png" id="8_qnwcn"]
+
+[node name="Training Scene" type="Control" node_paths=PackedStringArray("_healthStepper", "_speedStepper", "_strengthStepper", "_defenseStepper", "_remainingExpPointsLabel", "_nextFightButton", "_fighter")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2v8x7")
+_healthStepper = NodePath("StatsPanel/VBoxContainer/MarginContainer/HealthRow/HealthStepper")
+_speedStepper = NodePath("StatsPanel/VBoxContainer/MarginContainer2/SpeedRow/SpeedStepper")
+_strengthStepper = NodePath("StatsPanel/VBoxContainer/MarginContainer3/StrengthRow/StrengthStepper")
+_defenseStepper = NodePath("StatsPanel/VBoxContainer/MarginContainer4/DefenseRow/DefenseStepper")
+_remainingExpPointsLabel = NodePath("StatsPanel/VBoxContainer/MarginContainer6/HBoxContainer/RemainingExp")
+_nextFightButton = NodePath("StatsPanel/VBoxContainer/MarginContainer5/Button3")
+_fighter = NodePath("Fighter")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_mma3l")
+
+[node name="StatsPanel" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -69.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="ColorRect" parent="StatsPanel" instance=ExtResource("2_d6vic")]
+layout_mode = 2
+color = Color(0.138829, 0.00518121, 0.00142204, 0.929412)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsPanel"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="StatsPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="HealthRow" type="HBoxContainer" parent="StatsPanel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+tooltip_text = "You're healthier"
+
+[node name="TextureRect" type="TextureRect" parent="StatsPanel/VBoxContainer/MarginContainer/HealthRow"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_ssqbg")
+
+[node name="HealthStepper" parent="StatsPanel/VBoxContainer/MarginContainer/HealthRow" instance=ExtResource("5_otd7j")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="StatsPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="SpeedRow" type="HBoxContainer" parent="StatsPanel/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+tooltip_text = "You're faster"
+
+[node name="TextureRect" type="TextureRect" parent="StatsPanel/VBoxContainer/MarginContainer2/SpeedRow"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_6njom")
+
+[node name="SpeedStepper" parent="StatsPanel/VBoxContainer/MarginContainer2/SpeedRow" instance=ExtResource("5_otd7j")]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="StatsPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="StrengthRow" type="HBoxContainer" parent="StatsPanel/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+tooltip_text = "You're stronger"
+
+[node name="TextureRect" type="TextureRect" parent="StatsPanel/VBoxContainer/MarginContainer3/StrengthRow"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_qdyc6")
+
+[node name="StrengthStepper" parent="StatsPanel/VBoxContainer/MarginContainer3/StrengthRow" instance=ExtResource("5_otd7j")]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="StatsPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="DefenseRow" type="HBoxContainer" parent="StatsPanel/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+tooltip_text = "You're...shield-ier? (your block is more effective)"
+
+[node name="TextureRect" type="TextureRect" parent="StatsPanel/VBoxContainer/MarginContainer4/DefenseRow"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_qnwcn")
+
+[node name="DefenseStepper" parent="StatsPanel/VBoxContainer/MarginContainer4/DefenseRow" instance=ExtResource("5_otd7j")]
+layout_mode = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="StatsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatsPanel/VBoxContainer/MarginContainer6"]
+layout_mode = 2
+
+[node name="RemainingExpLabel" type="Label" parent="StatsPanel/VBoxContainer/MarginContainer6/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Remaining Exp:"
+
+[node name="RemainingExp" type="Label" parent="StatsPanel/VBoxContainer/MarginContainer6/HBoxContainer"]
+layout_mode = 2
+text = "10
+"
+
+[node name="MarginContainer5" type="MarginContainer" parent="StatsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Button3" parent="StatsPanel/VBoxContainer/MarginContainer5" instance=ExtResource("4_wd8d2")]
+custom_minimum_size = Vector2(82, 18)
+layout_mode = 2
+size_flags_vertical = 8
+theme_type_variation = &"button_no_frame"
+theme_override_font_sizes/font_size = 6
+text = "Next fight"
+
+[node name="Fighter" parent="." instance=ExtResource("7_1nenb")]
+position = Vector2(87, 93)

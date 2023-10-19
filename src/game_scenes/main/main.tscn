@@ -1,0 +1,27 @@
+[gd_scene load_steps=10 format=3 uid="uid://cv7uoo65r5r11"]
+
+[ext_resource type="Script" path="res://src/game_scenes/main/Main.cs" id="1_jlfth"]
+[ext_resource type="PackedScene" uid="uid://dxynmlovonl6s" path="res://src/game_scenes/start_menu/start_menu.tscn" id="2_4ks5h"]
+[ext_resource type="PackedScene" uid="uid://cuvve83igm5fe" path="res://src/game_scenes/fight/fight.tscn" id="3_agthi"]
+[ext_resource type="PackedScene" uid="uid://c2nci3gapsobm" path="res://src/ui_components/screen_fader/screen_fader.tscn" id="4_2oecl"]
+[ext_resource type="PackedScene" uid="uid://bg0hipyfquusd" path="res://src/input/global_input_controller/global_input_controller.tscn" id="4_qw5jr"]
+[ext_resource type="PackedScene" uid="uid://us1y0rho26f8" path="res://src/game_scenes/training/training_scene.tscn" id="4_ukm4h"]
+[ext_resource type="PackedScene" uid="uid://dkqyrde2kg3yf" path="res://src/game_scenes/bracket/bracket.tscn" id="5_cyiiq"]
+[ext_resource type="PackedScene" uid="uid://ccjxyrjb7puo0" path="res://src/game_scenes/choose_next_fight/choose_next_fight.tscn" id="6_0yqcu"]
+[ext_resource type="PackedScene" uid="uid://c3rs2pv57bf2d" path="res://src/game_scenes/player_death/player_death.tscn" id="7_7sel6"]
+
+[node name="Main" type="Node" node_paths=PackedStringArray("_screenFader")]
+process_mode = 3
+script = ExtResource("1_jlfth")
+_startMenuScene = ExtResource("2_4ks5h")
+_fightScene = ExtResource("3_agthi")
+_trainingScene = ExtResource("4_ukm4h")
+_bracketScene = ExtResource("5_cyiiq")
+_chooseNextFightScene = ExtResource("6_0yqcu")
+_playerDeathScene = ExtResource("7_7sel6")
+_screenFader = NodePath("ScreenFader")
+
+[node name="GlobalInputController" parent="." instance=ExtResource("4_qw5jr")]
+process_mode = 3
+
+[node name="ScreenFader" parent="." instance=ExtResource("4_2oecl")]
